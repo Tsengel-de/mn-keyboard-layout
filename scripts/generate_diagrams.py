@@ -7,9 +7,11 @@ Author: Tsengel (tsengel.de)
 """
 
 import os
+from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-OUTPUT_DIR = "/home/bachka/repos-privat/tsengel-de/language-dev/mn-keyboard-layout/docs/images"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_DIR = str(REPO_ROOT / "docs" / "images")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 FONT_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"

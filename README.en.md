@@ -143,9 +143,21 @@ xdg-open web/index.html
 
 ---
 
+## 🙏 Sources & Attribution
+
+This project is built upon the invaluable heritage of earlier open-source efforts:
+* **bachka-keyboard Projects (Predecessors by Tsengel/Bachka)**:
+  - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Original Linux XKB symbols foundation
+  - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY installer and MSKLC source
+  - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ installer and MSKLC source
+* **Dusal.net (D. Dusal)**:
+  - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Pioneering work on Mongolian phonetic QWERTY layouts and macOS Classical Mongol Bichig keylayouts and fonts. Special thanks to D. Dusal for laying the groundwork for digital Mongolian typing.
+
+---
+
 ## 🤝 Author & License
 
 This project is open-source under the [MIT License](LICENSE).
-* Author: **Tsengel** — [tsengel.de](https://tsengel.de)
+* Author: **Tsengel** — [tsengel.de](https://tsengel.de) (also [blog.tsengel.de](https://blog.tsengel.de))
 * Contributions, feedback, and improvements are welcome via GitHub Issues and Pull Requests.
 

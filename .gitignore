@@ -5,3 +5,11 @@ Thumbs.db
 # Build & Temp
 *.tmp
 /tmp/
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*~

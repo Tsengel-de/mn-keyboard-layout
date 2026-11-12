@@ -180,10 +180,22 @@ mn-keyboard-layout/
 
 ---
 
+## 🙏 Эх Сурвалж ба Талархал (Sources & Attribution)
+
+Энэхүү төсөл нь өмнөх үеийн нээлттэй эхийн шийдлүүд болон туршлага дээр тулгуурлан хөгжүүлэгдсэн:
+* **bachka-keyboard төслүүд (Predecessor Projects by Tsengel/Bachka)**:
+  - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Анхны Linux XKB layout суурь
+  - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY суулгац ба MSKLC эх код
+  - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ суулгац ба MSKLC эх код
+* **Dusal.net (Д. Дусал)**:
+  - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Монгол фонетик гарын байрлал (QWERTY) болон macOS дээрх худам монгол бичгийн эхний keylayout, фонтын анхдагч суурийг тавьсан D. Dusal (dusal.net)-д гүн талархал илэрхийлье.
+
+---
+
 ## 🤝 Зохиогч & Нээлттэй Эрх (Author & License)
 
 Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [MIT License](LICENSE) эрхтэй.
-* Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de)
+* Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de) (мөн [blog.tsengel.de](https://blog.tsengel.de))
 * Санал хүсэлт, сайжруулалтыг GitHub Issue болон Pull Request-ээр хүлээн авна.
 
 *Монголын үрс маш олон болж, мэдлэгийг харамгүй хуваалцан хамтдаа хөгжих болтугай! 🇲🇳*
