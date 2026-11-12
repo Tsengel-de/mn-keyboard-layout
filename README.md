@@ -87,7 +87,9 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 
 * **DMG-ээр суулгах (Зөвлөмж болгох Apple стандарт)**:
   1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ.
-  2. `Mongolian.bundle`-ийг хажуугийн `Keyboard Layouts` холбоос руу чирж хуулна (Drag & Drop).
+  2. Цонхон доторх **`Keyboard Layouts` холбоос дээр 2 товшиж хавтсыг нээнэ**.
+  3. Нээгдсэн хавтас руу **`Mongolian.bundle`**-ийг чирж хуулна (Mac нууц үг асуувал оруулна).
+  *(Эсвэл цонхон дахь `Mongolian Keyboard Installer.pkg` дээр 2 товшиж автомат суулгагчаар суулгаж болно).*
 * **Terminal дээр**:
   ```bash
   cd macos
