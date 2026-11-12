@@ -198,23 +198,41 @@
       border: 2px solid var(--primary);
       background: #f8fbff;
     }
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .card-header-row h4 {
+      font-size: 17px;
+      margin: 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      line-height: 1.35;
+    }
     .card-badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
+      position: static;
+      flex-shrink: 0;
+      white-space: nowrap;
       background: #dbeafe;
       color: #1e40af;
       font-size: 11px;
       font-weight: 700;
-      padding: 4px 8px;
+      padding: 3px 8px;
       border-radius: 6px;
       text-transform: uppercase;
+      align-self: flex-start;
+      margin-top: 2px;
     }
     .download-card.highlighted .card-badge {
       background: #0284c7;
       color: #ffffff;
     }
-    .download-card h4 { font-size: 18px; margin-bottom: 8px; color: var(--text); display: flex; align-items: center; gap: 8px; }
     .download-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; }
     
     .btn-dl-primary {
@@ -594,8 +612,10 @@
   <div class="downloads-grid">
     <!-- 1. Windows -->
     <div class="download-card" id="card-windows">
-      <span class="card-badge">MSI & EXE</span>
-      <h4 id="i18n-win-title">🪟 Windows 7 / 10 / 11</h4>
+      <div class="card-header-row">
+        <h4 id="i18n-win-title">🪟 Windows 7 / 10 / 11</h4>
+        <span class="card-badge">MSI & EXE</span>
+      </div>
       <p id="i18n-win-desc">Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.</p>
       <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-primary" id="i18n-btn-win-zip">
         ⬇️ Windows Багц Татах (.zip, 509 KB)
@@ -611,8 +631,10 @@
 
     <!-- 2. macOS -->
     <div class="download-card" id="card-macos">
-      <span class="card-badge">Apple Silicon & Intel</span>
-      <h4 id="i18n-mac-title">🍏 macOS (OS X / Sonoma / Sequoia)</h4>
+      <div class="card-header-row">
+        <h4 id="i18n-mac-title">🍏 macOS (OS X / Sonoma / Sequoia)</h4>
+        <span class="card-badge">Apple Silicon & Intel</span>
+      </div>
       <p id="i18n-mac-desc">Apple macOS-д зориулсан native .keylayout, цэсийн далбаат icon болон Худам Монгол бичгийн OpenType фонтууд.</p>
       <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-primary" id="i18n-btn-mac-zip">
         ⬇️ macOS Багц Татах (.zip, 605 KB)
@@ -627,8 +649,10 @@
 
     <!-- 3. Linux -->
     <div class="download-card" id="card-linux">
-      <span class="card-badge">XKB Unified</span>
-      <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
+      <div class="card-header-row">
+        <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
+        <span class="card-badge">XKB Unified</span>
+      </div>
       <p id="i18n-linux-desc">Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.</p>
       <a href="downloads/Mongolian-Keyboard-Linux.zip" download class="btn-dl-primary" id="i18n-btn-linux-zip">
         ⬇️ Linux Багц Татах (.zip, 26 KB)
