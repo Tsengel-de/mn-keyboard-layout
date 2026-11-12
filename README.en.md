@@ -127,11 +127,20 @@ Official Apple `Mongolian.bundle` package with native DMG disk image:
 
 ## Cryptographic Checksums (SHA-256)
 
-Verify the integrity of Windows installer binaries:
+Verify the integrity and authenticity of all release download packages:
 
 ```text
+# 🪟 Windows
 72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup.exe
 6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
+
+# 🍏 macOS
+a14b29117028558f8e66113aeacda69633bd22b472d7681a2aa6a06b1baff7e4  Mongolian-Keyboard-macOS.dmg
+91a146afe85ae15e531ecf20a48ec1c8238b85d32e3081a8b53f70ce17da41d9  Mongolian-Keyboard-macOS.zip
+
+# 🐧 Linux
+f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux.zip
+438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4  install-linux.sh
 ```
 
 ---
