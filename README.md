@@ -85,11 +85,12 @@ sudo ./install.sh
 ### 🍏 2. macOS (Apple OS X / macOS)
 macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` багц:
 
-* **DMG-ээр суулгах (Зөвлөмж болгох Apple стандарт)**:
+* **1. Автомат суулгагч (.pkg — Хамгийн хялбар)**:
+  `Mongolian-Keyboard-macOS.pkg` дээр 2 товшиод **Next &rarr; Install** товшиж системдээ шууд суулгана.
+* **2. Виртуал диск (.dmg — Хавтас руу чирэх)**:
   1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ.
   2. Цонхон доторх **`Keyboard Layouts` холбоос дээр 2 товшиж хавтсыг нээнэ**.
-  3. Нээгдсэн хавтас руу **`Mongolian.bundle`**-ийг чирж хуулна (Mac нууц үг асуувал оруулна).
-  *(Эсвэл цонхон дахь `Mongolian Keyboard Installer.pkg` дээр 2 товшиж автомат суулгагчаар суулгаж болно).*
+  3. Нээгдсэн хавтас руу **`Mongolian.bundle`**-ийг чирж хуулна (нууц үгээ оруулаад зөвшөөрнө).
 * **Terminal дээр**:
   ```bash
   cd macos

@@ -633,18 +633,22 @@
     <div class="download-card" id="card-macos">
       <div class="card-header-row">
         <h4 id="i18n-mac-title">🍏 macOS (Apple Silicon & Intel)</h4>
-        <span class="card-badge">Apple DMG & PKG</span>
+        <span class="card-badge">PKG & DMG</span>
       </div>
-      <p id="i18n-mac-desc">Apple-ийн албан ёсны стандартын Mongolian.bundle багц. DMG нээгээд холбоос хавтсыг нээж чирээд л суулгана.</p>
-      <a href="downloads/Mongolian-Keyboard-macOS.dmg" download class="btn-dl-primary" id="i18n-btn-mac-dmg">
-        ⬇️ macOS Багц Татах (.dmg, 1.9 MB)
-      </a>
+      <p id="i18n-mac-desc">Apple-ийн албан ёсны .pkg суулгагч болон .dmg виртуал диск. Хүссэн хувилбараараа шууд суулгана.</p>
+      <div class="dual-btn-group" style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;">
+        <a href="downloads/Mongolian-Keyboard-macOS.pkg" download class="btn-dl-primary" id="i18n-btn-mac-pkg" style="margin-bottom:0;">
+          📦 macOS Суулгагч (.pkg, 603 KB)
+        </a>
+        <a href="downloads/Mongolian-Keyboard-macOS.dmg" download class="btn-dl-primary" id="i18n-btn-mac-dmg" style="margin-bottom:0; background:#0284c7;">
+          💿 macOS Диск (.dmg, 1.9 MB)
+        </a>
+      </div>
       <div class="sub-dl-group">
-        <a href="downloads/Mongolian-Keyboard-macOS.pkg" download class="btn-dl-sub" id="i18n-btn-mac-pkg">.pkg суулгагч (603 KB)</a>
-        <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-sub" id="i18n-btn-mac-zip">.zip хувилбар (1.2 MB)</a>
+        <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-sub" id="i18n-btn-mac-zip">📁 .zip Эх сан (1.2 MB)</a>
       </div>
       <div class="install-hint" id="i18n-mac-hint">
-        <strong>Суулгах:</strong> .dmg нээгээд <code>Keyboard Layouts</code> холбоос дээр <strong>2 товшиж нээнэ</strong>. Нээгдсэн хавтас руу <code>Mongolian.bundle</code>-ийг чирж хуулна (нууц үгээ оруулна). Төгсгөөд System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
+        <strong>Суулгах:</strong> <code>.pkg</code> дээр 2 дараад Next дарж суулгана (эсвэл <code>.dmg</code> нээгээд <code>Keyboard Layouts</code> хавтас руу чирнэ). Дууссаны дараа System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
       </div>
     </div>
 
@@ -1208,11 +1212,11 @@ const I18N = {
     btnWinZip: "⬇️ Windows Багц Татах (.zip, 509 KB)",
     winHint: "<strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Apple-ийн албан ёсны стандартын Mongolian.bundle багц. DMG-г нээгээд холбоос хавтсыг давхар товшиж нээн, дотор нь чирж хуулна.",
-    btnMacDmg: "⬇️ macOS Багц Татах (.dmg, 1.9 MB)",
-    btnMacPkg: ".pkg суулгагч (603 KB)",
-    btnMacZip: ".zip хувилбар (1.2 MB)",
-    macHint: "<strong>Суулгах:</strong> .dmg нээгээд <code>Keyboard Layouts</code> холбоос дээр <strong>давхар товшиж хавтсыг нээнэ</strong>. Нээгдсэн хавтас руу <code>Mongolian.bundle</code>-ийг чирж хуулна (нууц үгээ оруулна). Төгсгөөд System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.",
+    macDesc: "Apple-ийн албан ёсны .pkg суулгагч болон .dmg виртуал диск. Хүссэн хувилбараараа шууд суулгана.",
+    btnMacPkg: "📦 macOS Суулгагч (.pkg, 603 KB)",
+    btnMacDmg: "💿 macOS Диск (.dmg, 1.9 MB)",
+    btnMacZip: "📁 .zip Эх сан (1.2 MB)",
+    macHint: "<strong>Суулгах:</strong> <code>.pkg</code> дээр 2 дараад Next дарж суулгана (эсвэл <code>.dmg</code> нээгээд <code>Keyboard Layouts</code> хавтас руу чирнэ). Дууссаны дараа System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
@@ -1262,11 +1266,11 @@ const I18N = {
     btnWinZip: "⬇️ Download Windows Package (.zip, 509 KB)",
     winHint: "<strong>Install:</strong> Run Setup.exe and click Next. Switch anytime using <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Official Apple Mongolian.bundle package. Mount the DMG, double-click the shortcut to open the folder, and drag & drop the bundle.",
-    btnMacDmg: "⬇️ Download macOS Disk Image (.dmg, 1.9 MB)",
-    btnMacPkg: ".pkg installer (603 KB)",
-    btnMacZip: ".zip archive (1.2 MB)",
-    macHint: "<strong>Install:</strong> Open .dmg, <strong>double-click the <code>Keyboard Layouts</code> shortcut to open the folder</strong>, then drag & drop <code>Mongolian.bundle</code> into it (enter password when prompted). Finally add in System Settings &rarr; Keyboard &rarr; Input Sources.",
+    macDesc: "Official Apple .pkg installer and native .dmg disk image. Choose whichever installation method you prefer.",
+    btnMacPkg: "📦 macOS Installer (.pkg, 603 KB)",
+    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.9 MB)",
+    btnMacZip: "📁 .zip Archive (1.2 MB)",
+    macHint: "<strong>Install:</strong> Double-click <code>.pkg</code> and click Next (or open <code>.dmg</code> and drag into <code>Keyboard Layouts</code>). Then add in System Settings &rarr; Keyboard &rarr; Input Sources.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "All 3 editions (Modern, Classic, Bichig) bundled in one safe XKB installer.",
     btnLinuxZip: "⬇️ Download Linux Package (.zip, 26 KB)",
@@ -1316,11 +1320,11 @@ const I18N = {
     btnWinZip: "⬇️ Windows-Paket herunterladen (.zip, 509 KB)",
     winHint: "<strong>Installation:</strong> Setup.exe ausführen und auf Weiter klicken. Jederzeit mit <strong>Win + Leertaste</strong> umschalten.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Offizielles Apple Mongolian.bundle-Paket. DMG öffnen, die Verknüpfung per Doppelklick öffnen und das Bundle hineinziehen.",
-    btnMacDmg: "⬇️ macOS Disk Image herunterladen (.dmg, 1.9 MB)",
-    btnMacPkg: ".pkg-Installer (603 KB)",
-    btnMacZip: ".zip-Archiv (1.2 MB)",
-    macHint: "<strong>Installation:</strong> DMG öffnen, <strong>die Verknüpfung <code>Keyboard Layouts</code> per Doppelklick öffnen</strong> und <code>Mongolian.bundle</code> in den Ordner ziehen (Passwort eingeben). Danach in Systemeinstellungen &rarr; Tastatur &rarr; Eingabequellen hinzufügen.",
+    macDesc: "Offizielles Apple-.pkg-Installationsprogramm und natives .dmg-Disk-Image. Wählen Sie Ihre bevorzugte Methode.",
+    btnMacPkg: "📦 macOS-Installer (.pkg, 603 KB)",
+    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.9 MB)",
+    btnMacZip: "📁 .zip-Archiv (1.2 MB)",
+    macHint: "<strong>Installation:</strong> Doppelklick auf <code>.pkg</code> und Weiter klicken (oder DMG öffnen und in <code>Keyboard Layouts</code> ziehen). Danach in Systemeinstellungen &rarr; Tastatur &rarr; Eingabequellen hinzufügen.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "Alle 3 Editionen (Modern, Klassisch, Bichig) gebündelt in einem sicheren XKB-Installer.",
     btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip, 26 KB)",
