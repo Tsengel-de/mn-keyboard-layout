@@ -58,20 +58,24 @@
 ## 🚀 Суулгах Заавар (Installation Guides)
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
-Линукс систем дээр `XKB` стандартыг ашиглан нэг тушаалаар суулгана:
+Линукс систем дээр нэг тушаалаар **3 хувилбарыг бүгдийг нь нэгэн зэрэг** системд суулгана:
 
 ```bash
 cd linux
-# Интерактив сонголттой суулгац:
 sudo ./install.sh
-
-# Эсвэл шууд горимоор суулгах:
-sudo ./install.sh ergonomic   # 1) Modern Ergonomic & DevOps (Зөвлөмж: Q=Ө, W=Ү)
-sudo ./install.sh classic     # 2) Classic Tsengel Layout ([=ө, ]=ү)
-sudo ./install.sh bichig      # 3) Classical Mongol Bichig (Худам Монгол бичиг)
 ```
 
-* **Идэвхжүүлэх**: `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Add Input Source` $\rightarrow$ `Mongolian`.
+Суулгасны дараа та дараах 3 хувилбарыг шууд ашиглах боломжтой болно:
+1. **Үндсэн (Default)**: `Mongolian (Ergonomic & DevOps)` (`Q=Ө, W=Ү`)
+2. **Classic**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
+3. **Монгол бичиг**: `Mongolian Script (Bichig)` (Худам монгол бичиг)
+
+* **Шууд шилжүүлэх (Terminal / X11)**:
+  - `setxkbmap mn` (Ergonomic үндсэн хувилбар)
+  - `setxkbmap mn -variant classic` (Classic хувилбар)
+  - `setxkbmap mn -variant bichig` (Худам монгол бичиг)
+* **График орчин (GNOME / KDE / Ubuntu)**:
+  - `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ `Add 'Mongolian'` (3 хувилбараас хүссэнээ нэмээд `Win + Space`-ээр шилжинэ).
 * **Буцааж анхны төлөвт оруулах**: `cd linux && sudo ./uninstall.sh`.
 
 ---

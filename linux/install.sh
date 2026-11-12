@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Mongolian Keyboard Layout Suite - Linux (XKB) Installer
+# All-in-One Mongolian Keyboard Layout Suite - Linux (XKB) Installer
 # Author: Tsengel (tsengel@tsengel.de)
 # Part of "Mongolian for All" / tsengel.de Language Foundation
 # ==============================================================================
@@ -11,41 +11,12 @@ XKB_SYMBOLS_DIR="/usr/share/X11/xkb/symbols"
 TARGET_FILE="${XKB_SYMBOLS_DIR}/mn"
 BACKUP_FILE="${XKB_SYMBOLS_DIR}/mn.orig.backup"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-LAYOUT_CHOICE="${1:-}"
+SOURCE_FILE="${SCRIPT_DIR}/mn"
 
 echo "=========================================================="
-echo "🇲🇳 Mongolian Keyboard Layout Suite - Linux Installer"
+echo "🇲🇳 Mongolian All-in-One Keyboard Suite - Linux Installer"
 echo "Author: Tsengel (tsengel.de)"
 echo "=========================================================="
-
-if [ -z "${LAYOUT_CHOICE}" ]; then
-    echo "Select layout to install:"
-    echo "  1) Modern Ergonomic & DevOps (Recommended: Q=Ө, W=Ү, brackets [ ] preserved)"
-    echo "  2) Classic Tsengel Layout (Brackets [=ө, ]=ү)"
-    echo "  3) Classical Mongolian Script (Худам Монгол бичиг)"
-    read -rp "Enter choice [1-3, default 1]: " user_sel
-    case "${user_sel}" in
-        2) LAYOUT_CHOICE="classic" ;;
-        3) LAYOUT_CHOICE="bichig" ;;
-        *) LAYOUT_CHOICE="ergonomic" ;;
-    esac
-fi
-
-case "${LAYOUT_CHOICE}" in
-    classic)
-        SOURCE_FILE="${SCRIPT_DIR}/mn-custom"
-        LAYOUT_NAME="Classic Tsengel Layout"
-        ;;
-    bichig)
-        SOURCE_FILE="${SCRIPT_DIR}/mn-bichig"
-        LAYOUT_NAME="Classical Mongol Bichig (Худам Монгол бичиг)"
-        ;;
-    *)
-        SOURCE_FILE="${SCRIPT_DIR}/mn-ergonomic"
-        LAYOUT_NAME="Modern Ergonomic & DevOps (Q=Ө, W=Ү)"
-        ;;
-esac
 
 if [ ! -f "${SOURCE_FILE}" ]; then
     echo "❌ Error: Source file ${SOURCE_FILE} not found!" >&2
@@ -65,7 +36,7 @@ elif [ -f "${BACKUP_FILE}" ]; then
     echo "   Original backup exists at: ${BACKUP_FILE}"
 fi
 
-echo "2. Installing ${LAYOUT_NAME} to ${TARGET_FILE}..."
+echo "2. Installing All-in-One Mongolian Suite to ${TARGET_FILE}..."
 sudo cp "${SOURCE_FILE}" "${TARGET_FILE}"
 sudo chmod 644 "${TARGET_FILE}"
 
@@ -75,13 +46,21 @@ if [ -d "/var/lib/xkb" ]; then
 fi
 
 echo ""
-echo "✅ Installation completed successfully!"
-echo "   Active layout: ${LAYOUT_NAME}"
+echo "✅ All 3 layouts installed simultaneously!"
 echo "----------------------------------------------------------"
-echo "To activate immediately:"
-echo "  - In Terminal (X11): setxkbmap mn"
-echo "  - In GNOME / Ubuntu: Settings -> Keyboard -> Input Sources -> Add 'Mongolian'"
-echo "  - If layout does not update immediately, log out and log back in."
+echo "Installed Variants:"
+echo "  1) Default:  Mongolian (Ergonomic & DevOps: Q=Ө, W=Ү)"
+echo "  2) Classic:  Mongolian (Classic Tsengel: [=ө, ]=ү)"
+echo "  3) Bichig:   Mongolian Script (Худам Монгол бичиг)"
+echo ""
+echo "Quick Switch via Terminal (X11):"
+echo "  - setxkbmap mn                    # Ergonomic & DevOps (Default)"
+echo "  - setxkbmap mn -variant classic   # Classic Tsengel"
+echo "  - setxkbmap mn -variant bichig    # Classical Mongol Bichig"
+echo ""
+echo "In GNOME / Ubuntu / Fedora Settings:"
+echo "  Settings -> Keyboard -> Input Sources -> Add 'Mongolian'"
+echo "  (All 3 variants are ready to select and switch with Win + Space)"
 echo ""
 echo "To revert:"
 echo "  Run: ./uninstall.sh"

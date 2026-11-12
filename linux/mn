@@ -1,0 +1,180 @@
+// =============================================================================
+// All-in-One Mongolian Keyboard Layout Suite for Linux (XKB)
+// Author: Tsengel <tsengel@tsengel.de>
+// Part of "Mongolian for All" / tsengel.de
+//
+// Includes 3 Integrated Variants:
+// 1. "basic"   - Modern Ergonomic & DevOps (Q=Ө, W=Ү, [ ] { } preserved)
+// 2. "classic" - Classic Tsengel Layout (Brackets [=ө, ]=ү)
+// 3. "bichig"  - Classical Mongolian Script (Худам Монгол бичиг)
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 1. DEFAULT: Modern Ergonomic & DevOps (Q=Ө, W=Ү)
+// -----------------------------------------------------------------------------
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+
+  name[Group1]= "Mongolian (Ergonomic & DevOps)";
+
+  // Number Row (AE01 - AE12)
+  key <TLDE> { [ Cyrillic_io,        Cyrillic_IO,        asciitilde,         grave               ] };
+  key <AE01> { [ 1,                  exclam,             numerosign,         exclamdown          ] };
+  key <AE02> { [ 2,                  at,                 twosuperior,        at                  ] };
+  key <AE03> { [ 3,                  numbersign,         threesuperior,      numbersign          ] };
+  key <AE04> { [ 4,                  dollar,             U20ae,              currency            ] }; // AltGr+4 = ₮
+  key <AE05> { [ 5,                  percent,            EuroSign,           percent             ] };
+  key <AE06> { [ 6,                  dead_circumflex,    onequarter,         asciicircum         ] };
+  key <AE07> { [ 7,                  ampersand,          onehalf,            ampersand           ] };
+  key <AE08> { [ 8,                  asterisk,           threequarters,      asterisk            ] };
+  key <AE09> { [ 9,                  parenleft,          leftsinglequotemark, parenleft          ] };
+  key <AE10> { [ 0,                  parenright,         rightsinglequotemark, parenright        ] };
+  key <AE11> { [ minus,              underscore,         endash,             emdash              ] };
+  key <AE12> { [ equal,              plus,               multiply,           division            ] };
+
+  // Top Row (AD01 - AD12): Q W E R T Y U I O P [ ] \
+  key <AD01> { [ Cyrillic_o_bar,     Cyrillic_O_bar,     Cyrillic_hardsign,  Cyrillic_HARDSIGN   ] }; // Q = Ө, AltGr = Ъ
+  key <AD02> { [ Cyrillic_u_straight,Cyrillic_U_straight,Cyrillic_softsign,  Cyrillic_SOFTSIGN   ] }; // W = Ү, AltGr = Ь
+  key <AD03> { [ Cyrillic_e,         Cyrillic_E,         EuroSign,           NoSymbol            ] }; // E = Э
+  key <AD04> { [ Cyrillic_er,        Cyrillic_ER,        registered,         NoSymbol            ] }; // R = Р
+  key <AD05> { [ Cyrillic_te,        Cyrillic_TE,         U20ae,              NoSymbol            ] }; // T = Т, AltGr = ₮
+  key <AD06> { [ Cyrillic_shorti,    Cyrillic_SHORTI,    Cyrillic_ie,        Cyrillic_IE         ] }; // Y = Й, AltGr = Е
+  key <AD07> { [ Cyrillic_u,         Cyrillic_U,         doublelowquotemark, NoSymbol            ] }; // U = У
+  key <AD08> { [ Cyrillic_i,         Cyrillic_I,         leftdoublequotemark, NoSymbol           ] }; // I = И
+  key <AD09> { [ Cyrillic_o,         Cyrillic_O,         rightdoublequotemark, NoSymbol          ] }; // O = О
+  key <AD10> { [ Cyrillic_pe,        Cyrillic_PE,        semicolon,          NoSymbol            ] }; // P = П
+  key <AD11> { [ bracketleft,        braceleft,          guillemotleft,      Cyrillic_softsign   ] }; // [ { « ь
+  key <AD12> { [ bracketright,       braceright,         guillemotright,     Cyrillic_hardsign   ] }; // ] } » ъ
+  key <BKSL> { [ backslash,          bar,                exclam,             NoSymbol            ] }; // \ |
+
+  // Home Row (AC01 - AC11): A S D F G H J K L ; '
+  key <AC01> { [ Cyrillic_a,         Cyrillic_A,         mu,                 NoSymbol            ] }; // A = А
+  key <AC02> { [ Cyrillic_es,        Cyrillic_ES,        sterling,           NoSymbol            ] }; // S = С
+  key <AC03> { [ Cyrillic_de,        Cyrillic_DE,        guillemotleft,      NoSymbol            ] }; // D = Д, AltGr = «
+  key <AC04> { [ Cyrillic_ef,        Cyrillic_EF,        guillemotright,     NoSymbol            ] }; // F = Ф, AltGr = »
+  key <AC05> { [ Cyrillic_ghe,       Cyrillic_GHE,       braceleft,          NoSymbol            ] }; // G = Г
+  key <AC06> { [ Cyrillic_ha,        Cyrillic_HA,        less,               NoSymbol            ] }; // H = Х
+  key <AC07> { [ Cyrillic_zhe,       Cyrillic_ZHE,       greater,            NoSymbol            ] }; // J = Ж
+  key <AC08> { [ Cyrillic_ka,        Cyrillic_KA,        braceright,         NoSymbol            ] }; // K = К
+  key <AC09> { [ Cyrillic_el,        Cyrillic_EL,        numerosign,         NoSymbol            ] }; // L = Л
+  key <AC10> { [ semicolon,          colon,              Cyrillic_shcha,     Cyrillic_SHCHA      ] }; // ; : Щ
+  key <AC11> { [ Cyrillic_yeru,      Cyrillic_YERU,      apostrophe,         quotedbl            ] }; // ' = Ы, AltGr = ' "
+
+  // Bottom Row (AB01 - AB10): Z X C V B N M , . /
+  key <AB01> { [ Cyrillic_ze,        Cyrillic_ZE,        emdash,             NoSymbol            ] }; // Z = З
+  key <AB02> { [ Cyrillic_sha,       Cyrillic_SHA,       Cyrillic_shcha,     Cyrillic_SHCHA      ] }; // X = Ш, AltGr = Щ
+  key <AB03> { [ Cyrillic_tse,       Cyrillic_TSE,       copyright,          NoSymbol            ] }; // C = Ц
+  key <AB04> { [ Cyrillic_ve,        Cyrillic_VE,        NoSymbol,           NoSymbol            ] }; // V = В
+  key <AB05> { [ Cyrillic_be,        Cyrillic_BE,        degree,             NoSymbol            ] }; // B = Б
+  key <AB06> { [ Cyrillic_en,        Cyrillic_EN,        less,               NoSymbol            ] }; // N = Н
+  key <AB07> { [ Cyrillic_em,        Cyrillic_EM,        greater,            NoSymbol            ] }; // M = М
+  key <AB08> { [ Cyrillic_che,       Cyrillic_CHE,       comma,              less                ] }; // , = Ч, AltGr = ,
+  key <AB09> { [ Cyrillic_yu,        Cyrillic_YU,        period,             greater             ] }; // . = Ю, AltGr = .
+  key <AB10> { [ Cyrillic_ya,        Cyrillic_YA,        question,           slash               ] }; // / = Я, AltGr = ?
+
+  key <SPCE> { [ space,              space,              0x100202f,          nobreakspace        ] };
+
+  include "level3(ralt_switch)"
+};
+
+
+// -----------------------------------------------------------------------------
+// 2. VARIANT: Classic Tsengel Layout (Brackets [=ө, ]=ү)
+// -----------------------------------------------------------------------------
+partial alphanumeric_keys
+xkb_symbols "classic" {
+
+  name[Group1]= "Mongolian (Classic Tsengel)";
+
+  include "mn(basic)"
+
+  key <AD01> { [ Cyrillic_hardsign,  Cyrillic_HARDSIGN,   apostrophe          ] };
+  key <AD02> { [ Cyrillic_softsign,  Cyrillic_SOFTSIGN,   grave               ] };
+  key <AD06> { [ Cyrillic_ie,        Cyrillic_IE,         trademark           ] };
+  key <AD11> { [ Cyrillic_o_bar,     Cyrillic_O_bar,      bracketleft         ] };
+  key <AD12> { [ Cyrillic_u_straight,Cyrillic_U_straight, bracketright        ] };
+  key <BKSL> { [ Cyrillic_shorti,   Cyrillic_SHORTI,    backslash           ] };
+
+  key <AC10> { [ Cyrillic_shcha,    Cyrillic_SHCHA,     colon               ] };
+  key <AC11> { [ Cyrillic_yeru,     Cyrillic_YERU,      ellipsis            ] };
+
+  include "level3(ralt_switch)"
+};
+
+
+// -----------------------------------------------------------------------------
+// 3. VARIANT: Classical Mongolian Script (Худам Монгол бичиг)
+// -----------------------------------------------------------------------------
+partial alphanumeric_keys
+xkb_symbols "bichig" {
+
+  name[Group1]= "Mongolian Script (Bichig)";
+
+  // Classical Mongolian Digits (᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙)
+  key <TLDE> { [ 0x1001804, 0x1001800, asciitilde, grave ] }; // ᠄, ᠀
+  key <AE01> { [ 0x1001811, exclam,     1,          exclam ] };
+  key <AE02> { [ 0x1001812, at,         2,          at     ] };
+  key <AE03> { [ 0x1001813, numbersign, 3,          numbersign ] };
+  key <AE04> { [ 0x1001814, dollar,     4,          0x10020ae  ] };
+  key <AE05> { [ 0x1001815, percent,    5,          percent ] };
+  key <AE06> { [ 0x1001816, asciicircum,6,          asciicircum ] };
+  key <AE07> { [ 0x1001817, ampersand,  7,          ampersand ] };
+  key <AE08> { [ 0x1001818, asterisk,   8,          asterisk ] };
+  key <AE09> { [ 0x1001819, parenleft,  9,          parenleft ] };
+  key <AE10> { [ 0x1001810, parenright, 0,          parenright ] };
+  key <AE11> { [ minus,     underscore, endash,     emdash ] };
+  key <AE12> { [ equal,     plus,       multiply,   division ] };
+
+  // Top Row: Q W E R T Y U I O P [ ] \
+  key <AD01> { [ 0x1001825, 0x1001825, 0x100180b, NoSymbol ] }; // Q = ᠥ
+  key <AD02> { [ 0x1001826, 0x1001826, 0x100180c, NoSymbol ] }; // W = ᠦ
+  key <AD03> { [ 0x1001821, 0x1001821, 0x100180e, NoSymbol ] }; // E = ᠡ
+  key <AD04> { [ 0x1001837, 0x1001837, registered,NoSymbol ] }; // R = ᠷ
+  key <AD05> { [ 0x1001832, 0x1001832, 0x10020ae, NoSymbol ] }; // T = ᠲ
+  key <AD06> { [ 0x1001836, 0x1001836, trademark, NoSymbol ] }; // Y = ᠶ
+  key <AD07> { [ 0x1001824, 0x1001824, 0x100180d, NoSymbol ] }; // U = ᠤ
+  key <AD08> { [ 0x1001822, 0x1001822, NoSymbol,  NoSymbol ] }; // I = ᠢ
+  key <AD09> { [ 0x1001823, 0x1001823, NoSymbol,  NoSymbol ] }; // O = ᠣ
+  key <AD10> { [ 0x100182b, 0x100182b, semicolon, colon    ] }; // P = ᠫ
+  key <AD11> { [ bracketleft,  braceleft,  0x1001808, NoSymbol ] };
+  key <AD12> { [ bracketright, braceright, 0x1001809, NoSymbol ] };
+  key <BKSL> { [ backslash, bar, NoSymbol, NoSymbol ] };
+
+  // Home Row: A S D F G H J K L ; '
+  key <AC01> { [ 0x1001820, 0x1001820, NoSymbol, NoSymbol ] }; // A = ᠠ
+  key <AC02> { [ 0x1001830, 0x1001830, NoSymbol, NoSymbol ] }; // S = ᠰ
+  key <AC03> { [ 0x1001833, 0x1001833, NoSymbol, NoSymbol ] }; // D = ᠳ
+  key <AC04> { [ 0x1001839, 0x1001839, NoSymbol, NoSymbol ] }; // F = ᠹ
+  key <AC05> { [ 0x100182d, 0x100182d, NoSymbol, NoSymbol ] }; // G = ᠭ
+  key <AC06> { [ 0x100182c, 0x100182c, NoSymbol, NoSymbol ] }; // H = ᠬ
+  key <AC07> { [ 0x1001835, 0x1001835, NoSymbol, NoSymbol ] }; // J = ᠵ
+  key <AC08> { [ 0x100183a, 0x100183a, NoSymbol, NoSymbol ] }; // K = ᠺ
+  key <AC09> { [ 0x100182f, 0x100182f, NoSymbol, NoSymbol ] }; // L = ᠯ
+  key <AC10> { [ semicolon, colon,     NoSymbol, NoSymbol ] };
+  key <AC11> { [ apostrophe,quotedbl,  0x100180e, NoSymbol ] }; // ' " MVS
+
+  // Bottom Row: Z X C V B N M , . /
+  key <AB01> { [ 0x100183d, 0x100183d, NoSymbol, NoSymbol ] }; // Z = ᠽ
+  key <AB02> { [ 0x1001831, 0x1001831, NoSymbol, NoSymbol ] }; // X = ᠱ
+  key <AB03> { [ 0x1001834, 0x1001834, NoSymbol, NoSymbol ] }; // C = ᠴ
+  key <AB04> { [ 0x1001838, 0x1001838, NoSymbol, NoSymbol ] }; // V = ᠸ
+  key <AB05> { [ 0x100182a, 0x100182a, NoSymbol, NoSymbol ] }; // B = ᠪ
+  key <AB06> { [ 0x1001828, 0x1001829, NoSymbol, NoSymbol ] }; // N = ᠨ, Shift = ᠩ
+  key <AB07> { [ 0x100182e, 0x100182e, NoSymbol, NoSymbol ] }; // M = ᠮ
+  key <AB08> { [ 0x1001802, comma,     less,     NoSymbol ] }; // , = ᠂
+  key <AB09> { [ 0x1001803, period,    greater,  NoSymbol ] }; // . = ᠃
+  key <AB10> { [ slash,     question,  NoSymbol, NoSymbol ] };
+
+  key <SPCE> { [ space,     0x100202f, 0x100202f, nobreakspace ] }; // Shift+Space = NNBSP
+
+  include "level3(ralt_switch)"
+};
+
+// Legacy OLPC
+partial alphanumeric_keys
+xkb_symbols "olpc" {
+  include "mn(basic)"
+  key <AE07> { [ 7, semicolon, ampersand ] };
+  key <BKSL> { [ backslash, bar, exclam ] };
+  include "group(olpc)"
+};
