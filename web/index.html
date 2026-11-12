@@ -155,33 +155,157 @@
     }
     .devops-snippet:hover { background: #334155; }
 
+    .downloads-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .downloads-header h3 { font-size: 22px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .os-detected-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
     .downloads-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
       margin-bottom: 30px;
     }
     .download-card {
       background: var(--card-bg);
-      border-radius: 10px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 24px;
       border: 1px solid var(--key-border);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.2s ease;
     }
-    .download-card h4 { font-size: 16px; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
-    .download-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
-    .download-card code { display: block; background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
-    .download-card a {
-      display: inline-block;
-      padding: 6px 12px;
+    .download-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .download-card.highlighted {
+      border: 2px solid var(--primary);
+      background: #f8fbff;
+    }
+    .card-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+    .download-card.highlighted .card-badge {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .download-card h4 { font-size: 18px; margin-bottom: 8px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .download-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; flex-grow: 1; }
+    
+    .btn-dl-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
       background: var(--primary);
-      color: #fff;
+      color: #fff !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      transition: background 0.2s;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 85, 165, 0.2);
+    }
+    .btn-dl-primary:hover { background: var(--primary-hover); }
+
+    .sub-dl-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .btn-dl-sub {
+      flex: 1;
+      min-width: 130px;
+      padding: 8px 10px;
+      background: #f1f5f9;
+      color: #334155 !important;
+      border: 1px solid var(--key-border);
       text-decoration: none;
       border-radius: 6px;
       font-size: 12px;
       font-weight: 500;
+      text-align: center;
+      transition: all 0.2s;
     }
-    .download-card a:hover { background: var(--primary-hover); }
+    .btn-dl-sub:hover { background: #e2e8f0; color: #0f172a !important; }
+
+    .terminal-install-box {
+      background: #0f172a;
+      color: #38bdf8;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: monospace;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      overflow-x: auto;
+    }
+    .terminal-install-box code { color: #f8fafc; font-family: monospace; }
+    .copy-btn {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 5px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 11px;
+      margin-left: 8px;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: #475569; }
+
+    .install-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      margin-top: auto;
+      line-height: 1.4;
+    }
+    .install-hint strong { color: var(--text); }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -251,25 +375,71 @@
     </div>
   </div>
 
-  <h3 style="margin-bottom: 14px;">Суулгах ба Татах (Direct Downloads)</h3>
+  <div class="downloads-header">
+    <h3>📦 Суулгац Татах (Direct Downloads)</h3>
+    <div class="os-detected-badge" id="os-badge">Систем шалгаж байна...</div>
+  </div>
+
   <div class="downloads-grid">
-    <div class="download-card">
-      <h4>🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
-      <p>Нэг тушаалаар суулгах XKB тохиргоо (Ergonomic, Classic, Bichig сонголттой).</p>
-      <code>cd linux && sudo ./install.sh</code>
-    </div>
-    <div class="download-card">
+    <!-- 1. Windows -->
+    <div class="download-card" id="card-windows">
+      <span class="card-badge">MSI & EXE</span>
       <h4>🪟 Windows 7 / 10 / 11</h4>
-      <p>Microsoft MSKLC албан ёсны MSI болон setup.exe суулгац.</p>
-      <a href="../windows/us-qwerty/setup.exe">US QWERTY Суулгац</a>
-      <a href="../windows/de-qwertz/setup.exe" style="margin-left: 6px;">German QWERTZ</a>
+      <p>Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.</p>
+      <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-primary">
+        ⬇️ Windows Багц Татах (.zip, 509 KB)
+      </a>
+      <div class="sub-dl-group">
+        <a href="downloads/setup-us-qwerty.exe" download class="btn-dl-sub">setup.exe (US QWERTY)</a>
+        <a href="downloads/setup-de-qwertz.exe" download class="btn-dl-sub">setup.exe (DE QWERTZ)</a>
+      </div>
+      <div class="install-hint">
+        <strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.
+      </div>
     </div>
-    <div class="download-card">
-      <h4>🍏 macOS (OS X)</h4>
-      <p>Native .keylayout ба .icns тэмдэгт бүхий суулгац. Кирилл ба Худам Монгол бичиг дэмжсэн.</p>
-      <code>cd macos && ./install.sh</code>
+
+    <!-- 2. macOS -->
+    <div class="download-card" id="card-macos">
+      <span class="card-badge">Apple Silicon & Intel</span>
+      <h4>🍏 macOS (OS X / Sonoma / Sequoia)</h4>
+      <p>Apple macOS-д зориулсан native .keylayout, цэсийн далбаат icon болон Худам Монгол бичгийн OpenType фонтууд.</p>
+      <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-primary">
+        ⬇️ macOS Багц Татах (.zip, 605 KB)
+      </a>
+      <div class="sub-dl-group">
+        <span class="btn-dl-sub" style="cursor:default; background:#e0f2fe; color:#0369a1 !important;">1-Click install.command багтсан</span>
+      </div>
+      <div class="install-hint">
+        <strong>Суулгах:</strong> Задлаад <code>install.command</code> дээр 2 дарна (Root нууц үг шаардахгүй). Дараа нь System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
+      </div>
+    </div>
+
+    <!-- 3. Linux -->
+    <div class="download-card" id="card-linux">
+      <span class="card-badge">XKB Unified</span>
+      <h4>🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
+      <p>Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.</p>
+      <a href="downloads/Mongolian-Keyboard-Linux.zip" download class="btn-dl-primary">
+        ⬇️ Linux Багц Татах (.zip, 26 KB)
+      </a>
+      <div class="terminal-install-box">
+        <code id="cmd-linux">curl -fsSL https://mn.tsengel.de/downloads/install-linux.sh | sudo bash</code>
+        <button class="copy-btn" onclick="copyLinuxCmd(this)">Хуулах</button>
+      </div>
+      <div class="install-hint">
+        <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.
+      </div>
     </div>
   </div>
+
+  <footer>
+    <p>
+      🇲🇳 <strong>Бүх Нийтийн Монгол Гарын Байрлал</strong> • Нээлттэй Эх (<a href="https://github.com/tsengel-de/mn-keyboard-layout" target="_blank">MIT License</a>) • Хянагдсан Checksum (SHA-256)
+    </p>
+    <p style="margin-top: 6px;">
+      Төслийн зохиогч: <a href="https://tsengel.de">Цэнгэл (Tsengel)</a> — <a href="https://blog.tsengel.de">blog.tsengel.de</a> | <a href="https://mn.tsengel.de">mn.tsengel.de</a>
+    </p>
+  </footer>
 </div>
 
 <script>
@@ -627,8 +797,42 @@ function updatePreviews() {
   vert.innerText = box.value;
 }
 
+function copyLinuxCmd(btn) {
+  const text = document.getElementById('cmd-linux').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = 'Хуулагдлаа! ✓';
+    setTimeout(() => { btn.innerText = orig; }, 2000);
+  });
+}
+
+function detectUserOS() {
+  const ua = navigator.userAgent || navigator.platform || '';
+  const badge = document.getElementById('os-badge');
+  let detected = 'Linux';
+  let cardId = 'card-linux';
+
+  if (/Macintosh|Mac OS|MacIntel|iPad|iPhone/i.test(ua)) {
+    detected = 'macOS';
+    cardId = 'card-macos';
+  } else if (/Win/i.test(ua)) {
+    detected = 'Windows';
+    cardId = 'card-windows';
+  } else if (/Linux|X11/i.test(ua)) {
+    detected = 'Linux';
+    cardId = 'card-linux';
+  }
+
+  badge.innerText = 'Таны төхөөрөмж: ' + detected;
+  const targetCard = document.getElementById(cardId);
+  if (targetCard) {
+    targetCard.classList.add('highlighted');
+  }
+}
+
 document.getElementById('typing-box').addEventListener('input', updatePreviews);
 
+detectUserOS();
 renderKeyboard();
 </script>
 

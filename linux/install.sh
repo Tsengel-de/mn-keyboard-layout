@@ -18,9 +18,16 @@ echo "🇲🇳 Mongolian All-in-One Keyboard Suite - Linux Installer"
 echo "Author: Tsengel (tsengel.de)"
 echo "=========================================================="
 
+TEMP_SOURCE=""
 if [ ! -f "${SOURCE_FILE}" ]; then
-    echo "❌ Error: Source file ${SOURCE_FILE} not found!" >&2
-    exit 1
+    echo "⬇️ Source file not found locally. Downloading unified XKB file from mn.tsengel.de..."
+    TEMP_SOURCE="$(mktemp)"
+    if curl -fsSL https://mn.tsengel.de/downloads/mn-xkb-symbols -o "${TEMP_SOURCE}"; then
+        SOURCE_FILE="${TEMP_SOURCE}"
+    else
+        echo "❌ Error: Could not download symbols file." >&2
+        exit 1
+    fi
 fi
 
 if [ ! -d "${XKB_SYMBOLS_DIR}" ]; then
@@ -65,3 +72,7 @@ echo ""
 echo "To revert:"
 echo "  Run: ./uninstall.sh"
 echo "=========================================================="
+
+if [ -n "${TEMP_SOURCE}" ] && [ -f "${TEMP_SOURCE}" ]; then
+    rm -f "${TEMP_SOURCE}"
+fi
