@@ -57,7 +57,7 @@
 
 ---
 
-## 🚀 Installation Guides
+## Installation Guides
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
 A single command installs **all 3 editions simultaneously** into system XKB:
@@ -118,7 +118,7 @@ Includes native `.keylayout` files, menu bar `.icns` flag icons, and traditional
 
 ---
 
-## 🔒 Cryptographic Checksums (SHA-256)
+## Cryptographic Checksums (SHA-256)
 
 Verify the integrity of Windows installer binaries:
 
@@ -143,7 +143,7 @@ xdg-open web/index.html
 
 ---
 
-## 🙏 Sources & Attribution
+## Sources & Attribution
 
 This project is built upon the invaluable heritage of earlier open-source efforts:
 * **bachka-keyboard Projects (Predecessors by Tsengel/Bachka)**:
@@ -155,7 +155,7 @@ This project is built upon the invaluable heritage of earlier open-source effort
 
 ---
 
-## 🤝 Author & License
+## Author & License
 
 This project is open-source under the [MIT License](LICENSE).
 * Author: **Tsengel** — [tsengel.de](https://tsengel.de) (also [blog.tsengel.de](https://blog.tsengel.de))

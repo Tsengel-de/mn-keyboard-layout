@@ -57,7 +57,7 @@
 
 ---
 
-## 🚀 Суулгах Заавар (Installation Guides)
+## Суулгах Заавар (Installation Guides)
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
 Линукс систем дээр нэг тушаалаар **3 хувилбарыг бүгдийг нь нэгэн зэрэг** системд суулгана:
@@ -118,7 +118,7 @@ macOS-д зориулсан native `.keylayout`, `.icns` дүрс, болон м
 
 ---
 
-## 🔒 Аюулгүй Байдлын Шалгалт (Cryptographic Integrity & SHA-256)
+## Аюулгүй Байдлын Шалгалт (Cryptographic Integrity & SHA-256)
 
 Windows суулгацын файлуудыг татаж авахдаа эх хувьтайгаа 100% тохирч буйг дараах шалгах нийлбэрээр (SHA-256) баталгаажуулж болно:
 
@@ -180,7 +180,7 @@ mn-keyboard-layout/
 
 ---
 
-## 🙏 Эх Сурвалж ба Талархал (Sources & Attribution)
+## Эх Сурвалж ба Талархал (Sources & Attribution)
 
 Энэхүү төсөл нь өмнөх үеийн нээлттэй эхийн шийдлүүд болон туршлага дээр тулгуурлан хөгжүүлэгдсэн:
 * **bachka-keyboard төслүүд (Predecessor Projects by Tsengel/Bachka)**:
@@ -192,7 +192,7 @@ mn-keyboard-layout/
 
 ---
 
-## 🤝 Зохиогч & Нээлттэй Эрх (Author & License)
+## Зохиогч & Нээлттэй Эрх (Author & License)
 
 Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [MIT License](LICENSE) эрхтэй.
 * Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de) (мөн [blog.tsengel.de](https://blog.tsengel.de))

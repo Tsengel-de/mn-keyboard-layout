@@ -57,7 +57,7 @@
 
 ---
 
-## 🚀 Installationsanleitungen
+## Installationsanleitungen
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
 Ein einziger Befehl installiert **alle 3 Editionen gleichzeitig** in das systemweite XKB-Verzeichnis:
@@ -118,7 +118,7 @@ Enthält native `.keylayout`-Dateien, Menüleisten-Icons (`.icns`) mit mongolisc
 
 ---
 
-## 🔒 Kryptografische Prüfsummen (SHA-256)
+## Kryptografische Prüfsummen (SHA-256)
 
 Überprüfen Sie die Integrität der Binärdateien für Windows:
 
@@ -143,7 +143,7 @@ xdg-open web/index.html
 
 ---
 
-## 🙏 Quellen & Danksagung (Sources & Attribution)
+## Quellen & Danksagung (Sources & Attribution)
 
 Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativen auf:
 * **bachka-keyboard Projekte (Vorgängerprojekte von Tsengel/Bachka)**:
@@ -155,7 +155,7 @@ Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativ
 
 ---
 
-## 🤝 Autor & Lizenz
+## Autor & Lizenz
 
 Dieses Projekt ist Open-Source unter der [MIT-Lizenz](LICENSE).
 * Autor: **Tsengel** — [tsengel.de](https://tsengel.de) (sowie [blog.tsengel.de](https://blog.tsengel.de))
