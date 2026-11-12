@@ -85,23 +85,25 @@ After installation, all 3 editions are available immediately:
 ### 🍏 2. macOS (Apple OS X / macOS)
 Official Apple `Mongolian.bundle` package with native DMG disk image:
 
-* **Installation via Disk Image (.dmg — Drag & Drop)**:
-  1. Double-click `Mongolian-Keyboard-macOS.dmg` to mount the disk.
-  2. Drag and drop **`Mongolian.bundle`** into **`Keyboard Layouts`** (enter password if prompted).
-  3. Drag fonts from **`Fonts`** into **`Fonts (System)`**.
-  4. Unmount (Eject) the disk image.
+* **Installation via Disk Image (.dmg — Recommended Drag & Drop)**:
+  1. Double-click `Mongolian-Keyboard-macOS.dmg` to mount the disk (named **`Mongolian Keyboard`** in Finder sidebar under Locations).
+  2. Double-click the **`Keyboard Layouts`** folder shortcut to open it in Finder.
+  3. Drag and drop **`Mongolian.bundle`** into that opened folder (enter your Mac password or Touch ID if prompted).
+  4. Return to the `Mongolian Keyboard` disk window, double-click the **`Fonts (System)`** folder shortcut.
+  5. Drag and drop the font files from the **`Fonts`** folder into the opened `Fonts (System)` folder.
+  6. In Finder's Locations sidebar, click **Eject (⏏️)** next to `Mongolian Keyboard` to unmount the disk.
 * **Via Terminal (From source)**:
   ```bash
   cd macos
   ./install.sh
   ```
-* **To Activate**:
-  1. Open `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit`.
-  2. Click `+` and select under `Mongolian`:
-     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Modern Edition)
-     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic Edition)
-     - `Mongolian Script Qwerty (Dusal)` (Classical Bichig)
-  3. If they don't appear immediately, log out and log back in.
+* **To Activate in macOS**:
+  1. Open `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ click `Edit...`.
+  2. Click `+` and search for `Mongolian`:
+     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Modern Ergonomic Q=Ө, W=Ү)
+     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic [=ө, ]=ү)
+     - `Mongolian Script Qwerty (Dusal)` (Classical Mongolian script)
+  3. Click `Add`. *(If the newly installed layouts do not appear immediately in the list, simply log out and log back in).*
 
 ---
 

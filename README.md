@@ -85,23 +85,25 @@ sudo ./install.sh
 ### 🍏 2. macOS (Apple OS X / macOS)
 macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` багц:
 
-* **Виртуал дискээр суулгах (.dmg — Drag & Drop)**:
-  1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ.
-  2. Цонхон доторх **`Mongolian.bundle`**-ийг **`Keyboard Layouts`** хавтас руу чирж хуулна (нууц үгээ оруулаад зөвшөөрнө).
-  3. **`Fonts`** хавтас доторх фонтуудыг **`Fonts (System)`** хавтас руу чирнэ.
-  4. Суулгасны дараа mounted дискийг **Eject (Unmount)** хийнэ.
+* **Виртуал дискээр суулгах (.dmg — Drag & Drop хамгийн хялбар арга)**:
+  1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ. Finder-т **`Mongolian Keyboard`** нэртэй диск холбогдож нээгдэнэ (эсвэл Finder-ийн хажуугийн "Locations" цэснээс олно).
+  2. Цонхон доторх **`Keyboard Layouts`** холбоос дээр 2 дарж хавтсыг Finder-ээр нээнэ.
+  3. Нээгдсэн `Keyboard Layouts` хавтас руу **`Mongolian.bundle`** багцыг чирж хуулна (Шаардлагатай бол Mac нууц үгээ оруулан зөвшөөрнө).
+  4. Буцаад `Mongolian Keyboard` диск цонх руугаа очиж, **`Fonts (System)`** холбоос дээр 2 дарж нээнэ.
+  5. **`Fonts`** хавтас доторх фонт файлуудыг нээгдсэн `Fonts (System)` хавтас руу чирж хуулна.
+  6. Суулгаж дууссаны дараа Finder-ийн Locations самбараас `Mongolian Keyboard` дискний ард байх **Eject (⏏️)** товч дээр дарж дискийг салгана (Unmount).
 * **Terminal дээр (Эх кодоос)**:
   ```bash
   cd macos
   ./install.sh
   ```
-* **Идэвхжүүлэх**:
-  1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit`.
-  2. `+` товч дарж `Mongolian` хэсгээс сонгоно:
-     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Шинэ Ergonomic хувилбар)
-     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic хувилбар)
+* **macOS дээр шинэ гараа идэвхжүүлэх**:
+  1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit...` товшино.
+  2. Зүүн доод талын `+` товч дарж `Mongolian` хэсгээс сонгоно:
+     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Шинэ Ergonomic Q=Ө, W=Ү)
+     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic [=ө, ]=ү)
      - `Mongolian Script Qwerty (Dusal)` (Худам монгол бичиг)
-  3. Хэрэв шууд гарч ирэхгүй бол системээс нэг удаа Log Out хийж дахин нэвтэрнэ.
+  3. `Add` товч дарж нэмнэ. *(Шинээр суусан гарын драйвер жагсаалтад шууд харагдахгүй бол системээс 1 удаа Log Out хийгээд буцаж нэвтрэхэд 100% найдвартай гарч ирнэ).*
 
 ---
 

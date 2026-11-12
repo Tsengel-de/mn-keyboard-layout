@@ -85,23 +85,25 @@ Nach der Installation stehen alle 3 Editionen sofort zur Verfügung:
 ### 🍏 2. macOS (Apple OS X / macOS)
 Offizielles Apple `Mongolian.bundle`-Paket mit virtuellem DMG-Installationsimage:
 
-* **Installation über Disk Image (.dmg — Drag & Drop)**:
-  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg` per Doppelklick.
-  2. Ziehen Sie **`Mongolian.bundle`** in den Ordner **`Keyboard Layouts`** (Passwort eingeben falls verlangt).
-  3. Ziehen Sie die Schriftarten aus **`Fonts`** in **`Fonts (System)`**.
-  4. Werfen Sie das Disk Image danach aus (Eject / Unmount).
+* **Installation über Disk Image (.dmg — Empfohlenes Drag & Drop)**:
+  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg` per Doppelklick (wird als **`Mongolian Keyboard`** in der Finder-Seitenleiste unter Orte gemountet).
+  2. Öffnen Sie die Verknüpfung **`Keyboard Layouts`** per Doppelklick im Finder.
+  3. Ziehen Sie **`Mongolian.bundle`** in den geöffneten Ordner (Mac-Passwort oder Touch ID eingeben falls verlangt).
+  4. Gehen Sie zurück zum Fenster `Mongolian Keyboard` und öffnen Sie **`Fonts (System)`** per Doppelklick.
+  5. Ziehen Sie die Schriftarten aus **`Fonts`** in den geöffneten Ordner `Fonts (System)`.
+  6. Klicken Sie im Finder neben `Mongolian Keyboard` auf **Auswerfen (⏏️ / Eject)**, um das Disk-Image zu trennen.
 * **Im Terminal (Aus Quellcode)**:
   ```bash
   cd macos
   ./install.sh
   ```
 * **Aktivierung in macOS**:
-  1. Öffnen Sie `Systemeinstellungen` $\rightarrow$ `Tastatur` $\rightarrow$ `Texteingabe` (Eingabequellen) $\rightarrow$ `Bearbeiten`.
-  2. Klicken Sie auf `+` und wählen Sie unter `Mongolisch`:
-     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Moderne Edition)
-     - `Mongolian Cyrillic Qwerty (Dusal)` (Klassische Edition)
-     - `Mongolian Script Qwerty (Dusal)` (Traditionelle Schrift)
-  3. Falls die Layouts nicht sofort in der Liste erscheinen, melden Sie sich einmal kurz ab und wieder an.
+  1. Öffnen Sie `Systemeinstellungen` $\rightarrow$ `Tastatur` $\rightarrow$ `Texteingabe` (Eingabequellen) $\rightarrow$ `Bearbeiten...`.
+  2. Klicken Sie auf `+` und suchen Sie nach `Mongolisch`:
+     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Moderne Ergonomie Q=Ө, W=Ү)
+     - `Mongolian Cyrillic Qwerty (Dusal)` (Klassisch [=ө, ]=ү)
+     - `Mongolian Script Qwerty (Dusal)` (Traditionelle mongolische Schrift)
+  3. Klicken Sie auf `Hinzufügen`. *(Falls die Tastaturlayouts nicht sofort in der Liste erscheinen, melden Sie sich einmal kurz ab und wieder an).*
 
 ---
 
