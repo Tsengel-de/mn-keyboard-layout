@@ -240,7 +240,7 @@ def draw_special_key(draw, x, y, w, h, label, font, is_accent=False, is_shift=Fa
 if __name__ == '__main__':
     # 1. Modern Ergonomic
     render_layout(
-        "Mongolian Modern Ergonomic & DevOps Keyboard Layout (Normal & Shift)",
+        "Mongolian Modern Ergonomic Keyboard Layout (Normal & Shift)",
         "Q = Ө, W = Ү | Native Code Brackets [ ] { } \\ | Preserved | Author: Tsengel (tsengel.de)",
         ERGO_ROW1, ERGO_ROW2, ERGO_ROW3, ERGO_ROW4,
         mode='normal',

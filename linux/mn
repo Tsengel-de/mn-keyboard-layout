@@ -10,12 +10,12 @@
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-// 1. DEFAULT: Modern Ergonomic & DevOps (Q=Ө, W=Ү)
+// 1. DEFAULT: Modern Ergonomic (Q=Ө, W=Ү)
 // -----------------------------------------------------------------------------
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 
-  name[Group1]= "Mongolian (Ergonomic & DevOps)";
+  name[Group1]= "Mongolian (Modern Ergonomic)";
 
   // Number Row (AE01 - AE12)
   key <TLDE> { [ Cyrillic_io,        Cyrillic_IO,        asciitilde,         grave               ] };

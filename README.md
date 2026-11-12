@@ -15,7 +15,7 @@
 
 ## 🗺️ Гарын Байршлын Зураглалууд (Up-to-Date Layout Maps)
 
-### 1. Modern Ergonomic & DevOps Edition (Шинэ Эргономик Хувилбар)
+### 1. Modern Ergonomic Edition (Шинэ Эргономик Хувилбар)
 > **Зөвлөмж**: `Q = Ө`, `W = Ү`. Бүх эгшгүүд гарын үндсэн хэсэгт багтсан тул 10 хуруугаар маш хурдан шивнэ. Кодчилол, терминалын `{ } [ ] | \` хаалтууд байрандаа хадгалагдсан.
 
 ![Mongolian Modern Ergonomic Layout](docs/images/layout-ergonomic-normal.png)
@@ -68,7 +68,7 @@ sudo ./install.sh
 ```
 
 Суулгасны дараа та дараах 3 хувилбарыг шууд ашиглах боломжтой болно:
-1. **Үндсэн (Default)**: `Mongolian (Ergonomic & DevOps)` (`Q=Ө, W=Ү`)
+1. **Үндсэн (Default)**: `Mongolian (Modern Ergonomic)` (`Q=Ө, W=Ү`)
 2. **Classic**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
 3. **Монгол бичиг**: `Mongolian Script (Bichig)` (Худам монгол бичиг)
 

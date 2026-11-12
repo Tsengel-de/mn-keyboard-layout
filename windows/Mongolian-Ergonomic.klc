@@ -1,4 +1,4 @@
-KBD	MongolErgo	"Mongolian (Ergonomic & DevOps)"
+KBD	MongolErgo	"Mongolian (Modern Ergonomic)"
 
 COPYRIGHT	"(c) 2026 Tsengel (tsengel.de)"
 
@@ -75,8 +75,8 @@ LAYOUT
 39	SPACE		0	0020	0020	-1	202f	-1	// Space, AltGr+Space = NNBSP (202f)
 
 DESCRIPTIONS
-0409	Mongolian (Ergonomic & DevOps)
-0450	Монгол (Эргономик & DevOps)
+0409	Mongolian (Modern Ergonomic)
+0450	Монгол (Орчин Үеийн Эргономик)
 
 LANGUAGENAMES
 0450	Mongolian (Cyrillic)

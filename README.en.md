@@ -68,7 +68,7 @@ sudo ./install.sh
 ```
 
 After installation, all 3 editions are available immediately:
-1. **Default**: `Mongolian (Ergonomic & DevOps)` (`Q=Ө, W=Ү`)
+1. **Default**: `Mongolian (Modern Ergonomic)` (`Q=Ө, W=Ү`)
 2. **Classic**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
 3. **Bichig**: `Mongolian Script (Bichig)` (Classical Mongol Bichig)
 
