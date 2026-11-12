@@ -84,34 +84,24 @@ sudo ./install.sh
 ---
 
 ### 🍏 2. macOS (Apple OS X / macOS)
-macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` багц:
+macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` болон суулгагч:
 
 * **Виртуал дискээр суулгах (.dmg — Drag & Drop хамгийн хялбар арга)**:
-  1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ. Finder-т **`Mongolian Keyboard`** нэртэй диск холбогдож нээгдэнэ (эсвэл Finder-ийн хажуугийн "Locations" цэснээс олно).
-  2. Цонхон доторх **`Keyboard Layouts`** холбоос дээр 2 дарж хавтсыг Finder-ээр нээнэ.
-  3. Нээгдсэн `Keyboard Layouts` хавтас руу **`Mongolian.bundle`** багцыг чирж хуулна (Шаардлагатай бол Mac нууц үгээ оруулан зөвшөөрнө).
-  4. Буцаад `Mongolian Keyboard` диск цонх руугаа очиж, **`Fonts (System)`** холбоос дээр 2 дарж нээнэ.
-  5. **`Fonts`** хавтас доторх фонт файлуудыг нээгдсэн `Fonts (System)` хавтас руу чирж хуулна.
-  6. Суулгаж дууссаны дараа Finder-ийн Locations самбараас `Mongolian Keyboard` дискний ард байх **Eject (⏏️)** товч дээр дарж дискийг салгана (Unmount).
-* **Terminal дээр (Эх кодоос)**:
-  ```bash
-  cd macos
-  ./install.sh
-  ```
+  1. `Mongolian-Keyboard-macOS-v1.0.3.dmg` файлыг давхар товшиж нээнэ.
+  2. Цонхон доторх **`Keyboard Installer.app`**-ийг нээгээд **`Mongolian.bundle`**-ийг цонх руу нь чирж тавина.
+  3. *(Гараар суулгах бол)*: Finder нээгээд **Cmd + Shift + G** даран `~/Library/Keyboard Layouts` орж `Mongolian.bundle` эсвэл `MongolianCyrillicErgonomic.keylayout` файлыг хуулна.
+  4. **ЧУХАЛ: Системээс заавал нэг удаа Log Out хийж дахин нэвтэрнэ (эсвэл компьютерээ Restart хийнэ)**. Учир нь macOS нь шинэ гарын драйверийг зөвхөн хэрэглэгч системд нэвтрэх үед санах ойд ачаалдаг.
 * **macOS дээр шинэ гараа идэвхжүүлэх**:
-  1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit...` товшино.
-  2. Зүүн доод талын `+` товч дарж `Mongolian` хэсгээс сонгоно:
-     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Шинэ Ergonomic Q=Ө, W=Ү)
-     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic [=ө, ]=ү)
-     - `Mongolian Script Qwerty (Dusal)` (Худам монгол бичиг)
-  3. `Add` товч дарж нэмнэ. *(Шинээр суусан гарын драйвер жагсаалтад шууд харагдахгүй бол системээс 1 удаа Log Out хийгээд буцаж нэвтрэхэд 100% найдвартай гарч ирнэ).*
+  1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit...` (эсвэл `+`) товшино.
+  2. `Mongolian` хэсгээс **`Mongolian Cyrillic Ergonomic (Tsengel)`**-ийг сонгож `Add` дарна.
+  3. Мөн уг багцад `Mongolian (qwerty)` болон `Mongolian (traditional)` (Худам монгол бичиг) багтсан.
 
 ---
 
 ### 🪟 3. Windows (Windows 7 / 10 / 11)
 
 #### А. Бие даасан бүрэн суулгагч (Single All-in-One Installer - Зөвлөмж болгох)
-* **[Mongolian-Keyboard-Windows-Setup.exe](https://mn.tsengel.de/downloads/Mongolian-Keyboard-Windows-Setup.exe)** файлыг татаж аваад ажиллуулна.
+* **[Mongolian-Keyboard-Windows-Setup-v1.0.3.exe](https://mn.tsengel.de/downloads/Mongolian-Keyboard-Windows-Setup-v1.0.3.exe)** файлыг татаж аваад ажиллуулна.
 * Суулгах явцдаа өөрийн гарны төрөл (US QWERTY эсвэл German QWERTZ) болон Монгол бичгийн TrueType фонтуудыг сонгон нэг товшилтоор суулгана.
 * Суусны дараа `Win + Space` дараад шууд Монгол гарыг сонгон бичнэ.
 
@@ -131,16 +121,16 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 Бүх системийн суулгацын файлуудыг татаж авахдаа эх хувьтайгаа 100% тохирч, вирусгүй цэвэр болохыг дараах шалгах нийлбэрээр (SHA-256) баталгаажуулж болно:
 
 ```text
-# 🪟 Windows
-72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup.exe
-6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
+# 🪟 Windows (v1.0.3)
+72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
+6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
 
-# 🍏 macOS
-56ae08fe2a02ad7134ba6dc896f946eea065e93bfe5340852f724ec10d09242e  Mongolian-Keyboard-macOS.dmg
-42faf9c4fc77ccca14ab57dcbb605f59c9d58dc3d370053b130c8509ce6a408e  Mongolian-Keyboard-macOS.zip
+# 🍏 macOS (v1.0.3)
+aef1846dcbb065d6d1613407c479d62672c6725eb420ff531337a7fb000d2d58  Mongolian-Keyboard-macOS-v1.0.3.dmg
+e4b690864179df357b0f45db72c9bffaf461cf402af0541d194d57fa87c71626  Mongolian-Keyboard-macOS-v1.0.3.zip
 
-# 🐧 Linux
-f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux.zip
+# 🐧 Linux (v1.0.3)
+f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
 438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4  install-linux.sh
 ```
 
