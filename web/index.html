@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🇲🇳 Бүх нийтийн Монгол Гарын Байрлал | Mongolian Keyboard Layout</title>
+  <title>🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал | Tsengel Language Foundation</title>
   <style>
     :root {
       --primary: #0055a5;
@@ -14,31 +14,41 @@
       --text-muted: #64748b;
       --key-bg: #f1f5f9;
       --key-border: #cbd5e1;
-      --key-active: #0055a5;
-      --key-active-text: #ffffff;
       --accent-altgr: #d97706;
       --accent-shift: #2563eb;
+      --accent-devops: #059669;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     body { background-color: var(--bg); color: var(--text); padding: 24px; line-height: 1.5; }
-    .container { max-width: 1040px; margin: 0 auto; }
+    .container { max-width: 1080px; margin: 0 auto; }
     header { text-align: center; margin-bottom: 24px; }
     header h1 { font-size: 28px; color: var(--primary); margin-bottom: 8px; }
     header p { color: var(--text-muted); font-size: 15px; }
 
-    .controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
+    .controls-wrapper {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .controls-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; margin-bottom: 10px; }
+    .controls-row:last-child { margin-bottom: 0; }
+    .control-label { font-size: 13px; font-weight: 600; color: var(--text-muted); min-width: 80px; text-align: right; }
     .btn-group { display: inline-flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--key-border); }
-    .btn { padding: 8px 16px; border: none; background: #fff; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .btn { padding: 8px 14px; border: none; background: #fff; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
     .btn:hover { background: #e2e8f0; }
     .btn.active { background: var(--primary); color: #fff; }
+    .btn.active-devops { background: var(--accent-devops); color: #fff; }
 
     .keyboard-container {
       background: var(--card-bg);
       border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
       margin-bottom: 24px;
       user-select: none;
+      overflow-x: auto;
     }
     .kb-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
     .key {
@@ -59,23 +69,33 @@
     .key:hover { background: #e2e8f0; }
     .key:active { transform: translateY(1px); background: #cbd5e1; }
     .key.active-mod { background: #dbeafe; border-color: var(--accent-shift); color: var(--accent-shift); }
+    .key.devops-key { border-color: #a7f3d0; background: #f0fdf4; }
     .key .top { font-size: 11px; color: var(--text-muted); align-self: flex-start; }
     .key .main { font-size: 18px; font-weight: 600; }
     .key .alt { font-size: 10px; color: var(--accent-altgr); align-self: flex-end; }
 
-    .key-wide { flex-grow: 1.5; min-width: 70px; }
-    .key-space { flex-grow: 5; min-width: 260px; }
+    .key-wide { flex-grow: 1.5; min-width: 68px; }
+    .key-space { flex-grow: 5; min-width: 250px; }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (min-width: 768px) {
+      .editor-grid.bichig-active { grid-template-columns: 1fr 260px; }
+    }
 
     .editor-section {
       background: var(--card-bg);
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      margin-bottom: 24px;
     }
     .editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .editor-header h3 { font-size: 16px; font-weight: 600; }
-    .editor-tools { display: flex; gap: 8px; }
+    .editor-header h3 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .editor-tools { display: flex; gap: 6px; }
     textarea {
       width: 100%;
       height: 120px;
@@ -87,19 +107,53 @@
       resize: vertical;
     }
     textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,85,165,0.15); }
-    .vertical-preview {
+
+    .vertical-preview-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .vertical-preview-box {
       writing-mode: vertical-lr;
       text-orientation: mixed;
-      height: 200px;
+      flex-grow: 1;
+      min-height: 120px;
+      max-height: 220px;
       padding: 12px;
       border: 1px solid var(--key-border);
       border-radius: 8px;
-      font-size: 20px;
+      font-size: 24px;
       background: #fafafa;
       overflow-x: auto;
-      margin-top: 12px;
-      display: none;
+      line-height: 1.8;
+      font-family: "Mongolian Biti", "Noto Sans Mongolian", sans-serif;
     }
+
+    .devops-panel {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
+    }
+    .devops-panel h4 { color: #38bdf8; margin-bottom: 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .devops-panel p { font-size: 13px; color: #94a3b8; margin-bottom: 12px; }
+    .devops-test-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .devops-snippet {
+      background: #1e293b;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #a7f3d0;
+      cursor: pointer;
+      border: 1px solid #334155;
+    }
+    .devops-snippet:hover { background: #334155; }
 
     .downloads-grid {
       display: grid;
@@ -114,16 +168,17 @@
       border: 1px solid var(--key-border);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    .download-card h4 { font-size: 18px; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .download-card h4 { font-size: 16px; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
     .download-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .download-card code { display: block; background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
     .download-card a {
       display: inline-block;
-      padding: 8px 14px;
+      padding: 6px 12px;
       background: var(--primary);
       color: #fff;
       text-decoration: none;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
     }
     .download-card a:hover { background: var(--primary-hover); }
@@ -134,51 +189,78 @@
 <div class="container">
   <header>
     <h1>🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
-    <p>Бүх үйлдлийн систем (Linux, Windows, macOS) ба төхөөрөмжид зориулсан эргономик гарын стандарт</p>
+    <p>Эргономик Кирилл • DevOps Кодчилол • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong></p>
   </header>
 
-  <div class="controls">
-    <div class="btn-group">
-      <button class="btn active" id="btn-us" onclick="setBase('us')">US English (QWERTY)</button>
-      <button class="btn" id="btn-de" onclick="setBase('de')">German (QWERTZ)</button>
+  <div class="controls-wrapper">
+    <div class="controls-row">
+      <span class="control-label">Загвар:</span>
+      <div class="btn-group">
+        <button class="btn active" id="btn-mode-ergo" onclick="setLayoutMode('ergo')">🔥 Ergonomic & DevOps (Q=Ө, W=Ү)</button>
+        <button class="btn" id="btn-mode-classic" onclick="setLayoutMode('classic')">Classic Tsengel (Brackets [=ө, ]=ү)</button>
+        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг</button>
+      </div>
     </div>
-    <div class="btn-group">
-      <button class="btn active" id="btn-cyr" onclick="setScript('cyr')">Монгол Кирилл</button>
-      <button class="btn" id="btn-hudum" onclick="setScript('hudum')">Монгол Бичиг (Classical)</button>
-    </div>
-    <div class="btn-group">
-      <button class="btn" id="btn-shift" onclick="toggleShift()">Shift</button>
-      <button class="btn" id="btn-altgr" onclick="toggleAltGr()">AltGr (Option)</button>
+    <div class="controls-row">
+      <span class="control-label">Суурь Гар:</span>
+      <div class="btn-group">
+        <button class="btn active" id="btn-base-us" onclick="setBase('us')">US English (QWERTY)</button>
+        <button class="btn" id="btn-base-de" onclick="setBase('de')">German (QWERTZ)</button>
+      </div>
+      <span class="control-label" style="min-width: 60px;">Шилжилт:</span>
+      <div class="btn-group">
+        <button class="btn" id="btn-shift" onclick="toggleShift()">Shift</button>
+        <button class="btn" id="btn-altgr" onclick="toggleAltGr()">AltGr (Option)</button>
+      </div>
     </div>
   </div>
 
   <div class="keyboard-container" id="keyboard">
-    <!-- Keys dynamically rendered here -->
+    <!-- Keys rendered dynamically -->
   </div>
 
-  <div class="editor-section">
-    <div class="editor-header">
-      <h3>Турших ба Бичих талбар (Live Type Area)</h3>
-      <div class="editor-tools">
-        <button class="btn" onclick="clearText()">Арилгах</button>
-        <button class="btn" onclick="copyText()">Хуулах</button>
-        <button class="btn" id="toggle-vert-btn" onclick="toggleVertical()">Босоо бичвэр</button>
-      </div>
+  <div class="devops-panel" id="devops-panel">
+    <h4>💻 DevOps & Програмистын Туршилт (Zero-Switching Experience)</h4>
+    <p>Монгол кириллээр бичиж байхдаа хэл солихгүйгээр Bash, Docker, Git, YAML кодын хаалт, зураас, тушаалуудыг шууд бичиж туршина уу:</p>
+    <div class="devops-test-row">
+      <span style="font-size:12px; color:#94a3b8;">Жишээ тушаалууд (товшиж турш):</span>
+      <span class="devops-snippet" onclick="injectDevOps('docker run -d -p 8080:80 --name web app:latest')">docker run -d -p 8080:80</span>
+      <span class="devops-snippet" onclick="injectDevOps('kubectl get pods -n kube-system | grep Running')">kubectl ... | grep</span>
+      <span class="devops-snippet" onclick="injectDevOps('git commit -m \"fix: update array[0] && {status: true}\"')">array[0] && {status: true}</span>
+      <span class="devops-snippet" onclick="injectDevOps('Төгрөг: 150,000₮ «Албан бичиг» — 2026')">150,000₮ «Хашилт»</span>
     </div>
-    <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
-    <div class="vertical-preview" id="vertical-preview"></div>
+  </div>
+
+  <div class="editor-grid" id="editor-grid">
+    <div class="editor-section">
+      <div class="editor-header">
+        <h3>✍️ Бичих ба Турших талбар (Live Workspace)</h3>
+        <div class="editor-tools">
+          <button class="btn" onclick="clearText()">Арилгах</button>
+          <button class="btn" onclick="copyText()">Хуулах</button>
+        </div>
+      </div>
+      <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
+    </div>
+
+    <div class="vertical-preview-card" id="vertical-preview-card" style="display:none;">
+      <div class="editor-header">
+        <h3>📜 Босоо бичвэр (Classical)</h3>
+      </div>
+      <div class="vertical-preview-box" id="vertical-preview-box"></div>
+    </div>
   </div>
 
   <h3 style="margin-bottom: 14px;">Суулгах ба Татах (Direct Downloads)</h3>
   <div class="downloads-grid">
     <div class="download-card">
-      <h4>🐧 Linux (Ubuntu, Debian, Fedora)</h4>
-      <p>XKB стандартын тохиргоо. Нэг тушаалаар суулгаж өргөтгөсөн Төгрөгийн тэмдэгт (₮), хашилт зэргийг ашиглана.</p>
+      <h4>🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
+      <p>Нэг тушаалаар суулгах XKB тохиргоо (Ergonomic, Classic, Bichig сонголттой).</p>
       <code>cd linux && sudo ./install.sh</code>
     </div>
     <div class="download-card">
       <h4>🪟 Windows 7 / 10 / 11</h4>
-      <p>Microsoft Keyboard Layout Creator (MSKLC)-ээр бэлтгэсэн MSI болон setup.exe суулгац.</p>
+      <p>Microsoft MSKLC албан ёсны MSI болон setup.exe суулгац.</p>
       <a href="../windows/us-qwerty/setup.exe">US QWERTY Суулгац</a>
       <a href="../windows/de-qwertz/setup.exe" style="margin-left: 6px;">German QWERTZ</a>
     </div>
@@ -191,41 +273,42 @@
 </div>
 
 <script>
-let currentBase = 'us';
-let currentScript = 'cyr';
+let currentMode = 'ergo'; // 'ergo', 'classic', 'bichig'
+let currentBase = 'us';   // 'us', 'de'
 let isShift = false;
 let isAltGr = false;
 
-// Layout Mapping Definitions (Tsengel Custom Keyboard Layout)
-const LAYOUT_CYR_US = {
+// 1. Modern Ergonomic (Q=Ө, W=Ү, DevOps [ ] { } preserved)
+const LAYOUT_ERGO = {
   row1: [
-    { top: '~', main: 'Ё', base: 'ё', alt: '~' },
+    { top: '~', main: 'ё', base: 'ё', alt: '~' },
     { top: '!', main: '1', base: '1', alt: '№' },
     { top: '@', main: '2', base: '2', alt: '²' },
     { top: '#', main: '3', base: '3', alt: '³' },
-    { top: '$', main: '4', base: '4', alt: '¤' },
+    { top: '$', main: '4', base: '4', alt: '₮' }, // AltGr Tugrik
     { top: '%', main: '5', base: '5', alt: '€' },
     { top: '^', main: '6', base: '6', alt: '¼' },
     { top: '&', main: '7', base: '7', alt: '½' },
     { top: '*', main: '8', base: '8', alt: '¾' },
     { top: '(', main: '9', base: '9', alt: '‘' },
     { top: ')', main: '0', base: '0', alt: '’' },
-    { top: '_', main: '-', base: '-', alt: '¥' },
+    { top: '_', main: '-', base: '-', alt: '—' },
     { top: '+', main: '=', base: '=', alt: '×' }
   ],
   row2: [
-    { top: 'Ъ', main: 'ъ', base: 'ъ', alt: "'" },
-    { top: 'Ь', main: 'ь', base: 'ь', alt: '`' },
-    { top: 'Е', main: 'е', base: 'е', alt: '€' },
+    { top: 'Ө', main: 'ө', base: 'ө', alt: 'ъ', devops: true }, // Q = Ө, AltGr = ъ
+    { top: 'Ү', main: 'ү', base: 'ү', alt: 'ь', devops: true }, // W = Ү, AltGr = ь
+    { top: 'Э', main: 'э', base: 'э', alt: '€' },
     { top: 'Р', main: 'р', base: 'р', alt: '®' },
-    { top: 'Т', main: 'т', base: 'т', alt: '₮' }, // Tugrik
-    { top: 'И', main: 'и', base: 'и', alt: '™' },
+    { top: 'Т', main: 'т', base: 'т', alt: '₮' }, // T = Tugrik
+    { top: 'Й', main: 'й', base: 'й', alt: 'е' }, // Y = Й, AltGr = е
     { top: 'У', main: 'у', base: 'у', alt: '„' },
-    { top: 'Ү', main: 'ү', base: 'ү', alt: '“' },
+    { top: 'И', main: 'и', base: 'и', alt: '“' },
     { top: 'О', main: 'о', base: 'о', alt: '”' },
     { top: 'П', main: 'п', base: 'п', alt: ';' },
-    { top: 'Ө', main: 'ө', base: 'ө', alt: '[' },
-    { top: 'Щ', main: 'щ', base: 'щ', alt: ']' }
+    { top: '{', main: '[', base: '[', alt: '«', devops: true }, // [ { «
+    { top: '}', main: ']', base: ']', alt: '»', devops: true }, // ] } »
+    { top: '|', main: '\\', base: '\\', alt: '¦', devops: true } // \ |
   ],
   row3: [
     { top: 'А', main: 'а', base: 'а', alt: 'μ' },
@@ -237,27 +320,128 @@ const LAYOUT_CYR_US = {
     { top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
     { top: 'К', main: 'к', base: 'к', alt: '}' },
     { top: 'Л', main: 'л', base: 'л', alt: '№' },
-    { top: 'З', main: 'з', base: 'з', alt: ':' },
-    { top: 'Ы', main: 'ы', base: 'ы', alt: '…' }
+    { top: ':', main: ';', base: ';', alt: 'щ', devops: true }, // ; : щ
+    { top: 'Ы', main: 'ы', base: 'ы', alt: "'" }  // ' = ы, AltGr = '
   ],
   row4: [
+    { top: 'З', main: 'з', base: 'з', alt: '—' },
+    { top: 'Ш', main: 'ш', base: 'ш', alt: 'щ' },
     { top: 'Ц', main: 'ц', base: 'ц', alt: '©' },
-    { top: 'Ш', main: 'ш', base: 'ш', alt: '—' },
     { top: 'В', main: 'в', base: 'в', alt: '–' },
     { top: 'Б', main: 'б', base: 'б', alt: '°' },
     { top: 'Н', main: 'н', base: 'н', alt: '·' },
     { top: 'М', main: 'м', base: 'м', alt: '±' },
-    { top: 'Ч', main: 'ч', base: 'ч', alt: '•' },
-    { top: 'Ю', main: 'ю', base: 'ю', alt: '‚' },
-    { top: 'Я', main: 'я', base: 'я', alt: '‘' }
+    { top: 'Ч', main: 'ч', base: 'ч', alt: ',' },
+    { top: 'Ю', main: 'ю', base: 'ю', alt: '.' },
+    { top: 'Я', main: 'я', base: 'я', alt: '?' }
   ]
 };
+
+// 2. Classical Tsengel Layout (Brackets [=ө, ]=ү)
+const LAYOUT_CLASSIC = {
+  row1: LAYOUT_ERGO.row1,
+  row2: [
+    { top: 'Ъ', main: 'ъ', base: 'ъ', alt: "'" },
+    { top: 'Ь', main: 'ь', base: 'ь', alt: '`' },
+    { top: 'Э', main: 'э', base: 'э', alt: '€' },
+    { top: 'Р', main: 'р', base: 'р', alt: '®' },
+    { top: 'Т', main: 'т', base: 'т', alt: '₮' },
+    { top: 'Е', main: 'е', base: 'е', alt: '™' },
+    { top: 'У', main: 'у', base: 'у', alt: '„' },
+    { top: 'И', main: 'и', base: 'и', alt: '“' },
+    { top: 'О', main: 'о', base: 'о', alt: '”' },
+    { top: 'П', main: 'п', base: 'п', alt: ';' },
+    { top: 'Ө', main: 'ө', base: 'ө', alt: '[' },
+    { top: 'Ү', main: 'ү', base: 'ү', alt: ']' },
+    { top: '|', main: '\\', base: '\\', alt: '¦' }
+  ],
+  row3: [
+    { top: 'А', main: 'а', base: 'а', alt: 'μ' },
+    { top: 'С', main: 'с', base: 'с', alt: '£' },
+    { top: 'Д', main: 'д', base: 'д', alt: '«' },
+    { top: 'Ф', main: 'ф', base: 'ф', alt: '»' },
+    { top: 'Г', main: 'г', base: 'г', alt: '{' },
+    { top: 'Х', main: 'х', base: 'х', alt: '<' },
+    { top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
+    { top: 'К', main: 'к', base: 'к', alt: '}' },
+    { top: 'Л', main: 'л', base: 'л', alt: '№' },
+    { top: 'Щ', main: 'щ', base: 'щ', alt: ':' },
+    { top: 'Ы', main: 'ы', base: 'ы', alt: '…' }
+  ],
+  row4: LAYOUT_ERGO.row4
+};
+
+// 3. Classical Mongol Bichig Layout (Худам Монгол бичиг)
+const LAYOUT_BICHIG = {
+  row1: [
+    { top: '᠀', main: '᠄', base: '᠄', alt: '~' },
+    { top: '!', main: '᠑', base: '᠑', alt: '1' },
+    { top: '@', main: '᠒', base: '᠒', alt: '2' },
+    { top: '#', main: '᠓', base: '᠓', alt: '3' },
+    { top: '₮', main: '᠔', base: '᠔', alt: '4' },
+    { top: '%', main: '᠕', base: '᠕', alt: '5' },
+    { top: '^', main: '᠖', base: '᠖', alt: '6' },
+    { top: '&', main: '᠗', base: '᠗', alt: '7' },
+    { top: '*', main: '᠘', base: '᠘', alt: '8' },
+    { top: '(', main: '᠙', base: '᠙', alt: '9' },
+    { top: ')', main: '᠐', base: '᠐', alt: '0' },
+    { top: '_', main: '-', base: '-', alt: '—' },
+    { top: '+', main: '=', base: '=', alt: '×' }
+  ],
+  row2: [
+    { top: 'ᠥ', main: 'ᠥ', base: 'ᠥ', alt: '\u180B' }, // Q = ᠥ (Ö), AltGr = FVS1
+    { top: 'ᠦ', main: 'ᠦ', base: 'ᠦ', alt: '\u180C' }, // W = ᠦ (Ü), AltGr = FVS2
+    { top: 'ᠡ', main: 'ᠡ', base: 'ᠡ', alt: '\u180E' }, // E = ᠡ (E), AltGr = MVS
+    { top: 'ᠷ', main: 'ᠷ', base: 'ᠷ', alt: '®' },      // R = ᠷ (R)
+    { top: 'ᠲ', main: 'ᠲ', base: 'ᠲ', alt: '₮' },      // T = ᠲ (T)
+    { top: 'ᠶ', main: 'ᠶ', base: 'ᠶ', alt: '™' },      // Y = ᠶ (Y)
+    { top: 'ᠤ', main: 'ᠤ', base: 'ᠤ', alt: '\u180D' }, // U = ᠤ (U), AltGr = FVS3
+    { top: 'ᠢ', main: 'ᠢ', base: 'ᠢ', alt: '“' },      // I = ᠢ (I)
+    { top: 'ᠣ', main: 'ᠣ', base: 'ᠣ', alt: '”' },      // O = ᠣ (O)
+    { top: 'ᠫ', main: 'ᠫ', base: 'ᠫ', alt: ';' },      // P = ᠫ (P)
+    { top: '{', main: '[', base: '[', alt: '᠈' },      // [
+    { top: '}', main: ']', base: ']', alt: '᠉' },      // ]
+    { top: '|', main: '\\', base: '\\', alt: '¦' }
+  ],
+  row3: [
+    { top: 'ᠠ', main: 'ᠠ', base: 'ᠠ', alt: 'μ' },      // A = ᠠ (A)
+    { top: 'ᠰ', main: 'ᠰ', base: 'ᠰ', alt: '£' },      // S = ᠰ (S)
+    { top: 'ᠳ', main: 'ᠳ', base: 'ᠳ', alt: '«' },      // D = ᠳ (D)
+    { top: 'ᠹ', main: 'ᠹ', base: 'ᠹ', alt: '»' },      // F = ᠹ (F)
+    { top: 'ᠭ', main: 'ᠭ', base: 'ᠭ', alt: '{' },      // G = ᠭ (G)
+    { top: 'ᠬ', main: 'ᠬ', base: 'ᠬ', alt: '<' },      // H = ᠬ (H)
+    { top: 'ᠵ', main: 'ᠵ', base: 'ᠵ', alt: '>' },      // J = ᠵ (J)
+    { top: 'ᠺ', main: 'ᠺ', base: 'ᠺ', alt: '}' },      // K = ᠺ (K)
+    { top: 'ᠯ', main: 'ᠯ', base: 'ᠯ', alt: '№' },      // L = ᠯ (L)
+    { top: ':', main: ';', base: ';', alt: '…' },
+    { top: '"', main: "'", base: "'", alt: '\u180E' }   // MVS
+  ],
+  row4: [
+    { top: 'ᠽ', main: 'ᠽ', base: 'ᠽ', alt: '—' },      // Z = ᠽ (Z)
+    { top: 'ᠱ', main: 'ᠱ', base: 'ᠱ', alt: '§' },      // X = ᠱ (Sh)
+    { top: 'ᠴ', main: 'ᠴ', base: 'ᠴ', alt: '©' },      // C = ᠴ (Ch)
+    { top: 'ᠸ', main: 'ᠸ', base: 'ᠸ', alt: '–' },      // V = ᠸ (V)
+    { top: 'ᠪ', main: 'ᠪ', base: 'ᠪ', alt: '°' },      // B = ᠪ (B)
+    { top: 'ᠩ', main: 'ᠨ', base: 'ᠨ', alt: '·' },      // N = ᠨ (N), Shift = ᠩ
+    { top: 'ᠮ', main: 'ᠮ', base: 'ᠮ', alt: '±' },      // M = ᠮ (M)
+    { top: '<', main: '᠂', base: '᠂', alt: ',' },      // , = ᠂
+    { top: '>', main: '᠃', base: '᠃', alt: '.' },      // . = ᠃
+    { top: '?', main: '/', base: '/', alt: '?' }
+  ]
+};
+
+function getCurrentLayout() {
+  if (currentMode === 'bichig') return LAYOUT_BICHIG;
+  if (currentMode === 'classic') return LAYOUT_CLASSIC;
+  return LAYOUT_ERGO;
+}
 
 function renderKeyboard() {
   const container = document.getElementById('keyboard');
   container.innerHTML = '';
+  const layout = getCurrentLayout();
 
-  const rows = [LAYOUT_CYR_US.row1, LAYOUT_CYR_US.row2, LAYOUT_CYR_US.row3, LAYOUT_CYR_US.row4];
+  const rows = [layout.row1, layout.row2, layout.row3, layout.row4];
 
   rows.forEach((row, idx) => {
     const rowDiv = document.createElement('div');
@@ -283,7 +467,7 @@ function renderKeyboard() {
 
     row.forEach(k => {
       const keyDiv = document.createElement('div');
-      keyDiv.className = 'key';
+      keyDiv.className = 'key' + (k.devops ? ' devops-key' : '');
       
       let charToType = k.base;
       if (isShift) charToType = k.top;
@@ -351,7 +535,7 @@ function renderKeyboard() {
   const nnbsp = document.createElement('div');
   nnbsp.className = 'key key-wide';
   nnbsp.innerHTML = '<span class="main" style="font-size:11px;">NNBSP</span><span class="alt">\\u202F</span>';
-  nnbsp.title = 'Narrow No-Break Space for Classical suffixes';
+  nnbsp.title = 'Narrow No-Break Space (Монгол бичгийн дагаврын зай)';
   nnbsp.onclick = () => insertChar('\u202F');
   spaceRow.appendChild(nnbsp);
 
@@ -365,7 +549,7 @@ function insertChar(ch) {
   box.value = box.value.substring(0, start) + ch + box.value.substring(end);
   box.selectionStart = box.selectionEnd = start + ch.length;
   box.focus();
-  updateVertical();
+  updatePreviews();
 }
 
 function backspaceChar() {
@@ -377,7 +561,7 @@ function backspaceChar() {
     box.selectionStart = box.selectionEnd = start - 1;
   }
   box.focus();
-  updateVertical();
+  updatePreviews();
 }
 
 function toggleShift() {
@@ -392,23 +576,36 @@ function toggleAltGr() {
   renderKeyboard();
 }
 
-function setBase(b) {
-  currentBase = b;
-  document.getElementById('btn-us').classList.toggle('active', b === 'us');
-  document.getElementById('btn-de').classList.toggle('active', b === 'de');
+function setLayoutMode(m) {
+  currentMode = m;
+  document.getElementById('btn-mode-ergo').classList.toggle('active', m === 'ergo');
+  document.getElementById('btn-mode-classic').classList.toggle('active', m === 'classic');
+  document.getElementById('btn-mode-bichig').classList.toggle('active', m === 'bichig');
+
+  const vertCard = document.getElementById('vertical-preview-card');
+  const editorGrid = document.getElementById('editor-grid');
+  if (m === 'bichig') {
+    vertCard.style.display = 'flex';
+    editorGrid.classList.add('bichig-active');
+  } else {
+    vertCard.style.display = 'none';
+    editorGrid.classList.remove('bichig-active');
+  }
+
   renderKeyboard();
+  updatePreviews();
 }
 
-function setScript(s) {
-  currentScript = s;
-  document.getElementById('btn-cyr').classList.toggle('active', s === 'cyr');
-  document.getElementById('btn-hudum').classList.toggle('active', s === 'hudum');
+function setBase(b) {
+  currentBase = b;
+  document.getElementById('btn-base-us').classList.toggle('active', b === 'us');
+  document.getElementById('btn-base-de').classList.toggle('active', b === 'de');
   renderKeyboard();
 }
 
 function clearText() {
   document.getElementById('typing-box').value = '';
-  updateVertical();
+  updatePreviews();
 }
 
 function copyText() {
@@ -417,25 +614,23 @@ function copyText() {
   alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
 }
 
-function toggleVertical() {
-  const vert = document.getElementById('vertical-preview');
-  const isHidden = vert.style.display === 'none' || vert.style.display === '';
-  vert.style.display = isHidden ? 'block' : 'none';
-  document.getElementById('toggle-vert-btn').classList.toggle('active', isHidden);
-  updateVertical();
+function injectDevOps(cmd) {
+  const box = document.getElementById('typing-box');
+  box.value += (box.value.length > 0 ? '\n' : '') + cmd;
+  updatePreviews();
+  box.focus();
 }
 
-function updateVertical() {
+function updatePreviews() {
   const box = document.getElementById('typing-box');
-  const vert = document.getElementById('vertical-preview');
+  const vert = document.getElementById('vertical-preview-box');
   vert.innerText = box.value;
 }
 
-document.getElementById('typing-box').addEventListener('input', updateVertical);
+document.getElementById('typing-box').addEventListener('input', updatePreviews);
 
 renderKeyboard();
 </script>
 
 </body>
 </html>
-

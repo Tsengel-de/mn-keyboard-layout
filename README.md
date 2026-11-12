@@ -36,7 +36,13 @@
 
 ```bash
 cd linux
+# Сонголттой интерактив суулгац:
 sudo ./install.sh
+
+# Эсвэл шууд горимоор суулгах:
+sudo ./install.sh ergonomic   # 1) Modern Ergonomic & DevOps (Q=Ө, W=Ү, [ ] хаалт кодчилолд хадгалагдсан)
+sudo ./install.sh classic     # 2) Classic Tsengel Layout ([=ө, ]=ү)
+sudo ./install.sh bichig      # 3) Classical Mongol Bichig (Худам Монгол бичиг)
 ```
 
 * **Идэвхжүүлэх**: `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Add Input Source` $\rightarrow$ `Mongolian`.
