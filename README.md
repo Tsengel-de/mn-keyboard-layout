@@ -135,6 +135,8 @@ Windows суулгацын файлуудыг татаж авахдаа эх х�
 
 ## 🌐 Вэб Туршигч (Interactive Web Visualizer)
 Та юу ч суулгахгүйгээр хөтөч дээрээ шууд гарын тохиргоог туршиж, DevOps кодчилол шалгаж үзэж болно:
+* **Шууд турших (Live Web App):** [mn.tsengel.de](https://mn.tsengel.de) • [gar.tsengel.de](https://gar.tsengel.de) • [bichig.tsengel.de](https://bichig.tsengel.de)
+* **Локалоор нээх:**
 ```bash
 xdg-open web/index.html
 ```

@@ -135,6 +135,8 @@ Verify the integrity of Windows installer binaries:
 
 ## 🌐 Interactive Web Visualizer
 Test the keyboard layout live in your browser without installing anything:
+* **Live Web App:** [mn.tsengel.de](https://mn.tsengel.de) • [gar.tsengel.de](https://gar.tsengel.de) • [bichig.tsengel.de](https://bichig.tsengel.de)
+* **Local Preview:**
 ```bash
 xdg-open web/index.html
 ```
@@ -146,3 +148,4 @@ xdg-open web/index.html
 This project is open-source under the [MIT License](LICENSE).
 * Author: **Tsengel** — [tsengel.de](https://tsengel.de)
 * Contributions, feedback, and improvements are welcome via GitHub Issues and Pull Requests.
+

@@ -135,6 +135,8 @@ Enthält native `.keylayout`-Dateien, Menüleisten-Icons (`.icns`) mit mongolisc
 
 ## 🌐 Interaktiver Web-Visualisierer
 Testen Sie das Tastaturlayout direkt und interaktiv im Webbrowser, ganz ohne Installation:
+* **Live-Webanwendung:** [mn.tsengel.de](https://mn.tsengel.de) • [gar.tsengel.de](https://gar.tsengel.de) • [bichig.tsengel.de](https://bichig.tsengel.de)
+* **Lokale Vorschau:**
 ```bash
 xdg-open web/index.html
 ```
@@ -146,3 +148,4 @@ xdg-open web/index.html
 Dieses Projekt ist Open-Source unter der [MIT-Lizenz](LICENSE).
 * Autor: **Tsengel** — [tsengel.de](https://tsengel.de)
 * Beiträge, Verbesserungsvorschläge und Feedback sind via GitHub Issues und Pull Requests herzlich willkommen.
+
