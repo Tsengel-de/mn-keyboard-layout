@@ -136,8 +136,8 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
 
 # 🍏 macOS
-a14b29117028558f8e66113aeacda69633bd22b472d7681a2aa6a06b1baff7e4  Mongolian-Keyboard-macOS.dmg
-91a146afe85ae15e531ecf20a48ec1c8238b85d32e3081a8b53f70ce17da41d9  Mongolian-Keyboard-macOS.zip
+ae1ef0c9be107a5f5cb9a59a0752f56d0b5eebece0b1272471ff0f49bf7f7bd5  Mongolian-Keyboard-macOS.dmg
+7d4a4f05fae5d8c0e1df4a6ee544a36d41cc43c01e9e632731af8e9c5d16e1f8  Mongolian-Keyboard-macOS.zip
 
 # 🐧 Linux
 f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux.zip
