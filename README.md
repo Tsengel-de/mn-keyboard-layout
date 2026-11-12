@@ -109,18 +109,19 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 
 ### 🪟 3. Windows (Windows 7 / 10 / 11)
 
-#### А. Classic Edition (Бэлэн багцалсан суулгац)
-* **US QWERTY гар дээр**: `windows/us-qwerty/setup.exe` дээр товшиж суулгана.
-* **German QWERTZ гар дээр**: `windows/de-qwertz/setup.exe` дээр товшиж суулгана.
-* **PowerShell тушаалаар суулгах**:
+#### А. Бие даасан бүрэн суулгагч (Single All-in-One Installer - Зөвлөмж болгох)
+* **[Mongolian-Keyboard-Windows-Setup.exe](https://mn.tsengel.de/downloads/Mongolian-Keyboard-Windows-Setup.exe)** файлыг татаж аваад ажиллуулна.
+* Суулгах явцдаа өөрийн гарны төрөл (US QWERTY эсвэл German QWERTZ) болон Монгол бичгийн TrueType фонтуудыг сонгон нэг товшилтоор суулгана.
+* Суусны дараа `Win + Space` дараад шууд Монгол гарыг сонгон бичнэ.
+
+#### Б. PowerShell скрипт эсвэл MSI эх сан
+* Хэрэв консолоор суулгахыг хүсвэл:
   ```powershell
   cd windows
   .\install.ps1 -Base us    # Англи суурьтай Windows гар
   .\install.ps1 -Base de    # Герман суурьтай Windows гар
   ```
-
-#### Б. Modern Ergonomic Edition (`Q=Ө, W=Ү`)
-* [windows/Mongolian-Ergonomic.klc](windows/Mongolian-Ergonomic.klc) эх файлыг [Microsoft Keyboard Layout Creator (MSKLC)](https://www.microsoft.com/en-us/download/details.aspx?id=102134) программд нээж `Project -> Build DLL and Setup Package` дарж өөрийн системд суулгана.
+* Мөн [windows/Mongolian-Ergonomic.klc](windows/Mongolian-Ergonomic.klc) эх файлыг [Microsoft Keyboard Layout Creator (MSKLC)](https://www.microsoft.com/en-us/download/details.aspx?id=102134) программд нээж хүссэнээрээ өөрчлөх боломжтой.
 
 ---
 
@@ -129,12 +130,8 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 Windows суулгацын файлуудыг татаж авахдаа эх хувьтайгаа 100% тохирч буйг дараах шалгах нийлбэрээр (SHA-256) баталгаажуулж болно:
 
 ```text
-15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1  windows/us-qwerty/setup.exe
-76ccc495ebb4bb607cac1131d2f37e2f5f5e1e3608ee158f1b1d99383d61106f  windows/us-qwerty/Mongol_amd64.msi
-9f319ac0df4249b3513e4addfbfad1c529cd954de446e9935c114ec43ee5a385  windows/us-qwerty/Mongol_i386.msi
-2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757  windows/de-qwertz/setup.exe
-3f99b4924801ae77c77a1aaea9b802f4e08d3127e7d2df04b3041516f01141c4  windows/de-qwertz/mongolis_amd64.msi
-0bdc67fdb550119c6a461415432aee7cc15fe71954a938f6547704d75439e385  windows/de-qwertz/mongolis_i386.msi
+72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup.exe
+6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
 ```
 
 ---

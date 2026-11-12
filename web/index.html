@@ -614,18 +614,17 @@
     <div class="download-card" id="card-windows">
       <div class="card-header-row">
         <h4 id="i18n-win-title">🪟 Windows 7 / 10 / 11</h4>
-        <span class="card-badge">MSI & EXE</span>
+        <span class="card-badge">Single Installer</span>
       </div>
-      <p id="i18n-win-desc">Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.</p>
-      <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-primary" id="i18n-btn-win-zip">
-        ⬇️ Windows Багц Татах (.zip, 509 KB)
+      <p id="i18n-win-desc">Монгол кирилл болон бичгийн гарын байрлал, фонтуудыг нэг товшилтоор бүрэн суулгах бие даасан Windows суулгагч.</p>
+      <a href="downloads/Mongolian-Keyboard-Windows-Setup.exe" download class="btn-dl-primary" id="i18n-btn-win-exe">
+        ⚡ Windows Суулгагч Татах (.exe, 560 KB)
       </a>
       <div class="sub-dl-group">
-        <a href="downloads/setup-us-qwerty.exe" download class="btn-dl-sub">setup.exe (US QWERTY)</a>
-        <a href="downloads/setup-de-qwertz.exe" download class="btn-dl-sub">setup.exe (DE QWERTZ)</a>
+        <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-sub" id="i18n-btn-win-zip">📁 .zip Эх сан (MSI & Source)</a>
       </div>
       <div class="install-hint" id="i18n-win-hint">
-        <strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.
+        <strong>Суулгах:</strong> Татаж авсан <code>Mongolian-Keyboard-Windows-Setup.exe</code> дээр дарж суулгана. Суусны дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.
       </div>
     </div>
 
@@ -695,35 +694,23 @@
             <tr>
               <td><code>Mongolian-Keyboard-Windows.zip</code></td>
               <td>Windows</td>
-              <td>509 KB</td>
+              <td>735 KB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">63b00b460ae2adc5390be9bb677097c8862496a93358c82dc91c02374e7c6565</span>
-                  <button class="hash-copy" onclick="copyHash('63b00b460ae2adc5390be9bb677097c8862496a93358c82dc91c02374e7c6565', this)">Хуулах</button>
+                  <span class="hash-text">6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2</span>
+                  <button class="hash-copy" onclick="copyHash('6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
             </tr>
             <tr>
-              <td><code>setup-us-qwerty.exe</code></td>
+              <td><code>Mongolian-Keyboard-Windows-Setup.exe</code></td>
               <td>Windows</td>
-              <td>140 KB</td>
+              <td>560 KB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1</span>
-                  <button class="hash-copy" onclick="copyHash('15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1', this)">Хуулах</button>
-                </div>
-              </td>
-              <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
-            </tr>
-            <tr>
-              <td><code>setup-de-qwertz.exe</code></td>
-              <td>Windows</td>
-              <td>140 KB</td>
-              <td>
-                <div class="hash-cell">
-                  <span class="hash-text">2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757</span>
-                  <button class="hash-copy" onclick="copyHash('2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757', this)">Хуулах</button>
+                  <span class="hash-text">72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3</span>
+                  <button class="hash-copy" onclick="copyHash('72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -1197,9 +1184,10 @@ const I18N = {
     dlHeader: "📦 Суулгац Татах (Direct Downloads)",
     dlBadgePrefix: "Таны төхөөрөмж: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
-    winDesc: "Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.",
-    btnWinZip: "⬇️ Windows Багц Татах (.zip, 509 KB)",
-    winHint: "<strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
+    winDesc: "Монгол кирилл болон бичгийн гарын байрлал, фонтуудыг нэг товшилтоор бүрэн суулгах бие даасан Windows суулгагч.",
+    btnWinExe: "⚡ Windows Суулгагч Татах (.exe, 560 KB)",
+    btnWinZip: "📁 .zip Эх сан (MSI & Source)",
+    winHint: "<strong>Суулгах:</strong> Татаж авсан <code>Mongolian-Keyboard-Windows-Setup.exe</code> дээр дарж суулгана. Суусны дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
     macDesc: "Apple-ийн албан ёсны стандартын Mongolian.bundle багц бүхий DMG диск. Хялбар чирж (Drag & Drop) суулгана.",
     btnMacDmg: "💿 macOS Диск Татах (.dmg, 1.3 MB)",
@@ -1250,9 +1238,10 @@ const I18N = {
     dlHeader: "📦 Download Installers (Direct Downloads)",
     dlBadgePrefix: "Your Device: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
-    winDesc: "Official Microsoft MSKLC packages for Modern Ergonomic and Classic editions.",
-    btnWinZip: "⬇️ Download Windows Package (.zip, 509 KB)",
-    winHint: "<strong>Install:</strong> Run Setup.exe and click Next. Switch anytime using <strong>Win + Space</strong>.",
+    winDesc: "All-in-one standalone installer for Mongolian Cyrillic & Bichig layouts and TrueType fonts.",
+    btnWinExe: "⚡ Download Windows Installer (.exe, 560 KB)",
+    btnWinZip: "📁 .zip Source Archive (MSI & Sources)",
+    winHint: "<strong>Install:</strong> Run <code>Mongolian-Keyboard-Windows-Setup.exe</code> and follow the wizard. Switch anytime using <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
     macDesc: "Official Apple standard Mongolian.bundle package on DMG disk image. Easily install via Drag & Drop.",
     btnMacDmg: "💿 Download macOS Disk (.dmg, 1.3 MB)",
@@ -1303,9 +1292,10 @@ const I18N = {
     dlHeader: "📦 Installationspakete herunterladen",
     dlBadgePrefix: "Ihr Betriebssystem: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
-    winDesc: "Offizielle Microsoft-MSKLC-Pakete für die moderne ergonomische und klassische Edition.",
-    btnWinZip: "⬇️ Windows-Paket herunterladen (.zip, 509 KB)",
-    winHint: "<strong>Installation:</strong> Setup.exe ausführen und auf Weiter klicken. Jederzeit mit <strong>Win + Leertaste</strong> umschalten.",
+    winDesc: "Eigenständiger Windows-Installer für mongolische kyrillische & traditionelle Schriftlayouts und Schriftarten.",
+    btnWinExe: "⚡ Windows Installer herunterladen (.exe, 560 KB)",
+    btnWinZip: "📁 .zip Quellarchiv (MSI & Sourcen)",
+    winHint: "<strong>Installation:</strong> Führen Sie <code>Mongolian-Keyboard-Windows-Setup.exe</code> aus. Wechseln Sie jederzeit mit <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
     macDesc: "Offizielles Apple-Standardpaket Mongolian.bundle auf DMG-Image. Einfache Installation per Drag & Drop.",
     btnMacDmg: "💿 macOS Disk Image (.dmg, 1.3 MB)",
@@ -1371,6 +1361,7 @@ function setLanguage(lang) {
     'i18n-dl-header': t.dlHeader,
     'i18n-win-title': t.winTitle,
     'i18n-win-desc': t.winDesc,
+    'i18n-btn-win-exe': t.btnWinExe,
     'i18n-btn-win-zip': t.btnWinZip,
     'i18n-win-hint': t.winHint,
     'i18n-mac-title': t.macTitle,

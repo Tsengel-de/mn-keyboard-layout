@@ -109,18 +109,19 @@ Official Apple `Mongolian.bundle` package with native DMG disk image:
 
 ### 🪟 3. Windows (Windows 7 / 10 / 11)
 
-#### A. Classic Edition (Pre-compiled Installers)
-* **US QWERTY Keyboards**: Run `windows/us-qwerty/setup.exe`.
-* **German QWERTZ Keyboards**: Run `windows/de-qwertz/setup.exe`.
-* **PowerShell One-Liner**:
+#### A. Standalone All-in-One Installer (Recommended ⭐)
+* Download and run **[Mongolian-Keyboard-Windows-Setup.exe](https://mn.tsengel.de/downloads/Mongolian-Keyboard-Windows-Setup.exe)**.
+* Select your physical keyboard type (US QWERTY or German QWERTZ) and install TrueType Mongolian script fonts in a single wizard.
+* Switch anytime using `Win + Space`.
+
+#### B. PowerShell & Source Archive
+* For silent or scripted installations:
   ```powershell
   cd windows
   .\install.ps1 -Base us    # For US English keyboards
   .\install.ps1 -Base de    # For German keyboards
   ```
-
-#### B. Modern Edition (`Q=Ө, W=Ү`)
-* Open [windows/Mongolian-Ergonomic.klc](windows/Mongolian-Ergonomic.klc) in [Microsoft Keyboard Layout Creator (MSKLC)](https://www.microsoft.com/en-us/download/details.aspx?id=102134) and click `Project -> Build DLL and Setup Package`.
+* You can also inspect or modify the source layout file [windows/Mongolian-Ergonomic.klc](windows/Mongolian-Ergonomic.klc) using [Microsoft Keyboard Layout Creator (MSKLC)](https://www.microsoft.com/en-us/download/details.aspx?id=102134).
 
 ---
 
@@ -129,12 +130,8 @@ Official Apple `Mongolian.bundle` package with native DMG disk image:
 Verify the integrity of Windows installer binaries:
 
 ```text
-15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1  windows/us-qwerty/setup.exe
-76ccc495ebb4bb607cac1131d2f37e2f5f5e1e3608ee158f1b1d99383d61106f  windows/us-qwerty/Mongol_amd64.msi
-9f319ac0df4249b3513e4addfbfad1c529cd954de446e9935c114ec43ee5a385  windows/us-qwerty/Mongol_i386.msi
-2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757  windows/de-qwertz/setup.exe
-3f99b4924801ae77c77a1aaea9b802f4e08d3127e7d2df04b3041516f01141c4  windows/de-qwertz/mongolis_amd64.msi
-0bdc67fdb550119c6a461415432aee7cc15fe71954a938f6547704d75439e385  windows/de-qwertz/mongolis_i386.msi
+72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup.exe
+6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
 ```
 
 ---
