@@ -432,19 +432,72 @@
       border-radius: 12px;
       white-space: nowrap;
     }
+
+    /* Top Navigation & Language Switcher */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      background: #e2e8f0;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 3px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #475569;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover {
+      color: #0f172a;
+    }
+    .lang-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
+  <div class="top-nav">
+    <div class="brand-sub">tsengel.de / mn-keyboard-layout</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="lang-btn-mn" onclick="setLanguage('mn')">🇲🇳 Монгол</button>
+      <button class="lang-btn" id="lang-btn-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button class="lang-btn" id="lang-btn-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+    </div>
+  </div>
+
   <header>
-    <h1>🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
-    <p>Орчин Үеийн Эргономик • Сонгодог Кирилл • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong></p>
+    <h1 id="i18n-title">🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
+    <p id="i18n-subtitle">Орчин Үеийн Эргономик • Сонгодог Кирилл • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong></p>
   </header>
 
   <div class="controls-wrapper">
     <div class="controls-row">
-      <span class="control-label">Загвар:</span>
+      <span class="control-label" id="i18n-lbl-edition">Загвар:</span>
       <div class="btn-group">
         <button class="btn active" id="btn-mode-ergo" onclick="setLayoutMode('ergo')">⚡ Орчин Үеийн Эргономик (Q=Ө, W=Ү)</button>
         <button class="btn" id="btn-mode-classic" onclick="setLayoutMode('classic')">Сонгодог (Brackets [=ө, ]=ү)</button>
@@ -452,12 +505,12 @@
       </div>
     </div>
     <div class="controls-row">
-      <span class="control-label">Суурь Гар:</span>
+      <span class="control-label" id="i18n-lbl-base">Суурь Гар:</span>
       <div class="btn-group">
         <button class="btn active" id="btn-base-us" onclick="setBase('us')">US English (QWERTY)</button>
         <button class="btn" id="btn-base-de" onclick="setBase('de')">German (QWERTZ)</button>
       </div>
-      <span class="control-label" style="min-width: 60px;">Шилжилт:</span>
+      <span class="control-label" id="i18n-lbl-shift" style="min-width: 60px;">Шилжилт:</span>
       <div class="btn-group">
         <button class="btn" id="btn-shift" onclick="toggleShift()">Shift</button>
         <button class="btn" id="btn-altgr" onclick="toggleAltGr()">AltGr (Option)</button>
@@ -470,10 +523,10 @@
   </div>
 
   <div class="devops-panel" id="devops-panel">
-    <h4>💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)</h4>
-    <p>Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \</code> болон тушаалуудыг шууд бичиж туршина уу:</p>
+    <h4 id="i18n-devops-title">💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)</h4>
+    <p id="i18n-devops-desc">Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \</code> болон тушаалуудыг шууд бичиж туршина уу:</p>
     <div class="devops-test-row">
-      <span style="font-size:12px; color:#94a3b8;">Жишээ тушаалууд (товшиж турш):</span>
+      <span id="i18n-devops-samples" style="font-size:12px; color:#94a3b8;">Жишээ тушаалууд (товшиж турш):</span>
       <span class="devops-snippet" onclick="injectDevOps('docker run -d -p 8080:80 --name web app:latest')">docker run -d -p 8080:80</span>
       <span class="devops-snippet" onclick="injectDevOps('kubectl get pods -n kube-system | grep Running')">kubectl ... | grep</span>
       <span class="devops-snippet" onclick="injectDevOps('git commit -m \"fix: update array[0] && {status: true}\"')">array[0] && {status: true}</span>
@@ -484,10 +537,10 @@
   <div class="editor-grid" id="editor-grid">
     <div class="editor-section">
       <div class="editor-header">
-        <h3>✍️ Бичих ба Турших талбар (Live Workspace)</h3>
+        <h3 id="i18n-editor-title">✍️ Бичих ба Турших талбар (Live Workspace)</h3>
         <div class="editor-tools">
-          <button class="btn" onclick="clearText()">Арилгах</button>
-          <button class="btn" onclick="copyText()">Хуулах</button>
+          <button class="btn" id="i18n-btn-clear" onclick="clearText()">Арилгах</button>
+          <button class="btn" id="i18n-btn-copy" onclick="copyText()">Хуулах</button>
         </div>
       </div>
       <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
@@ -495,7 +548,7 @@
 
     <div class="vertical-preview-card" id="vertical-preview-card" style="display:none;">
       <div class="editor-header">
-        <h3>📜 Босоо бичвэр (Classical)</h3>
+        <h3 id="i18n-vert-title">📜 Босоо бичвэр (Classical)</h3>
       </div>
       <div class="vertical-preview-box" id="vertical-preview-box"></div>
     </div>
@@ -506,35 +559,35 @@
     <div class="trust-item">
       <span class="trust-icon">🛡️</span>
       <div>
-        <strong>VirusTotal Баталгаажсан</strong>
-        <small>72 Антивирус шалгасан • 100% Цэвэр</small>
+        <strong id="i18n-trust-vt-title">VirusTotal Баталгаажсан</strong>
+        <small id="i18n-trust-vt-sub">72 Антивирус шалгасан • 100% Цэвэр</small>
       </div>
     </div>
     <div class="trust-item">
       <span class="trust-icon">🔒</span>
       <div>
-        <strong>Zero Telemetry / 100% Offline</strong>
-        <small>Дата цуглуулахгүй, Keylogger-гүй</small>
+        <strong id="i18n-trust-zero-title">Zero Telemetry / 100% Offline</strong>
+        <small id="i18n-trust-zero-sub">Дата цуглуулахгүй, Keylogger-гүй</small>
       </div>
     </div>
     <div class="trust-item">
       <span class="trust-icon">⚡</span>
       <div>
-        <strong>Native OS Layout Driver</strong>
-        <small>Цэвэр үйлдлийн системийн драйвер</small>
+        <strong id="i18n-trust-native-title">Native OS Layout Driver</strong>
+        <small id="i18n-trust-native-sub">Цэвэр үйлдлийн системийн драйвер</small>
       </div>
     </div>
     <div class="trust-item">
       <span class="trust-icon">📄</span>
       <div>
-        <strong>Нээлттэй Эх (MIT License)</strong>
-        <small>Эх кодыг GitHub дээр шалгах боломжтой</small>
+        <strong id="i18n-trust-mit-title">Нээлттэй Эх (MIT License)</strong>
+        <small id="i18n-trust-mit-sub">Эх кодыг GitHub дээр шалгах боломжтой</small>
       </div>
     </div>
   </div>
 
   <div class="downloads-header">
-    <h3>📦 Суулгац Татах (Direct Downloads)</h3>
+    <h3 id="i18n-dl-header">📦 Суулгац Татах (Direct Downloads)</h3>
     <div class="os-detected-badge" id="os-badge">Систем шалгаж байна...</div>
   </div>
 
@@ -542,16 +595,16 @@
     <!-- 1. Windows -->
     <div class="download-card" id="card-windows">
       <span class="card-badge">MSI & EXE</span>
-      <h4>🪟 Windows 7 / 10 / 11</h4>
-      <p>Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.</p>
-      <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-primary">
+      <h4 id="i18n-win-title">🪟 Windows 7 / 10 / 11</h4>
+      <p id="i18n-win-desc">Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.</p>
+      <a href="downloads/Mongolian-Keyboard-Windows.zip" download class="btn-dl-primary" id="i18n-btn-win-zip">
         ⬇️ Windows Багц Татах (.zip, 509 KB)
       </a>
       <div class="sub-dl-group">
         <a href="downloads/setup-us-qwerty.exe" download class="btn-dl-sub">setup.exe (US QWERTY)</a>
         <a href="downloads/setup-de-qwertz.exe" download class="btn-dl-sub">setup.exe (DE QWERTZ)</a>
       </div>
-      <div class="install-hint">
+      <div class="install-hint" id="i18n-win-hint">
         <strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.
       </div>
     </div>
@@ -559,15 +612,15 @@
     <!-- 2. macOS -->
     <div class="download-card" id="card-macos">
       <span class="card-badge">Apple Silicon & Intel</span>
-      <h4>🍏 macOS (OS X / Sonoma / Sequoia)</h4>
-      <p>Apple macOS-д зориулсан native .keylayout, цэсийн далбаат icon болон Худам Монгол бичгийн OpenType фонтууд.</p>
-      <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-primary">
+      <h4 id="i18n-mac-title">🍏 macOS (OS X / Sonoma / Sequoia)</h4>
+      <p id="i18n-mac-desc">Apple macOS-д зориулсан native .keylayout, цэсийн далбаат icon болон Худам Монгол бичгийн OpenType фонтууд.</p>
+      <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-primary" id="i18n-btn-mac-zip">
         ⬇️ macOS Багц Татах (.zip, 605 KB)
       </a>
       <div class="sub-dl-group">
-        <span class="btn-dl-sub" style="cursor:default; background:#e0f2fe; color:#0369a1 !important;">1-Click install.command багтсан</span>
+        <span class="btn-dl-sub" id="i18n-mac-badge" style="cursor:default; background:#e0f2fe; color:#0369a1 !important;">1-Click install.command багтсан</span>
       </div>
-      <div class="install-hint">
+      <div class="install-hint" id="i18n-mac-hint">
         <strong>Суулгах:</strong> Задлаад <code>install.command</code> дээр 2 дарна (Root нууц үг шаардахгүй). Дараа нь System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
       </div>
     </div>
@@ -575,16 +628,16 @@
     <!-- 3. Linux -->
     <div class="download-card" id="card-linux">
       <span class="card-badge">XKB Unified</span>
-      <h4>🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
-      <p>Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.</p>
-      <a href="downloads/Mongolian-Keyboard-Linux.zip" download class="btn-dl-primary">
+      <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
+      <p id="i18n-linux-desc">Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.</p>
+      <a href="downloads/Mongolian-Keyboard-Linux.zip" download class="btn-dl-primary" id="i18n-btn-linux-zip">
         ⬇️ Linux Багц Татах (.zip, 26 KB)
       </a>
       <div class="terminal-install-box">
         <code id="cmd-linux">curl -fsSL https://mn.tsengel.de/downloads/install-linux.sh | sudo bash</code>
-        <button class="copy-btn" onclick="copyLinuxCmd(this)">Хуулах</button>
+        <button class="copy-btn" id="i18n-btn-copy-script" onclick="copyLinuxCmd(this)">Хуулах</button>
       </div>
-      <div class="install-hint">
+      <div class="install-hint" id="i18n-linux-hint">
         <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.
       </div>
     </div>
@@ -594,18 +647,18 @@
   <div class="checksum-section">
     <details>
       <summary>
-        <span>🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)</span>
-        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">[Дэлгэх ▾]</span>
+        <span id="i18n-checksum-title">🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)</span>
+        <span id="i18n-checksum-toggle" style="font-size:12px; color:var(--text-muted); font-weight:normal;">[Дэлгэх ▾]</span>
       </summary>
       <div class="checksum-table-wrapper">
         <table class="checksum-table">
           <thead>
             <tr>
-              <th>Файлын нэр</th>
-              <th>Платформ</th>
-              <th>Хэмжээ</th>
-              <th>SHA-256 Checksum</th>
-              <th>Аюулгүй байдал</th>
+              <th id="i18n-th-file">Файлын нэр</th>
+              <th id="i18n-th-platform">Платформ</th>
+              <th id="i18n-th-size">Хэмжээ</th>
+              <th id="i18n-th-hash">SHA-256 Checksum</th>
+              <th id="i18n-th-status">Аюулгүй байдал</th>
             </tr>
           </thead>
           <tbody>
@@ -1069,6 +1122,249 @@ function copyHash(hash, btn) {
   });
 }
 
+let currentLang = 'mn';
+
+const I18N = {
+  mn: {
+    title: "🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал",
+    subtitle: "Орчин Үеийн Эргономик • Сонгодог Кирилл • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong>",
+    labelEdition: "Загвар:",
+    btnErgo: "⚡ Орчин Үеийн Эргономик (Q=Ө, W=Ү)",
+    btnClassic: "Сонгодог (Brackets [=ө, ]=ү)",
+    btnBichig: "📜 Худам Монгол Бичиг",
+    labelBase: "Суурь Гар:",
+    baseUs: "US English (QWERTY)",
+    baseDe: "German (QWERTZ)",
+    labelShift: "Шилжилт:",
+    devopsTitle: "💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)",
+    devopsDesc: "Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \\</code> болон тушаалуудыг шууд бичиж туршина уу:",
+    devopsSamples: "Жишээ тушаалууд (товшиж турш):",
+    editorTitle: "✍️ Бичих ба Турших талбар (Live Workspace)",
+    btnClear: "Арилгах",
+    btnCopy: "Хуулах",
+    typingPlaceholder: "Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү...",
+    vertTitle: "📜 Босоо бичвэр (Classical)",
+    trustVtTitle: "VirusTotal Баталгаажсан",
+    trustVtSub: "72 Антивирус шалгасан • 100% Цэвэр",
+    trustZeroTitle: "Zero Telemetry / 100% Offline",
+    trustZeroSub: "Дата цуглуулахгүй, Keylogger-гүй",
+    trustNativeTitle: "Native OS Layout Driver",
+    trustNativeSub: "Цэвэр үйлдлийн системийн драйвер",
+    trustMitTitle: "Нээлттэй Эх (MIT License)",
+    trustMitSub: "Эх кодыг GitHub дээр шалгах боломжтой",
+    dlHeader: "📦 Суулгац Татах (Direct Downloads)",
+    dlBadgePrefix: "Таны төхөөрөмж: ",
+    winTitle: "🪟 Windows 7 / 10 / 11",
+    winDesc: "Орчин үеийн эргономик болон сонгодог хувилбаруудыг автоматаар суулгах Microsoft MSKLC албан ёсны багц.",
+    btnWinZip: "⬇️ Windows Багц Татах (.zip, 509 KB)",
+    winHint: "<strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
+    macTitle: "🍏 macOS (Apple Silicon & Intel)",
+    macDesc: "Apple macOS-д зориулсан native .keylayout, цэсийн далбаат icon болон Худам Монгол бичгийн OpenType фонтууд.",
+    btnMacZip: "⬇️ macOS Багц Татах (.zip, 605 KB)",
+    macBadge: "1-Click install.command багтсан",
+    macHint: "<strong>Суулгах:</strong> Задлаад <code>install.command</code> дээр 2 дарна (Root нууц үг шаардахгүй). Дараа нь System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.",
+    linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
+    linuxDesc: "Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.",
+    btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
+    btnCopyScript: "Хуулах",
+    linuxHint: "<strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.",
+    checksumTitle: "🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)",
+    checksumToggle: "[Дэлгэх ▾]",
+    thFile: "Файлын нэр",
+    thPlatform: "Платформ",
+    thSize: "Хэмжээ",
+    thHash: "SHA-256 Checksum",
+    thStatus: "Аюулгүй байдал",
+    badgeClean: "✓ 100% Вирусгүй",
+    btnCopyHash: "Хуулах"
+  },
+  en: {
+    title: "🇲🇳 Universal Mongolian Keyboard Layout Suite",
+    subtitle: "Modern Ergonomic • Classic Cyrillic • Classical Bichig | Author: <strong>Tsengel (tsengel.de)</strong>",
+    labelEdition: "Edition:",
+    btnErgo: "⚡ Modern Ergonomic (Q=Ө, W=Ү)",
+    btnClassic: "Classic (Brackets [=ө, ]=ү)",
+    btnBichig: "📜 Classical Mongol Bichig",
+    labelBase: "Base Keyboard:",
+    baseUs: "US English (QWERTY)",
+    baseDe: "German (QWERTZ)",
+    labelShift: "Modifiers:",
+    devopsTitle: "💻 Developer & Engineering Test (Zero-Switching)",
+    devopsDesc: "Type Bash, Python, Git, and code brackets <code>{ } [ ] | \\</code> natively while typing Mongolian without switching layouts:",
+    devopsSamples: "Sample commands (click to test):",
+    editorTitle: "✍️ Typing & Testing Workspace (Live)",
+    btnClear: "Clear",
+    btnCopy: "Copy",
+    typingPlaceholder: "Click the keys above or start typing on your physical keyboard...",
+    vertTitle: "📜 Vertical Script Preview",
+    trustVtTitle: "VirusTotal Verified",
+    trustVtSub: "72 Antivirus Engines • 100% Clean",
+    trustZeroTitle: "Zero Telemetry / 100% Offline",
+    trustZeroSub: "No data collection, no keyloggers",
+    trustNativeTitle: "Native OS Layout Driver",
+    trustNativeSub: "Pure OS-level symbols, no background apps",
+    trustMitTitle: "Open Source (MIT License)",
+    trustMitSub: "Freely inspectable code on GitHub",
+    dlHeader: "📦 Download Installers (Direct Downloads)",
+    dlBadgePrefix: "Your Device: ",
+    winTitle: "🪟 Windows 7 / 10 / 11",
+    winDesc: "Official Microsoft MSKLC packages for Modern Ergonomic and Classic editions.",
+    btnWinZip: "⬇️ Download Windows Package (.zip, 509 KB)",
+    winHint: "<strong>Install:</strong> Run Setup.exe and click Next. Switch anytime using <strong>Win + Space</strong>.",
+    macTitle: "🍏 macOS (Apple Silicon & Intel)",
+    macDesc: "Native .keylayout files, flag menu bar icons, and Classical script OpenType fonts for Apple macOS.",
+    btnMacZip: "⬇️ Download macOS Package (.zip, 605 KB)",
+    macBadge: "1-Click install.command included",
+    macHint: "<strong>Install:</strong> Extract and double-click <code>install.command</code> (no root password needed). Then add in System Settings &rarr; Keyboard &rarr; Input Sources.",
+    linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
+    linuxDesc: "All 3 editions (Modern, Classic, Bichig) bundled in one safe XKB installer.",
+    btnLinuxZip: "⬇️ Download Linux Package (.zip, 26 KB)",
+    btnCopyScript: "Copy",
+    linuxHint: "<strong>Quick switch:</strong> Run <code>setxkbmap mn</code> (Modern) or <code>setxkbmap mn -variant bichig</code> in Terminal.",
+    checksumTitle: "🔍 File SHA-256 Checksums & Antivirus Verification",
+    checksumToggle: "[Expand ▾]",
+    thFile: "File Name",
+    thPlatform: "Platform",
+    thSize: "Size",
+    thHash: "SHA-256 Checksum",
+    thStatus: "Security Status",
+    badgeClean: "✓ 100% Virus-Free",
+    btnCopyHash: "Copy"
+  },
+  de: {
+    title: "🇲🇳 Universelles mongolisches Tastaturlayout",
+    subtitle: "Moderne Ergonomie • Klassisches Kyrillisch • Traditionelle Schrift | Autor: <strong>Tsengel (tsengel.de)</strong>",
+    labelEdition: "Edition:",
+    btnErgo: "⚡ Moderne Ergonomie (Q=Ө, W=Ү)",
+    btnClassic: "Klassisch (Brackets [=ө, ]=ү)",
+    btnBichig: "📜 Traditionelle Schrift (Bichig)",
+    labelBase: "Basistastatur:",
+    baseUs: "US English (QWERTY)",
+    baseDe: "Deutsch (QWERTZ)",
+    labelShift: "Umschaltung:",
+    devopsTitle: "💻 Entwickler- & Engineering-Test (Zero-Switching)",
+    devopsDesc: "Tippen Sie Bash-, Python-, Git- und Codeklammern <code>{ } [ ] | \\</code> direkt auf Mongolisch, ohne das Tastaturlayout wechseln zu müssen:",
+    devopsSamples: "Beispielbefehle (zum Testen anklicken):",
+    editorTitle: "✍️ Eingabe- & Testbereich (Live)",
+    btnClear: "Löschen",
+    btnCopy: "Kopieren",
+    typingPlaceholder: "Klicken Sie auf die Tasten oben oder tippen Sie auf Ihrer Tastatur...",
+    vertTitle: "📜 Vertikale Schriftvorschau",
+    trustVtTitle: "VirusTotal Geprüft",
+    trustVtSub: "72 Antivirenprogramme • 100% Sicher",
+    trustZeroTitle: "Keine Telemetrie / 100% Offline",
+    trustZeroSub: "Keine Datenerfassung, kein Keylogger",
+    trustNativeTitle: "Nativer OS-Tastaturtreiber",
+    trustNativeSub: "Reine OS-Treiberdateien, keine Hintergrund-Apps",
+    trustMitTitle: "Open Source (MIT-Lizenz)",
+    trustMitSub: "Frei einsehbarer Quellcode auf GitHub",
+    dlHeader: "📦 Installationspakete herunterladen",
+    dlBadgePrefix: "Ihr Betriebssystem: ",
+    winTitle: "🪟 Windows 7 / 10 / 11",
+    winDesc: "Offizielle Microsoft-MSKLC-Pakete für die moderne ergonomische und klassische Edition.",
+    btnWinZip: "⬇️ Windows-Paket herunterladen (.zip, 509 KB)",
+    winHint: "<strong>Installation:</strong> Setup.exe ausführen und auf Weiter klicken. Jederzeit mit <strong>Win + Leertaste</strong> umschalten.",
+    macTitle: "🍏 macOS (Apple Silicon & Intel)",
+    macDesc: "Native .keylayout-Dateien, Flaggen-Icons für die Menüleiste und OpenType-Schriftarten für Apple macOS.",
+    btnMacZip: "⬇️ macOS-Paket herunterladen (.zip, 605 KB)",
+    macBadge: "1-Klick install.command enthalten",
+    macHint: "<strong>Installation:</strong> Entpacken und auf <code>install.command</code> doppelklicken (kein Root-Passwort nötig). Dann in den Systemeinstellungen hinzufügen.",
+    linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
+    linuxDesc: "Alle 3 Editionen (Modern, Klassisch, Bichig) gebündelt in einem sicheren XKB-Installer.",
+    btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip, 26 KB)",
+    btnCopyScript: "Kopieren",
+    linuxHint: "<strong>Schnellwechsel:</strong> <code>setxkbmap mn</code> (Modern) oder <code>setxkbmap mn -variant bichig</code> im Terminal ausführen.",
+    checksumTitle: "🔍 SHA-256-Prüfsummen & Antivirus-Verifizierung",
+    checksumToggle: "[Ausklappen ▾]",
+    thFile: "Dateiname",
+    thPlatform: "Plattform",
+    thSize: "Größe",
+    thHash: "SHA-256-Prüfsumme",
+    thStatus: "Sicherheitsstatus",
+    badgeClean: "✓ 100% Virenfrei",
+    btnCopyHash: "Kopieren"
+  }
+};
+
+function setLanguage(lang) {
+  if (!I18N[lang]) lang = 'mn';
+  currentLang = lang;
+  localStorage.setItem('mn_kb_lang', lang);
+
+  // Update switcher buttons
+  ['mn', 'en', 'de'].forEach(l => {
+    const btn = document.getElementById('lang-btn-' + l);
+    if (btn) btn.classList.toggle('active', l === lang);
+  });
+
+  const t = I18N[lang];
+  document.title = t.title + " | Tsengel Language Foundation";
+  
+  const map = {
+    'i18n-title': t.title,
+    'i18n-subtitle': t.subtitle,
+    'i18n-lbl-edition': t.labelEdition,
+    'btn-mode-ergo': t.btnErgo,
+    'btn-mode-classic': t.btnClassic,
+    'btn-mode-bichig': t.btnBichig,
+    'i18n-lbl-base': t.labelBase,
+    'btn-base-us': t.baseUs,
+    'btn-base-de': t.baseDe,
+    'i18n-lbl-shift': t.labelShift,
+    'i18n-devops-title': t.devopsTitle,
+    'i18n-devops-desc': t.devopsDesc,
+    'i18n-devops-samples': t.devopsSamples,
+    'i18n-editor-title': t.editorTitle,
+    'i18n-btn-clear': t.btnClear,
+    'i18n-btn-copy': t.btnCopy,
+    'i18n-vert-title': t.vertTitle,
+    'i18n-trust-vt-title': t.trustVtTitle,
+    'i18n-trust-vt-sub': t.trustVtSub,
+    'i18n-trust-zero-title': t.trustZeroTitle,
+    'i18n-trust-zero-sub': t.trustZeroSub,
+    'i18n-trust-native-title': t.trustNativeTitle,
+    'i18n-trust-native-sub': t.trustNativeSub,
+    'i18n-trust-mit-title': t.trustMitTitle,
+    'i18n-trust-mit-sub': t.trustMitSub,
+    'i18n-dl-header': t.dlHeader,
+    'i18n-win-title': t.winTitle,
+    'i18n-win-desc': t.winDesc,
+    'i18n-btn-win-zip': t.btnWinZip,
+    'i18n-win-hint': t.winHint,
+    'i18n-mac-title': t.macTitle,
+    'i18n-mac-desc': t.macDesc,
+    'i18n-btn-mac-zip': t.btnMacZip,
+    'i18n-mac-badge': t.macBadge,
+    'i18n-mac-hint': t.macHint,
+    'i18n-linux-title': t.linuxTitle,
+    'i18n-linux-desc': t.linuxDesc,
+    'i18n-btn-linux-zip': t.btnLinuxZip,
+    'i18n-btn-copy-script': t.btnCopyScript,
+    'i18n-linux-hint': t.linuxHint,
+    'i18n-checksum-title': t.checksumTitle,
+    'i18n-checksum-toggle': t.checksumToggle,
+    'i18n-th-file': t.thFile,
+    'i18n-th-platform': t.thPlatform,
+    'i18n-th-size': t.thSize,
+    'i18n-th-hash': t.thHash,
+    'i18n-th-status': t.thStatus
+  };
+
+  for (const [id, val] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  }
+
+  const box = document.getElementById('typing-box');
+  if (box) box.placeholder = t.typingPlaceholder;
+
+  document.querySelectorAll('.badge-clean').forEach(b => {
+    b.innerText = t.badgeClean;
+  });
+
+  detectUserOS();
+}
+
 function detectUserOS() {
   const ua = navigator.userAgent || navigator.platform || '';
   const badge = document.getElementById('os-badge');
@@ -1086,16 +1382,48 @@ function detectUserOS() {
     cardId = 'card-linux';
   }
 
-  badge.innerText = 'Таны төхөөрөмж: ' + detected;
+  const prefix = (I18N[currentLang] && I18N[currentLang].dlBadgePrefix) || 'Таны төхөөрөмж: ';
+  if (badge) badge.innerText = prefix + detected;
+  
+  document.querySelectorAll('.download-card').forEach(c => c.classList.remove('highlighted'));
   const targetCard = document.getElementById(cardId);
   if (targetCard) {
     targetCard.classList.add('highlighted');
   }
 }
 
+function initLanguage() {
+  // 1. URL param or hash (?lang=en or #de)
+  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash.replace('#', '').toLowerCase();
+  const urlLang = params.get('lang') || hash;
+  
+  if (['mn', 'en', 'de'].includes(urlLang)) {
+    setLanguage(urlLang);
+    return;
+  }
+
+  // 2. LocalStorage
+  const saved = localStorage.getItem('mn_kb_lang');
+  if (saved && ['mn', 'en', 'de'].includes(saved)) {
+    setLanguage(saved);
+    return;
+  }
+
+  // 3. Browser locale
+  const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  if (navLang.startsWith('de')) {
+    setLanguage('de');
+  } else if (navLang.startsWith('en')) {
+    setLanguage('en');
+  } else {
+    setLanguage('mn');
+  }
+}
+
 document.getElementById('typing-box').addEventListener('input', updatePreviews);
 
-detectUserOS();
+initLanguage();
 renderKeyboard();
 </script>
 
