@@ -1,31 +1,57 @@
 # 🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал
-### Universal Mongolian Keyboard Layout Suite (Linux • Windows • macOS • Web)
+### Universal Mongolian Keyboard Layout Suite (Linux • macOS • Windows • Web)
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20|%20Windows%20|%20macOS%20|%20Web-green.svg)]()
-[![Script](https://img.shields.io/badge/Script-Cyrillic%20|%20Classical%20Mongol%20Bichig-red.svg)]()
+[![Platform](https://img.shields.io/badge/Platform-Linux%20|%20macOS%20|%20Windows%20|%20Web-green.svg)]()
+[![Editions](https://img.shields.io/badge/Editions-Ergonomic%20|%20Classic%20|%20Bichig-purple.svg)]()
+[![Author: Tsengel](https://img.shields.io/badge/Author-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
 
 > **"Монгол хэлээр бичих нь хэзээ ч адармаатай, удаан байх ёсгүй."**  
-> Дэлхий даяарх бүх монголчууд, гадаад дахь диаспора, програмистууд, оюутан залуус ямар ч комьпютер дээр (US QWERTY болон German QWERTZ товчлуурт) монгол кирилл болон худам монгол бичгээр хурдан, эргономик, алдаагүй бичих нэгдсэн гарын стандарт.
+> Дэлхий даяарх бүх монголчууд, гадаад дахь диаспора, инженерүүд, програмистууд ямар ч комьпютер дээр (US QWERTY болон German QWERTZ товчлуурт) монгол кирилл болон худам монгол бичгээр хурдан, эргономик, алдаагүй бичих нэгдсэн гарын стандарт.
 
 ---
 
-## 💡 Яагаад энэ төсөл үүссэн бэ? (The Problem & Solution)
+## 🗺️ Гарын Байршлын Зураглалууд (Up-to-Date Layout Maps)
 
-1. **Бичгийн машины хуучин загварын гацаа**: Анхны стандарт кирилл гарын байрлал нь 20-р зууны дунд үеийн бичгийн машины байрлалыг шууд хуулбарласан тул латин гар дээр 10 хуруугаар бичихэд авиа зүйн ямар ч уялдаагүй байдаг.
-2. **Гадаадад суугаа Монголчууд & Програмистууд**: Өдөр тутмын амьдрал, ажил дээрээ US QWERTY эсвэл German QWERTZ гар ашигладаг хүмүүс монгол үсэг рүү шилжихэд үсэг хайж цаг алддаг.
-3. **Өргөтгөсөн тэмдэгтүүдийн дутагдал**: Төгрөгийн тэмдэгт (`₮`), албан ёсны хашилт (`« »`, `“ ”`), зураас (`—`, `–`), болон Худам монгол бичгийн сул зай (`NNBSP \u202F`) стандарт гар дээр байдаггүй.
-4. **Нэгдсэн шийдэл**: Энэхүү төсөл нь **Linux, Windows, macOS, Web** дээр яг ижилхэн, нэг авиа зүйн дүрмээр ажиллах бүрэн багц юм.
+### 1. Modern Ergonomic & DevOps Edition (Шинэ Эргономик Хувилбар)
+> **Зөвлөмж**: `Q = Ө`, `W = Ү`. Бүх эгшгүүд гарын үндсэн хэсэгт багтсан тул 10 хуруугаар маш хурдан шивнэ. Кодчилол, терминалын `{ } [ ] | \` хаалтууд байрандаа хадгалагдсан.
+
+![Mongolian Modern Ergonomic Layout](docs/images/layout-ergonomic-normal.png)
+
+### 2. AltGr Өргөтгөл Давхарга (AltGr / Option Layer: ₮, « », —, \u202F)
+> Баруун `Alt` (AltGr) эсвэл Mac-ийн `Option` товчлуураар албан ёсны Төгрөгийн тэмдэгт (**`₮`**), хашилт (**`« »`**), урт зураас (**`—`**), болон Монгол бичгийн дагаврын сул зай (**`\u202F` NNBSP**) шууд гарна.
+
+![Mongolian Ergonomic AltGr Layout](docs/images/layout-ergonomic-altgr.png)
+
+### 3. Classic Tsengel Edition (2021 Анхны Хувилбар)
+> Эгшгийн эрэмбээр `[` $\rightarrow$ `ө`, `]` $\rightarrow$ `ү`, `Q` $\rightarrow$ `ъ`, `W` $\rightarrow$ `ь` тохируулсан хувилбар.
+
+![Mongolian Classic Layout](docs/images/layout-classic-normal.png)
+
+### 4. Classical Mongol Bichig Edition (Худам Монгол Бичиг)
+> Кирилл үсгийн байрлалтай 100% ижил дадлаар Худам монгол бичгээр шивнэ: `Q` = `ᠥ`, `W` = `ᠦ`, `E` = `ᠡ`, `O` = `ᠣ`, `U` = `ᠤ`, `I` = `ᠢ`, `A` = `ᠠ`. Тоонууд дээр сонгодог цифрүүд (`᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙`) байрлана.
+
+![Classical Mongol Bichig Layout](docs/images/layout-bichig.png)
 
 ---
 
-## 🗺️ Гарын Байршлын Зураглал (Layout Maps)
+## ⌨️ Үсэг ба Тэмдэгтүүдийн Харьцуулсан Хүснэгт (Keymap Reference)
 
-### Үндсэн ба Shift Байрлал (Normal & Shift States)
-![Mongolian Keyboard Layout](docs/images/Mongolian-Keyboard-Layout1.png)
-
-### AltGr Өргөтгөл Байрлал (AltGr / Option Layer: Төгрөг ₮, Хашилт, Зураас)
-![Mongolian Keyboard AltGr Layout](docs/images/Mongolian-Keyboard-Layout2.png)
+| Товчлуур | Ergonomic (Шинэ) | Classic (2021) | Shift + Товчлуур (Ergo) | AltGr (Баруун Alt) |
+|:---:|:---:|:---:|:---:|:---:|
+| `Q` | **ө** (Feminine O) | **ъ** | **Ө** | **ъ** (Хатуугийн тэмдэг) |
+| `W` | **ү** (Feminine U) | **ь** | **Ү** | **ь** (Зөөлний тэмдэг) |
+| `E` | **э** | **э** | **Э** | € (Евро) |
+| `T` | **т** | **т** | **Т** | **₮ (ТӨГРӨГ \u20AE)** |
+| `Y` | **й** | **е** | **Й** | **е** |
+| `[` | **[** (Кодын хаалт) | **ө** | **{** (Кодын хаалт) | **«** (Зүүн хашилт) |
+| `]` | **]** (Кодын хаалт) | **ү** | **}** (Кодын хаалт) | **»** (Баруун хашилт) |
+| `\` | **\\** (Кодын зураас) | **й** | **\|** (Кодын Pipe) | ¦ |
+| `;` | **;** | **щ** | **:** | **щ** |
+| `'` | **ы** | **ы** | **Ы** | **'** / **"** |
+| `4` | 4 | 4 | $ | **₮ (Төгрөг)** |
+| `-` | - | - | _ | **— (Em-dash урт зураас)** |
+| `Space` | Зай | Зай | Зай | **\u202F (NNBSP бичгийн зай)** |
 
 ---
 
@@ -36,114 +62,120 @@
 
 ```bash
 cd linux
-# Сонголттой интерактив суулгац:
+# Интерактив сонголттой суулгац:
 sudo ./install.sh
 
 # Эсвэл шууд горимоор суулгах:
-sudo ./install.sh ergonomic   # 1) Modern Ergonomic & DevOps (Q=Ө, W=Ү, [ ] хаалт кодчилолд хадгалагдсан)
+sudo ./install.sh ergonomic   # 1) Modern Ergonomic & DevOps (Зөвлөмж: Q=Ө, W=Ү)
 sudo ./install.sh classic     # 2) Classic Tsengel Layout ([=ө, ]=ү)
 sudo ./install.sh bichig      # 3) Classical Mongol Bichig (Худам Монгол бичиг)
 ```
 
 * **Идэвхжүүлэх**: `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Add Input Source` $\rightarrow$ `Mongolian`.
-* **Буцааж хэвийн болгох**:
+* **Буцааж анхны төлөвт оруулах**: `cd linux && sudo ./uninstall.sh`.
+
+---
+
+### 🍏 2. macOS (Apple OS X / macOS)
+macOS-д зориулсан native `.keylayout`, `.icns` дүрс, болон монгол бичгийн фонтууд багтсан:
+
+* **Finder дээр**: `macos/install.command` дээр хоёр товшиж ажиллуулна (нууц үг шаардахгүй).
+* **Terminal дээр**:
   ```bash
-  cd linux
-  sudo ./uninstall.sh
+  cd macos
+  ./install.sh
   ```
-
----
-
-### 🪟 2. Windows (Windows 7 / 10 / 11)
-Windows дээр Microsoft-ийн албан ёсны *MSKLC (Keyboard Layout Creator)* хэрэгслээр бэлтгэсэн суулгацуудыг ашиглана:
-
-* **US English (QWERTY) суурьтай гар ашигладаг бол**:
-  1. `windows/us-qwerty/` хавтас руу орно.
-  2. `setup.exe` (эсвэл системийн архитектурт тохирсон `Mongol_amd64.msi`) дээр хоёр товшиж суулгана.
-* **Герман (QWERTZ) суурьтай гар ашигладаг бол**:
-  1. `windows/de-qwertz/` хавтас руу орно.
-  2. `setup.exe` (эсвэл `mongolis_amd64.msi`) дээр хоёр товшиж суулгана.
-* Суулгаж дууссаны дараа системийн хэл сонгох хэсгээс шууд сонгож ашиглана (`Win + Space`).
-
----
-
-### 🍏 3. macOS (Apple OS X / macOS)
-macOS-д зориулсан Кирилл болон Худам Монгол бичгийн `.keylayout` болон цэсний `.icns` дүрсүүд:
-
-```bash
-cd macos
-./install.sh
-```
-*(Эсвэл Finder дээр `macos/install.command` файлыг хоёр товшиж ажиллуулна).*
-
 * **Идэвхжүүлэх**:
   1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit`.
-  2. `+` товч дээр дарж `Mongolian` хэсгээс:
-     - `Mongolian Cyrillic Qwerty (Dusal)`
+  2. `+` товч дарж `Mongolian` хэсгээс сонгоно:
+     - `Mongolian Cyrillic Ergonomic (Tsengel)` (Шинэ Ergonomic хувилбар)
+     - `Mongolian Cyrillic Qwerty (Dusal)` (Classic хувилбар)
      - `Mongolian Script Qwerty (Dusal)` (Худам монгол бичиг)
-  3. `Add` дарна.
+  3. Хэрэв шууд гарч ирэхгүй бол системээс нэг удаа Log Out хийж дахин нэвтэрнэ.
 
 ---
 
-### 🌐 4. Web / Онлайн Туршигч (Interactive Web Visualizer)
-Та ямар нэг программ суулгахгүйгээр шууд хөтөч дээрээ гарын тохиргоог туршиж, бичиж үзэж болно:
+### 🪟 3. Windows (Windows 7 / 10 / 11)
 
-```bash
-# Хөтөч дээрээ нээх
-xdg-open web/index.html
-# эсвэл ямар ч web серверээр ажиллуулах
+#### А. Classic Edition (Бэлэн багцалсан суулгац)
+* **US QWERTY гар дээр**: `windows/us-qwerty/setup.exe` дээр товшиж суулгана.
+* **German QWERTZ гар дээр**: `windows/de-qwertz/setup.exe` дээр товшиж суулгана.
+* **PowerShell тушаалаар суулгах**:
+  ```powershell
+  cd windows
+  .\install.ps1 -Base us    # Англи суурьтай Windows гар
+  .\install.ps1 -Base de    # Герман суурьтай Windows гар
+  ```
+
+#### Б. Modern Ergonomic Edition (`Q=Ө, W=Ү`)
+* [windows/Mongolian-Ergonomic.klc](windows/Mongolian-Ergonomic.klc) эх файлыг [Microsoft Keyboard Layout Creator (MSKLC)](https://www.microsoft.com/en-us/download/details.aspx?id=102134) программд нээж `Project -> Build DLL and Setup Package` дарж өөрийн системд суулгана.
+
+---
+
+## 🔒 Аюулгүй Байдлын Шалгалт (Cryptographic Integrity & SHA-256)
+
+Windows суулгацын файлуудыг татаж авахдаа эх хувьтайгаа 100% тохирч буйг дараах шалгах нийлбэрээр (SHA-256) баталгаажуулж болно:
+
+```text
+15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1  windows/us-qwerty/setup.exe
+76ccc495ebb4bb607cac1131d2f37e2f5f5e1e3608ee158f1b1d99383d61106f  windows/us-qwerty/Mongol_amd64.msi
+9f319ac0df4249b3513e4addfbfad1c529cd954de446e9935c114ec43ee5a385  windows/us-qwerty/Mongol_i386.msi
+2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757  windows/de-qwertz/setup.exe
+3f99b4924801ae77c77a1aaea9b802f4e08d3127e7d2df04b3041516f01141c4  windows/de-qwertz/mongolis_amd64.msi
+0bdc67fdb550119c6a461415432aee7cc15fe71954a938f6547704d75439e385  windows/de-qwertz/mongolis_i386.msi
 ```
 
 ---
 
-## ⌨️ Гол Үсэг, Тэмдэгтүүдийн Дүрэм (Key Mapping Principles)
-
-| Латин товчлуур | Кирилл үсэг | Shift + Товчлуур | AltGr (Баруун Alt) |
-|:---:|:---:|:---:|:---:|
-| `A` | **а** | **А** | $\mu$ (микро) |
-| `B` | **б** | **Б** | ° (градус) |
-| `D` | **д** | **Д** | « (зүүн хашилт) |
-| `F` | **ф** | **Ф** | » (баруун хашилт) |
-| `E` | **е** | **Е** | € (Евро) |
-| `T` | **т** | **Т** | **₮ (ТӨГРӨГ)** |
-| `O` | **о** | **О** | " (давхар хашилт) |
-| `[` | **ө** | **Ө** | [ |
-| `]` | **ү** | **Ү** | ] |
-| `-` | **-** | **_** | — (em-dash урт зураас) |
-| `Space` | Зай | Зай | `\u202F` (NNBSP монгол бичгийн сул зай) |
+## 🌐 Вэб Туршигч (Interactive Web Visualizer)
+Та юу ч суулгахгүйгээр хөтөч дээрээ шууд гарын тохиргоог туршиж, DevOps кодчилол шалгаж үзэж болно:
+```bash
+xdg-open web/index.html
+```
 
 ---
 
-## 📂 Төслийн бүтэц (Repository Structure)
+## 📂 Төслийн Бүтэц (Repository Structure)
 
 ```
 mn-keyboard-layout/
-├── README.md               # Энэхүү дэлгэрэнгүй гарын авлага
-├── linux/                  # Линукс XKB тохиргоо ба суулгацын скриптүүд
-│   ├── mn-custom           # XKB symbols файл (Tsengel)
-│   ├── install.sh          # Нэг тушаалаар суулгагч
-│   └── uninstall.sh        # Сэргээгч
-├── windows/                # Windows MSI & setup.exe багцууд
-│   ├── us-qwerty/          # Англи суурьтай Windows гар
-│   └── de-qwertz/          # Герман суурьтай Windows гар
-├── macos/                  # macOS .keylayout, дүрс, монгол бичгийн фонтууд
-│   ├── fonts/              # MongolianScript.ttf, cmdashitseden.ttf
-│   ├── icons/              # Цэсний .icns дүрсүүд
-│   ├── install.sh          # macOS суулгагч
-│   └── *.keylayout         # Кирилл ба Худам монгол бичгийн гарын файлууд
-├── web/                    # Хөтөч дээр шууд турших интерактив веб хуудас
-│   └── index.html
-└── docs/                   # Зураг, диаграммууд
-    └── images/
+├── README.md               # Дэлгэрэнгүй баталгаажсан гарын авлага
+├── LICENSE                 # Apache License 2.0
+├── index.html              # Вэб гар руу чиглүүлэгч үндсэн хуудас
+├── .github/workflows/      # GitHub Pages автомат нийтлэгч workflow
+├── docs/images/            # Шинэчлэгдсэн вектор ба PNG гарын зургууд
+│   ├── layout-ergonomic-normal.png
+│   ├── layout-ergonomic-altgr.png
+│   ├── layout-classic-normal.png
+│   └── layout-bichig.png
+├── linux/                  # Линукс XKB тохиргоонууд ба суулгагч
+│   ├── mn-ergonomic        # Modern Ergonomic (Q=Ө, W=Ү)
+│   ├── mn-custom           # Classic Tsengel layout
+│   ├── mn-bichig           # Classical Mongol Bichig
+│   ├── install.sh          # Сонголттой автомат суулгагч
+│   └── uninstall.sh
+├── macos/                  # macOS .keylayout, .icns дүрсүүд ба суулгагч
+│   ├── MongolianCyrillicErgonomic.keylayout
+│   ├── MongolianCyrillicErgonomic.icns
+│   ├── MongolianScriptQwertyDusal.keylayout
+│   ├── install.command     # Хоёр товшиж суулгах Finder скрипт
+│   ├── install.sh
+│   └── fonts/              # Classical Mongolian OpenType фонтууд
+├── windows/                # Windows MSI суулгацууд ба MSKLC .klc эх кодууд
+│   ├── Mongolian-Ergonomic.klc
+│   ├── install.ps1
+│   ├── us-qwerty/          # Pre-compiled setup.exe & MSI (US QWERTY)
+│   └── de-qwertz/          # Pre-compiled setup.exe & MSI (German QWERTZ)
+└── web/                    # Онлайн интерактив туршилтын веб апп
+    └── index.html
 ```
 
 ---
 
-## 🤝 Хамтран ажиллах & Нээлттэй эрх (Contribution & License)
+## 🤝 Зохиогч & Нээлттэй Эрх (Author & License)
 
-Энэхүү төсөл нь бүх монголчуудад чөлөөтэй нээлттэй [Apache License 2.0](LICENSE) эрхтэй.
-* Санал хүсэлт, сайжруулалт байвал GitHub дээр Issue болон Pull Request нээнэ үү!
+Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [Apache License 2.0](LICENSE) эрхтэй.
 * Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de)
+* Санал хүсэлт, сайжруулалтыг GitHub Issue болон Pull Request-ээр хүлээн авна.
 
 *Монголын үрс маш олон болж, мэдлэгийг харамгүй хуваалцан хамтдаа хөгжих болтугай! 🇲🇳*
-
