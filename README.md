@@ -83,9 +83,11 @@ sudo ./install.sh
 ---
 
 ### 🍏 2. macOS (Apple OS X / macOS)
-macOS-д зориулсан native `.keylayout`, `.icns` дүрс, болон монгол бичгийн фонтууд багтсан:
+macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` багц:
 
-* **Finder дээр**: `macos/install.command` дээр хоёр товшиж ажиллуулна (нууц үг шаардахгүй).
+* **DMG-ээр суулгах (Зөвлөмж болгох Apple стандарт)**:
+  1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ.
+  2. `Mongolian.bundle`-ийг хажуугийн `Keyboard Layouts` холбоос руу чирж хуулна (Drag & Drop).
 * **Terminal дээр**:
   ```bash
   cd macos
@@ -162,12 +164,12 @@ mn-keyboard-layout/
 │   ├── mn-bichig           # Classical Mongol Bichig
 │   ├── install.sh          # Сонголттой автомат суулгагч
 │   └── uninstall.sh
-├── macos/                  # macOS .keylayout, .icns дүрсүүд ба суулгагч
+├── macos/                  # macOS Mongolian.bundle, .dmg ба эх файлууд
+│   ├── Mongolian.bundle/   # Apple Native Keyboard Layout Bundle
 │   ├── MongolianCyrillicErgonomic.keylayout
 │   ├── MongolianCyrillicErgonomic.icns
 │   ├── MongolianScriptQwertyDusal.keylayout
-│   ├── install.command     # Хоёр товшиж суулгах Finder скрипт
-│   ├── install.sh
+│   ├── install.sh          # Terminal суулгагч
 │   └── fonts/              # Classical Mongolian OpenType фонтууд
 ├── windows/                # Windows MSI суулгацууд ба MSKLC .klc эх кодууд
 │   ├── Mongolian-Ergonomic.klc

@@ -83,9 +83,11 @@ Nach der Installation stehen alle 3 Editionen sofort zur Verfügung:
 ---
 
 ### 🍏 2. macOS (Apple OS X / macOS)
-Enthält native `.keylayout`-Dateien, Menüleisten-Icons (`.icns`) mit mongolischer Flagge und traditionelle OpenType-Schriftarten:
+Offizielles Apple `Mongolian.bundle`-Paket mit virtuellem DMG-Installationsimage:
 
-* **Im Finder**: Doppelklick auf `macos/install.command` (kein Administratorpasswort erforderlich).
+* **Per DMG (Empfohlener Apple-Standard)**:
+  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg`.
+  2. Ziehen Sie `Mongolian.bundle` per Drag & Drop auf die Verknüpfung `Keyboard Layouts`.
 * **Im Terminal**:
   ```bash
   cd macos

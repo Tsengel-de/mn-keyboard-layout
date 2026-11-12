@@ -17,9 +17,8 @@ echo "=========================================================="
 mkdir -p "${TARGET_LAYOUT_DIR}"
 mkdir -p "${TARGET_FONT_DIR}"
 
-echo "1. Installing Keyboard Layouts to ${TARGET_LAYOUT_DIR}..."
-cp -v "${SCRIPT_DIR}"/*.keylayout "${TARGET_LAYOUT_DIR}/" || true
-cp -v "${SCRIPT_DIR}/icons/"*.icns "${TARGET_LAYOUT_DIR}/" || true
+echo "1. Installing Mongolian.bundle to ${TARGET_LAYOUT_DIR}..."
+cp -R "${SCRIPT_DIR}/Mongolian.bundle" "${TARGET_LAYOUT_DIR}/" || true
 
 echo "2. Installing Classical Mongolian Fonts to ${TARGET_FONT_DIR}..."
 if [ -d "${SCRIPT_DIR}/fonts" ]; then
