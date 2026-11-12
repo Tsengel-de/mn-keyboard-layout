@@ -633,22 +633,17 @@
     <div class="download-card" id="card-macos">
       <div class="card-header-row">
         <h4 id="i18n-mac-title">🍏 macOS (Apple Silicon & Intel)</h4>
-        <span class="card-badge">PKG & DMG</span>
+        <span class="card-badge">Apple Native DMG</span>
       </div>
-      <p id="i18n-mac-desc">Apple-ийн албан ёсны .pkg суулгагч болон .dmg виртуал диск. Хүссэн хувилбараараа шууд суулгана.</p>
-      <div class="dual-btn-group" style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;">
-        <a href="downloads/Mongolian-Keyboard-macOS.pkg" download class="btn-dl-primary" id="i18n-btn-mac-pkg" style="margin-bottom:0;">
-          📦 macOS Суулгагч (.pkg, 603 KB)
-        </a>
-        <a href="downloads/Mongolian-Keyboard-macOS.dmg" download class="btn-dl-primary" id="i18n-btn-mac-dmg" style="margin-bottom:0; background:#0284c7;">
-          💿 macOS Диск (.dmg, 1.9 MB)
-        </a>
-      </div>
+      <p id="i18n-mac-desc">Apple-ийн албан ёсны стандартын Mongolian.bundle багц. DMG дискийг нээгээд шууд чирж (Drag & Drop) суулгана.</p>
+      <a href="downloads/Mongolian-Keyboard-macOS.dmg" download class="btn-dl-primary" id="i18n-btn-mac-dmg">
+        💿 macOS Диск Татах (.dmg, 1.3 MB)
+      </a>
       <div class="sub-dl-group">
         <a href="downloads/Mongolian-Keyboard-macOS.zip" download class="btn-dl-sub" id="i18n-btn-mac-zip">📁 .zip Эх сан (1.2 MB)</a>
       </div>
       <div class="install-hint" id="i18n-mac-hint">
-        <strong>Суулгах:</strong> <code>.pkg</code> дээр 2 дараад Next дарж суулгана (эсвэл <code>.dmg</code> нээгээд <code>Keyboard Layouts</code> хавтас руу чирнэ). Дууссаны дараа System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
+        <strong>Суулгах:</strong> .dmg нээгээд <code>Mongolian.bundle</code>-ийг <code>Keyboard Layouts</code> хавтас руу чирнэ. Фонтуудыг <code>Fonts (System)</code> рүү чирнэ. Суулгасны дараа дискийг Eject (Unmount) хийнэ. Төгсгөөд System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.
       </div>
     </div>
 
@@ -730,23 +725,11 @@
             <tr>
               <td><code>Mongolian-Keyboard-macOS.dmg</code></td>
               <td>macOS</td>
-              <td>1.9 MB</td>
+              <td>1.3 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">70dcf652d7b3cf296cf6e3c470c3d547247db479b2d11c34a9d6309d8a392d46</span>
-                  <button class="hash-copy" onclick="copyHash('70dcf652d7b3cf296cf6e3c470c3d547247db479b2d11c34a9d6309d8a392d46', this)">Хуулах</button>
-                </div>
-              </td>
-              <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
-            </tr>
-            <tr>
-              <td><code>Mongolian-Keyboard-macOS.pkg</code></td>
-              <td>macOS</td>
-              <td>603 KB</td>
-              <td>
-                <div class="hash-cell">
-                  <span class="hash-text">e8592febb9e1e83f1695768fdd0e9742b7f0fa3bf92fcbb4aa76345ece36f1bb</span>
-                  <button class="hash-copy" onclick="copyHash('e8592febb9e1e83f1695768fdd0e9742b7f0fa3bf92fcbb4aa76345ece36f1bb', this)">Хуулах</button>
+                  <span class="hash-text">2d7706a17e7481e54958e2b71469e964ce2f0fced06ec5dabe3fbfa400862e9f</span>
+                  <button class="hash-copy" onclick="copyHash('2d7706a17e7481e54958e2b71469e964ce2f0fced06ec5dabe3fbfa400862e9f', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -757,8 +740,8 @@
               <td>1.2 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">c2d003c6aed2da92243c810c24f15e6bcdb290546f5f811b0add0750d9faa1cd</span>
-                  <button class="hash-copy" onclick="copyHash('c2d003c6aed2da92243c810c24f15e6bcdb290546f5f811b0add0750d9faa1cd', this)">Хуулах</button>
+                  <span class="hash-text">68ec968c309db2ad0e719ceb5470116691ebd6f9852ae6aee2fef964c64cc236</span>
+                  <button class="hash-copy" onclick="copyHash('68ec968c309db2ad0e719ceb5470116691ebd6f9852ae6aee2fef964c64cc236', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -1212,11 +1195,10 @@ const I18N = {
     btnWinZip: "⬇️ Windows Багц Татах (.zip, 509 KB)",
     winHint: "<strong>Суулгах:</strong> Setup.exe ажиллуулаад Next товшино. Төгссөний дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Apple-ийн албан ёсны .pkg суулгагч болон .dmg виртуал диск. Хүссэн хувилбараараа шууд суулгана.",
-    btnMacPkg: "📦 macOS Суулгагч (.pkg, 603 KB)",
-    btnMacDmg: "💿 macOS Диск (.dmg, 1.9 MB)",
+    macDesc: "Apple-ийн албан ёсны стандартын Mongolian.bundle багц бүхий DMG диск. Хялбар чирж (Drag & Drop) суулгана.",
+    btnMacDmg: "💿 macOS Диск Татах (.dmg, 1.3 MB)",
     btnMacZip: "📁 .zip Эх сан (1.2 MB)",
-    macHint: "<strong>Суулгах:</strong> <code>.pkg</code> дээр 2 дараад Next дарж суулгана (эсвэл <code>.dmg</code> нээгээд <code>Keyboard Layouts</code> хавтас руу чирнэ). Дууссаны дараа System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.",
+    macHint: "<strong>Суулгах:</strong> .dmg нээгээд <code>Mongolian.bundle</code>-ийг <code>Keyboard Layouts</code> хавтас руу чирнэ. Фонтуудыг <code>Fonts (System)</code> рүү чирнэ. Суулгасны дараа дискийг Eject (Unmount) хийнэ. Төгсгөөд System Settings &rarr; Keyboard &rarr; Input Sources-оос нэмнэ.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
@@ -1266,11 +1248,10 @@ const I18N = {
     btnWinZip: "⬇️ Download Windows Package (.zip, 509 KB)",
     winHint: "<strong>Install:</strong> Run Setup.exe and click Next. Switch anytime using <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Official Apple .pkg installer and native .dmg disk image. Choose whichever installation method you prefer.",
-    btnMacPkg: "📦 macOS Installer (.pkg, 603 KB)",
-    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.9 MB)",
+    macDesc: "Official Apple standard Mongolian.bundle package on DMG disk image. Easily install via Drag & Drop.",
+    btnMacDmg: "💿 Download macOS Disk (.dmg, 1.3 MB)",
     btnMacZip: "📁 .zip Archive (1.2 MB)",
-    macHint: "<strong>Install:</strong> Double-click <code>.pkg</code> and click Next (or open <code>.dmg</code> and drag into <code>Keyboard Layouts</code>). Then add in System Settings &rarr; Keyboard &rarr; Input Sources.",
+    macHint: "<strong>Install:</strong> Open the .dmg, drag <code>Mongolian.bundle</code> into <code>Keyboard Layouts</code>, and drag fonts into <code>Fonts (System)</code>. Then unmount the disk and add via System Settings &rarr; Keyboard &rarr; Input Sources.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "All 3 editions (Modern, Classic, Bichig) bundled in one safe XKB installer.",
     btnLinuxZip: "⬇️ Download Linux Package (.zip, 26 KB)",
@@ -1320,11 +1301,10 @@ const I18N = {
     btnWinZip: "⬇️ Windows-Paket herunterladen (.zip, 509 KB)",
     winHint: "<strong>Installation:</strong> Setup.exe ausführen und auf Weiter klicken. Jederzeit mit <strong>Win + Leertaste</strong> umschalten.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Offizielles Apple-.pkg-Installationsprogramm und natives .dmg-Disk-Image. Wählen Sie Ihre bevorzugte Methode.",
-    btnMacPkg: "📦 macOS-Installer (.pkg, 603 KB)",
-    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.9 MB)",
+    macDesc: "Offizielles Apple-Standardpaket Mongolian.bundle auf DMG-Image. Einfache Installation per Drag & Drop.",
+    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.3 MB)",
     btnMacZip: "📁 .zip-Archiv (1.2 MB)",
-    macHint: "<strong>Installation:</strong> Doppelklick auf <code>.pkg</code> und Weiter klicken (oder DMG öffnen und in <code>Keyboard Layouts</code> ziehen). Danach in Systemeinstellungen &rarr; Tastatur &rarr; Eingabequellen hinzufügen.",
+    macHint: "<strong>Installation:</strong> DMG öffnen, <code>Mongolian.bundle</code> in <code>Keyboard Layouts</code> und Schriftarten in <code>Fonts (System)</code> ziehen. Danach das Disk-Image auswerfen und in Systemeinstellungen &rarr; Tastatur &rarr; Eingabequellen hinzufügen.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
     linuxDesc: "Alle 3 Editionen (Modern, Klassisch, Bichig) gebündelt in einem sicheren XKB-Installer.",
     btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip, 26 KB)",
@@ -1390,7 +1370,6 @@ function setLanguage(lang) {
     'i18n-mac-title': t.macTitle,
     'i18n-mac-desc': t.macDesc,
     'i18n-btn-mac-dmg': t.btnMacDmg,
-    'i18n-btn-mac-pkg': t.btnMacPkg,
     'i18n-btn-mac-zip': t.btnMacZip,
     'i18n-mac-hint': t.macHint,
     'i18n-linux-title': t.linuxTitle,

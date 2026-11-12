@@ -85,13 +85,12 @@ Nach der Installation stehen alle 3 Editionen sofort zur Verfügung:
 ### 🍏 2. macOS (Apple OS X / macOS)
 Offizielles Apple `Mongolian.bundle`-Paket mit virtuellem DMG-Installationsimage:
 
-* **1. Nativer Installer (.pkg — Am schnellsten)**:
-  Doppelklick auf `Mongolian-Keyboard-macOS.pkg` und **Weiter &rarr; Installieren** klicken.
-* **2. Virtuelles Disk Image (.dmg — Drag & Drop)**:
-  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg`.
-  2. Öffnen Sie die Verknüpfung **`Keyboard Layouts`** per Doppelklick.
-  3. Ziehen Sie **`Mongolian.bundle`** in den geöffneten Ordner.
-* **Im Terminal**:
+* **Installation über Disk Image (.dmg — Drag & Drop)**:
+  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg` per Doppelklick.
+  2. Ziehen Sie **`Mongolian.bundle`** in den Ordner **`Keyboard Layouts`** (Passwort eingeben falls verlangt).
+  3. Ziehen Sie die Schriftarten aus **`Fonts`** in **`Fonts (System)`**.
+  4. Werfen Sie das Disk Image danach aus (Eject / Unmount).
+* **Im Terminal (Aus Quellcode)**:
   ```bash
   cd macos
   ./install.sh
