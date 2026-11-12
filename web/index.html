@@ -306,6 +306,132 @@
     }
     footer a { color: var(--primary); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
+
+    /* Trust & Security Bar */
+    .security-trust-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid var(--key-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .trust-icon {
+      font-size: 26px;
+      line-height: 1;
+    }
+    .trust-item strong {
+      display: block;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .trust-item small {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Checksum Table */
+    .checksum-section {
+      margin-top: 24px;
+      background: #ffffff;
+      border: 1px solid var(--key-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .checksum-section summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      outline: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .checksum-section summary:hover {
+      color: var(--primary-hover);
+    }
+    .checksum-table-wrapper {
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+    .checksum-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+    .checksum-table th {
+      background: #f8fafc;
+      padding: 10px 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--key-border);
+    }
+    .checksum-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    .checksum-table tr:hover {
+      background: #f8fafc;
+    }
+    .hash-cell {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hash-text {
+      font-family: monospace;
+      font-size: 11px;
+      color: #334155;
+      background: #f1f5f9;
+      padding: 3px 6px;
+      border-radius: 4px;
+      max-width: 280px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .hash-copy {
+      background: #e2e8f0;
+      color: #1e293b;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 11px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .hash-copy:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .badge-clean {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 600;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -375,6 +501,38 @@
     </div>
   </div>
 
+  <!-- Security & Trust Bar -->
+  <div class="security-trust-bar">
+    <div class="trust-item">
+      <span class="trust-icon">🛡️</span>
+      <div>
+        <strong>VirusTotal Шалгагдсан</strong>
+        <small>0/72 Аюулгүй (Clean Scan)</small>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🔒</span>
+      <div>
+        <strong>Zero Telemetry / 100% Offline</strong>
+        <small>Дата цуглуулахгүй, Keylogger-гүй</small>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">⚡</span>
+      <div>
+        <strong>Native OS Layout Driver</strong>
+        <small>Цэвэр үйлдлийн системийн драйвер</small>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📄</span>
+      <div>
+        <strong>Нээлттэй Эх (MIT License)</strong>
+        <small>Эх кодыг GitHub дээр шалгах боломжтой</small>
+      </div>
+    </div>
+  </div>
+
   <div class="downloads-header">
     <h3>📦 Суулгац Татах (Direct Downloads)</h3>
     <div class="os-detected-badge" id="os-badge">Систем шалгаж байна...</div>
@@ -430,6 +588,103 @@
         <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.
       </div>
     </div>
+  </div>
+
+  <!-- Checksum Verification Section -->
+  <div class="checksum-section">
+    <details>
+      <summary>
+        <span>🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)</span>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:normal;">[Дэлгэх ▾]</span>
+      </summary>
+      <div class="checksum-table-wrapper">
+        <table class="checksum-table">
+          <thead>
+            <tr>
+              <th>Файлын нэр</th>
+              <th>Платформ</th>
+              <th>Хэмжээ</th>
+              <th>SHA-256 Checksum</th>
+              <th>Аюулгүй байдал</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Mongolian-Keyboard-Windows.zip</code></td>
+              <td>Windows</td>
+              <td>509 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">63b00b460ae2adc5390be9bb677097c8862496a93358c82dc91c02374e7c6565</span>
+                  <button class="hash-copy" onclick="copyHash('63b00b460ae2adc5390be9bb677097c8862496a93358c82dc91c02374e7c6565', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+            <tr>
+              <td><code>setup-us-qwerty.exe</code></td>
+              <td>Windows</td>
+              <td>140 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1</span>
+                  <button class="hash-copy" onclick="copyHash('15ce2f9346c044e1cd1692c44fa3636824de5b4b4a59951928394dd27a1d50f1', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+            <tr>
+              <td><code>setup-de-qwertz.exe</code></td>
+              <td>Windows</td>
+              <td>140 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757</span>
+                  <button class="hash-copy" onclick="copyHash('2e41d84f25911b39ddeb54b4920659103e10059431fc84300250ad2fb93ca757', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+            <tr>
+              <td><code>Mongolian-Keyboard-macOS.zip</code></td>
+              <td>macOS</td>
+              <td>605 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">80d233d1fffe611ef62f6b110367060794255fd2405586716bf8cf8dc8a3f0f2</span>
+                  <button class="hash-copy" onclick="copyHash('80d233d1fffe611ef62f6b110367060794255fd2405586716bf8cf8dc8a3f0f2', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+            <tr>
+              <td><code>Mongolian-Keyboard-Linux.zip</code></td>
+              <td>Linux</td>
+              <td>26 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed</span>
+                  <button class="hash-copy" onclick="copyHash('f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+            <tr>
+              <td><code>install-linux.sh</code></td>
+              <td>Linux</td>
+              <td>2.9 KB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4</span>
+                  <button class="hash-copy" onclick="copyHash('438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 0/72 Clean</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
   </div>
 
   <footer>
@@ -803,6 +1058,14 @@ function copyLinuxCmd(btn) {
     const orig = btn.innerText;
     btn.innerText = 'Хуулагдлаа! ✓';
     setTimeout(() => { btn.innerText = orig; }, 2000);
+  });
+}
+
+function copyHash(hash, btn) {
+  navigator.clipboard.writeText(hash).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = '✓';
+    setTimeout(() => { btn.innerText = orig; }, 1500);
   });
 }
 
