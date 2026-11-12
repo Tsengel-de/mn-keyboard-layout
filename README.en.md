@@ -153,6 +153,10 @@ This project is built upon the invaluable heritage of earlier open-source effort
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Original Linux XKB symbols foundation
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY installer and MSKLC source
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ installer and MSKLC source
+* **StudyMongolian.net (Study Mongolian)**:
+  - [StudyMongolian.net](https://www.studymongolian.net/technical/mongolian-keyboard-for-macos/) — Modern macOS `Mongolian.bundle` architecture, MacBook ANSI/JIS keyboard support, and Classical script layout design.
+* **SIL International**:
+  - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode keyboard layout standards and the `Keyboard Installer.app` utility.
 * **Dusal.net (D. Dusal)**:
   - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Pioneering work on Mongolian phonetic QWERTY layouts and macOS Classical Mongol Bichig keylayouts and fonts. Special thanks to D. Dusal for laying the groundwork for digital Mongolian typing.
 

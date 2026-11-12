@@ -153,6 +153,10 @@ Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativ
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Ursprüngliche Linux-XKB-Layout-Basis
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US-QWERTY-Installer und MSKLC-Quellcode
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows deutsche QWERTZ-Installer und MSKLC-Quellcode
+* **StudyMongolian.net (Study Mongolian)**:
+  - [StudyMongolian.net](https://www.studymongolian.net/technical/mongolian-keyboard-for-macos/) — Moderne macOS `Mongolian.bundle`-Architektur, MacBook ANSI/JIS-Tastaturunterstützung und Layoutentwurf für die traditionelle mongolische Schrift.
+* **SIL International**:
+  - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode-Tastaturstandards und das Hilfsprogramm `Keyboard Installer.app`.
 * **Dusal.net (D. Dusal)**:
   - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Pionierarbeit bei phonetischen mongolischen Tastaturlayouts und macOS-Keylayouts/Schriften für die traditionelle mongolische Schrift. Herzlichen Dank an D. Dusal für die Grundlagen der digitalen mongolischen Tastaturbelegung.
 

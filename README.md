@@ -190,6 +190,10 @@ mn-keyboard-layout/
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Анхны Linux XKB layout суурь
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY суулгац ба MSKLC эх код
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ суулгац ба MSKLC эх код
+* **StudyMongolian.net (Study Mongolian)**:
+  - [StudyMongolian.net](https://www.studymongolian.net/technical/mongolian-keyboard-for-macos/) — macOS-ийн орчин үеийн `Mongolian.bundle` архитектур, MacBook ANSI/JIS олон гарын дэмжлэг, болон худам монгол бичгийн байрлалын бүтэц.
+* **SIL International**:
+  - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode гарын драйверын стандарт болон нэг товшилтоор суулгагч `Keyboard Installer.app` хэрэгсэл.
 * **Dusal.net (Д. Дусал)**:
   - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Монгол фонетик гарын байрлал (QWERTY) болон macOS дээрх худам монгол бичгийн эхний keylayout, фонтын анхдагч суурийг тавьсан D. Dusal (dusal.net)-д гүн талархал илэрхийлье.
 
