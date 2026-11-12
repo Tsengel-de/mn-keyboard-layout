@@ -136,8 +136,8 @@ Offizielles Apple `Mongolian.bundle`-Paket mit virtuellem DMG-Installationsimage
 6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows.zip
 
 # 🍏 macOS
-3fc64246fca82e75b134861f3b59367348498b0aa266d981be7221dcc7f45713  Mongolian-Keyboard-macOS.dmg
-b62aebfa4ce29cc34e2d6a462654a2c3364e9e134b0ad8423561d1c4b1b36783  Mongolian-Keyboard-macOS.zip
+56ae08fe2a02ad7134ba6dc896f946eea065e93bfe5340852f724ec10d09242e  Mongolian-Keyboard-macOS.dmg
+42faf9c4fc77ccca14ab57dcbb605f59c9d58dc3d370053b130c8509ce6a408e  Mongolian-Keyboard-macOS.zip
 
 # 🐧 Linux
 f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux.zip
