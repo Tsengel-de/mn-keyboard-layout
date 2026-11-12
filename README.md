@@ -6,6 +6,8 @@
 [![Editions](https://img.shields.io/badge/Editions-Ergonomic%20|%20Classic%20|%20Bichig-purple.svg)]()
 [![Author: Tsengel](https://img.shields.io/badge/Author-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
 
+**Хэл сонгох / Languages:** [🇲🇳 Монгол](README.md) • [🇬🇧 English](README.en.md) • [🇩🇪 Deutsch](README.de.md)
+
 > **"Монгол хэлээр бичих нь хэзээ ч адармаатай, удаан байх ёсгүй."**  
 > Дэлхий даяарх бүх монголчууд, гадаад дахь диаспора, инженерүүд, програмистууд ямар ч комьпютер дээр (US QWERTY болон German QWERTZ товчлуурт) монгол кирилл болон худам монгол бичгээр хурдан, эргономик, алдаагүй бичих нэгдсэн гарын стандарт.
 
