@@ -178,3 +178,4 @@ xkb_symbols "olpc" {
   key <BKSL> { [ backslash, bar, exclam ] };
   include "group(olpc)"
 };
+
