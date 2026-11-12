@@ -148,7 +148,7 @@ xdg-open web/index.html
 ```
 mn-keyboard-layout/
 ├── README.md               # Дэлгэрэнгүй баталгаажсан гарын авлага
-├── LICENSE                 # Apache License 2.0
+├── LICENSE                 # MIT License
 ├── index.html              # Вэб гар руу чиглүүлэгч үндсэн хуудас
 ├── .github/workflows/      # GitHub Pages автомат нийтлэгч workflow
 ├── docs/images/            # Шинэчлэгдсэн вектор ба PNG гарын зургууд
