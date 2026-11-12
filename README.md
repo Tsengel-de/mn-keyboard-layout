@@ -1,7 +1,7 @@
 # 🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал
 ### Universal Mongolian Keyboard Layout Suite (Linux • macOS • Windows • Web)
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20|%20macOS%20|%20Windows%20|%20Web-green.svg)]()
 [![Editions](https://img.shields.io/badge/Editions-Ergonomic%20|%20Classic%20|%20Bichig-purple.svg)]()
 [![Author: Tsengel](https://img.shields.io/badge/Author-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
@@ -174,7 +174,7 @@ mn-keyboard-layout/
 
 ## 🤝 Зохиогч & Нээлттэй Эрх (Author & License)
 
-Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [Apache License 2.0](LICENSE) эрхтэй.
+Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [MIT License](LICENSE) эрхтэй.
 * Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de)
 * Санал хүсэлт, сайжруулалтыг GitHub Issue болон Pull Request-ээр хүлээн авна.
 
