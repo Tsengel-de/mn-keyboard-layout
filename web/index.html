@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇲🇳 Бүх нийтийн Монгол Гарын Байрлал | Mongolian Keyboard Layout</title>
+  <style>
+    :root {
+      --primary: #0055a5;
+      --primary-hover: #003d75;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --key-bg: #f1f5f9;
+      --key-border: #cbd5e1;
+      --key-active: #0055a5;
+      --key-active-text: #ffffff;
+      --accent-altgr: #d97706;
+      --accent-shift: #2563eb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 24px; line-height: 1.5; }
+    .container { max-width: 1040px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 24px; }
+    header h1 { font-size: 28px; color: var(--primary); margin-bottom: 8px; }
+    header p { color: var(--text-muted); font-size: 15px; }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
+    .btn-group { display: inline-flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--key-border); }
+    .btn { padding: 8px 16px; border: none; background: #fff; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .btn:hover { background: #e2e8f0; }
+    .btn.active { background: var(--primary); color: #fff; }
+
+    .keyboard-container {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+      user-select: none;
+    }
+    .kb-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
+    .key {
+      min-width: 48px;
+      height: 52px;
+      background: var(--key-bg);
+      border: 1px solid var(--key-border);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.15s, transform 0.05s;
+    }
+    .key:hover { background: #e2e8f0; }
+    .key:active { transform: translateY(1px); background: #cbd5e1; }
+    .key.active-mod { background: #dbeafe; border-color: var(--accent-shift); color: var(--accent-shift); }
+    .key .top { font-size: 11px; color: var(--text-muted); align-self: flex-start; }
+    .key .main { font-size: 18px; font-weight: 600; }
+    .key .alt { font-size: 10px; color: var(--accent-altgr); align-self: flex-end; }
+
+    .key-wide { flex-grow: 1.5; min-width: 70px; }
+    .key-space { flex-grow: 5; min-width: 260px; }
+
+    .editor-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+    }
+    .editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .editor-header h3 { font-size: 16px; font-weight: 600; }
+    .editor-tools { display: flex; gap: 8px; }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      border: 1px solid var(--key-border);
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      resize: vertical;
+    }
+    textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,85,165,0.15); }
+    .vertical-preview {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      height: 200px;
+      padding: 12px;
+      border: 1px solid var(--key-border);
+      border-radius: 8px;
+      font-size: 20px;
+      background: #fafafa;
+      overflow-x: auto;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .download-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid var(--key-border);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .download-card h4 { font-size: 18px; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+    .download-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .download-card a {
+      display: inline-block;
+      padding: 8px 14px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .download-card a:hover { background: var(--primary-hover); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
+    <p>Бүх үйлдлийн систем (Linux, Windows, macOS) ба төхөөрөмжид зориулсан эргономик гарын стандарт</p>
+  </header>
+
+  <div class="controls">
+    <div class="btn-group">
+      <button class="btn active" id="btn-us" onclick="setBase('us')">US English (QWERTY)</button>
+      <button class="btn" id="btn-de" onclick="setBase('de')">German (QWERTZ)</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn active" id="btn-cyr" onclick="setScript('cyr')">Монгол Кирилл</button>
+      <button class="btn" id="btn-hudum" onclick="setScript('hudum')">Монгол Бичиг (Classical)</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn" id="btn-shift" onclick="toggleShift()">Shift</button>
+      <button class="btn" id="btn-altgr" onclick="toggleAltGr()">AltGr (Option)</button>
+    </div>
+  </div>
+
+  <div class="keyboard-container" id="keyboard">
+    <!-- Keys dynamically rendered here -->
+  </div>
+
+  <div class="editor-section">
+    <div class="editor-header">
+      <h3>Турших ба Бичих талбар (Live Type Area)</h3>
+      <div class="editor-tools">
+        <button class="btn" onclick="clearText()">Арилгах</button>
+        <button class="btn" onclick="copyText()">Хуулах</button>
+        <button class="btn" id="toggle-vert-btn" onclick="toggleVertical()">Босоо бичвэр</button>
+      </div>
+    </div>
+    <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
+    <div class="vertical-preview" id="vertical-preview"></div>
+  </div>
+
+  <h3 style="margin-bottom: 14px;">Суулгах ба Татах (Direct Downloads)</h3>
+  <div class="downloads-grid">
+    <div class="download-card">
+      <h4>🐧 Linux (Ubuntu, Debian, Fedora)</h4>
+      <p>XKB стандартын тохиргоо. Нэг тушаалаар суулгаж өргөтгөсөн Төгрөгийн тэмдэгт (₮), хашилт зэргийг ашиглана.</p>
+      <code>cd linux && sudo ./install.sh</code>
+    </div>
+    <div class="download-card">
+      <h4>🪟 Windows 7 / 10 / 11</h4>
+      <p>Microsoft Keyboard Layout Creator (MSKLC)-ээр бэлтгэсэн MSI болон setup.exe суулгац.</p>
+      <a href="../windows/us-qwerty/setup.exe">US QWERTY Суулгац</a>
+      <a href="../windows/de-qwertz/setup.exe" style="margin-left: 6px;">German QWERTZ</a>
+    </div>
+    <div class="download-card">
+      <h4>🍏 macOS (OS X)</h4>
+      <p>Native .keylayout ба .icns тэмдэгт бүхий суулгац. Кирилл ба Худам Монгол бичиг дэмжсэн.</p>
+      <code>cd macos && ./install.sh</code>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentBase = 'us';
+let currentScript = 'cyr';
+let isShift = false;
+let isAltGr = false;
+
+// Layout Mapping Definitions (Tsengel Custom Keyboard Layout)
+const LAYOUT_CYR_US = {
+  row1: [
+    { top: '~', main: 'Ё', base: 'ё', alt: '~' },
+    { top: '!', main: '1', base: '1', alt: '№' },
+    { top: '@', main: '2', base: '2', alt: '²' },
+    { top: '#', main: '3', base: '3', alt: '³' },
+    { top: '$', main: '4', base: '4', alt: '¤' },
+    { top: '%', main: '5', base: '5', alt: '€' },
+    { top: '^', main: '6', base: '6', alt: '¼' },
+    { top: '&', main: '7', base: '7', alt: '½' },
+    { top: '*', main: '8', base: '8', alt: '¾' },
+    { top: '(', main: '9', base: '9', alt: '‘' },
+    { top: ')', main: '0', base: '0', alt: '’' },
+    { top: '_', main: '-', base: '-', alt: '¥' },
+    { top: '+', main: '=', base: '=', alt: '×' }
+  ],
+  row2: [
+    { top: 'Ъ', main: 'ъ', base: 'ъ', alt: "'" },
+    { top: 'Ь', main: 'ь', base: 'ь', alt: '`' },
+    { top: 'Е', main: 'е', base: 'е', alt: '€' },
+    { top: 'Р', main: 'р', base: 'р', alt: '®' },
+    { top: 'Т', main: 'т', base: 'т', alt: '₮' }, // Tugrik
+    { top: 'И', main: 'и', base: 'и', alt: '™' },
+    { top: 'У', main: 'у', base: 'у', alt: '„' },
+    { top: 'Ү', main: 'ү', base: 'ү', alt: '“' },
+    { top: 'О', main: 'о', base: 'о', alt: '”' },
+    { top: 'П', main: 'п', base: 'п', alt: ';' },
+    { top: 'Ө', main: 'ө', base: 'ө', alt: '[' },
+    { top: 'Щ', main: 'щ', base: 'щ', alt: ']' }
+  ],
+  row3: [
+    { top: 'А', main: 'а', base: 'а', alt: 'μ' },
+    { top: 'С', main: 'с', base: 'с', alt: '£' },
+    { top: 'Д', main: 'д', base: 'д', alt: '«' },
+    { top: 'Ф', main: 'ф', base: 'ф', alt: '»' },
+    { top: 'Г', main: 'г', base: 'г', alt: '{' },
+    { top: 'Х', main: 'х', base: 'х', alt: '<' },
+    { top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
+    { top: 'К', main: 'к', base: 'к', alt: '}' },
+    { top: 'Л', main: 'л', base: 'л', alt: '№' },
+    { top: 'З', main: 'з', base: 'з', alt: ':' },
+    { top: 'Ы', main: 'ы', base: 'ы', alt: '…' }
+  ],
+  row4: [
+    { top: 'Ц', main: 'ц', base: 'ц', alt: '©' },
+    { top: 'Ш', main: 'ш', base: 'ш', alt: '—' },
+    { top: 'В', main: 'в', base: 'в', alt: '–' },
+    { top: 'Б', main: 'б', base: 'б', alt: '°' },
+    { top: 'Н', main: 'н', base: 'н', alt: '·' },
+    { top: 'М', main: 'м', base: 'м', alt: '±' },
+    { top: 'Ч', main: 'ч', base: 'ч', alt: '•' },
+    { top: 'Ю', main: 'ю', base: 'ю', alt: '‚' },
+    { top: 'Я', main: 'я', base: 'я', alt: '‘' }
+  ]
+};
+
+function renderKeyboard() {
+  const container = document.getElementById('keyboard');
+  container.innerHTML = '';
+
+  const rows = [LAYOUT_CYR_US.row1, LAYOUT_CYR_US.row2, LAYOUT_CYR_US.row3, LAYOUT_CYR_US.row4];
+
+  rows.forEach((row, idx) => {
+    const rowDiv = document.createElement('div');
+    rowDiv.className = 'kb-row';
+
+    if (idx === 1) {
+      const tab = document.createElement('div');
+      tab.className = 'key key-wide';
+      tab.innerHTML = '<span class="main" style="font-size:12px;">Tab</span>';
+      rowDiv.appendChild(tab);
+    } else if (idx === 2) {
+      const caps = document.createElement('div');
+      caps.className = 'key key-wide';
+      caps.innerHTML = '<span class="main" style="font-size:12px;">Caps</span>';
+      rowDiv.appendChild(caps);
+    } else if (idx === 3) {
+      const shiftL = document.createElement('div');
+      shiftL.className = 'key key-wide' + (isShift ? ' active-mod' : '');
+      shiftL.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
+      shiftL.onclick = toggleShift;
+      rowDiv.appendChild(shiftL);
+    }
+
+    row.forEach(k => {
+      const keyDiv = document.createElement('div');
+      keyDiv.className = 'key';
+      
+      let charToType = k.base;
+      if (isShift) charToType = k.top;
+      if (isAltGr && k.alt) charToType = k.alt;
+
+      keyDiv.innerHTML = `
+        <span class="top">${k.top || ''}</span>
+        <span class="main">${charToType}</span>
+        <span class="alt">${k.alt || ''}</span>
+      `;
+
+      keyDiv.onclick = () => insertChar(charToType);
+      rowDiv.appendChild(keyDiv);
+    });
+
+    if (idx === 0) {
+      const bsp = document.createElement('div');
+      bsp.className = 'key key-wide';
+      bsp.innerHTML = '<span class="main" style="font-size:12px;">⌫</span>';
+      bsp.onclick = backspaceChar;
+      rowDiv.appendChild(bsp);
+    } else if (idx === 2) {
+      const enter = document.createElement('div');
+      enter.className = 'key key-wide';
+      enter.innerHTML = '<span class="main" style="font-size:12px;">Enter</span>';
+      enter.onclick = () => insertChar('\n');
+      rowDiv.appendChild(enter);
+    } else if (idx === 3) {
+      const shiftR = document.createElement('div');
+      shiftR.className = 'key key-wide' + (isShift ? ' active-mod' : '');
+      shiftR.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
+      shiftR.onclick = toggleShift;
+      rowDiv.appendChild(shiftR);
+    }
+
+    container.appendChild(rowDiv);
+  });
+
+  // Space Row
+  const spaceRow = document.createElement('div');
+  spaceRow.className = 'kb-row';
+
+  const ctrlL = document.createElement('div');
+  ctrlL.className = 'key key-wide';
+  ctrlL.innerHTML = '<span class="main" style="font-size:12px;">Ctrl</span>';
+  spaceRow.appendChild(ctrlL);
+
+  const altL = document.createElement('div');
+  altL.className = 'key key-wide';
+  altL.innerHTML = '<span class="main" style="font-size:12px;">Alt</span>';
+  spaceRow.appendChild(altL);
+
+  const space = document.createElement('div');
+  space.className = 'key key-space';
+  space.innerHTML = '<span class="main" style="font-size:12px;">Space</span>';
+  space.onclick = () => insertChar(' ');
+  spaceRow.appendChild(space);
+
+  const altGr = document.createElement('div');
+  altGr.className = 'key key-wide' + (isAltGr ? ' active-mod' : '');
+  altGr.innerHTML = '<span class="main" style="font-size:12px;">AltGr</span>';
+  altGr.onclick = toggleAltGr;
+  spaceRow.appendChild(altGr);
+
+  const nnbsp = document.createElement('div');
+  nnbsp.className = 'key key-wide';
+  nnbsp.innerHTML = '<span class="main" style="font-size:11px;">NNBSP</span><span class="alt">\\u202F</span>';
+  nnbsp.title = 'Narrow No-Break Space for Classical suffixes';
+  nnbsp.onclick = () => insertChar('\u202F');
+  spaceRow.appendChild(nnbsp);
+
+  container.appendChild(spaceRow);
+}
+
+function insertChar(ch) {
+  const box = document.getElementById('typing-box');
+  const start = box.selectionStart;
+  const end = box.selectionEnd;
+  box.value = box.value.substring(0, start) + ch + box.value.substring(end);
+  box.selectionStart = box.selectionEnd = start + ch.length;
+  box.focus();
+  updateVertical();
+}
+
+function backspaceChar() {
+  const box = document.getElementById('typing-box');
+  const start = box.selectionStart;
+  const end = box.selectionEnd;
+  if (start > 0) {
+    box.value = box.value.substring(0, start - 1) + box.value.substring(end);
+    box.selectionStart = box.selectionEnd = start - 1;
+  }
+  box.focus();
+  updateVertical();
+}
+
+function toggleShift() {
+  isShift = !isShift;
+  document.getElementById('btn-shift').classList.toggle('active', isShift);
+  renderKeyboard();
+}
+
+function toggleAltGr() {
+  isAltGr = !isAltGr;
+  document.getElementById('btn-altgr').classList.toggle('active', isAltGr);
+  renderKeyboard();
+}
+
+function setBase(b) {
+  currentBase = b;
+  document.getElementById('btn-us').classList.toggle('active', b === 'us');
+  document.getElementById('btn-de').classList.toggle('active', b === 'de');
+  renderKeyboard();
+}
+
+function setScript(s) {
+  currentScript = s;
+  document.getElementById('btn-cyr').classList.toggle('active', s === 'cyr');
+  document.getElementById('btn-hudum').classList.toggle('active', s === 'hudum');
+  renderKeyboard();
+}
+
+function clearText() {
+  document.getElementById('typing-box').value = '';
+  updateVertical();
+}
+
+function copyText() {
+  const box = document.getElementById('typing-box');
+  navigator.clipboard.writeText(box.value);
+  alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
+}
+
+function toggleVertical() {
+  const vert = document.getElementById('vertical-preview');
+  const isHidden = vert.style.display === 'none' || vert.style.display === '';
+  vert.style.display = isHidden ? 'block' : 'none';
+  document.getElementById('toggle-vert-btn').classList.toggle('active', isHidden);
+  updateVertical();
+}
+
+function updateVertical() {
+  const box = document.getElementById('typing-box');
+  const vert = document.getElementById('vertical-preview');
+  vert.innerText = box.value;
+}
+
+document.getElementById('typing-box').addEventListener('input', updateVertical);
+
+renderKeyboard();
+</script>
+
+</body>
+</html>
+
