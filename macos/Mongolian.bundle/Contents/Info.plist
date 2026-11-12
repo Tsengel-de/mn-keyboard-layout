@@ -5,55 +5,50 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.tsengel.keyboardlayout.mongolian</string>
+	<string>org.sil.ukelele.keyboardlayout.mongolian</string>
 	<key>CFBundleName</key>
 	<string>Mongolian</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>CFBundleVersion</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 
 	<key>KLInfo_Mongolian Cyrillic Ergonomic (Tsengel)</key>
 	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<false/>
 		<key>TISInputSourceID</key>
-		<string>de.tsengel.keyboardlayout.mongolian.ergonomic</string>
+		<string>org.sil.ukelele.keyboardlayout.mongolian.ergonomic</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-Cyrl</string>
+		<string>mn-US</string>
 	</dict>
 
-	<key>KLInfo_Mongolian Cyrillic Qwerty (Dusal)</key>
+	<key>KLInfo_Mongolian (qwerty)</key>
 	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<false/>
 		<key>TISInputSourceID</key>
-		<string>de.tsengel.keyboardlayout.mongolian.cyrillicqwerty</string>
+		<string>org.sil.ukelele.keyboardlayout.mongolian.mongolian(qwerty)</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-Cyrl</string>
+		<string>mn-US</string>
 	</dict>
 
-	<key>KLInfo_Mongolian Cyrillic Standard (Dusal)</key>
+	<key>KLInfo_Mongolian (traditional)</key>
 	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<false/>
 		<key>TISInputSourceID</key>
-		<string>de.tsengel.keyboardlayout.mongolian.cyrillicstandard</string>
+		<string>org.sil.ukelele.keyboardlayout.mongolian.mongolian(traditional)</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-Cyrl</string>
-	</dict>
-
-	<key>KLInfo_Mongolian Script Qwerty (Dusal)</key>
-	<dict>
-		<key>TISInputSourceID</key>
-		<string>de.tsengel.keyboardlayout.mongolian.scriptqwerty</string>
-		<key>TISIntendedLanguage</key>
-		<string>mn-Mong</string>
-	</dict>
-
-	<key>KLInfo_Mongolian Script Standard (Dusal)</key>
-	<dict>
-		<key>TISInputSourceID</key>
-		<string>de.tsengel.keyboardlayout.mongolian.scriptstandard</string>
-		<key>TISIntendedLanguage</key>
-		<string>mn-Mong</string>
+		<string>cmg-Mong</string>
 	</dict>
 </dict>
 </plist>
-
