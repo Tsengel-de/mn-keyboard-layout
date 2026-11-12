@@ -70,3 +70,4 @@ xkb_symbols "basic" {
 
   include "level3(ralt_switch)"
 };
+
