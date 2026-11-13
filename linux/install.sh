@@ -43,65 +43,48 @@ elif [ -f "${BACKUP_FILE}" ]; then
     echo "   Original backup exists at: ${BACKUP_FILE}"
 fi
 
-echo "2. Installing All-in-One Mongolian Suite to ${TARGET_FILE}..."
+echo "2. Installing Mongolian Suite layouts to ${XKB_SYMBOLS_DIR}..."
 sudo cp "${SOURCE_FILE}" "${TARGET_FILE}"
 sudo chmod 644 "${TARGET_FILE}"
+if [ -f "${SCRIPT_DIR}/bichig" ]; then
+    sudo cp "${SCRIPT_DIR}/bichig" "${XKB_SYMBOLS_DIR}/bichig"
+    sudo chmod 644 "${XKB_SYMBOLS_DIR}/bichig"
+fi
 
-echo "3. Registering Classical Script variant in XKB rules (evdev.xml, base.xml, lst)..."
+echo "3. Registering Classical Script layout in XKB rules (evdev.xml, base.xml, lst)..."
 sudo python3 -c '
+layout_bichig_xml = """    <layout>
+      <configItem>
+        <name>bichig</name>
+        <!-- Keyboard indicator for Mongolian Script -->
+        <shortDescription>mgl</shortDescription>
+        <description>Mongolian Script (Traditional - Bachka)</description>
+        <countryList>
+          <iso3166Id>MN</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>mon</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList/>
+    </layout>"""
+
 # 1. Update evdev.xml and base.xml
 for xml_path in ["/usr/share/X11/xkb/rules/evdev.xml", "/usr/share/X11/xkb/rules/base.xml"]:
     try:
         with open(xml_path, "r") as f:
             c = f.read()
-        if "<name>bichig</name>" in c:
-            # Ensure shortDescription mgl is present
-            if "<name>bichig</name>\n            <shortDescription>mgl</shortDescription>" not in c:
-                c = c.replace(
-                    "<name>bichig</name>\n            <description>",
-                    "<name>bichig</name>\n            <shortDescription>mgl</shortDescription>\n            <description>"
-                )
-                with open(xml_path, "w") as f:
-                    f.write(c)
-            continue
-        tgt = """        <name>mn</name>
-        <!-- Keyboard indicator for Mongolian layouts -->
-        <shortDescription>mn</shortDescription>
-        <description>Mongolian</description>
-        <countryList>
-          <iso3166Id>MN</iso3166Id>
-        </countryList>
-        <languageList>
-          <iso639Id>mon</iso639Id>
-        </languageList>
-      </configItem>
-      <variantList/>"""
-        rep = """        <name>mn</name>
-        <!-- Keyboard indicator for Mongolian layouts -->
-        <shortDescription>mn</shortDescription>
-        <description>Mongolian (Cyrillic - Bachka)</description>
-        <countryList>
-          <iso3166Id>MN</iso3166Id>
-        </countryList>
-        <languageList>
-          <iso639Id>mon</iso639Id>
-        </languageList>
-      </configItem>
-      <variantList>
-        <variant>
-          <configItem>
-            <name>bichig</name>
-            <shortDescription>mgl</shortDescription>
-            <description>Mongolian Script (Traditional - Bachka)</description>
-            <languageList>
-              <iso639Id>mon</iso639Id>
-            </languageList>
-          </configItem>
-        </variant>
-      </variantList>"""
-        if tgt in c:
-            with open(xml_path, "w") as f:
-                f.write(c.replace(tgt, rep, 1))
+        
+        # Add top-level layout bichig if not present
+        if "<name>bichig</name>" not in c or "<layout>\n      <configItem>\n        <name>bichig</name>" not in c:
+            idx = c.find("<name>mn</name>")
+            if idx != -1:
+                end_layout = c.find("</layout>", idx)
+                if end_layout != -1:
+                    end_layout += len("</layout>")
+                    c = c[:end_layout] + "\n" + layout_bichig_xml + c[end_layout:]
+                    with open(xml_path, "w") as f:
+                        f.write(c)
     except Exception as e:
         print("   Notice updating", xml_path, ":", e)
 
@@ -110,10 +93,20 @@ for lst_path in ["/usr/share/X11/xkb/rules/evdev.lst", "/usr/share/X11/xkb/rules
     try:
         with open(lst_path, "r") as f:
             lines = f.readlines()
-        if not any("bichig" in l for l in lines):
-            for i, line in enumerate(lines):
-                if line.strip() == "! variant":
-                    lines.insert(i + 1, "  bichig          mn: Mongolian Script (Traditional - Bachka)\n")
+        has_bichig_layout = False
+        in_layout = False
+        for l in lines:
+            if l.strip() == "! layout":
+                in_layout = True
+            elif l.strip().startswith("! ") and in_layout:
+                in_layout = False
+            if in_layout and l.strip().startswith("bichig "):
+                has_bichig_layout = True
+                break
+        if not has_bichig_layout:
+            for i, l in enumerate(lines):
+                if l.strip().startswith("mn "):
+                    lines.insert(i + 1, "  bichig          Mongolian Script (Traditional - Bachka)\n")
                     break
             with open(lst_path, "w") as f:
                 f.writelines(lines)
@@ -141,12 +134,12 @@ try:
     res = subprocess.run(["gsettings", "get", "org.gnome.desktop.input-sources", "sources"], capture_output=True, text=True)
     if res.returncode == 0 and res.stdout.strip():
         sources = ast.literal_eval(res.stdout.strip())
-        # Remove legacy/useless chinese variants if present
-        sources = [s for s in sources if not s[1].startswith("cn+mon_")]
+        # Remove legacy/useless variants if present
+        sources = [s for s in sources if not s[1].startswith("cn+mon_") and s[1] != "mn+bichig"]
         if ("xkb", "mn") not in sources:
             sources.append(("xkb", "mn"))
-        if ("xkb", "mn+bichig") not in sources:
-            sources.append(("xkb", "mn+bichig"))
+        if ("xkb", "bichig") not in sources:
+            sources.append(("xkb", "bichig"))
         out_str = "[" + ", ".join(f"(\x27{s[0]}\x27, \x27{s[1]}\x27)" for s in sources) + "]"
         subprocess.run(["gsettings", "set", "org.gnome.desktop.input-sources", "sources", out_str], check=True)
         print("   ✅ GNOME input sources enabled:", out_str)
