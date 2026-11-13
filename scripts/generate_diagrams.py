@@ -72,9 +72,23 @@ BICHIG_ROW4 = [
 
 def is_mongol_script(text):
     for ch in text:
-        if 0x1800 <= ord(ch) <= 0x18AF:
+        if 0x1800 <= ord(ch) <= 0x18AF or ord(ch) == 0x202F:
             return True
     return False
+
+def draw_mixed_text(draw, xy, text, fill, font_default, font_bichig):
+    """Draw mixed Latin/Cyrillic and Classical Mongolian script without tofu squares."""
+    x, y = xy
+    for ch in text:
+        font = font_bichig if is_mongol_script(ch) else font_default
+        y_offset = -4 if is_mongol_script(ch) else 0
+        draw.text((x, y + y_offset), ch, fill=fill, font=font)
+        try:
+            adv = font.getlength(ch)
+        except AttributeError:
+            bbox = draw.textbbox((x, y + y_offset), ch, font=font)
+            adv = bbox[2] - bbox[0]
+        x += adv
 
 def draw_flag_badge(draw, x, y, h=34):
     """Draw a clean, crisp vector Mongolian flag [Red | Blue | Red]"""
@@ -95,19 +109,21 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
 
     font_title = ImageFont.truetype(FONT_BOLD, 32)
     font_sub = ImageFont.truetype(FONT_REG, 19)
+    font_sub_bichig = ImageFont.truetype(FONT_BICHIG, 24)
     font_main = ImageFont.truetype(FONT_BOLD, 28)
     font_main_bichig = ImageFont.truetype(FONT_BICHIG, 36)
     font_top = ImageFont.truetype(FONT_REG, 17)
     font_top_bichig = ImageFont.truetype(FONT_BICHIG, 22)
     font_alt = ImageFont.truetype(FONT_BOLD, 16)
+    font_alt_bichig = ImageFont.truetype(FONT_BICHIG, 20)
     font_special = ImageFont.truetype(FONT_BOLD, 18)
 
     # Draw flag badge
     draw_flag_badge(draw, 60, 42, h=34)
 
-    # Title & Subtitle
-    draw.text((125, 40), title, fill='#38bdf8', font=font_title)
-    draw.text((60, 90), subtitle, fill='#94a3b8', font=font_sub)
+    # Title & Subtitle (mixed fallback prevents tofu squares in subtitle second line)
+    draw_mixed_text(draw, (125, 40), title, '#38bdf8', font_title, font_main_bichig)
+    draw_mixed_text(draw, (60, 90), subtitle, '#94a3b8', font_sub, font_sub_bichig)
 
     start_x = 60
     start_y = 145
@@ -118,7 +134,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     # Row 1
     cur_x = start_x
     for k in row1:
-        draw_key(draw, cur_x, start_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt)
+        draw_key(draw, cur_x, start_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, start_y, 180, key_h, "Backspace ⌫", font_special)
 
@@ -127,7 +143,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 160, key_h, "Tab ⇥", font_special)
     cur_x = start_x + 160 + gap
     for k in row2:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
         cur_x += key_w + gap
 
     # Row 3
@@ -135,7 +151,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 190, key_h, "Caps Lock ⇪", font_special)
     cur_x = start_x + 190 + gap
     for k in row3:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, cur_y, 230, key_h, "Enter ↵", font_special, is_accent=True)
 
@@ -144,7 +160,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 240, key_h, "Shift ⇧", font_special, is_shift=(mode == 'shift'))
     cur_x = start_x + 240 + gap
     for k in row4:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, cur_y, 300, key_h, "Shift ⇧", font_special, is_shift=(mode == 'shift'))
 
@@ -168,7 +184,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     im.save(out_path, quality=95)
     print(f"Generated: {out_path}")
 
-def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bichig, f_alt):
+def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bichig, f_alt, f_alt_bichig):
     top, main, alt, devops = k
 
     bg = '#1e293b'
@@ -194,7 +210,8 @@ def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bich
     # Alt text (AltGr / Option symbol)
     alt_color = '#fbbf24' if mode == 'altgr' else '#b45309'
     if alt:
-        draw.text((x + w - 38, y + 10), alt, fill=alt_color, font=f_alt)
+        used_alt_font = f_alt_bichig if is_mongol_script(alt) else f_alt
+        draw.text((x + w - 38, y + 10), alt, fill=alt_color, font=used_alt_font)
 
     # Main text (Base symbol)
     char_to_draw = main

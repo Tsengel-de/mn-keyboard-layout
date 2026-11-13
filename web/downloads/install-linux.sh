@@ -47,17 +47,24 @@ echo "2. Installing All-in-One Mongolian Suite to ${TARGET_FILE}..."
 sudo cp "${SOURCE_FILE}" "${TARGET_FILE}"
 sudo chmod 644 "${TARGET_FILE}"
 
-echo "3. Registering Classical Script variant in XKB rules (evdev.xml)..."
-EVDEV_XML="/usr/share/X11/xkb/rules/evdev.xml"
-if [ -f "${EVDEV_XML}" ]; then
-    if ! grep -q "<name>bichig</name>" "${EVDEV_XML}"; then
-        if [ ! -f "${EVDEV_XML}.orig.backup" ]; then
-            sudo cp "${EVDEV_XML}" "${EVDEV_XML}.orig.backup"
-        fi
-        sudo python3 -c '
-with open("/usr/share/X11/xkb/rules/evdev.xml", "r") as f:
-    c = f.read()
-tgt = """        <name>mn</name>
+echo "3. Registering Classical Script variant in XKB rules (evdev.xml, base.xml, lst)..."
+sudo python3 -c '
+# 1. Update evdev.xml and base.xml
+for xml_path in ["/usr/share/X11/xkb/rules/evdev.xml", "/usr/share/X11/xkb/rules/base.xml"]:
+    try:
+        with open(xml_path, "r") as f:
+            c = f.read()
+        if "<name>bichig</name>" in c:
+            # Ensure shortDescription mgl is present
+            if "<name>bichig</name>\n            <shortDescription>mgl</shortDescription>" not in c:
+                c = c.replace(
+                    "<name>bichig</name>\n            <description>",
+                    "<name>bichig</name>\n            <shortDescription>mgl</shortDescription>\n            <description>"
+                )
+                with open(xml_path, "w") as f:
+                    f.write(c)
+            continue
+        tgt = """        <name>mn</name>
         <!-- Keyboard indicator for Mongolian layouts -->
         <shortDescription>mn</shortDescription>
         <description>Mongolian</description>
@@ -69,7 +76,7 @@ tgt = """        <name>mn</name>
         </languageList>
       </configItem>
       <variantList/>"""
-rep = """        <name>mn</name>
+        rep = """        <name>mn</name>
         <!-- Keyboard indicator for Mongolian layouts -->
         <shortDescription>mn</shortDescription>
         <description>Mongolian (Cyrillic - Bachka)</description>
@@ -84,16 +91,35 @@ rep = """        <name>mn</name>
         <variant>
           <configItem>
             <name>bichig</name>
+            <shortDescription>mgl</shortDescription>
             <description>Mongolian Script (Traditional - Bachka)</description>
+            <languageList>
+              <iso639Id>mon</iso639Id>
+            </languageList>
           </configItem>
         </variant>
       </variantList>"""
-if tgt in c:
-    with open("/usr/share/X11/xkb/rules/evdev.xml", "w") as f:
-        f.write(c.replace(tgt, rep, 1))
+        if tgt in c:
+            with open(xml_path, "w") as f:
+                f.write(c.replace(tgt, rep, 1))
+    except Exception as e:
+        print("   Notice updating", xml_path, ":", e)
+
+# 2. Update evdev.lst and base.lst
+for lst_path in ["/usr/share/X11/xkb/rules/evdev.lst", "/usr/share/X11/xkb/rules/base.lst"]:
+    try:
+        with open(lst_path, "r") as f:
+            lines = f.readlines()
+        if not any("bichig" in l for l in lines):
+            for i, line in enumerate(lines):
+                if line.strip() == "! variant":
+                    lines.insert(i + 1, "  bichig          mn: Mongolian Script (Traditional - Bachka)\n")
+                    break
+            with open(lst_path, "w") as f:
+                f.writelines(lines)
+    except Exception as e:
+        print("   Notice updating", lst_path, ":", e)
 ' 2>/dev/null || true
-    fi
-fi
 
 echo "4. Installing Classical Mongolian Fonts..."
 FONT_TARGET="${HOME}/.local/share/fonts"
@@ -132,6 +158,11 @@ fi
 echo "6. Clearing XKB cache..."
 if [ -d "/var/lib/xkb" ]; then
     sudo rm -rf /var/lib/xkb/*.xkm 2>/dev/null || true
+fi
+
+echo "7. Setting active layout to Mongolian Cyrillic (Bachka)..."
+if command -v setxkbmap >/dev/null 2>&1; then
+    setxkbmap mn 2>/dev/null || true
 fi
 
 echo ""
