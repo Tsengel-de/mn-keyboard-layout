@@ -46,8 +46,16 @@ fi
 echo "2. Installing Mongolian Suite layouts to ${XKB_SYMBOLS_DIR}..."
 sudo cp "${SOURCE_FILE}" "${TARGET_FILE}"
 sudo chmod 644 "${TARGET_FILE}"
-if [ -f "${SCRIPT_DIR}/bichig" ]; then
-    sudo cp "${SCRIPT_DIR}/bichig" "${XKB_SYMBOLS_DIR}/bichig"
+BICHIG_SOURCE="${SCRIPT_DIR}/bichig"
+if [ ! -f "${BICHIG_SOURCE}" ]; then
+    echo "⬇️ bichig layout not found locally. Downloading from mn.tsengel.de..."
+    TEMP_BICHIG="$(mktemp)"
+    if curl -fsSL https://mn.tsengel.de/downloads/bichig-xkb-symbols -o "${TEMP_BICHIG}"; then
+        BICHIG_SOURCE="${TEMP_BICHIG}"
+    fi
+fi
+if [ -f "${BICHIG_SOURCE}" ]; then
+    sudo cp "${BICHIG_SOURCE}" "${XKB_SYMBOLS_DIR}/bichig"
     sudo chmod 644 "${XKB_SYMBOLS_DIR}/bichig"
 fi
 

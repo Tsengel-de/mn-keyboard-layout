@@ -1122,9 +1122,10 @@ function backspaceChar() {
 }
 
 // Emulation for typing workspace
-document.addEventListener('DOMContentLoaded', () => {
+function initTypingEmulation() {
   const box = document.getElementById('typing-box');
-  if (box) {
+  if (box && !box.dataset.emulationBound) {
+    box.dataset.emulationBound = 'true';
     box.addEventListener('keydown', (e) => {
       if (e.ctrlKey || e.metaKey || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Tab' || e.key.startsWith('Arrow')) {
         return;
@@ -1143,7 +1144,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTypingEmulation);
+} else {
+  initTypingEmulation();
+}
 
 function setBase(b) {
   currentBase = b;
@@ -1504,6 +1511,7 @@ document.getElementById('typing-box').addEventListener('input', updatePreviews);
 
 initLanguage();
 renderKeyboard();
+initTypingEmulation();
 </script>
 
 </body>
