@@ -84,7 +84,7 @@ sudo ./install.sh
 
 > [!IMPORTANT]
 > **⚠️ Линукс (GNOME / Wayland / Ubuntu) хэрэглэгчид суулгасны дараа заавал системээс нэг удаа ГАРЧ (Log Out / Log In) эсвэл компьютерээ RESTART хийнэ үү!**
-> GNOME Shell (ялангуяа Wayland орчин) нь шинэ гарын байрлалууд болон XKB дүрмийг зөвхөн хэрэглэгчийн сесс эхлэх үед санах ойд ачаалдаг. Тиймээс Log Out хийж дахин нэвтэрсний дараа дээд талын хэлний цэс болон `Super + Space` дарахад **`mn`** (Кирилл) болон **`mgl`** (Монгол бичиг) хоёр гар хоёулаа шууд тодорхой харагдаж ажиллана.
+> GNOME Shell (ялангуяа Wayland орчин) нь шинэ гарын байрлалууд болон XKB дүрмийг зөвхөн хэрэглэгчийн сешн эхлэх үед санах ойд ачаалдаг. Тиймээс Log Out хийж дахин нэвтэрсний дараа дээд талын хэлний цэс болон `Super + Space` дарахад **`mn`** (Кирилл) болон **`mgl`** (Монгол бичиг) хоёр гар хоёулаа шууд тодорхой харагдаж ажиллана.
 
 Суулгасны дараа та дараах хоёр гарыг шууд ашиглана:
 1. **Үндсэн (Default)**: `Mongolian Cyrillic (Bachka)` — Бүх 35 үсэг үндсэн товч дээр (`Q=ъ, W=ь, Y=е, [=ө, ]=ү`)
@@ -146,8 +146,8 @@ bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0  Mongolian-Keyb
 1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
-2e3924f8eb5fae62eaa174c5d399c9dd26137cebc5bf535c2c3f1d6e80d2104c  Mongolian-Keyboard-Linux-v1.0.3.zip
-07a4836cb5fde47a02788e013b661ed50a4685fa47f0e51108931bc8b4424e12  install-linux.sh
+70471279a0b025422ab5c74c4d9ede5212a82a6d40b36e77cec85c697f989809  Mongolian-Keyboard-Linux-v1.0.3.zip
+ca3fe8b446baac512e38ed7ac7b58b52e7a07a2f08aeb19fe4778d43894253c9  install-linux.sh
 ```
 
 ---

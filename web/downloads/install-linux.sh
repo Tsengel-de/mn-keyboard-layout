@@ -178,7 +178,7 @@ echo "  Settings -> Keyboard -> Input Sources -> 'Mongolian (Cyrillic)' & 'Mongo
 echo "  (Switch anytime using Super + Space)"
 echo ""
 echo "⚠️  ЧУХАЛ / IMPORTANT (GNOME / Wayland):"
-echo "   GNOME Shell нь шинэ гарын байрлалыг сесс эхлэх үед уншдаг тул"
+echo "   GNOME Shell нь шинэ гарын байрлалыг сешн эхлэх үед уншдаг тул"
 echo "   суулгасны дараа заавал системээс нэг удаа ГАРЧ (LOG OUT / LOG IN) эсвэл"
 echo "   RESTART хийнэ үү! Тэгсний дараа дээд цэс дээр 'mn' ба 'mgl' шууд гарч ирнэ."
 echo "   (Please LOG OUT & Log Back In or RESTART so GNOME loads both layouts)."
