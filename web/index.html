@@ -679,7 +679,7 @@
         <button class="copy-btn" id="i18n-btn-copy-script" onclick="copyLinuxCmd(this)">Хуулах</button>
       </div>
       <div class="install-hint" id="i18n-linux-hint">
-        <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Кирилл) эсвэл <code>setxkbmap mn -variant bichig</code> (Монгол бичиг) ажиллуулна.
+        <strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> (Кирилл) болон <code>mgl</code> (Монгол бичиг) шууд харагдана.
       </div>
     </div>
   </div>
@@ -757,8 +757,8 @@
               <td>1.5 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">784e3b695436c832d0475b16d08475a9b7568fd80b6cac653a95936dd341cb4e</span>
-                  <button class="hash-copy" onclick="copyHash('784e3b695436c832d0475b16d08475a9b7568fd80b6cac653a95936dd341cb4e', this)">Хуулах</button>
+                  <span class="hash-text">5fd380ed0e1438a40588a3e930bca776104266cfc7439a5ac3fc124968a0f5eb</span>
+                  <button class="hash-copy" onclick="copyHash('5fd380ed0e1438a40588a3e930bca776104266cfc7439a5ac3fc124968a0f5eb', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -766,11 +766,11 @@
             <tr>
               <td><code>install-linux.sh</code></td>
               <td>Linux</td>
-              <td>2.9 KB</td>
+              <td>7.5 KB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4</span>
-                  <button class="hash-copy" onclick="copyHash('438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4', this)">Хуулах</button>
+                  <span class="hash-text">09329f5ccb17633805d7e28acdd29399657ad6b7f442ba8009f2129655743e8f</span>
+                  <button class="hash-copy" onclick="copyHash('09329f5ccb17633805d7e28acdd29399657ad6b7f442ba8009f2129655743e8f', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -1240,7 +1240,7 @@ const I18N = {
     linuxDesc: "Монгол Кирилл (Bachka mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
     btnCopyScript: "Хуулах",
-    linuxHint: "<strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Кирилл) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.",
+    linuxHint: "<strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> болон <code>mgl</code> шууд гарч ирнэ. Терминалаас <code>setxkbmap mn</code> эсвэл <code>setxkbmap bichig</code>.",
     checksumTitle: "🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)",
     checksumToggle: "[Дэлгэх ▾]",
     thFile: "Файлын нэр",
@@ -1295,7 +1295,7 @@ const I18N = {
     linuxDesc: "Unified XKB installer for Mongolian Cyrillic (Bachka) and Classical Script (Bichig).",
     btnLinuxZip: "⬇️ Download Linux Package (.zip)",
     btnCopyScript: "Copy",
-    linuxHint: "<strong>Quick switch:</strong> Run <code>setxkbmap mn</code> (Cyrillic) or <code>setxkbmap mn -variant bichig</code> in Terminal.",
+    linuxHint: "<strong>⚠️ Important:</strong> After installation, please <strong>Log Out and Log In</strong> (or Restart) so GNOME/Wayland loads both layouts! Toggle via <code>Super + Space</code> or Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
     checksumTitle: "🔍 File SHA-256 Checksums & Antivirus Verification",
     checksumToggle: "[Expand ▾]",
     thFile: "File Name",
@@ -1350,7 +1350,7 @@ const I18N = {
     linuxDesc: "Sicherer XKB-Installer für mongolisches Kyrillisch (Bachka) und traditionelle mongolische Schrift.",
     btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip)",
     btnCopyScript: "Kopieren",
-    linuxHint: "<strong>Schnellwechsel:</strong> <code>setxkbmap mn</code> (Kyrillisch) oder <code>setxkbmap mn -variant bichig</code> im Terminal ausführen.",
+    linuxHint: "<strong>⚠️ Wichtig:</strong> Nach der Installation bitte einmal <strong>Ab- und wieder Anmelden</strong> (oder Neustart)! Umschalten mit <code>Super + Leertaste</code> oder Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
     checksumTitle: "🔍 SHA-256-Prüfsummen & Antivirus-Verifizierung",
     checksumToggle: "[Ausklappen ▾]",
     thFile: "Dateiname",
