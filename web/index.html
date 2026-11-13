@@ -88,21 +88,12 @@ am<!DOCTYPE html>
     .key-space { width: 280px; min-width: 240px; max-width: 320px; flex: 0 0 280px; }
     .key-wide { flex: 0 0 auto; }
 
-    .editor-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    @media (min-width: 768px) {
-      .editor-grid.bichig-active { grid-template-columns: 1fr 260px; }
-    }
-
     .editor-section {
       background: var(--card-bg);
       border-radius: 12px;
       padding: 18px;
       box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
     }
     .editor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .editor-header h3 { font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
@@ -118,29 +109,16 @@ am<!DOCTYPE html>
       resize: vertical;
     }
     textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0,85,165,0.15); }
-
-    .vertical-preview-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-    }
-    .vertical-preview-box {
+    textarea.bichig-mode {
       writing-mode: vertical-lr;
       text-orientation: mixed;
-      flex-grow: 1;
-      min-height: 120px;
-      max-height: 220px;
-      padding: 12px;
-      border: 1px solid var(--key-border);
-      border-radius: 8px;
+      height: 220px;
       font-size: 24px;
-      background: #fafafa;
-      overflow-x: auto;
       line-height: 1.8;
-      font-family: "Mongolian Biti", "Noto Sans Mongolian", sans-serif;
+      font-family: "Noto Sans Mongolian", "Mongolian Baiti", sans-serif;
+      overflow-x: auto;
+      overflow-y: hidden;
+      resize: none;
     }
 
 
@@ -540,24 +518,15 @@ am<!DOCTYPE html>
     <!-- Keys rendered dynamically -->
   </div>
 
-  <div class="editor-grid" id="editor-grid">
-    <div class="editor-section">
-      <div class="editor-header">
-        <h3 id="i18n-editor-title">✍️ Бичих ба Турших талбар (Live Workspace)</h3>
-        <div class="editor-tools">
-          <button class="btn" id="i18n-btn-clear" onclick="clearText()">Арилгах</button>
-          <button class="btn" id="i18n-btn-copy" onclick="copyText()">Хуулах</button>
-        </div>
+  <div class="editor-section">
+    <div class="editor-header">
+      <h3 id="i18n-editor-title">✍️ Бичих ба Турших талбар (Live Workspace)</h3>
+      <div class="editor-tools">
+        <button class="btn" id="i18n-btn-clear" onclick="clearText()">Арилгах</button>
+        <button class="btn" id="i18n-btn-copy" onclick="copyText()">Хуулах</button>
       </div>
-      <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
     </div>
-
-    <div class="vertical-preview-card" id="vertical-preview-card" style="display:none;">
-      <div class="editor-header">
-        <h3 id="i18n-vert-title">📜 Босоо бичвэр (Classical)</h3>
-      </div>
-      <div class="vertical-preview-box" id="vertical-preview-box"></div>
-    </div>
+    <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
   </div>
 
   <!-- Security & Trust Bar -->
@@ -1061,18 +1030,22 @@ function setLayoutMode(m) {
   document.getElementById('btn-mode-cyrillic')?.classList.toggle('active', m === 'cyrillic');
   document.getElementById('btn-mode-bichig')?.classList.toggle('active', m === 'bichig');
 
-  const vertCard = document.getElementById('vertical-preview-card');
-  const editorGrid = document.getElementById('editor-grid');
+  const box = document.getElementById('typing-box');
+  const title = document.getElementById('i18n-editor-title');
+  const t = I18N[currentLang] || I18N.mn;
+
   if (m === 'bichig') {
-    vertCard.style.display = 'flex';
-    editorGrid.classList.add('bichig-active');
+    box.classList.add('bichig-mode');
+    box.placeholder = (currentLang === 'en' ? 'Type with Classical Mongolian Script layout...' : (currentLang === 'de' ? 'Tippen mit traditionellem mongolischem Layout...' : 'Худам Монгол бичгийн байрлалаар энд туршиж бичнэ үү...'));
+    if (title) title.innerText = (currentLang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (currentLang === 'de' ? '📜 Traditionelle mongolische Schrift (Vertikal)' : '📜 Худам Монгол Бичиг турших талбар (Босоо)'));
   } else {
-    vertCard.style.display = 'none';
-    editorGrid.classList.remove('bichig-active');
+    box.classList.remove('bichig-mode');
+    box.placeholder = t.typingPlaceholder;
+    if (title) title.innerText = t.editorTitle;
   }
 
+  box.value = '';
   renderKeyboard();
-  updatePreviews();
 }
 
 function insertChar(ch) {
@@ -1082,7 +1055,6 @@ function insertChar(ch) {
   box.value = box.value.substring(0, start) + ch + box.value.substring(end);
   box.selectionStart = box.selectionEnd = start + ch.length;
   box.focus();
-  updatePreviews();
 }
 
 function backspaceChar() {
@@ -1094,7 +1066,6 @@ function backspaceChar() {
     box.selectionStart = box.selectionEnd = start - 1;
   }
   box.focus();
-  updatePreviews();
 }
 
 // Emulation for typing workspace
@@ -1137,19 +1108,12 @@ function setBase(b) {
 
 function clearText() {
   document.getElementById('typing-box').value = '';
-  updatePreviews();
 }
 
 function copyText() {
   const box = document.getElementById('typing-box');
   navigator.clipboard.writeText(box.value);
   alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
-}
-
-function updatePreviews() {
-  const box = document.getElementById('typing-box');
-  const vert = document.getElementById('vertical-preview-box');
-  vert.innerText = box.value;
 }
 
 function copyLinuxCmd(btn) {
@@ -1359,7 +1323,6 @@ function setLanguage(lang) {
     'i18n-editor-title': t.editorTitle,
     'i18n-btn-clear': t.btnClear,
     'i18n-btn-copy': t.btnCopy,
-    'i18n-vert-title': t.vertTitle,
     'i18n-trust-vt-title': t.trustVtTitle,
     'i18n-trust-vt-sub': t.trustVtSub,
     'i18n-trust-zero-title': t.trustZeroTitle,
@@ -1463,8 +1426,6 @@ function initLanguage() {
     setLanguage('mn');
   }
 }
-
-document.getElementById('typing-box').addEventListener('input', updatePreviews);
 
 initLanguage();
 renderKeyboard();
