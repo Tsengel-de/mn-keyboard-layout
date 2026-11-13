@@ -52,7 +52,7 @@ xkb_symbols "basic" {
   key <AC11> { [ apostrophe,quotedbl,  0x100180e,   NoSymbol ] }; // ' " MVS
 
   // Bottom Row: Z X C V B N M , . /
-  key <AB01> { [ 0x100183d, 0x100183d, NoSymbol,    NoSymbol ] }; // Z = ᠽ (Z)
+  key <AB01> { [ 0x1001835, 0x100183d, NoSymbol,    NoSymbol ] }; // Z = ᠵ (Z/J), Shift+Z = ᠽ (Ali Gali Z)
   key <AB02> { [ 0x1001831, 0x1001831, NoSymbol,    NoSymbol ] }; // X = ᠱ (Sh)
   key <AB03> { [ 0x100183c, 0x100183c, copyright,   NoSymbol ] }; // C = ᠼ (Ts)
   key <AB04> { [ 0x1001838, 0x1001838, NoSymbol,    NoSymbol ] }; // V = ᠸ (V/W)
