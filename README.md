@@ -192,8 +192,8 @@ mn-keyboard-layout/
 
 ## Эх Сурвалж ба Талархал (Sources & Attribution)
 
-Энэхүү төсөл нь өмнөх үеийн нээлттэй эхийн шийдлүүд болон туршлага дээр тулгуурлан хөгжүүлэгдсэн:
-* **bachka-keyboard төслүүд (Predecessor Projects by Tsengel/Bachka)**:
+Энэхүү 100% үнэ төлбөргүй, олон нийтийн нээлттэй бүтээл нь өмнөх үеийн нээлттэй эхийн шийдлүүд болон туршлага дээр тулгуурлан хөгжүүлэгдсэн:
+* **bachka-keyboard ажлууд (Predecessor by Tsengel/Bachka)**:
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Анхны Linux XKB layout суурь
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY суулгац ба MSKLC эх код
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ суулгац ба MSKLC эх код
@@ -206,9 +206,9 @@ mn-keyboard-layout/
 
 ---
 
-## Төслийг Дэмжих (Support & Donation)
+## Санаачилгыг Дэмжих (Support & Contribution)
 
-Хэрэв энэхүү гарын байрлалууд таны ажил, амьдралд тус болж байгаа бол төслийн хөгжүүлэлт болон дэд бүтцийг дэмжих боломжтой:
+Энэ нь ямар нэг санхүүжилтгүй, зохиогчийн чөлөөт цагаараа нийтийн тусын тулд хөгжүүлж буй **100% үнэ төлбөргүй, ашгийн бус нээлттэй бүтээл** юм. Хэрэв энэхүү гарын байрлал таны ажил, амьдралд бодитой тус болж байгаа бол серверийн түрээс, домэйн болон дэд бүтцийн зардлыг хуваалцан дэмжих боломжтой:
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Дэмжих-ff5e5b?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 
@@ -216,8 +216,8 @@ mn-keyboard-layout/
 
 ## Зохиогч & Нээлттэй Эрх (Author & License)
 
-Энэхүү төсөл нь дэлхий даяарх бүх монголчуудад нээлттэй [MIT License](LICENSE) эрхтэй.
-* Төслийн зохиогч: **Цэнгэл (Tsengel)** — [tsengel.de](https://tsengel.de) (мөн [blog.tsengel.de](https://blog.tsengel.de))
+Энэхүү бүтээл нь дэлхий даяарх бүх монголчуудад үнэ төлбөргүй, нээлттэй [MIT License](LICENSE) эрхтэй.
+* Санаачлагч ба зохиогч: **Цэнгэл (Tsengel / Bachka)** — [tsengel.de](https://tsengel.de) (мөн [blog.tsengel.de](https://blog.tsengel.de))
 * Санал хүсэлт, сайжруулалтыг GitHub Issue болон Pull Request-ээр хүлээн авна.
 
 *Монголын үрс маш олон болж, мэдлэгийг харамгүй хуваалцан хамтдаа хөгжих болтугай! 🇲🇳*

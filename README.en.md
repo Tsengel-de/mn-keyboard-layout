@@ -157,8 +157,8 @@ xdg-open web/index.html
 
 ## Sources & Attribution
 
-This project is built upon the invaluable heritage of earlier open-source efforts:
-* **bachka-keyboard Projects (Predecessors by Tsengel/Bachka)**:
+This 100% free, community-driven open-source initiative is built upon the invaluable heritage of earlier open-source efforts:
+* **bachka-keyboard Work (Predecessors by Tsengel/Bachka)**:
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Original Linux XKB symbols foundation
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US QWERTY installer and MSKLC source
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows German QWERTZ installer and MSKLC source
@@ -171,9 +171,9 @@ This project is built upon the invaluable heritage of earlier open-source effort
 
 ---
 
-## Support & Donation
+## Support & Contribution
 
-If you find this keyboard suite helpful, you can support its development and infrastructure:
+This is an unfunded, volunteer community effort developed during personal free time. If you find this keyboard suite helpful and wish to help cover domain, server, and hosting expenses:
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 
@@ -181,7 +181,7 @@ If you find this keyboard suite helpful, you can support its development and inf
 
 ## Author & License
 
-This project is open-source under the [MIT License](LICENSE).
-* Author: **Tsengel** — [tsengel.de](https://tsengel.de) (also [blog.tsengel.de](https://blog.tsengel.de))
+This work is open-source under the [MIT License](LICENSE) freely available to everyone.
+* Author & Maintainer: **Tsengel / Bachka** — [tsengel.de](https://tsengel.de) (also [blog.tsengel.de](https://blog.tsengel.de))
 * Contributions, feedback, and improvements are welcome via GitHub Issues and Pull Requests.
 

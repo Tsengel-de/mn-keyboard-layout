@@ -155,8 +155,8 @@ xdg-open web/index.html
 
 ## Quellen & Danksagung (Sources & Attribution)
 
-Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativen auf:
-* **bachka-keyboard Projekte (Vorgängerprojekte von Tsengel/Bachka)**:
+Dieses zu 100% kostenlose, ehrenamtliche Open-Source-Werk baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativen auf:
+* **bachka-keyboard Vorarbeiten (von Tsengel/Bachka)**:
   - [mongolian-keyboard-layout-linux](https://github.com/bachka/mongolian-keyboard-layout-linux) — Ursprüngliche Linux-XKB-Layout-Basis
   - [mongolian-kbl-english-kb](https://github.com/bachka/mongolian-kbl-english-kb) — Windows US-QWERTY-Installer und MSKLC-Quellcode
   - [mongolian-kbl-german-kb](https://github.com/bachka/mongolian-kbl-german-kb) — Windows deutsche QWERTZ-Installer und MSKLC-Quellcode
@@ -169,9 +169,9 @@ Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativ
 
 ---
 
-## Unterstützung (Support & Spenden)
+## Unterstützung (Support & Beitrag)
 
-Wenn dieses Tastaturpaket für Sie nützlich ist, können Sie die Weiterentwicklung und Infrastruktur gerne unterstützen:
+Dies ist eine unentgeltliche, gemeinnützige Initiative, die in persönlicher Freizeit entwickelt wird. Wenn Ihnen dieses Tastaturpaket hilft und Sie die Server-, Domain- und Infrastrukturkosten unterstützen möchten:
 
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Unterstützen-ff5e5b?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 
@@ -179,7 +179,7 @@ Wenn dieses Tastaturpaket für Sie nützlich ist, können Sie die Weiterentwickl
 
 ## Autor & Lizenz
 
-Dieses Projekt ist Open-Source unter der [MIT-Lizenz](LICENSE).
-* Autor: **Tsengel** — [tsengel.de](https://tsengel.de) (sowie [blog.tsengel.de](https://blog.tsengel.de))
+Dieses Werk ist Open-Source unter der [MIT-Lizenz](LICENSE) für alle frei zugänglich.
+* Autor & Betreuer: **Tsengel / Bachka** — [tsengel.de](https://tsengel.de) (sowie [blog.tsengel.de](https://blog.tsengel.de))
 * Beiträge, Verbesserungsvorschläge und Feedback sind via GitHub Issues und Pull Requests herzlich willkommen.
 
