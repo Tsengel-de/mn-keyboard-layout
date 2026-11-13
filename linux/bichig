@@ -1,13 +1,13 @@
 // =============================================================================
-// Classical Mongolian Script Keyboard Layout (Bachka Phonetics)
-// Author: Bachka (Tsengel) <tsengel@tsengel.de>
+// Classical Mongolian Script Keyboard Layout (Tsengel Phonetics)
+// Author: Tsengel <tsengel@tsengel.de>
 // Source: Universal Mongolian Keyboard Layout Suite
 // =============================================================================
 
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 
-  name[Group1]= "Mongolian Script (Traditional - Bachka)";
+  name[Group1]= "Mongolian Script (Traditional - Tsengel)";
 
   // Classical Mongolian Digits
   key <TLDE> { [ 0x1001804, 0x1001800, asciitilde, grave ] }; // ᠄ (Nirugu), ᠀ (Birga)

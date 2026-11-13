@@ -58,7 +58,7 @@ layout_bichig_xml = """    <layout>
         <name>bichig</name>
         <!-- Keyboard indicator for Mongolian Script -->
         <shortDescription>mgl</shortDescription>
-        <description>Mongolian Script (Traditional - Bachka)</description>
+        <description>Mongolian Script (Traditional - Tsengel)</description>
         <countryList>
           <iso3166Id>MN</iso3166Id>
         </countryList>
@@ -75,6 +75,10 @@ for xml_path in ["/usr/share/X11/xkb/rules/evdev.xml", "/usr/share/X11/xkb/rules
         with open(xml_path, "r") as f:
             c = f.read()
         
+        # Replace Bachka with Tsengel if present
+        c = c.replace("Mongolian (Cyrillic - Bachka)", "Mongolian (Cyrillic - Tsengel)")
+        c = c.replace("Mongolian Script (Traditional - Bachka)", "Mongolian Script (Traditional - Tsengel)")
+        
         # Add top-level layout bichig if not present
         if "<name>bichig</name>" not in c or "<layout>\n      <configItem>\n        <name>bichig</name>" not in c:
             idx = c.find("<name>mn</name>")
@@ -83,8 +87,8 @@ for xml_path in ["/usr/share/X11/xkb/rules/evdev.xml", "/usr/share/X11/xkb/rules
                 if end_layout != -1:
                     end_layout += len("</layout>")
                     c = c[:end_layout] + "\n" + layout_bichig_xml + c[end_layout:]
-                    with open(xml_path, "w") as f:
-                        f.write(c)
+        with open(xml_path, "w") as f:
+            f.write(c)
     except Exception as e:
         print("   Notice updating", xml_path, ":", e)
 
@@ -92,7 +96,7 @@ for xml_path in ["/usr/share/X11/xkb/rules/evdev.xml", "/usr/share/X11/xkb/rules
 for lst_path in ["/usr/share/X11/xkb/rules/evdev.lst", "/usr/share/X11/xkb/rules/base.lst"]:
     try:
         with open(lst_path, "r") as f:
-            lines = f.readlines()
+            lines = [l.replace("Bachka", "Tsengel") for l in f.readlines()]
         has_bichig_layout = False
         in_layout = False
         for l in lines:
@@ -106,10 +110,10 @@ for lst_path in ["/usr/share/X11/xkb/rules/evdev.lst", "/usr/share/X11/xkb/rules
         if not has_bichig_layout:
             for i, l in enumerate(lines):
                 if l.strip().startswith("mn "):
-                    lines.insert(i + 1, "  bichig          Mongolian Script (Traditional - Bachka)\n")
+                    lines.insert(i + 1, "  bichig          Mongolian Script (Traditional - Tsengel)\n")
                     break
-            with open(lst_path, "w") as f:
-                f.writelines(lines)
+        with open(lst_path, "w") as f:
+            f.writelines(lines)
     except Exception as e:
         print("   Notice updating", lst_path, ":", e)
 ' 2>/dev/null || true
@@ -153,7 +157,7 @@ if [ -d "/var/lib/xkb" ]; then
     sudo rm -rf /var/lib/xkb/*.xkm 2>/dev/null || true
 fi
 
-echo "7. Setting active layout to Mongolian Cyrillic (Bachka)..."
+echo "7. Setting active layout to Mongolian Cyrillic (Tsengel)..."
 if command -v setxkbmap >/dev/null 2>&1; then
     setxkbmap mn 2>/dev/null || true
 fi
@@ -162,12 +166,12 @@ echo ""
 echo "✅ Mongolian All-in-One Dual-Layout Suite installed successfully!"
 echo "----------------------------------------------------------"
 echo "Integrated Dual Layouts (Хос Гар):"
-echo "  1) Default:  Mongolian Cyrillic (Bachka mn-custom: All 35 Cyrillic letters on Base/Shift)"
-echo "  2) Bichig:   Mongolian Script (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ...)"
+echo "  1) Default:  Mongolian Cyrillic (Tsengel mn-custom: All 35 Cyrillic letters on Base/Shift)"
+echo "  2) Bichig:   Mongolian Script (Tsengel Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ...)"
 echo ""
 echo "Quick Switch via Terminal (X11):"
-echo "  - setxkbmap mn                    # Mongolian Cyrillic (Bachka)"
-echo "  - setxkbmap mn -variant bichig    # Mongolian Script (Bachka)"
+echo "  - setxkbmap mn                    # Mongolian Cyrillic (Tsengel)"
+echo "  - setxkbmap bichig                # Mongolian Script (Tsengel)"
 echo ""
 echo "In GNOME / Ubuntu / Fedora Settings:"
 echo "  Settings -> Keyboard -> Input Sources -> 'Mongolian (Cyrillic)' & 'Mongolian Script'"

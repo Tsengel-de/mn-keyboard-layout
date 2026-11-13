@@ -1,20 +1,20 @@
 // =============================================================================
 // All-in-One Mongolian Keyboard Layout Suite for Linux (XKB)
-// Author: Bachka (Tsengel) <tsengel@tsengel.de>
-// Source: Bachka mn-custom
+// Author: Tsengel <tsengel@tsengel.de>
+// Source: Tsengel mn-custom
 //
 // Integrated Variants:
-// 1. "basic"  - Mongolian Cyrillic (Bachka mn-custom, All 35 letters on Level 1 & 2)
-// 2. "bichig" - Classical Mongolian Script (Bachka Phonetic Logic)
+// 1. "basic"  - Mongolian Cyrillic (Tsengel mn-custom, All 35 letters on Level 1 & 2)
+// 2. "bichig" - Classical Mongolian Script (Tsengel Phonetic Logic)
 // =============================================================================
 
 // -----------------------------------------------------------------------------
-// 1. DEFAULT: Mongolian Cyrillic (Bachka mn-custom)
+// 1. DEFAULT: Mongolian Cyrillic (Tsengel mn-custom)
 // -----------------------------------------------------------------------------
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 
-  name[Group1]= "Mongolian (Bachka)";
+  name[Group1]= "Mongolian (Cyrillic - Tsengel)";
 
   // Number Row (AE01 - AE12)
   key <TLDE> { [ Cyrillic_io,        Cyrillic_IO,         asciitilde          ] };
@@ -79,12 +79,12 @@ xkb_symbols "basic" {
 };
 
 // -----------------------------------------------------------------------------
-// 2. VARIANT: Classical Mongolian Script (Худам Монгол бичиг - Bachka)
+// 2. VARIANT: Classical Mongolian Script (Худам Монгол бичиг - Tsengel)
 // -----------------------------------------------------------------------------
 partial alphanumeric_keys
 xkb_symbols "bichig" {
 
-  name[Group1]= "Mongolian Script (Bachka)";
+  name[Group1]= "Mongolian Script (Traditional - Tsengel)";
 
   // Classical Mongolian Digits
   key <TLDE> { [ 0x1001804, 0x1001800, asciitilde, grave ] }; // ᠄ (Nirugu), ᠀ (Birga)
