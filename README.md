@@ -126,8 +126,8 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
 
 # 🍏 macOS (v1.0.3)
-aef1846dcbb065d6d1613407c479d62672c6725eb420ff531337a7fb000d2d58  Mongolian-Keyboard-macOS-v1.0.3.dmg
-e4b690864179df357b0f45db72c9bffaf461cf402af0541d194d57fa87c71626  Mongolian-Keyboard-macOS-v1.0.3.zip
+16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2  Mongolian-Keyboard-macOS-v1.0.3.dmg
+e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
 f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
@@ -169,7 +169,7 @@ mn-keyboard-layout/
 │   ├── Mongolian.bundle/   # Apple Native Keyboard Layout Bundle
 │   ├── MongolianCyrillicErgonomic.keylayout
 │   ├── MongolianCyrillicErgonomic.icns
-│   ├── MongolianScriptQwertyDusal.keylayout
+│   ├── Mongolian.bundle/   # macOS албан ёсны гарын багц
 │   ├── install.sh          # Terminal суулгагч
 │   └── fonts/              # Classical Mongolian OpenType фонтууд
 ├── windows/                # Windows MSI суулгацууд ба MSKLC .klc эх кодууд
@@ -195,7 +195,7 @@ mn-keyboard-layout/
 * **SIL International**:
   - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode гарын драйверын стандарт болон нэг товшилтоор суулгагч `Keyboard Installer.app` хэрэгсэл.
 * **Dusal.net (Д. Дусал)**:
-  - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Монгол фонетик гарын байрлал (QWERTY) болон macOS дээрх худам монгол бичгийн эхний keylayout, фонтын анхдагч суурийг тавьсан D. Dusal (dusal.net)-д гүн талархал илэрхийлье.
+  - [Dusal.net](http://dusal.blogmn.net/99944/) — Худам монгол бичгийн `cmdashitseden.ttf` фонтын эх сурвалж.
 
 ---
 

@@ -126,8 +126,8 @@ Offizielles Apple-Standard `Mongolian.bundle` und Installationsprogramm für mac
 6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
 
 # 🍏 macOS (v1.0.3)
-aef1846dcbb065d6d1613407c479d62672c6725eb420ff531337a7fb000d2d58  Mongolian-Keyboard-macOS-v1.0.3.dmg
-e4b690864179df357b0f45db72c9bffaf461cf402af0541d194d57fa87c71626  Mongolian-Keyboard-macOS-v1.0.3.zip
+16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2  Mongolian-Keyboard-macOS-v1.0.3.dmg
+e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
 f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
@@ -158,7 +158,7 @@ Dieses Projekt baut auf der wertvollen Vorarbeit früherer Open-Source-Initiativ
 * **SIL International**:
   - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode-Tastaturstandards und das Hilfsprogramm `Keyboard Installer.app`.
 * **Dusal.net (D. Dusal)**:
-  - [Dusal.net / Dusal Bicheech](http://dusal.blogmn.net/99944/) — Pionierarbeit bei phonetischen mongolischen Tastaturlayouts und macOS-Keylayouts/Schriften für die traditionelle mongolische Schrift. Herzlichen Dank an D. Dusal für die Grundlagen der digitalen mongolischen Tastaturbelegung.
+  - [Dusal.net](http://dusal.blogmn.net/99944/) — Quelle der traditionellen mongolischen Schriftart (`cmdashitseden.ttf`).
 
 ---
 
