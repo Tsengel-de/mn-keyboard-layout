@@ -9,6 +9,11 @@
 
 **Sprachen:** [🇲🇳 Монгол](README.md) • [🇬🇧 English](README.en.md) • [🇩🇪 Deutsch](README.de.md)
 
+> [!IMPORTANT]
+> 🌿 **Nicht-kommerziell • Gemeingut**  
+> **Ehrenamtlich für das Gemeinwohl geschaffen.**  
+> **Für jeden frei zugänglich** — Niemand verdient hiermit Geld und es fallen keinerlei Gebühren an. Rein in persönlicher Freizeit als freies Open-Source-Gemeingut zur Förderung der mongolischen Sprache weltweit entwickelt.
+
 > **„Auf Mongolisch zu tippen sollte niemals mühsam, langsam oder frustrierend sein.“**  
 > Eine einheitliche, ergonomische Hochgeschwindigkeits-Tastatursuite für Mongolinnen und Mongolen weltweit, Diaspora-Gemeinschaften, Entwickler und Sprachbegeisterte – optimiert für US-QWERTY- und deutsche QWERTZ-Tastaturen.
 

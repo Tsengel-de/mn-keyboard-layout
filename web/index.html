@@ -495,6 +495,17 @@
       color: var(--primary);
       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
     }
+    .community-banner {
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #166534;
+    }
   </style>
 </head>
 <body>
@@ -511,8 +522,12 @@
 
   <header>
     <h1 id="i18n-title">🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
-    <p id="i18n-subtitle">Орчин Үеийн Эргономик • Сонгодог Кирилл • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong></p>
+    <p id="i18n-subtitle">Арилжааны бус • Нийтийн хүртээл • Хүн бүхэнд нээлттэй | Зохиогч: <strong>Цэнгэл (Tsengel / Bachka)</strong></p>
   </header>
+
+  <div class="community-banner">
+    <p id="i18n-community-banner">🌿 <strong>Арилжааны бус • Нийтийн хүртээл.</strong> Нийтийн тусын тулд сайн дураар бүтээв. <strong>Хүн бүхэнд нээлттэй</strong> — хэн ч үүнээс мөнгө олдоггүй, хэнээс ч төлбөр шаарддаггүй.</p>
+  </div>
 
   <div class="controls-wrapper">
     <div class="controls-row">
@@ -593,10 +608,10 @@
       </div>
     </div>
     <div class="trust-item">
-      <span class="trust-icon">📄</span>
+      <span class="trust-icon">🌱</span>
       <div>
-        <strong id="i18n-trust-mit-title">100% Үнэ Төлбөргүй • Нээлттэй Эх</strong>
-        <small id="i18n-trust-mit-sub">Ашгийн бус, сайн дурын олон нийтийн бүтээл (MIT License)</small>
+        <strong id="i18n-trust-mit-title">Арилжааны бус • Нийтийн хүртээл</strong>
+        <small id="i18n-trust-mit-sub">Хүн бүхэнд нээлттэй • Сайн дурын бүтээл</small>
       </div>
     </div>
   </div>
@@ -1206,8 +1221,9 @@ const I18N = {
     trustZeroSub: "Дата цуглуулахгүй, Keylogger-гүй",
     trustNativeTitle: "Native OS Layout Driver",
     trustNativeSub: "Цэвэр үйлдлийн системийн драйвер",
-    trustMitTitle: "100% Үнэ Төлбөргүй • Нээлттэй Эх",
-    trustMitSub: "Ашгийн бус, сайн дурын бүтээл (MIT License)",
+    trustMitTitle: "Арилжааны бус • Нийтийн хүртээл",
+    trustMitSub: "Хүн бүхэнд нээлттэй • Сайн дурын бүтээл",
+    communityBanner: "🌿 <strong>Арилжааны бус • Нийтийн хүртээл.</strong> Нийтийн тусын тулд сайн дураар бүтээв. <strong>Хүн бүхэнд нээлттэй</strong> — хэн ч үүнээс мөнгө олдоггүй, хэнээс ч төлбөр шаарддаггүй.",
     dlHeader: "📦 Суулгац Татах (Direct Downloads)",
     dlBadgePrefix: "Таны төхөөрөмж: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
@@ -1260,8 +1276,9 @@ const I18N = {
     trustZeroSub: "No data collection, no keyloggers",
     trustNativeTitle: "Native OS Layout Driver",
     trustNativeSub: "Pure OS-level symbols, no background apps",
-    trustMitTitle: "100% Free & Open Source",
-    trustMitSub: "Community public good (MIT License)",
+    trustMitTitle: "Non-Commercial • Public Commons",
+    trustMitSub: "Freely open to everyone • Volunteer work",
+    communityBanner: "🌿 <strong>Non-Commercial • Public Commons.</strong> Voluntarily created for the public good. <strong>Freely open to everyone</strong> — nobody profits, nobody is ever charged.",
     dlHeader: "📦 Download Installers (Direct Downloads)",
     dlBadgePrefix: "Your Device: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
@@ -1314,8 +1331,9 @@ const I18N = {
     trustZeroSub: "Keine Datenerfassung, kein Keylogger",
     trustNativeTitle: "Nativer OS-Tastaturtreiber",
     trustNativeSub: "Reine OS-Treiberdateien, keine Hintergrund-Apps",
-    trustMitTitle: "100% Kostenlos & Open Source",
-    trustMitSub: "Gemeinnütziges Werk (MIT-Lizenz)",
+    trustMitTitle: "Nicht-kommerziell • Gemeingut",
+    trustMitSub: "Für jeden frei zugänglich • Ehrenamt",
+    communityBanner: "🌿 <strong>Nicht-kommerziell • Gemeingut.</strong> Ehrenamtlich für das Gemeinwohl geschaffen. <strong>Für jeden frei zugänglich</strong> — niemand verdient Geld, keine Gebühren.",
     dlHeader: "📦 Installationspakete herunterladen",
     dlBadgePrefix: "Ihr Betriebssystem: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
@@ -1362,6 +1380,7 @@ function setLanguage(lang) {
   const map = {
     'i18n-title': t.title,
     'i18n-subtitle': t.subtitle,
+    'i18n-community-banner': t.communityBanner,
     'i18n-lbl-edition': t.labelEdition,
     'btn-mode-cyrillic': t.btnCyrillic,
     'btn-mode-bichig': t.btnBichig,

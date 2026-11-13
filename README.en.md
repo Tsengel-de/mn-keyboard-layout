@@ -9,6 +9,11 @@
 
 **Languages:** [🇲🇳 Монгол](README.md) • [🇬🇧 English](README.en.md) • [🇩🇪 Deutsch](README.de.md)
 
+> [!IMPORTANT]
+> 🌿 **Non-Commercial • Public Commons**  
+> **Voluntarily created for the public good.**  
+> **Freely open to everyone** — Nobody profits from this work, and nobody is ever charged. Created purely during personal free time as an open-source public good to empower Mongolian typing worldwide.
+
 > **"Typing in Mongolian should never be slow, frustrating, or complicated."**  
 > A unified, high-speed, ergonomic keyboard layout suite designed for Mongolians worldwide, diaspora communities, developers, and language learners typing on US QWERTY and German QWERTZ keyboards.
 
