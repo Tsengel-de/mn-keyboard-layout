@@ -57,7 +57,7 @@ rsync -avz --delete \
 
 # 5. Verify live HTTP endpoint
 echo "[4/4] Verifying live mn.tsengel.de response..."
-LIVE_HASH=$(curl -sSL --max-time 10 https://mn.tsengel.de/downloads/Mongolian-Keyboard-macOS.dmg | sha256sum | awk '{print $1}')
+LIVE_HASH=$(curl -sSL --max-time 60 https://mn.tsengel.de/downloads/Mongolian-Keyboard-macOS.dmg | sha256sum | awk '{print $1}')
 LOCAL_HASH=$(sha256sum "${REPO_ROOT}/web/downloads/Mongolian-Keyboard-macOS.dmg" | awk '{print $1}')
 
 echo "------------------------------------------------------------------"
