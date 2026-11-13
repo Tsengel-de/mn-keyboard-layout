@@ -3,7 +3,7 @@
 Generate crisp, high-resolution vector and raster keyboard layout diagrams.
 With automatic font fallback for Classical Mongolian Script (Noto Sans Mongolian)
 and vector Mongolian flag badge to eliminate all emoji square tofu.
-Author: Tsengel (tsengel.de)
+Author: Bachka (Tsengel) (tsengel.de)
 """
 
 import os
@@ -18,40 +18,33 @@ FONT_REG = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 FONT_BICHIG = "/usr/share/fonts/truetype/noto/NotoSansMongolian-Regular.ttf"
 
-# Layout Definitions
-ERGO_ROW1 = [
+# Bachka mn-custom Layout Definitions (All 35 letters on Layer 1 & 2)
+BACHKA_ROW1 = [
     ('~', 'ё', '~', False), ('!', '1', '№', False), ('@', '2', '²', False), ('#', '3', '³', False),
     ('$', '4', '₮', True), ('%', '5', '€', False), ('^', '6', '¼', False), ('&', '7', '½', False),
-    ('*', '8', '¾', False), ('(', '9', '‘', False), (')', '0', '’', False), ('_', '-', '—', False),
+    ('*', '8', '¾', False), ('(', '9', '‘', False), (')', '0', '’', False), ('_', '-', '¥', False),
     ('+', '=', '×', False)
 ]
 
-ERGO_ROW2 = [
-    ('Ө', 'ө', 'ъ', True), ('Ү', 'ү', 'ь', True), ('Э', 'э', '€', False), ('Р', 'р', '®', False),
-    ('Т', 'т', '₮', True), ('Й', 'й', 'е', False), ('У', 'у', '„', False), ('И', 'и', '“', False),
-    ('О', 'о', '”', False), ('П', 'п', ';', False), ('{', '[', '«', True), ('}', ']', '»', True),
-    ('|', '\\', '|', True)
-]
-
-ERGO_ROW3 = [
-    ('А', 'а', 'μ', False), ('С', 'с', '£', False), ('Д', 'д', '«', True), ('Ф', 'ф', '»', True),
-    ('Г', 'г', '{', False), ('Х', 'х', '<', False), ('Ж', 'ж', '>', False), ('К', 'к', '}', False),
-    ('Л', 'л', '№', False), (':', ';', 'щ', True), ('Ы', 'ы', "'", False)
-]
-
-ERGO_ROW4 = [
-    ('З', 'з', '—', False), ('Ш', 'ш', 'щ', False), ('Ц', 'ц', '©', False), ('В', 'в', '–', False),
-    ('Б', 'б', '°', False), ('Н', 'н', '·', False), ('М', 'м', '±', False), ('Ч', 'ч', ',', False),
-    ('Ю', 'ю', '.', False), ('Я', 'я', '?', False)
-]
-
-CLASSIC_ROW2 = [
-    ('Ъ', 'ъ', "'", False), ('Ь', 'ь', '`', False), ('Э', 'э', '€', False), ('Р', 'р', '®', False),
+BACHKA_ROW2 = [
+    ('Ъ', 'ъ', "'", True), ('Ь', 'ь', '`', True), ('Э', 'э', '€', False), ('Р', 'р', '®', False),
     ('Т', 'т', '₮', True), ('Е', 'е', '™', False), ('У', 'у', '„', False), ('И', 'и', '“', False),
-    ('О', 'о', '”', False), ('П', 'п', ';', False), ('Ө', 'ө', '[', True), ('Ү', 'ү', ']', True),
-    ('|', '\\', '|', True)
+    ('О', 'о', '”', False), ('П', 'п', ';', True), ('Ө', 'ө', '[', True), ('Ү', 'ү', ']', True)
 ]
 
+BACHKA_ROW3 = [
+    ('А', 'а', 'μ', False), ('С', 'с', '£', False), ('Д', 'д', '«', True), ('Ф', 'ф', '»', True),
+    ('Г', 'г', '{', True), ('Х', 'х', '<', False), ('Ж', 'ж', '>', False), ('К', 'к', '}', True),
+    ('Л', 'л', '№', False), ('Щ', 'щ', ':', True), ('Ы', 'ы', '…', True), ('Й', 'й', '\\', True)
+]
+
+BACHKA_ROW4 = [
+    ('З', 'з', '—', False), ('Ш', 'ш', '–', False), ('Ц', 'ц', '©', False), ('В', 'в', '', False),
+    ('Б', 'б', '', False), ('Н', 'н', '<', False), ('М', 'м', '>', False), ('Ч', 'ч', ',', True),
+    ('Ю', 'ю', '.', True), ('Я', 'я', '?', True)
+]
+
+# Classical Mongolian Script (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
 BICHIG_ROW1 = [
     ('~', '᠄', '`', False), ('!', '᠑', '1', False), ('@', '᠒', '2', False), ('#', '᠓', '3', False),
     ('₮', '᠔', '4', True), ('%', '᠕', '5', False), ('^', '᠖', '6', False), ('&', '᠗', '7', False),
@@ -60,22 +53,21 @@ BICHIG_ROW1 = [
 ]
 
 BICHIG_ROW2 = [
-    ('Q', 'ᠥ', 'Ö', True), ('W', 'ᠦ', 'Ü', True), ('E', 'ᠡ', 'E', True), ('R', 'ᠷ', 'R', False),
-    ('T', 'ᠲ', 'T', True), ('Y', 'ᠶ', 'Y', False), ('U', 'ᠤ', 'U', True), ('I', 'ᠢ', 'I', False),
-    ('O', 'ᠣ', 'O', False), ('P', 'ᠫ', 'P', False), ('{', '[', '᠈', True), ('}', ']', '᠉', True),
-    ('|', '\\', '', True)
+    ('MVS', 'FVS1', "'", True), ('FVS3', 'FVS2', '`', True), ('E', 'ᠡ', '€', True), ('R', 'ᠷ', '', False),
+    ('T', 'ᠲ', '₮', True), ('Y', 'ᠶ', '', False), ('U', 'ᠤ', '', True), ('I', 'ᠢ', '', False),
+    ('O', 'ᠣ', '', False), ('P', 'ᠫ', ';', False), ('{', 'ᠥ', '[', True), ('}', 'ᠦ', ']', True)
 ]
 
 BICHIG_ROW3 = [
-    ('A', 'ᠠ', 'A', False), ('S', 'ᠰ', 'S', False), ('D', 'ᠳ', 'D', False), ('F', 'ᠹ', 'F', False),
-    ('G', 'ᠭ', 'G', False), ('H', 'ᠬ', 'H', False), ('J', 'ᠵ', 'J', False), ('K', 'ᠺ', 'K', False),
-    ('L', 'ᠯ', 'L', False), (':', ';', '', True), ('"', "'", 'MVS', True)
+    ('A', 'ᠠ', '', False), ('S', 'ᠰ', '', False), ('D', 'ᠳ', '᠈', True), ('F', 'ᠹ', '᠉', True),
+    ('G', 'ᠭ', '{', True), ('H', 'ᠬ', '<', False), ('J', 'ᠵ', '>', False), ('K', 'ᠺ', '}', True),
+    ('L', 'ᠯ', '№', False), (':', ';', ':', False), ('"', "'", 'MVS', True), ('|', '\\', '\\', True)
 ]
 
 BICHIG_ROW4 = [
-    ('Z', 'ᠽ', 'Z', False), ('X', 'ᠱ', 'Sh', False), ('C', 'ᠴ', 'Ch', False), ('V', 'ᠸ', 'V', False),
-    ('B', 'ᠪ', 'B', False), ('N', 'ᠨ', 'N', False), ('M', 'ᠮ', 'M', False), ('<', '᠂', ',', True),
-    ('>', '᠃', '.', True), ('?', '/', '', True)
+    ('Z', 'ᠽ', '—', False), ('X', 'ᠱ', '–', False), ('C', 'ᠼ', '©', False), ('V', 'ᠸ', '', False),
+    ('B', 'ᠪ', '', False), ('Ag', 'ᠨ', 'ᠩ', True), ('M', 'ᠮ', '', False), ('<', 'ᠴ', ',', True),
+    ('>', '᠃', '.', True), ('?', '/', '?', False)
 ]
 
 def is_mongol_script(text):
@@ -93,7 +85,6 @@ def draw_flag_badge(draw, x, y, h=34):
     draw.rectangle(r1, fill='#da2032')
     draw.rectangle(b1, fill='#0055a5')
     draw.rectangle(r2, fill='#da2032')
-    # Outline
     draw.rectangle([x, y, x + w_stripe * 3, y + h], outline='#ffffff', width=1)
 
 def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_filename='keyboard.png'):
@@ -114,7 +105,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     # Draw flag badge
     draw_flag_badge(draw, 60, 42, h=34)
 
-    # Title & Subtitle (WITHOUT raw flag emoji to avoid square tofu)
+    # Title & Subtitle
     draw.text((125, 40), title, fill='#38bdf8', font=font_title)
     draw.text((60, 90), subtitle, fill='#94a3b8', font=font_sub)
 
@@ -189,23 +180,32 @@ def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bich
     if mode == 'altgr' and alt:
         bg = '#3b2505'
         border = '#d97706'
+    elif mode == 'shift':
+        bg = '#1e3a5f'
+        border = '#2563eb'
 
     draw.rounded_rectangle([x, y, x + w, y + h], radius=10, fill=bg, outline=border, width=2)
 
-    # Top text
+    # Top text (Shift symbol)
     top_color = '#38bdf8' if mode == 'shift' else '#94a3b8'
     used_top_font = f_top_bichig if is_mongol_script(top) else f_top
     draw.text((x + 12, y + 10), top, fill=top_color, font=used_top_font)
 
-    # Alt text
+    # Alt text (AltGr / Option symbol)
     alt_color = '#fbbf24' if mode == 'altgr' else '#b45309'
     if alt:
         draw.text((x + w - 38, y + 10), alt, fill=alt_color, font=f_alt)
 
-    # Main text
-    main_color = '#ffffff' if mode == 'normal' else '#cbd5e1'
-    char_to_draw = alt if (mode == 'altgr' and alt) else main
-    fill_color = '#fbbf24' if (mode == 'altgr' and alt) else main_color
+    # Main text (Base symbol)
+    char_to_draw = main
+    fill_color = '#ffffff'
+    if mode == 'shift':
+        char_to_draw = top
+        fill_color = '#38bdf8'
+    elif mode == 'altgr' and alt:
+        char_to_draw = alt
+        fill_color = '#fbbf24'
+
     used_main_font = f_main_bichig if is_mongol_script(char_to_draw) else f_main
 
     # Center placement
@@ -238,37 +238,37 @@ def draw_special_key(draw, x, y, w, h, label, font, is_accent=False, is_shift=Fa
     draw.text((x + 18, y + 42), label, fill=text_color, font=font)
 
 if __name__ == '__main__':
-    # 1. Modern Ergonomic
+    # 1. Bachka Cyrillic - Base (Normal) Layer
     render_layout(
-        "Mongolian Modern Ergonomic Keyboard Layout (Normal & Shift)",
-        "Q = Ө, W = Ү | Native Code Brackets [ ] { } \\ | Preserved | Author: Tsengel (tsengel.de)",
-        ERGO_ROW1, ERGO_ROW2, ERGO_ROW3, ERGO_ROW4,
+        "Mongolian Cyrillic Keyboard Layout - Base Layer (Үндсэн үе)",
+        "Бүх 35 үсэг 1-р үе дээр шууд: Q=ъ, W=ь, E=э, Y=е, [=ө, ]=ү, ;=щ, '=ы, \\=й | Зохиогч: Bachka (tsengel.de)",
+        BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
         mode='normal',
-        out_filename="layout-ergonomic-normal.png"
+        out_filename="layout-cyrillic-normal.png"
     )
 
-    # 2. Modern Ergonomic (AltGr)
+    # 2. Bachka Cyrillic - Shift Layer
     render_layout(
-        "Mongolian Modern Ergonomic - AltGr Extension Layer",
-        "AltGr + T / 4 = ₮ (Tugrik) | AltGr + D/F = « » | AltGr + Q/W = Ъ/Ь | AltGr + Space = \\u202F (NNBSP)",
-        ERGO_ROW1, ERGO_ROW2, ERGO_ROW3, ERGO_ROW4,
+        "Mongolian Cyrillic Keyboard Layout - Shift Layer (Shift дарсан үе)",
+        "Том үсгүүд: Ъ, Ь, Э, Е, Ө, Ү, Щ, Ы, Й, Ё болон тусгай тэмдэгтүүд | Зохиогч: Bachka (tsengel.de)",
+        BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
+        mode='shift',
+        out_filename="layout-cyrillic-shift.png"
+    )
+
+    # 3. Bachka Cyrillic - AltGr / Option Layer
+    render_layout(
+        "Mongolian Cyrillic Keyboard Layout - AltGr / Option Layer (Програмист & Тэмдэгт үе)",
+        "AltGr: [ ] { } \\ | ; : ` ' \" ₮ € « » — – … | Зохиогч: Bachka (tsengel.de)",
+        BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
         mode='altgr',
-        out_filename="layout-ergonomic-altgr.png"
-    )
-
-    # 3. Classic Tsengel Layout
-    render_layout(
-        "Mongolian Classic Tsengel Layout (2021 Edition)",
-        "Brackets [ = ө, ] = ү | Q = ъ, W = ь | Author: Tsengel (tsengel.de)",
-        ERGO_ROW1, CLASSIC_ROW2, ERGO_ROW3, ERGO_ROW4,
-        mode='normal',
-        out_filename="layout-classic-normal.png"
+        out_filename="layout-cyrillic-altgr.png"
     )
 
     # 4. Classical Mongol Bichig
     render_layout(
-        "Classical Mongolian Script Layout (Худам Монгол Бичиг)",
-        "Q=ᠥ(Ö), W=ᠦ(Ü), E=ᠡ(E), O=ᠣ(O), U=ᠤ(U), I=ᠢ(I), A=ᠠ(A) | Shift+Space = \\u202F (NNBSP) | Author: Tsengel",
+        "Classical Mongolian Script Layout - Bachka Phonetics (Худам Монгол Бичиг)",
+        "[ = ᠥ (Ö), ] = ᠦ (Ü), A=ᠠ, E=ᠡ, I=ᠢ, O=ᠣ, U=ᠤ | Shift+Space = \\u202F (NNBSP) | Зохиогч: Bachka (tsengel.de)",
         BICHIG_ROW1, BICHIG_ROW2, BICHIG_ROW3, BICHIG_ROW4,
         mode='normal',
         out_filename="layout-bichig.png"

@@ -3,7 +3,7 @@
 
 [![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-blue.svg)](LICENSE)
 [![Plattform](https://img.shields.io/badge/Plattform-Linux%20|%20macOS%20|%20Windows%20|%20Web-green.svg)]()
-[![Editionen](https://img.shields.io/badge/Editionen-Modern%20|%20Klassisch%20|%20Bichig-purple.svg)]()
+[![Editionen](https://img.shields.io/badge/Editionen-Kyrillisch%20|%20Traditionelle%20Schrift-purple.svg)]()
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 [![Autor: Tsengel](https://img.shields.io/badge/Autor-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
 
@@ -14,25 +14,25 @@
 
 ---
 
-## 🗺️ Layout-Übersichten
+## 🗺️ Layout-Übersichten (Alle Ebenen visualisiert)
 
-### 1. Moderne Edition (Empfohlen ⭐)
-> **Grundprinzip**: `Q = Ө`, `W = Ү`. Alle mongolischen Vokale befinden sich direkt in den zentralen Grund- und Oberreihen für flüssiges Zehnfingerschreiben. Programmier- und Textklammern (`[ ]`, `{ }`, `\`, `|`) bleiben vollständig nativ erreichbar, ohne das Tastaturlayout umschalten zu müssen.
+### 1. Basisebene (Alle 35 mongolischen kyrillischen Buchstaben direkt erreichbar)
+> **Grundprinzip**: Kein AltGr oder Option erforderlich. `Q = ъ`, `W = ь`, `Y = е`, `[ = ө`, `] = ү`, `; = щ`, `' = ы`, `\ = й`, `` ` = ё `` liegen direkt auf Ebene 1.
 
-![Modernes ergonomisches Layout](docs/images/layout-ergonomic-normal.png)
+![Mongolisches Kyrillisch Basisebene](docs/images/layout-cyrillic-normal.png)
 
-### 2. AltGr-Erweiterungsebene (₮, « », —, \u202F)
-> Das Halten der **rechten Alt-Taste (AltGr)** bzw. der **macOS Wahltaste (Option)** bietet sofortigen Zugriff auf die offizielle mongolische Typografie: das Tugrik-Währungssymbol (**`₮`**), typografische Anführungszeichen (**`« »`**), den Gedankenstrich (**`—`**) sowie das schmale geschützte Leerzeichen (**`\u202F` NNBSP**) für grammatikalische Suffixe der traditionellen Schrift.
+### 2. Shift-Ebene (Großbuchstaben & Satzzeichen)
+> Großbuchstaben (**`Ө, Ү, Ъ, Ь, Е, Щ, Ы, Й, Ё`**) und Sonderzeichen.
 
-![AltGr-Erweiterungsebene](docs/images/layout-ergonomic-altgr.png)
+![Mongolisches Kyrillisch Shift-Ebene](docs/images/layout-cyrillic-shift.png)
 
-### 3. Klassische Edition (Original von 2021)
-> Phonetisches Layout mit Vokalpaarung: `[` $\rightarrow$ `ө`, `]` $\rightarrow$ `ү`, `Q` $\rightarrow$ `ъ`, `W` $\rightarrow$ `ь`.
+### 3. AltGr- / Option-Erweiterungsebene (Programmierklammern & offizielle Symbole)
+> Das Halten der **rechten Alt-Taste (AltGr)** bzw. der **macOS Wahltaste (Option)** bietet sofortigen Zugriff auf Programmierklammern (**`[ ] { } \ | ; : ' "`**), das offizielle Tugrik-Währungssymbol (**`₮`**), Euro (**`€`**), Anführungszeichen (**`« »`**) und den Gedankenstrich (**`—`**).
 
-![Klassisches Layout](docs/images/layout-classic-normal.png)
+![Mongolisches Kyrillisch AltGr-Ebene](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Traditionelle mongolische Schrift (Hudam Mongol Bichig)
-> Nutzt dieselben Fingergewohnheiten wie das kyrillische Layout mit 100% übereinstimmendem Muskelgedächtnis: `Q` = `ᠥ` (Ö), `W` = `ᠦ` (Ü), `E` = `ᠡ` (E), `O` = `ᠣ` (O), `U` = `ᠤ` (U), `I` = `ᠢ` (I), `A` = `ᠠ` (A). Die Ziffernreihe tippt direkt die traditionellen mongolischen Ziffern (`᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙`).
+### 4. Traditionelle mongolische Schrift (Hudam Mongol Bichig — Bachka Phonetik)
+> Phonetisches Layout mit 100% übereinstimmendem Muskelgedächtnis: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. Die Ziffernreihe tippt traditionelle Ziffern (᠐-᠙). `Umschalt + Leertaste` = **NNBSP** (`\u202F`).
 
 ![Traditionelle mongolische Schrift](docs/images/layout-bichig.png)
 
@@ -40,21 +40,30 @@
 
 ## ⌨️ Tastenbelegung & Referenztabelle
 
-| Taste | Moderne Edition | Klassische Edition | Umschalt + Taste (Modern) | AltGr (Rechte Alt-Taste) |
-|:---:|:---:|:---:|:---:|:---:|
-| `Q` | **ө** (Weiches O) | **ъ** | **Ө** | **ъ** (Härtezeichen) |
-| `W` | **ү** (Weiches U) | **ь** | **Ү** | **ь** (Weichheitszeichen) |
-| `E` | **э** | **э** | **Э** | € (Euro) |
-| `T` | **т** | **т** | **Т** | **₮ (Tugrik \u20AE)** |
-| `Y` | **й** | **е** | **Й** | **е** |
-| `[` | **[** (Eckige Klammer) | **ө** | **{** (Geschweifte Klammer) | **«** (Anführungszeichen links) |
-| `]` | **]** (Eckige Klammer) | **ү** | **}** (Geschweifte Klammer) | **»** (Anführungszeichen rechts) |
-| `\` | **\\** (Backslash) | **й** | **\|** (Pipe-Symbol) | **\|** |
-| `;` | **;** | **щ** | **:** | **щ** |
-| `'` | **ы** | **ы** | **Ы** | **'** / **"** |
-| `4` | 4 | 4 | $ | **₮ (Tugrik)** |
-| `-` | - | - | _ | **— (Gedankenstrich)** |
-| `Leertaste` | Leerzeichen | Leerzeichen | Leerzeichen | **\u202F (NNBSP Suffix-Leerzeichen)** |
+| Taste | Basisebene (Ebene 1) | Shift-Ebene (Ebene 2) | AltGr / Option (Ebene 3) | Anmerkung |
+|:---:|:---:|:---:|:---:|:---|
+| `Q` | **ъ** | **Ъ** | `'` | Direkt auf Basisebene |
+| `W` | **ь** | **Ь** | `` ` `` | Direkt auf Basisebene |
+| `E` | **э** | **Э** | `€` | Euro-Zeichen |
+| `R` | **р** | **Р** | `®` | Registriert |
+| `T` | **т** | **Т** | **₮ (U+20AE)** | Tugrik |
+| `Y` | **е** | **Е** | `™` | **"е / Е" liegt hier!** |
+| `[` | **ө** | **Ө** | `[` | **ө auf Basis, [ auf AltGr** |
+| `]` | **ү** | **Ү** | `]` | **ү auf Basis, ] auf AltGr** |
+| `;` | **щ** | **Щ** | `:` | **щ auf Basis, : auf AltGr** |
+| `'` | **ы** | **Ы** | `…` | **ы auf Basis, … auf AltGr** |
+| `\` | **й** | **Й** | `\` | **й auf Basis, \ auf AltGr** |
+| `` ` `` | **ё** | **Ё** | `~` | **ё auf Basis, ~ auf AltGr** |
+| `G` | **г** | **Г** | `{` | Geschweifte Klammer links |
+| `K` | **к** | **К** | `}` | Geschweifte Klammer rechts |
+| `D` | **д** | **Д** | `«` | Anführungszeichen links |
+| `F` | **ф** | **Ф** | `»` | Anführungszeichen rechts |
+| `4` | 4 | $ | **₮** | Tugrik |
+| `-` | - | _ | **—** | Gedankenstrich |
+| `,` | **ч** | **Ч** | `,` | **ч auf Basis, Komma auf AltGr** |
+| `.` | **ю** | **Ю** | `.` | **ю auf Basis, Punkt auf AltGr** |
+| `/` | **я** | **Я** | `?` | **я auf Basis, Fragezeichen auf AltGr** |
+| `Leertaste` | Leerzeichen | Leerzeichen | `\u202F` | **NNBSP (Schmales geschütztes Leerzeichen)** |
 
 ---
 
@@ -68,16 +77,14 @@ cd linux
 sudo ./install.sh
 ```
 
-Nach der Installation stehen alle 3 Editionen sofort zur Verfügung:
-1. **Standard**: `Mongolian (Modern Ergonomic)` (`Q=Ө, W=Ү`)
-2. **Klassisch**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
-3. **Bichig**: `Mongolian Script (Bichig)` (Traditionelle mongolische Schrift)
+Nach der Installation stehen beide Layouts sofort zur Verfügung:
+1. **Standard**: `Mongolian Cyrillic (Bachka)` — Alle 35 Buchstaben direkt erreichbar (`Q=ъ, W=ь, Y=е, [=ө, ]=ү`)
+2. **Traditionelle Schrift**: `Mongolian Script (Bachka)` — Phonetische Zuordnung (`[=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...`)
 
 * **Terminal-Umschaltung (X11)**:
-  - `setxkbmap mn` (Moderne Edition)
-  - `setxkbmap mn -variant classic` (Klassische Edition)
+  - `setxkbmap mn` (Mongolisches Kyrillisch)
   - `setxkbmap mn -variant bichig` (Traditionelle Schrift)
-* **Desktop (GNOME / KDE / Ubuntu)**:
+* **Desktop (GNOME / Ubuntu / Fedora)**:
   - Öffnen Sie `Einstellungen` $\rightarrow$ `Tastatur` $\rightarrow$ `Eingabequellen` $\rightarrow$ `+` (Hinzufügen) $\rightarrow$ `Mongolisch`. Umschalten jederzeit mit **`Super (Win) + Leertaste`**.
 * **Deinstallation / Wiederherstellung**: `cd linux && sudo ./uninstall.sh`.
 
@@ -122,16 +129,16 @@ Offizielles Apple-Standard `Mongolian.bundle` und Installationsprogramm für mac
 
 ```text
 # 🪟 Windows (v1.0.3)
-72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
-6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
+bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
+3aeb1527f9b1b77ef6a0e6f74137be12ad974f88d891084f5bba100895b64f46  Mongolian-Keyboard-Windows-v1.0.3.zip
 
 # 🍏 macOS (v1.0.3)
-16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2  Mongolian-Keyboard-macOS-v1.0.3.dmg
-e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159  Mongolian-Keyboard-macOS-v1.0.3.zip
+968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3  Mongolian-Keyboard-macOS-v1.0.3.dmg
+1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
-f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
-438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4  install-linux.sh
+51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe  Mongolian-Keyboard-Linux-v1.0.3.zip
+bb05fa5f7db36133bbff54c190f4fbc069466efdcd2839c3a74956cbe7bf4c59  install-linux.sh
 ```
 
 ---

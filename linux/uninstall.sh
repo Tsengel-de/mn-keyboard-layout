@@ -17,6 +17,11 @@ if [ -f "${BACKUP_FILE}" ]; then
     echo "Restoring from backup: ${BACKUP_FILE} -> ${TARGET_FILE}"
     sudo cp "${BACKUP_FILE}" "${TARGET_FILE}"
     sudo chmod 644 "${TARGET_FILE}"
+    EVDEV_XML="/usr/share/X11/xkb/rules/evdev.xml"
+    if [ -f "${EVDEV_XML}.orig.backup" ]; then
+        echo "Restoring ${EVDEV_XML} from backup..."
+        sudo cp "${EVDEV_XML}.orig.backup" "${EVDEV_XML}"
+    fi
     if [ -d "/var/lib/xkb" ]; then
         sudo rm -rf /var/lib/xkb/*.xkm 2>/dev/null || true
     fi

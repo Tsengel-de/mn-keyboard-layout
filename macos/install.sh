@@ -17,7 +17,9 @@ echo "=========================================================="
 mkdir -p "${TARGET_LAYOUT_DIR}"
 mkdir -p "${TARGET_FONT_DIR}"
 
-echo "1. Installing Mongolian.bundle & standalone keylayouts to ${TARGET_LAYOUT_DIR}..."
+echo "1. Cleaning legacy layouts & installing Mongolian.bundle & standalone keylayouts to ${TARGET_LAYOUT_DIR}..."
+rm -rf "${TARGET_LAYOUT_DIR}/Mongolian (qwerty).keylayout" "${TARGET_LAYOUT_DIR}/Mongolian (qwerty).icns" \
+       "${TARGET_LAYOUT_DIR}/MongolianCyrillicErgonomic.keylayout" "${TARGET_LAYOUT_DIR}/MongolianCyrillicErgonomic.icns" 2>/dev/null || true
 cp -Rf "${SCRIPT_DIR}/Mongolian.bundle" "${TARGET_LAYOUT_DIR}/" || true
 cp -f "${SCRIPT_DIR}"/*.keylayout "${TARGET_LAYOUT_DIR}/" 2>/dev/null || true
 cp -f "${SCRIPT_DIR}"/*.icns "${TARGET_LAYOUT_DIR}/" 2>/dev/null || true
@@ -33,6 +35,7 @@ echo "----------------------------------------------------------"
 echo "To activate on macOS:"
 echo "  1. Open System Settings -> Keyboard -> Text Input (Input Sources) -> Edit."
 echo "  2. Click '+' and select 'Mongolian' (or look under 'Others')."
-echo "  3. Add 'Mongolian Cyrillic Ergonomic (Tsengel)'."
-echo "  4. If it does not appear immediately, log out and log back in."
+echo "  3. Add 'Mongolian Cyrillic (Bachka)' and 'Mongolian Script (Bachka)'."
+echo "  4. Switch between them instantly with Ctrl+Space or Globe 🌐 key."
+echo "  5. If it does not appear immediately, log out and log back in."
 echo "=========================================================="

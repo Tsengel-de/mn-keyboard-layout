@@ -9,46 +9,34 @@
 	<key>CFBundleName</key>
 	<string>Mongolian</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.1</string>
+	<string>2.2</string>
 	<key>CFBundleVersion</key>
-	<string>2.1</string>
+	<string>2.2</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 
-	<key>KLInfo_Mongolian Cyrillic Ergonomic (Tsengel)</key>
+	<key>KLInfo_Mongolian Cyrillic (Bachka)</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
 		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.mongolian.ergonomic</string>
+		<string>org.sil.ukelele.keyboardlayout.mongolian.cyrillic</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-US</string>
+		<string>mn-Cyrl</string>
 	</dict>
 
-	<key>KLInfo_Mongolian (qwerty)</key>
+	<key>KLInfo_Mongolian Script (Bachka)</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
 		<key>TISIconIsTemplate</key>
 		<false/>
 		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.mongolian.mongolian(qwerty)</string>
+		<string>org.sil.ukelele.keyboardlayout.mongolian.script</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-US</string>
-	</dict>
-
-	<key>KLInfo_Mongolian (traditional)</key>
-	<dict>
-		<key>TICapsLockLanguageSwitchCapable</key>
-		<false/>
-		<key>TISIconIsTemplate</key>
-		<false/>
-		<key>TISInputSourceID</key>
-		<string>org.sil.ukelele.keyboardlayout.mongolian.mongolian(traditional)</string>
-		<key>TISIntendedLanguage</key>
-		<string>cmg-Mong</string>
+		<string>mn-Mong</string>
 	</dict>
 </dict>
 </plist>

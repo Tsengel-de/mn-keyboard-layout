@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20|%20macOS%20|%20Windows%20|%20Web-green.svg)]()
-[![Editions](https://img.shields.io/badge/Editions-Modern%20|%20Classic%20|%20Bichig-purple.svg)]()
+[![Editions](https://img.shields.io/badge/Editions-Cyrillic%20|%20Traditional%20Script-purple.svg)]()
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 [![Author: Tsengel](https://img.shields.io/badge/Author-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
 
@@ -14,25 +14,25 @@
 
 ---
 
-## 🗺️ Layout Diagrams
+## 🗺️ Layout Diagrams (All Layers Illustrated)
 
-### 1. Modern Edition (Recommended ⭐)
-> **Key concept**: `Q = Ө`, `W = Ү`. All Mongolian vowels are located directly on the central home/top rows for high-speed 10-finger typing. Standard programming and text brackets (`[ ]`, `{ }`, `\`, `|`) remain completely native without layout switching.
+### 1. Base Layer (All 35 Mongolian Cyrillic Letters Directly Accessible)
+> **Principle**: No Option/AltGr needed for letters. `Q = ъ`, `W = ь`, `Y = е`, `[ = ө`, `] = ү`, `; = щ`, `' = ы`, `\ = й`, `` ` = ё `` are mapped natively to Layer 1.
 
-![Modern Ergonomic Layout](docs/images/layout-ergonomic-normal.png)
+![Mongolian Cyrillic Base Layer](docs/images/layout-cyrillic-normal.png)
 
-### 2. AltGr Extension Layer (₮, « », —, \u202F)
-> Holding **Right Alt (AltGr)** or **macOS Option** gives instant access to official Mongolian typography: the Tugrik currency symbol (**`₮`**), official quotes (**`« »`**), em-dash (**`—`**), and the Narrow No-Break Space (**`\u202F` NNBSP**) for Classical script suffixes.
+### 2. Shift Layer (Capitals & Punctuation)
+> Capital letters (**`Ө, Ү, Ъ, Ь, Е, Щ, Ы, Й, Ё`**) and punctuation symbols.
 
-![AltGr Extension Layer](docs/images/layout-ergonomic-altgr.png)
+![Mongolian Cyrillic Shift Layer](docs/images/layout-cyrillic-shift.png)
 
-### 3. Classic Edition (2021 Original)
-> Vowel-paired layout where `[` $\rightarrow$ `ө`, `]` $\rightarrow$ `ү`, `Q` $\rightarrow$ `ъ`, `W` $\rightarrow$ `ь`.
+### 3. AltGr / Option Extension Layer (Programmer Brackets & Official Symbols)
+> Holding **Right Alt (AltGr)** or **macOS Option** gives instant access to code brackets (**`[ ] { } \ | ; : ' "`**), the official Tugrik symbol (**`₮`**), Euro (**`€`**), angle quotes (**`« »`**), and em-dash (**`—`**).
 
-![Classic Layout](docs/images/layout-classic-normal.png)
+![Mongolian Cyrillic AltGr Layer](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Traditional Script Edition (Classical Mongol Bichig)
-> Matches Cyrillic finger habits with 100% muscle memory: `Q` = `ᠥ` (Ö), `W` = `ᠦ` (Ü), `E` = `ᠡ` (E), `O` = `ᠣ` (O), `U` = `ᠤ` (U), `I` = `ᠢ` (I), `A` = `ᠠ` (A). The number row directly types classical Mongolian numerals (`᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙`).
+### 4. Traditional Script Edition (Classical Mongol Bichig — Bachka Phonetic Logic)
+> Matches Cyrillic finger habits with 100% muscle memory: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. Number keys type classical numerals (᠐-᠙). `Shift + Space` = **NNBSP** (`\u202F`).
 
 ![Classical Mongol Bichig Layout](docs/images/layout-bichig.png)
 
@@ -40,19 +40,30 @@
 
 ## ⌨️ Key Mapping Reference
 
-| Key | Modern Edition | Classic Edition | Shift + Key (Modern) | AltGr (Right Alt) |
-|:---:|:---:|:---:|:---:|:---:|
-| `Q` | **ө** (Feminine O) | **ъ** | **Ө** | **ъ** (Hard sign) |
-| `W` | **ү** (Feminine U) | **ь** | **Ү** | **ь** (Soft sign) |
-| `E` | **э** | **э** | **Э** | € (Euro) |
-| `T` | **т** | **т** | **Т** | **₮ (Tugrik \u20AE)** |
-| `Y` | **й** | **е** | **Й** | **е** |
-| `[` | **[** (Native bracket) | **ө** | **{** (Native brace) | **«** (Left angle quote) |
-| `]` | **]** (Native bracket) | **ү** | **}** (Native brace) | **»** (Right angle quote) |
-| `\` | **\\** (Native slash) | **й** | **\|** (Native pipe) | **\|** |
-| `;` | **;** | **щ** | **:** | **щ** |
-| `'` | **ы** | **ы** | **Ы** | **'** / **"** |
-| `4` | 4 | 4 | $ | **₮ (Tugrik)** |
+| Key | Base Layer | Shift Layer | AltGr / Option (Layer 3) | Notes |
+|:---:|:---:|:---:|:---:|:---|
+| `Q` | **ъ** | **Ъ** | `'` | Direct on base layer |
+| `W` | **ь** | **Ь** | `` ` `` | Direct on base layer |
+| `E` | **э** | **Э** | `€` | Euro sign |
+| `R` | **р** | **Р** | `®` | Registered mark |
+| `T` | **т** | **Т** | **₮ (U+20AE)** | Tugrik |
+| `Y` | **е** | **Е** | `™` | **"е / Е" letter is here!** |
+| `[` | **ө** | **Ө** | `[` | **ө on base, [ on AltGr** |
+| `]` | **ү** | **Ү** | `]` | **ү on base, ] on AltGr** |
+| `;` | **щ** | **Щ** | `:` | **щ on base, : on AltGr** |
+| `'` | **ы** | **Ы** | `…` | **ы on base, … on AltGr** |
+| `\` | **й** | **Й** | `\` | **й on base, \ on AltGr** |
+| `` ` `` | **ё** | **Ё** | `~` | **ё on base, ~ on AltGr** |
+| `G` | **г** | **Г** | `{` | Left brace |
+| `K` | **к** | **К** | `}` | Right brace |
+| `D` | **д** | **Д** | `«` | Left angle quote |
+| `F` | **ф** | **Ф** | `»` | Right angle quote |
+| `4` | 4 | $ | **₮** | Tugrik |
+| `-` | - | _ | **—** | Em-dash |
+| `,` | **ч** | **Ч** | `,` | **ч on base, comma on AltGr** |
+| `.` | **ю** | **Ю** | `.` | **ю on base, period on AltGr** |
+| `/` | **я** | **Я** | `?` | **я on base, question on AltGr** |
+| `Space` | Space | Space | `\u202F` | **NNBSP (Narrow No-Break Space)** |
 | `-` | - | - | _ | **— (Em-dash)** |
 | `Space` | Space | Space | Space | **\u202F (NNBSP space)** |
 
@@ -61,24 +72,22 @@
 ## Installation Guides
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
-A single command installs **all 3 editions simultaneously** into system XKB:
+A single command installs the **Dual Layout Suite (Cyrillic & Traditional Script)** into system XKB:
 
 ```bash
 cd linux
 sudo ./install.sh
 ```
 
-After installation, all 3 editions are available immediately:
-1. **Default**: `Mongolian (Modern Ergonomic)` (`Q=Ө, W=Ү`)
-2. **Classic**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
-3. **Bichig**: `Mongolian Script (Bichig)` (Classical Mongol Bichig)
+After installation, both layouts are available immediately:
+1. **Default**: `Mongolian Cyrillic (Bachka)` — All 35 letters on Layer 1 (`Q=ъ, W=ь, Y=е, [=ө, ]=ү`)
+2. **Traditional**: `Mongolian Script (Bachka)` — Phonetic mapping (`[=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...`)
 
 * **Terminal Switch (X11)**:
-  - `setxkbmap mn` (Modern Edition)
-  - `setxkbmap mn -variant classic` (Classic Edition)
+  - `setxkbmap mn` (Mongolian Cyrillic)
   - `setxkbmap mn -variant bichig` (Traditional Bichig)
-* **Desktop (GNOME / KDE / Ubuntu)**:
-  - Go to `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ Add `Mongolian`. Toggle anytime with **`Win + Space`**.
+* **Desktop (GNOME / Ubuntu / Fedora)**:
+  - Go to `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ Add `Mongolian`. Toggle anytime with **`Super + Space`** (Win + Space).
 * **To Revert**: `cd linux && sudo ./uninstall.sh`.
 
 ---
@@ -122,16 +131,16 @@ Verify the integrity and authenticity of all release download packages:
 
 ```text
 # 🪟 Windows (v1.0.3)
-72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
-6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
+bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
+3aeb1527f9b1b77ef6a0e6f74137be12ad974f88d891084f5bba100895b64f46  Mongolian-Keyboard-Windows-v1.0.3.zip
 
 # 🍏 macOS (v1.0.3)
-16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2  Mongolian-Keyboard-macOS-v1.0.3.dmg
-e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159  Mongolian-Keyboard-macOS-v1.0.3.zip
+968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3  Mongolian-Keyboard-macOS-v1.0.3.dmg
+1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
-f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
-438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4  install-linux.sh
+51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe  Mongolian-Keyboard-Linux-v1.0.3.zip
+bb05fa5f7db36133bbff54c190f4fbc069466efdcd2839c3a74956cbe7bf4c59  install-linux.sh
 ```
 
 ---

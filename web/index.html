@@ -53,7 +53,7 @@
     .kb-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
     .key {
       min-width: 48px;
-      height: 52px;
+      height: 56px;
       background: var(--key-bg);
       border: 1px solid var(--key-border);
       border-radius: 6px;
@@ -61,18 +61,19 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 4px;
+      padding: 3px 5px;
       cursor: pointer;
       position: relative;
-      transition: background 0.15s, transform 0.05s;
+      transition: background 0.12s, transform 0.05s, border-color 0.12s;
     }
-    .key:hover { background: #e2e8f0; }
-    .key:active { transform: translateY(1px); background: #cbd5e1; }
+    .key:hover { background: #e2e8f0; border-color: #94a3b8; }
+    .key:active, .key.key-pressed { transform: translateY(2px); background: #bfdbfe !important; border-color: #2563eb !important; box-shadow: 0 0 8px rgba(37,99,235,0.4); }
     .key.active-mod { background: #dbeafe; border-color: var(--accent-shift); color: var(--accent-shift); }
     .key.devops-key { border-color: #a7f3d0; background: #f0fdf4; }
-    .key .top { font-size: 11px; color: var(--text-muted); align-self: flex-start; }
-    .key .main { font-size: 18px; font-weight: 600; }
-    .key .alt { font-size: 10px; color: var(--accent-altgr); align-self: flex-end; }
+    .key .top { font-size: 11px; color: #0284c7; align-self: flex-start; font-weight: 500; }
+    .key .main { font-size: 18px; font-weight: 600; color: #0f172a; }
+    .key .alt { font-size: 11px; color: #d97706; align-self: flex-end; font-weight: 600; }
+    .key .latin { font-size: 9px; color: #94a3b8; position: absolute; bottom: 2px; left: 4px; font-weight: 600; font-family: monospace; }
 
     .key-wide { flex-grow: 1.5; min-width: 68px; }
     .key-space { flex-grow: 5; min-width: 250px; }
@@ -517,22 +518,18 @@
     <div class="controls-row">
       <span class="control-label" id="i18n-lbl-edition">Загвар:</span>
       <div class="btn-group">
-        <button class="btn active" id="btn-mode-ergo" onclick="setLayoutMode('ergo')">⚡ Орчин Үеийн Эргономик (Q=Ө, W=Ү)</button>
-        <button class="btn" id="btn-mode-classic" onclick="setLayoutMode('classic')">Сонгодог (Brackets [=ө, ]=ү)</button>
-        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг</button>
+        <button class="btn active" id="btn-mode-cyrillic" onclick="setLayoutMode('cyrillic')">🇲🇳 Монгол Кирилл (Bachka mn-custom)</button>
+        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг (Bachka Phonetics)</button>
       </div>
     </div>
     <div class="controls-row">
-      <span class="control-label" id="i18n-lbl-base">Суурь Гар:</span>
+      <span class="control-label" id="i18n-lbl-layer">Үе давхарга:</span>
       <div class="btn-group">
-        <button class="btn active" id="btn-base-us" onclick="setBase('us')">US English (QWERTY)</button>
-        <button class="btn" id="btn-base-de" onclick="setBase('de')">German (QWERTZ)</button>
+        <button class="btn active" id="btn-layer-normal" onclick="setLayer('normal')">Үндсэн (Normal / 1-р үе)</button>
+        <button class="btn" id="btn-layer-shift" onclick="setLayer('shift')">Shift (Том үсэг / 2-р үе)</button>
+        <button class="btn" id="btn-layer-altgr" onclick="setLayer('altgr')">AltGr / Option (Хаалт &amp; Тэмдэгт / 3-р үе)</button>
       </div>
-      <span class="control-label" id="i18n-lbl-shift" style="min-width: 60px;">Шилжилт:</span>
-      <div class="btn-group">
-        <button class="btn" id="btn-shift" onclick="toggleShift()">Shift</button>
-        <button class="btn" id="btn-altgr" onclick="toggleAltGr()">AltGr (Option)</button>
-      </div>
+      <span style="font-size:12px; color:#64748b; margin-left:12px;" id="i18n-hint-physical">💡 Физик гараасаа Shift эсвэл AltGr дарж шууд үзэж болно</span>
     </div>
   </div>
 
@@ -658,7 +655,7 @@
         <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
         <span class="card-badge">XKB Unified</span>
       </div>
-      <p id="i18n-linux-desc">Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.</p>
+      <p id="i18n-linux-desc">Монгол Кирилл (Bachka mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай автомат суулгагч.</p>
       <a href="downloads/Mongolian-Keyboard-Linux-v1.0.3.zip" download class="btn-dl-primary" id="i18n-btn-linux-zip">
         ⬇️ Linux Багц Татах (.zip, 26 KB)
       </a>
@@ -667,7 +664,7 @@
         <button class="copy-btn" id="i18n-btn-copy-script" onclick="copyLinuxCmd(this)">Хуулах</button>
       </div>
       <div class="install-hint" id="i18n-linux-hint">
-        <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.
+        <strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Кирилл) эсвэл <code>setxkbmap mn -variant bichig</code> (Монгол бичиг) ажиллуулна.
       </div>
     </div>
   </div>
@@ -694,11 +691,11 @@
             <tr>
               <td><code>Mongolian-Keyboard-Windows-v1.0.3.zip</code></td>
               <td>Windows</td>
-              <td>735 KB</td>
+              <td>1.5 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2</span>
-                  <button class="hash-copy" onclick="copyHash('6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2', this)">Хуулах</button>
+                  <span class="hash-text">3aeb1527f9b1b77ef6a0e6f74137be12ad974f88d891084f5bba100895b64f46</span>
+                  <button class="hash-copy" onclick="copyHash('3aeb1527f9b1b77ef6a0e6f74137be12ad974f88d891084f5bba100895b64f46', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -706,11 +703,11 @@
             <tr>
               <td><code>Mongolian-Keyboard-Windows-Setup-v1.0.3.exe</code></td>
               <td>Windows</td>
-              <td>560 KB</td>
+              <td>745 KB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3</span>
-                  <button class="hash-copy" onclick="copyHash('72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3', this)">Хуулах</button>
+                  <span class="hash-text">bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0</span>
+                  <button class="hash-copy" onclick="copyHash('bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -718,11 +715,11 @@
             <tr>
               <td><code>Mongolian-Keyboard-macOS-v1.0.3.dmg</code></td>
               <td>macOS</td>
-              <td>14 MB</td>
+              <td>15 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2</span>
-                  <button class="hash-copy" onclick="copyHash('16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2', this)">Хуулах</button>
+                  <span class="hash-text">968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3</span>
+                  <button class="hash-copy" onclick="copyHash('968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -733,8 +730,8 @@
               <td>5.3 MB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159</span>
-                  <button class="hash-copy" onclick="copyHash('e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159', this)">Хуулах</button>
+                  <span class="hash-text">1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177</span>
+                  <button class="hash-copy" onclick="copyHash('1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -745,8 +742,8 @@
               <td>26 KB</td>
               <td>
                 <div class="hash-cell">
-                  <span class="hash-text">f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed</span>
-                  <button class="hash-copy" onclick="copyHash('f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed', this)">Хуулах</button>
+                  <span class="hash-text">51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe</span>
+                  <button class="hash-copy" onclick="copyHash('51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -780,167 +777,132 @@
 </div>
 
 <script>
-let currentMode = 'ergo'; // 'ergo', 'classic', 'bichig'
-let currentBase = 'us';   // 'us', 'de'
+let currentMode = 'cyrillic'; // 'cyrillic', 'bichig'
+let currentBase = 'us';       // 'us', 'de'
 let isShift = false;
 let isAltGr = false;
 
-// 1. Modern Ergonomic (Q=Ө, W=Ү, DevOps [ ] { } preserved)
-const LAYOUT_ERGO = {
+// 1. Bachka mn-custom (Source of Truth: All 35 letters direct on Layer 1 & 2)
+const LAYOUT_CYRILLIC = {
   row1: [
-    { top: '~', main: 'ё', base: 'ё', alt: '~' },
-    { top: '!', main: '1', base: '1', alt: '№' },
-    { top: '@', main: '2', base: '2', alt: '²' },
-    { top: '#', main: '3', base: '3', alt: '³' },
-    { top: '$', main: '4', base: '4', alt: '₮' }, // AltGr Tugrik
-    { top: '%', main: '5', base: '5', alt: '€' },
-    { top: '^', main: '6', base: '6', alt: '¼' },
-    { top: '&', main: '7', base: '7', alt: '½' },
-    { top: '*', main: '8', base: '8', alt: '¾' },
-    { top: '(', main: '9', base: '9', alt: '‘' },
-    { top: ')', main: '0', base: '0', alt: '’' },
-    { top: '_', main: '-', base: '-', alt: '—' },
-    { top: '+', main: '=', base: '=', alt: '×' }
+    { code: 'Backquote', key: '`', top: 'Ё', main: 'ё', base: 'ё', alt: '~' },
+    { code: 'Digit1', key: '1', top: '!', main: '1', base: '1', alt: '№' },
+    { code: 'Digit2', key: '2', top: '@', main: '2', base: '2', alt: '²' },
+    { code: 'Digit3', key: '3', top: '#', main: '3', base: '3', alt: '³' },
+    { code: 'Digit4', key: '4', top: '$', main: '4', base: '4', alt: '₮', devops: true },
+    { code: 'Digit5', key: '5', top: '%', main: '5', base: '5', alt: '€' },
+    { code: 'Digit6', key: '6', top: '^', main: '6', base: '6', alt: '¼' },
+    { code: 'Digit7', key: '7', top: '&', main: '7', base: '7', alt: '½' },
+    { code: 'Digit8', key: '8', top: '*', main: '8', base: '8', alt: '¾' },
+    { code: 'Digit9', key: '9', top: '(', main: '9', base: '9', alt: '‘' },
+    { code: 'Digit0', key: '0', top: ')', main: '0', base: '0', alt: '’' },
+    { code: 'Minus', key: '-', top: '_', main: '-', base: '-', alt: '¥' },
+    { code: 'Equal', key: '=', top: '+', main: '=', base: '=', alt: '×' }
   ],
   row2: [
-    { top: 'Ө', main: 'ө', base: 'ө', alt: 'ъ', devops: true }, // Q = Ө, AltGr = ъ
-    { top: 'Ү', main: 'ү', base: 'ү', alt: 'ь', devops: true }, // W = Ү, AltGr = ь
-    { top: 'Э', main: 'э', base: 'э', alt: '€' },
-    { top: 'Р', main: 'р', base: 'р', alt: '®' },
-    { top: 'Т', main: 'т', base: 'т', alt: '₮' }, // T = Tugrik
-    { top: 'Й', main: 'й', base: 'й', alt: 'е' }, // Y = Й, AltGr = е
-    { top: 'У', main: 'у', base: 'у', alt: '„' },
-    { top: 'И', main: 'и', base: 'и', alt: '“' },
-    { top: 'О', main: 'о', base: 'о', alt: '”' },
-    { top: 'П', main: 'п', base: 'п', alt: ';' },
-    { top: '{', main: '[', base: '[', alt: '«', devops: true }, // [ { «
-    { top: '}', main: ']', base: ']', alt: '»', devops: true }, // ] } »
-    { top: '|', main: '\\', base: '\\', alt: '¦', devops: true } // \ |
+    { code: 'KeyQ', key: 'q', top: 'Ъ', main: 'ъ', base: 'ъ', alt: "'", devops: true },
+    { code: 'KeyW', key: 'w', top: 'Ь', main: 'ь', base: 'ь', alt: '`', devops: true },
+    { code: 'KeyE', key: 'e', top: 'Э', main: 'э', base: 'э', alt: '€' },
+    { code: 'KeyR', key: 'r', top: 'Р', main: 'р', base: 'р', alt: '®' },
+    { code: 'KeyT', key: 't', top: 'Т', main: 'т', base: 'т', alt: '₮', devops: true },
+    { code: 'KeyY', key: 'y', top: 'Е', main: 'е', base: 'е', alt: '™' },
+    { code: 'KeyU', key: 'u', top: 'У', main: 'у', base: 'у', alt: '„' },
+    { code: 'KeyI', key: 'i', top: 'И', main: 'и', base: 'и', alt: '“' },
+    { code: 'KeyO', key: 'o', top: 'О', main: 'о', base: 'о', alt: '”' },
+    { code: 'KeyP', key: 'p', top: 'П', main: 'п', base: 'п', alt: ';', devops: true },
+    { code: 'BracketLeft', key: '[', top: 'Ө', main: 'ө', base: 'ө', alt: '[', devops: true },
+    { code: 'BracketRight', key: ']', top: 'Ү', main: 'ү', base: 'ү', alt: ']', devops: true }
   ],
   row3: [
-    { top: 'А', main: 'а', base: 'а', alt: 'μ' },
-    { top: 'С', main: 'с', base: 'с', alt: '£' },
-    { top: 'Д', main: 'д', base: 'д', alt: '«' },
-    { top: 'Ф', main: 'ф', base: 'ф', alt: '»' },
-    { top: 'Г', main: 'г', base: 'г', alt: '{' },
-    { top: 'Х', main: 'х', base: 'х', alt: '<' },
-    { top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
-    { top: 'К', main: 'к', base: 'к', alt: '}' },
-    { top: 'Л', main: 'л', base: 'л', alt: '№' },
-    { top: ':', main: ';', base: ';', alt: 'щ', devops: true }, // ; : щ
-    { top: 'Ы', main: 'ы', base: 'ы', alt: "'" }  // ' = ы, AltGr = '
+    { code: 'KeyA', key: 'a', top: 'А', main: 'а', base: 'а', alt: 'μ' },
+    { code: 'KeyS', key: 's', top: 'С', main: 'с', base: 'с', alt: '£' },
+    { code: 'KeyD', key: 'd', top: 'Д', main: 'д', base: 'д', alt: '«', devops: true },
+    { code: 'KeyF', key: 'f', top: 'Ф', main: 'ф', base: 'ф', alt: '»', devops: true },
+    { code: 'KeyG', key: 'g', top: 'Г', main: 'г', base: 'г', alt: '{', devops: true },
+    { code: 'KeyH', key: 'h', top: 'Х', main: 'х', base: 'х', alt: '<' },
+    { code: 'KeyJ', key: 'j', top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
+    { code: 'KeyK', key: 'k', top: 'К', main: 'к', base: 'к', alt: '}', devops: true },
+    { code: 'KeyL', key: 'l', top: 'Л', main: 'л', base: 'л', alt: '№' },
+    { code: 'Semicolon', key: ';', top: 'Щ', main: 'щ', base: 'щ', alt: ':', devops: true },
+    { code: 'Quote', key: "'", top: 'Ы', main: 'ы', base: 'ы', alt: '…', devops: true },
+    { code: 'Backslash', key: '\\', top: 'Й', main: 'й', base: 'й', alt: '\\', devops: true }
   ],
   row4: [
-    { top: 'З', main: 'з', base: 'з', alt: '—' },
-    { top: 'Ш', main: 'ш', base: 'ш', alt: 'щ' },
-    { top: 'Ц', main: 'ц', base: 'ц', alt: '©' },
-    { top: 'В', main: 'в', base: 'в', alt: '–' },
-    { top: 'Б', main: 'б', base: 'б', alt: '°' },
-    { top: 'Н', main: 'н', base: 'н', alt: '·' },
-    { top: 'М', main: 'м', base: 'м', alt: '±' },
-    { top: 'Ч', main: 'ч', base: 'ч', alt: ',' },
-    { top: 'Ю', main: 'ю', base: 'ю', alt: '.' },
-    { top: 'Я', main: 'я', base: 'я', alt: '?' }
+    { code: 'KeyZ', key: 'z', top: 'З', main: 'з', base: 'з', alt: '—' },
+    { code: 'KeyX', key: 'x', top: 'Ш', main: 'ш', base: 'ш', alt: '–' },
+    { code: 'KeyC', key: 'c', top: 'Ц', main: 'ц', base: 'ц', alt: '©' },
+    { code: 'KeyV', key: 'v', top: 'В', main: 'в', base: 'в', alt: '' },
+    { code: 'KeyB', key: 'b', top: 'Б', main: 'б', base: 'б', alt: '' },
+    { code: 'KeyN', key: 'n', top: 'Н', main: 'н', base: 'н', alt: '<' },
+    { code: 'KeyM', key: 'm', top: 'М', main: 'м', base: 'м', alt: '>' },
+    { code: 'Comma', key: ',', top: 'Ч', main: 'ч', base: 'ч', alt: ',', devops: true },
+    { code: 'Period', key: '.', top: 'Ю', main: 'ю', base: 'ю', alt: '.', devops: true },
+    { code: 'Slash', key: '/', top: 'Я', main: 'я', base: 'я', alt: '?', devops: true }
   ]
 };
 
-// 2. Classical Tsengel Layout (Brackets [=ө, ]=ү)
-const LAYOUT_CLASSIC = {
-  row1: LAYOUT_ERGO.row1,
-  row2: [
-    { top: 'Ъ', main: 'ъ', base: 'ъ', alt: "'" },
-    { top: 'Ь', main: 'ь', base: 'ь', alt: '`' },
-    { top: 'Э', main: 'э', base: 'э', alt: '€' },
-    { top: 'Р', main: 'р', base: 'р', alt: '®' },
-    { top: 'Т', main: 'т', base: 'т', alt: '₮' },
-    { top: 'Е', main: 'е', base: 'е', alt: '™' },
-    { top: 'У', main: 'у', base: 'у', alt: '„' },
-    { top: 'И', main: 'и', base: 'и', alt: '“' },
-    { top: 'О', main: 'о', base: 'о', alt: '”' },
-    { top: 'П', main: 'п', base: 'п', alt: ';' },
-    { top: 'Ө', main: 'ө', base: 'ө', alt: '[' },
-    { top: 'Ү', main: 'ү', base: 'ү', alt: ']' },
-    { top: '|', main: '\\', base: '\\', alt: '¦' }
-  ],
-  row3: [
-    { top: 'А', main: 'а', base: 'а', alt: 'μ' },
-    { top: 'С', main: 'с', base: 'с', alt: '£' },
-    { top: 'Д', main: 'д', base: 'д', alt: '«' },
-    { top: 'Ф', main: 'ф', base: 'ф', alt: '»' },
-    { top: 'Г', main: 'г', base: 'г', alt: '{' },
-    { top: 'Х', main: 'х', base: 'х', alt: '<' },
-    { top: 'Ж', main: 'ж', base: 'ж', alt: '>' },
-    { top: 'К', main: 'к', base: 'к', alt: '}' },
-    { top: 'Л', main: 'л', base: 'л', alt: '№' },
-    { top: 'Щ', main: 'щ', base: 'щ', alt: ':' },
-    { top: 'Ы', main: 'ы', base: 'ы', alt: '…' }
-  ],
-  row4: LAYOUT_ERGO.row4
-};
-
-// 3. Classical Mongol Bichig Layout (Худам Монгол бичиг)
+// 2. Classical Mongol Bichig Layout (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
 const LAYOUT_BICHIG = {
   row1: [
-    { top: '᠀', main: '᠄', base: '᠄', alt: '~' },
-    { top: '!', main: '᠑', base: '᠑', alt: '1' },
-    { top: '@', main: '᠒', base: '᠒', alt: '2' },
-    { top: '#', main: '᠓', base: '᠓', alt: '3' },
-    { top: '₮', main: '᠔', base: '᠔', alt: '4' },
-    { top: '%', main: '᠕', base: '᠕', alt: '5' },
-    { top: '^', main: '᠖', base: '᠖', alt: '6' },
-    { top: '&', main: '᠗', base: '᠗', alt: '7' },
-    { top: '*', main: '᠘', base: '᠘', alt: '8' },
-    { top: '(', main: '᠙', base: '᠙', alt: '9' },
-    { top: ')', main: '᠐', base: '᠐', alt: '0' },
-    { top: '_', main: '-', base: '-', alt: '—' },
-    { top: '+', main: '=', base: '=', alt: '×' }
+    { code: 'Backquote', key: '`', top: '᠀', main: '᠄', base: '᠄', alt: '~' },
+    { code: 'Digit1', key: '1', top: '!', main: '᠑', base: '᠑', alt: '1' },
+    { code: 'Digit2', key: '2', top: '@', main: '᠒', base: '᠒', alt: '2' },
+    { code: 'Digit3', key: '3', top: '#', main: '᠓', base: '᠓', alt: '3' },
+    { code: 'Digit4', key: '4', top: '$', main: '᠔', base: '᠔', alt: '₮', devops: true },
+    { code: 'Digit5', key: '5', top: '%', main: '᠕', base: '᠕', alt: '5' },
+    { code: 'Digit6', key: '6', top: '^', main: '᠖', base: '᠖', alt: '6' },
+    { code: 'Digit7', key: '7', top: '&', main: '᠗', base: '᠗', alt: '7' },
+    { code: 'Digit8', key: '8', top: '*', main: '᠘', base: '᠘', alt: '8' },
+    { code: 'Digit9', key: '9', top: '(', main: '᠙', base: '᠙', alt: '9' },
+    { code: 'Digit0', key: '0', top: ')', main: '᠐', base: '᠐', alt: '0' },
+    { code: 'Minus', key: '-', top: '_', main: '-', base: '-', alt: '—' },
+    { code: 'Equal', key: '=', top: '+', main: '=', base: '=', alt: '×' }
   ],
   row2: [
-    { top: 'ᠥ', main: 'ᠥ', base: 'ᠥ', alt: '\u180B' }, // Q = ᠥ (Ö), AltGr = FVS1
-    { top: 'ᠦ', main: 'ᠦ', base: 'ᠦ', alt: '\u180C' }, // W = ᠦ (Ü), AltGr = FVS2
-    { top: 'ᠡ', main: 'ᠡ', base: 'ᠡ', alt: '\u180E' }, // E = ᠡ (E), AltGr = MVS
-    { top: 'ᠷ', main: 'ᠷ', base: 'ᠷ', alt: '®' },      // R = ᠷ (R)
-    { top: 'ᠲ', main: 'ᠲ', base: 'ᠲ', alt: '₮' },      // T = ᠲ (T)
-    { top: 'ᠶ', main: 'ᠶ', base: 'ᠶ', alt: '™' },      // Y = ᠶ (Y)
-    { top: 'ᠤ', main: 'ᠤ', base: 'ᠤ', alt: '\u180D' }, // U = ᠤ (U), AltGr = FVS3
-    { top: 'ᠢ', main: 'ᠢ', base: 'ᠢ', alt: '“' },      // I = ᠢ (I)
-    { top: 'ᠣ', main: 'ᠣ', base: 'ᠣ', alt: '”' },      // O = ᠣ (O)
-    { top: 'ᠫ', main: 'ᠫ', base: 'ᠫ', alt: ';' },      // P = ᠫ (P)
-    { top: '{', main: '[', base: '[', alt: '᠈' },      // [
-    { top: '}', main: ']', base: ']', alt: '᠉' },      // ]
-    { top: '|', main: '\\', base: '\\', alt: '¦' }
+    { code: 'KeyQ', key: 'q', top: '\u180E', main: '\u180B', base: '\u180B', alt: "'", devops: true },
+    { code: 'KeyW', key: 'w', top: '\u180D', main: '\u180C', base: '\u180C', alt: '`', devops: true },
+    { code: 'KeyE', key: 'e', top: 'ᠡ', main: 'ᠡ', base: 'ᠡ', alt: '\u180E' },
+    { code: 'KeyR', key: 'r', top: 'ᠷ', main: 'ᠷ', base: 'ᠷ', alt: '®' },
+    { code: 'KeyT', key: 't', top: 'ᠲ', main: 'ᠲ', base: 'ᠲ', alt: '₮', devops: true },
+    { code: 'KeyY', key: 'y', top: 'ᠶ', main: 'ᠶ', base: 'ᠶ', alt: '™' },
+    { code: 'KeyU', key: 'u', top: 'ᠤ', main: 'ᠤ', base: 'ᠤ', alt: '„' },
+    { code: 'KeyI', key: 'i', top: 'ᠢ', main: 'ᠢ', base: 'ᠢ', alt: '“' },
+    { code: 'KeyO', key: 'o', top: 'ᠣ', main: 'ᠣ', base: 'ᠣ', alt: '”' },
+    { code: 'KeyP', key: 'p', top: 'ᠫ', main: 'ᠫ', base: 'ᠫ', alt: ';', devops: true },
+    { code: 'BracketLeft', key: '[', top: 'ᠥ', main: 'ᠥ', base: 'ᠥ', alt: '[', devops: true },
+    { code: 'BracketRight', key: ']', top: 'ᠦ', main: 'ᠦ', base: 'ᠦ', alt: ']', devops: true }
   ],
   row3: [
-    { top: 'ᠠ', main: 'ᠠ', base: 'ᠠ', alt: 'μ' },      // A = ᠠ (A)
-    { top: 'ᠰ', main: 'ᠰ', base: 'ᠰ', alt: '£' },      // S = ᠰ (S)
-    { top: 'ᠳ', main: 'ᠳ', base: 'ᠳ', alt: '«' },      // D = ᠳ (D)
-    { top: 'ᠹ', main: 'ᠹ', base: 'ᠹ', alt: '»' },      // F = ᠹ (F)
-    { top: 'ᠭ', main: 'ᠭ', base: 'ᠭ', alt: '{' },      // G = ᠭ (G)
-    { top: 'ᠬ', main: 'ᠬ', base: 'ᠬ', alt: '<' },      // H = ᠬ (H)
-    { top: 'ᠵ', main: 'ᠵ', base: 'ᠵ', alt: '>' },      // J = ᠵ (J)
-    { top: 'ᠺ', main: 'ᠺ', base: 'ᠺ', alt: '}' },      // K = ᠺ (K)
-    { top: 'ᠯ', main: 'ᠯ', base: 'ᠯ', alt: '№' },      // L = ᠯ (L)
-    { top: ':', main: ';', base: ';', alt: '…' },
-    { top: '"', main: "'", base: "'", alt: '\u180E' }   // MVS
+    { code: 'KeyA', key: 'a', top: 'ᠠ', main: 'ᠠ', base: 'ᠠ', alt: 'μ' },
+    { code: 'KeyS', key: 's', top: 'ᠰ', main: 'ᠰ', base: 'ᠰ', alt: '£' },
+    { code: 'KeyD', key: 'd', top: 'ᠳ', main: 'ᠳ', base: 'ᠳ', alt: '᠈', devops: true },
+    { code: 'KeyF', key: 'f', top: 'ᠹ', main: 'ᠹ', base: 'ᠹ', alt: '᠉', devops: true },
+    { code: 'KeyG', key: 'g', top: 'ᠭ', main: 'ᠭ', base: 'ᠭ', alt: '{', devops: true },
+    { code: 'KeyH', key: 'h', top: 'ᠬ', main: 'ᠬ', base: 'ᠬ', alt: '<' },
+    { code: 'KeyJ', key: 'j', top: 'ᠵ', main: 'ᠵ', base: 'ᠵ', alt: '>' },
+    { code: 'KeyK', key: 'k', top: 'ᠺ', main: 'ᠺ', base: 'ᠺ', alt: '}', devops: true },
+    { code: 'KeyL', key: 'l', top: 'ᠯ', main: 'ᠯ', base: 'ᠯ', alt: '№' },
+    { code: 'Semicolon', key: ';', top: ';', main: ';', base: ';', alt: ':', devops: true },
+    { code: 'Quote', key: "'", top: '"', main: "'", base: "'", alt: '\u180E', devops: true },
+    { code: 'Backslash', key: '\\', top: '|', main: '\\', base: '\\', alt: '\\', devops: true }
   ],
   row4: [
-    { top: 'ᠽ', main: 'ᠽ', base: 'ᠽ', alt: '—' },      // Z = ᠽ (Z)
-    { top: 'ᠱ', main: 'ᠱ', base: 'ᠱ', alt: '§' },      // X = ᠱ (Sh)
-    { top: 'ᠴ', main: 'ᠴ', base: 'ᠴ', alt: '©' },      // C = ᠴ (Ch)
-    { top: 'ᠸ', main: 'ᠸ', base: 'ᠸ', alt: '–' },      // V = ᠸ (V)
-    { top: 'ᠪ', main: 'ᠪ', base: 'ᠪ', alt: '°' },      // B = ᠪ (B)
-    { top: 'ᠩ', main: 'ᠨ', base: 'ᠨ', alt: '·' },      // N = ᠨ (N), Shift = ᠩ
-    { top: 'ᠮ', main: 'ᠮ', base: 'ᠮ', alt: '±' },      // M = ᠮ (M)
-    { top: '<', main: '᠂', base: '᠂', alt: ',' },      // , = ᠂
-    { top: '>', main: '᠃', base: '᠃', alt: '.' },      // . = ᠃
-    { top: '?', main: '/', base: '/', alt: '?' }
+    { code: 'KeyZ', key: 'z', top: 'ᠽ', main: 'ᠽ', base: 'ᠽ', alt: '—' },
+    { code: 'KeyX', key: 'x', top: 'ᠱ', main: 'ᠱ', base: 'ᠱ', alt: '–' },
+    { code: 'KeyC', key: 'c', top: 'ᠼ', main: 'ᠼ', base: 'ᠼ', alt: '©' },
+    { code: 'KeyV', key: 'v', top: 'ᠸ', main: 'ᠸ', base: 'ᠸ', alt: '' },
+    { code: 'KeyB', key: 'b', top: 'ᠪ', main: 'ᠪ', base: 'ᠪ', alt: '' },
+    { code: 'KeyN', key: 'n', top: 'ᠩ', main: 'ᠨ', base: 'ᠨ', alt: '<', devops: true },
+    { code: 'KeyM', key: 'm', top: 'ᠮ', main: 'ᠮ', base: 'ᠮ', alt: '>' },
+    { code: 'Comma', key: ',', top: 'ᠴ', main: 'ᠴ', base: 'ᠴ', alt: ',', devops: true },
+    { code: 'Period', key: '.', top: '.', main: '᠃', base: '᠃', alt: '.', devops: true },
+    { code: 'Slash', key: '/', top: '?', main: '/', base: '/', alt: '?' }
   ]
 };
 
 function getCurrentLayout() {
   if (currentMode === 'bichig') return LAYOUT_BICHIG;
-  if (currentMode === 'classic') return LAYOUT_CLASSIC;
-  return LAYOUT_ERGO;
+  return LAYOUT_CYRILLIC;
 }
 
 function renderKeyboard() {
@@ -968,22 +930,26 @@ function renderKeyboard() {
       const shiftL = document.createElement('div');
       shiftL.className = 'key key-wide' + (isShift ? ' active-mod' : '');
       shiftL.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
-      shiftL.onclick = toggleShift;
+      shiftL.onclick = () => setLayer(isShift ? 'normal' : 'shift');
       rowDiv.appendChild(shiftL);
     }
 
     row.forEach(k => {
       const keyDiv = document.createElement('div');
       keyDiv.className = 'key' + (k.devops ? ' devops-key' : '');
+      keyDiv.setAttribute('data-code', k.code);
       
       let charToType = k.base;
       if (isShift) charToType = k.top;
       if (isAltGr && k.alt) charToType = k.alt;
 
+      const latinKey = (k.key || '').toUpperCase();
+
       keyDiv.innerHTML = `
-        <span class="top">${k.top || ''}</span>
-        <span class="main">${charToType}</span>
-        <span class="alt">${k.alt || ''}</span>
+        <span class="top" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
+        <span class="main" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
+        <span class="alt" style="${isAltGr ? 'color:#d97706; font-weight:700;' : ''}">${k.alt || ''}</span>
+        <span class="latin">${latinKey}</span>
       `;
 
       keyDiv.onclick = () => insertChar(charToType);
@@ -1006,7 +972,7 @@ function renderKeyboard() {
       const shiftR = document.createElement('div');
       shiftR.className = 'key key-wide' + (isShift ? ' active-mod' : '');
       shiftR.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
-      shiftR.onclick = toggleShift;
+      shiftR.onclick = () => setLayer(isShift ? 'normal' : 'shift');
       rowDiv.appendChild(shiftR);
     }
 
@@ -1035,8 +1001,8 @@ function renderKeyboard() {
 
   const altGr = document.createElement('div');
   altGr.className = 'key key-wide' + (isAltGr ? ' active-mod' : '');
-  altGr.innerHTML = '<span class="main" style="font-size:12px;">AltGr</span>';
-  altGr.onclick = toggleAltGr;
+  altGr.innerHTML = '<span class="main" style="font-size:12px;">AltGr (Option)</span>';
+  altGr.onclick = () => setLayer(isAltGr ? 'normal' : 'altgr');
   spaceRow.appendChild(altGr);
 
   const nnbsp = document.createElement('div');
@@ -1047,6 +1013,75 @@ function renderKeyboard() {
   spaceRow.appendChild(nnbsp);
 
   container.appendChild(spaceRow);
+}
+
+function setLayer(layer) {
+  if (layer === 'shift') {
+    isShift = true;
+    isAltGr = false;
+  } else if (layer === 'altgr') {
+    isShift = false;
+    isAltGr = true;
+  } else {
+    isShift = false;
+    isAltGr = false;
+  }
+  updateLayerButtons();
+  renderKeyboard();
+}
+
+function updateLayerButtons() {
+  document.getElementById('btn-layer-normal')?.classList.toggle('active', !isShift && !isAltGr);
+  document.getElementById('btn-layer-shift')?.classList.toggle('active', isShift);
+  document.getElementById('btn-layer-altgr')?.classList.toggle('active', isAltGr);
+}
+
+// Physical keyboard listener for live layer highlighting
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Shift') {
+    isShift = true;
+    updateLayerButtons();
+    renderKeyboard();
+  } else if (e.key === 'AltGraph' || (e.altKey && !e.ctrlKey)) {
+    isAltGr = true;
+    updateLayerButtons();
+    renderKeyboard();
+  }
+  const keyEl = document.querySelector(`.key[data-code="${e.code}"]`);
+  if (keyEl) keyEl.classList.add('key-pressed');
+});
+
+window.addEventListener('keyup', (e) => {
+  if (e.key === 'Shift') {
+    isShift = false;
+    updateLayerButtons();
+    renderKeyboard();
+  } else if (e.key === 'AltGraph' || !e.altKey) {
+    isAltGr = false;
+    updateLayerButtons();
+    renderKeyboard();
+  }
+  const keyEl = document.querySelector(`.key[data-code="${e.code}"]`);
+  if (keyEl) keyEl.classList.remove('key-pressed');
+});
+
+function setLayoutMode(m) {
+  currentMode = m;
+  document.getElementById('btn-mode-cyrillic')?.classList.toggle('active', m === 'cyrillic');
+  document.getElementById('btn-mode-bichig')?.classList.toggle('active', m === 'bichig');
+
+  const vertCard = document.getElementById('vertical-preview-card');
+  const editorGrid = document.getElementById('editor-grid');
+  if (m === 'bichig') {
+    vertCard.style.display = 'flex';
+    editorGrid.classList.add('bichig-active');
+  } else {
+    vertCard.style.display = 'none';
+    editorGrid.classList.remove('bichig-active');
+  }
+
+  renderKeyboard();
+  updatePreviews();
 }
 
 function insertChar(ch) {
@@ -1071,37 +1106,29 @@ function backspaceChar() {
   updatePreviews();
 }
 
-function toggleShift() {
-  isShift = !isShift;
-  document.getElementById('btn-shift').classList.toggle('active', isShift);
-  renderKeyboard();
-}
-
-function toggleAltGr() {
-  isAltGr = !isAltGr;
-  document.getElementById('btn-altgr').classList.toggle('active', isAltGr);
-  renderKeyboard();
-}
-
-function setLayoutMode(m) {
-  currentMode = m;
-  document.getElementById('btn-mode-ergo').classList.toggle('active', m === 'ergo');
-  document.getElementById('btn-mode-classic').classList.toggle('active', m === 'classic');
-  document.getElementById('btn-mode-bichig').classList.toggle('active', m === 'bichig');
-
-  const vertCard = document.getElementById('vertical-preview-card');
-  const editorGrid = document.getElementById('editor-grid');
-  if (m === 'bichig') {
-    vertCard.style.display = 'flex';
-    editorGrid.classList.add('bichig-active');
-  } else {
-    vertCard.style.display = 'none';
-    editorGrid.classList.remove('bichig-active');
+// Emulation for typing workspace
+document.addEventListener('DOMContentLoaded', () => {
+  const box = document.getElementById('typing-box');
+  if (box) {
+    box.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Tab' || e.key.startsWith('Arrow')) {
+        return;
+      }
+      const layout = getCurrentLayout();
+      const allKeys = [...layout.row1, ...layout.row2, ...layout.row3, ...layout.row4];
+      const match = allKeys.find(k => k.code === e.code);
+      if (match) {
+        e.preventDefault();
+        let charToType = match.base;
+        if (e.shiftKey) charToType = match.top;
+        if ((e.altKey && !e.ctrlKey) || e.getModifierState('AltGraph')) {
+          charToType = match.alt || match.base;
+        }
+        insertChar(charToType);
+      }
+    });
   }
-
-  renderKeyboard();
-  updatePreviews();
-}
+});
 
 function setBase(b) {
   currentBase = b;
@@ -1156,15 +1183,15 @@ let currentLang = 'mn';
 const I18N = {
   mn: {
     title: "🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал",
-    subtitle: "Орчин Үеийн Эргономик • Сонгодог Кирилл • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel)</strong>",
+    subtitle: "Монгол Кирилл (Bachka mn-custom) • Худам Монгол Бичиг | Зохиогч: <strong>Bachka (Цэнгэл / tsengel.de)</strong>",
     labelEdition: "Загвар:",
-    btnErgo: "⚡ Орчин Үеийн Эргономик (Q=Ө, W=Ү)",
-    btnClassic: "Сонгодог (Brackets [=ө, ]=ү)",
-    btnBichig: "📜 Худам Монгол Бичиг",
-    labelBase: "Суурь Гар:",
-    baseUs: "US English (QWERTY)",
-    baseDe: "German (QWERTZ)",
-    labelShift: "Шилжилт:",
+    btnCyrillic: "🇲🇳 Монгол Кирилл (Bachka mn-custom)",
+    btnBichig: "📜 Худам Монгол Бичиг (Bachka Phonetics)",
+    labelLayer: "Үе давхарга:",
+    layerNormal: "Үндсэн (Normal / 1-р үе)",
+    layerShift: "Shift (Том үсэг / 2-р үе)",
+    layerAltGr: "AltGr / Option (Хаалт & Тэмдэгт / 3-р үе)",
+    hintPhysical: "💡 Физик гараасаа Shift эсвэл AltGr дарж шууд үзэж болно",
     devopsTitle: "💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)",
     devopsDesc: "Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \\</code> болон тушаалуудыг шууд бичиж туршина уу:",
     devopsSamples: "Жишээ тушаалууд (товшиж турш):",
@@ -1190,14 +1217,14 @@ const I18N = {
     winHint: "<strong>Суулгах:</strong> Татаж авсан <code>Mongolian-Keyboard-Windows-Setup.exe</code> дээр дарж суулгана. Суусны дараа <strong>Win + Space</strong> товчоор шууд монгол гар луу шилжинэ.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
     macDesc: "Apple-ийн албан ёсны стандартын Mongolian.bundle багц бүхий DMG диск. Хялбар чирж (Drag & Drop) суулгана.",
-    btnMacDmg: "💿 macOS Диск Татах (.dmg, 1.3 MB)",
-    btnMacZip: "📁 .zip Эх сан (1.2 MB)",
-    macHint: "<strong>Суулгах заавар (Энгийн 4 алхам):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li><code>.dmg</code> файл дээр 2 дарж нээнэ (Finder-т <code>Mongolian Keyboard</code> холбогдоно).</li><li><code>Keyboard Layouts</code> холбоос дээр 2 дарж нээгээд, <code>Mongolian.bundle</code> багцыг тийш чирж хуулна (нууц үг асуувал зөвшөөрнө).</li><li><code>Fonts (System)</code> холбоосыг 2 дарж нээгээд, <code>Fonts</code> хавтас доторх фонтуудыг тийш хуулна.</li><li>Finder дээрх <code>Mongolian Keyboard</code> дискийг <strong>Eject (⏏️)</strong> хийж салгаад, <code>System Settings &rarr; Keyboard &rarr; Input Sources</code>-оос нэмнэ.</li></ol>",
+    btnMacDmg: "💿 macOS Диск Татах (.dmg)",
+    btnMacZip: "📁 .zip Эх сан",
+    macHint: "<strong>Суулгах заавар (Энгийн арга):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li><code>.dmg</code> файл дээр 2 дарж нээнэ.</li><li><code>Keyboard Installer.app</code>-ийг нээж <code>Mongolian.bundle</code>-ийг чирж оруулна (эсвэл <code>~/Library/Keyboard Layouts/</code> руу хуулна).</li><li><code>Fonts</code> доторх 8 сонгодог фонтуудыг <code>~/Library/Fonts/</code> руу хуулна.</li><li>Системээс гарч (Log out) дахин ороод, <code>System Settings &rarr; Keyboard &rarr; Input Sources</code>-оос нэмнэ.</li></ol>",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Бүх 3 хувилбарыг (Modern, Classic, Bichig) зэрэг суулгах, системд ээлтэй автомат суурилуулагч.",
+    linuxDesc: "Монгол Кирилл (Bachka mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
     btnCopyScript: "Хуулах",
-    linuxHint: "<strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Modern) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.",
+    linuxHint: "<strong>Шуурхай солих:</strong> Терминал дээр <code>setxkbmap mn</code> (Кирилл) эсвэл <code>setxkbmap mn -variant bichig</code> ажиллуулна.",
     checksumTitle: "🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)",
     checksumToggle: "[Дэлгэх ▾]",
     thFile: "Файлын нэр",
@@ -1210,15 +1237,15 @@ const I18N = {
   },
   en: {
     title: "🇲🇳 Universal Mongolian Keyboard Layout Suite",
-    subtitle: "Modern Ergonomic • Classic Cyrillic • Classical Bichig | Author: <strong>Tsengel (tsengel.de)</strong>",
+    subtitle: "Mongolian Cyrillic (Bachka mn-custom) • Classical Bichig | Author: <strong>Bachka (Tsengel / tsengel.de)</strong>",
     labelEdition: "Edition:",
-    btnErgo: "⚡ Modern Ergonomic (Q=Ө, W=Ү)",
-    btnClassic: "Classic (Brackets [=ө, ]=ү)",
+    btnCyrillic: "🇲🇳 Mongolian Cyrillic (Bachka mn-custom)",
     btnBichig: "📜 Classical Mongol Bichig",
-    labelBase: "Base Keyboard:",
-    baseUs: "US English (QWERTY)",
-    baseDe: "German (QWERTZ)",
-    labelShift: "Modifiers:",
+    labelLayer: "Layer / Level:",
+    layerNormal: "Base (Normal / Layer 1)",
+    layerShift: "Shift (Capitals / Layer 2)",
+    layerAltGr: "AltGr / Option (Brackets & Symbols / Layer 3)",
+    hintPhysical: "💡 Press Shift or AltGr on your physical keyboard to preview layers live",
     devopsTitle: "💻 Developer & Engineering Test (Zero-Switching)",
     devopsDesc: "Type Bash, Python, Git, and code brackets <code>{ } [ ] | \\</code> natively while typing Mongolian without switching layouts:",
     devopsSamples: "Sample commands (click to test):",
@@ -1239,19 +1266,19 @@ const I18N = {
     dlBadgePrefix: "Your Device: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
     winDesc: "All-in-one standalone installer for Mongolian Cyrillic & Bichig layouts and TrueType fonts.",
-    btnWinExe: "⚡ Download Windows Installer (.exe, 560 KB)",
+    btnWinExe: "⚡ Download Windows Installer (.exe)",
     btnWinZip: "📁 .zip Source Archive (MSI & Sources)",
     winHint: "<strong>Install:</strong> Run <code>Mongolian-Keyboard-Windows-Setup.exe</code> and follow the wizard. Switch anytime using <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Official Apple standard Mongolian.bundle package on DMG disk image. Easily install via Drag & Drop.",
-    btnMacDmg: "💿 Download macOS Disk (.dmg, 1.3 MB)",
-    btnMacZip: "📁 .zip Archive (1.2 MB)",
-    macHint: "<strong>Installation Steps (4 Easy Steps):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li>Double-click <code>.dmg</code> to open (mounts as <code>Mongolian Keyboard</code> in Finder).</li><li>Double-click the <code>Keyboard Layouts</code> shortcut folder to open it, then drag &amp; drop <code>Mongolian.bundle</code> inside (enter Mac password if prompted).</li><li>Double-click <code>Fonts (System)</code> and copy the font files from <code>Fonts</code> inside.</li><li><strong>Eject (⏏️)</strong> the <code>Mongolian Keyboard</code> disk, then add in <code>System Settings &rarr; Keyboard &rarr; Input Sources</code>.</li></ol>",
+    macDesc: "Official Apple standard Mongolian.bundle package on DMG disk image with 8 verified classical fonts.",
+    btnMacDmg: "💿 Download macOS Disk (.dmg)",
+    btnMacZip: "📁 .zip Archive",
+    macHint: "<strong>Installation:</strong> Open <code>.dmg</code>, run <code>Keyboard Installer.app</code> to install <code>Mongolian.bundle</code>, copy fonts to <code>~/Library/Fonts/</code>, log out and back in.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "All 3 editions (Modern, Classic, Bichig) bundled in one safe XKB installer.",
-    btnLinuxZip: "⬇️ Download Linux Package (.zip, 26 KB)",
+    linuxDesc: "Unified XKB installer for Mongolian Cyrillic (Bachka) and Classical Script (Bichig).",
+    btnLinuxZip: "⬇️ Download Linux Package (.zip)",
     btnCopyScript: "Copy",
-    linuxHint: "<strong>Quick switch:</strong> Run <code>setxkbmap mn</code> (Modern) or <code>setxkbmap mn -variant bichig</code> in Terminal.",
+    linuxHint: "<strong>Quick switch:</strong> Run <code>setxkbmap mn</code> (Cyrillic) or <code>setxkbmap mn -variant bichig</code> in Terminal.",
     checksumTitle: "🔍 File SHA-256 Checksums & Antivirus Verification",
     checksumToggle: "[Expand ▾]",
     thFile: "File Name",
@@ -1264,15 +1291,15 @@ const I18N = {
   },
   de: {
     title: "🇲🇳 Universelles mongolisches Tastaturlayout",
-    subtitle: "Moderne Ergonomie • Klassisches Kyrillisch • Traditionelle Schrift | Autor: <strong>Tsengel (tsengel.de)</strong>",
+    subtitle: "Mongolisches Kyrillisch (Bachka mn-custom) • Traditionelle Schrift | Autor: <strong>Bachka (Tsengel / tsengel.de)</strong>",
     labelEdition: "Edition:",
-    btnErgo: "⚡ Moderne Ergonomie (Q=Ө, W=Ү)",
-    btnClassic: "Klassisch (Brackets [=ө, ]=ү)",
+    btnCyrillic: "🇲🇳 Mongolisches Kyrillisch (Bachka mn-custom)",
     btnBichig: "📜 Traditionelle Schrift (Bichig)",
-    labelBase: "Basistastatur:",
-    baseUs: "US English (QWERTY)",
-    baseDe: "Deutsch (QWERTZ)",
-    labelShift: "Umschaltung:",
+    labelLayer: "Tastaturebene:",
+    layerNormal: "Basis (Normal / Ebene 1)",
+    layerShift: "Shift (Großbuchstaben / Ebene 2)",
+    layerAltGr: "AltGr / Option (Klammern & Symbole / Ebene 3)",
+    hintPhysical: "💡 Halten Sie Shift oder AltGr auf Ihrer Tastatur gedrückt für die Live-Vorschau",
     devopsTitle: "💻 Entwickler- & Engineering-Test (Zero-Switching)",
     devopsDesc: "Tippen Sie Bash-, Python-, Git- und Codeklammern <code>{ } [ ] | \\</code> direkt auf Mongolisch, ohne das Tastaturlayout wechseln zu müssen:",
     devopsSamples: "Beispielbefehle (zum Testen anklicken):",
@@ -1293,19 +1320,19 @@ const I18N = {
     dlBadgePrefix: "Ihr Betriebssystem: ",
     winTitle: "🪟 Windows 7 / 10 / 11",
     winDesc: "Eigenständiger Windows-Installer für mongolische kyrillische & traditionelle Schriftlayouts und Schriftarten.",
-    btnWinExe: "⚡ Windows Installer herunterladen (.exe, 560 KB)",
+    btnWinExe: "⚡ Windows Installer herunterladen (.exe)",
     btnWinZip: "📁 .zip Quellarchiv (MSI & Sourcen)",
     winHint: "<strong>Installation:</strong> Führen Sie <code>Mongolian-Keyboard-Windows-Setup.exe</code> aus. Wechseln Sie jederzeit mit <strong>Win + Space</strong>.",
     macTitle: "🍏 macOS (Apple Silicon & Intel)",
-    macDesc: "Offizielles Apple-Standardpaket Mongolian.bundle auf DMG-Image. Einfache Installation per Drag & Drop.",
-    btnMacDmg: "💿 macOS Disk Image (.dmg, 1.3 MB)",
-    btnMacZip: "📁 .zip-Archiv (1.2 MB)",
-    macHint: "<strong>Installationsanleitung (4 einfache Schritte):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li><code>.dmg</code> per Doppelklick öffnen (wird als <code>Mongolian Keyboard</code> im Finder gemountet).</li><li>Die Verknüpfung <code>Keyboard Layouts</code> per Doppelklick öffnen und <code>Mongolian.bundle</code> hineinziehen (ggf. Mac-Passwort eingeben).</li><li>Die Verknüpfung <code>Fonts (System)</code> per Doppelklick öffnen und Schriftarten aus <code>Fonts</code> hineinkopieren.</li><li>Das <code>Mongolian Keyboard</code>-Image <strong>auswerfen (⏏️ / Eject)</strong> und unter <code>Systemeinstellungen &rarr; Tastatur &rarr; Eingabequellen</code> hinzufügen.</li></ol>",
+    macDesc: "Offizielles Apple-Standardpaket Mongolian.bundle auf DMG-Image mit 8 verifizierten traditionellen Schriften.",
+    btnMacDmg: "💿 macOS Disk Image (.dmg)",
+    btnMacZip: "📁 .zip-Archiv",
+    macHint: "<strong>Installation:</strong> <code>.dmg</code> öffnen, <code>Keyboard Installer.app</code> starten, Schriften in <code>~/Library/Fonts/</code> kopieren, ab- und wieder anmelden.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Alle 3 Editionen (Modern, Klassisch, Bichig) gebündelt in einem sicheren XKB-Installer.",
-    btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip, 26 KB)",
+    linuxDesc: "Sicherer XKB-Installer für mongolisches Kyrillisch (Bachka) und traditionelle mongolische Schrift.",
+    btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip)",
     btnCopyScript: "Kopieren",
-    linuxHint: "<strong>Schnellwechsel:</strong> <code>setxkbmap mn</code> (Modern) oder <code>setxkbmap mn -variant bichig</code> im Terminal ausführen.",
+    linuxHint: "<strong>Schnellwechsel:</strong> <code>setxkbmap mn</code> (Kyrillisch) oder <code>setxkbmap mn -variant bichig</code> im Terminal ausführen.",
     checksumTitle: "🔍 SHA-256-Prüfsummen & Antivirus-Verifizierung",
     checksumToggle: "[Ausklappen ▾]",
     thFile: "Dateiname",
@@ -1336,13 +1363,13 @@ function setLanguage(lang) {
     'i18n-title': t.title,
     'i18n-subtitle': t.subtitle,
     'i18n-lbl-edition': t.labelEdition,
-    'btn-mode-ergo': t.btnErgo,
-    'btn-mode-classic': t.btnClassic,
+    'btn-mode-cyrillic': t.btnCyrillic,
     'btn-mode-bichig': t.btnBichig,
-    'i18n-lbl-base': t.labelBase,
-    'btn-base-us': t.baseUs,
-    'btn-base-de': t.baseDe,
-    'i18n-lbl-shift': t.labelShift,
+    'i18n-lbl-layer': t.labelLayer,
+    'btn-layer-normal': t.layerNormal,
+    'btn-layer-shift': t.layerShift,
+    'btn-layer-altgr': t.layerAltGr,
+    'i18n-hint-physical': t.hintPhysical,
     'i18n-devops-title': t.devopsTitle,
     'i18n-devops-desc': t.devopsDesc,
     'i18n-devops-samples': t.devopsSamples,
@@ -1351,6 +1378,46 @@ function setLanguage(lang) {
     'i18n-btn-copy': t.btnCopy,
     'i18n-vert-title': t.vertTitle,
     'i18n-trust-vt-title': t.trustVtTitle,
+    'i18n-trust-vt-sub': t.trustVtSub,
+    'i18n-trust-zero-title': t.trustZeroTitle,
+    'i18n-trust-zero-sub': t.trustZeroSub,
+    'i18n-trust-native-title': t.trustNativeTitle,
+    'i18n-trust-native-sub': t.trustNativeSub,
+    'i18n-trust-mit-title': t.trustMitTitle,
+    'i18n-trust-mit-sub': t.trustMitSub,
+    'i18n-dl-header': t.dlHeader,
+    'i18n-win-title': t.winTitle,
+    'i18n-win-desc': t.winDesc,
+    'i18n-btn-win-exe': t.btnWinExe,
+    'i18n-btn-win-zip': t.btnWinZip,
+    'i18n-win-hint': t.winHint,
+    'i18n-mac-title': t.macTitle,
+    'i18n-mac-desc': t.macDesc,
+    'i18n-btn-mac-dmg': t.btnMacDmg,
+    'i18n-btn-mac-zip': t.btnMacZip,
+    'i18n-mac-hint': t.macHint,
+    'i18n-linux-title': t.linuxTitle,
+    'i18n-linux-desc': t.linuxDesc,
+    'i18n-btn-linux-zip': t.btnLinuxZip,
+    'i18n-btn-copy-script': t.btnCopyScript,
+    'i18n-linux-hint': t.linuxHint,
+    'i18n-checksum-title': t.checksumTitle,
+    'i18n-checksum-toggle': t.checksumToggle,
+    'th-file': t.thFile,
+    'th-platform': t.thPlatform,
+    'th-size': t.thSize,
+    'th-hash': t.thHash,
+    'th-status': t.thStatus
+  };
+
+  for (const [id, val] of Object.entries(map)) {
+    const el = document.getElementById(id);
+    if (el && val) el.innerHTML = val;
+  }
+
+  const typingBox = document.getElementById('typing-box');
+  if (typingBox) typingBox.placeholder = t.typingPlaceholder;
+}
     'i18n-trust-vt-sub': t.trustVtSub,
     'i18n-trust-zero-title': t.trustZeroTitle,
     'i18n-trust-zero-sub': t.trustZeroSub,

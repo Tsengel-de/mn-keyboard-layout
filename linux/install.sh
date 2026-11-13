@@ -47,27 +47,73 @@ echo "2. Installing All-in-One Mongolian Suite to ${TARGET_FILE}..."
 sudo cp "${SOURCE_FILE}" "${TARGET_FILE}"
 sudo chmod 644 "${TARGET_FILE}"
 
-echo "3. Clearing XKB cache..."
+echo "3. Registering Classical Script variant in XKB rules (evdev.xml)..."
+EVDEV_XML="/usr/share/X11/xkb/rules/evdev.xml"
+if [ -f "${EVDEV_XML}" ]; then
+    if ! grep -q "<name>bichig</name>" "${EVDEV_XML}"; then
+        if [ ! -f "${EVDEV_XML}.orig.backup" ]; then
+            sudo cp "${EVDEV_XML}" "${EVDEV_XML}.orig.backup"
+        fi
+        sudo python3 -c '
+with open("/usr/share/X11/xkb/rules/evdev.xml", "r") as f:
+    c = f.read()
+tgt = """        <name>mn</name>
+        <!-- Keyboard indicator for Mongolian layouts -->
+        <shortDescription>mn</shortDescription>
+        <description>Mongolian</description>
+        <countryList>
+          <iso3166Id>MN</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>mon</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList/>"""
+rep = """        <name>mn</name>
+        <!-- Keyboard indicator for Mongolian layouts -->
+        <shortDescription>mn</shortDescription>
+        <description>Mongolian (Cyrillic - Bachka)</description>
+        <countryList>
+          <iso3166Id>MN</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>mon</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>bichig</name>
+            <description>Mongolian Script (Traditional - Bachka)</description>
+          </configItem>
+        </variant>
+      </variantList>"""
+if tgt in c:
+    with open("/usr/share/X11/xkb/rules/evdev.xml", "w") as f:
+        f.write(c.replace(tgt, rep, 1))
+' 2>/dev/null || true
+    fi
+fi
+
+echo "4. Clearing XKB cache..."
 if [ -d "/var/lib/xkb" ]; then
     sudo rm -rf /var/lib/xkb/*.xkm 2>/dev/null || true
 fi
 
 echo ""
-echo "✅ All 3 layouts installed simultaneously!"
+echo "✅ Mongolian All-in-One Dual-Layout Suite installed successfully!"
 echo "----------------------------------------------------------"
-echo "Installed Variants:"
-echo "  1) Default:  Mongolian (Modern Ergonomic: Q=Ө, W=Ү)"
-echo "  2) Classic:  Mongolian (Classic Tsengel: [=ө, ]=ү)"
-echo "  3) Bichig:   Mongolian Script (Худам Монгол бичиг)"
+echo "Integrated Dual Layouts (Хос Гар):"
+echo "  1) Default:  Mongolian Cyrillic (Bachka mn-custom: All 35 Cyrillic letters on Base/Shift)"
+echo "  2) Bichig:   Mongolian Script (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ...)"
 echo ""
 echo "Quick Switch via Terminal (X11):"
-echo "  - setxkbmap mn                    # Modern Ergonomic (Default)"
-echo "  - setxkbmap mn -variant classic   # Classic Tsengel"
-echo "  - setxkbmap mn -variant bichig    # Classical Mongol Bichig"
+echo "  - setxkbmap mn                    # Mongolian Cyrillic (Bachka)"
+echo "  - setxkbmap mn -variant bichig    # Mongolian Script (Bachka)"
 echo ""
 echo "In GNOME / Ubuntu / Fedora Settings:"
 echo "  Settings -> Keyboard -> Input Sources -> Add 'Mongolian'"
-echo "  (All 3 variants are ready to select and switch with Win + Space)"
+echo "  (Switch anytime using Super + Space)"
 echo ""
 echo "To revert:"
 echo "  Run: ./uninstall.sh"

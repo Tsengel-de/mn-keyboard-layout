@@ -1,16 +1,16 @@
 // =============================================================================
 // Classical Mongolian Script (Худам Монгол Бичиг) Keyboard Layout
-// Author: Tsengel <tsengel@tsengel.de>
-// Adapted from macOS Dusal Bicheech & Unicode 13.0 Standards
+// Author: Bachka (Tsengel) <tsengel@tsengel.de>
+// Source: Bachka Phonetic Logic ([=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
 // Part of "Mongolian for All" / tsengel.de
 // =============================================================================
 
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 
-  name[Group1]= "Mongolian Script (Bichig)";
+  name[Group1]= "Mongolian Script (Bachka)";
 
-  // Number Row: Classical Mongolian Digits (᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙)
+  // Classical Mongolian Digits (᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙)
   key <TLDE> { [ 0x1001804, 0x1001800, asciitilde, grave ] }; // ᠄ (Nirugu), ᠀ (Birga)
   key <AE01> { [ 0x1001811, exclam,     1,          exclam ] }; // ᠑
   key <AE02> { [ 0x1001812, at,         2,          at     ] }; // ᠒
@@ -26,48 +26,47 @@ xkb_symbols "basic" {
   key <AE12> { [ equal,     plus,       multiply,   division ] };
 
   // Top Row: Q W E R T Y U I O P [ ] \
-  key <AD01> { [ 0x1001825, 0x1001825, 0x100180b, NoSymbol ] }; // Q = ᠥ (Ö), AltGr = FVS1
-  key <AD02> { [ 0x1001826, 0x1001826, 0x100180c, NoSymbol ] }; // W = ᠦ (Ü), AltGr = FVS2
-  key <AD03> { [ 0x1001821, 0x1001821, 0x100180e, NoSymbol ] }; // E = ᠡ (E), AltGr = MVS
-  key <AD04> { [ 0x1001837, 0x1001837, registered,NoSymbol ] }; // R = ᠷ (R)
-  key <AD05> { [ 0x1001832, 0x1001832, 0x10020ae, NoSymbol ] }; // T = ᠲ (T), AltGr = ₮
-  key <AD06> { [ 0x1001836, 0x1001836, trademark, NoSymbol ] }; // Y = ᠶ (Y)
-  key <AD07> { [ 0x1001824, 0x1001824, 0x100180d, NoSymbol ] }; // U = ᠤ (U), AltGr = FVS3
-  key <AD08> { [ 0x1001822, 0x1001822, NoSymbol,  NoSymbol ] }; // I = ᠢ (I)
-  key <AD09> { [ 0x1001823, 0x1001823, NoSymbol,  NoSymbol ] }; // O = ᠣ (O)
-  key <AD10> { [ 0x100182b, 0x100182b, semicolon, colon    ] }; // P = ᠫ (P)
-  key <AD11> { [ bracketleft,  braceleft,  0x1001808, NoSymbol ] }; // [ { ᠈ (Dotted Comma)
-  key <AD12> { [ bracketright, braceright, 0x1001809, NoSymbol ] }; // ] } ᠉ (Transcribe Mark)
-  key <BKSL> { [ backslash, bar, NoSymbol, NoSymbol ] };
+  key <AD01> { [ 0x100180b, 0x100180e, apostrophe,  NoSymbol ] }; // Q = FVS1, Shift+Q = MVS
+  key <AD02> { [ 0x100180c, 0x100180d, grave,       NoSymbol ] }; // W = FVS2, Shift+W = FVS3
+  key <AD03> { [ 0x1001821, 0x1001821, 0x100180e,   EuroSign ] }; // E = ᠡ (E), AltGr = MVS
+  key <AD04> { [ 0x1001837, 0x1001837, registered,  NoSymbol ] }; // R = ᠷ (R)
+  key <AD05> { [ 0x1001832, 0x1001832, 0x10020ae,   NoSymbol ] }; // T = ᠲ (T), AltGr = ₮
+  key <AD06> { [ 0x1001836, 0x1001836, trademark,   NoSymbol ] }; // Y = ᠶ (Y)
+  key <AD07> { [ 0x1001824, 0x1001824, NoSymbol,    NoSymbol ] }; // U = ᠤ (U)
+  key <AD08> { [ 0x1001822, 0x1001822, NoSymbol,    NoSymbol ] }; // I = ᠢ (I)
+  key <AD09> { [ 0x1001823, 0x1001823, NoSymbol,    NoSymbol ] }; // O = ᠣ (O)
+  key <AD10> { [ 0x100182b, 0x100182b, semicolon,   colon    ] }; // P = ᠫ (P)
+  key <AD11> { [ 0x1001825, 0x1001825, bracketleft, braceleft] }; // [ = ᠥ (Ö), AltGr = [
+  key <AD12> { [ 0x1001826, 0x1001826, bracketright,braceright]}; // ] = ᠦ (Ü), AltGr = ]
+  key <BKSL> { [ backslash, bar,        NoSymbol,    NoSymbol ] };
 
   // Home Row: A S D F G H J K L ; '
-  key <AC01> { [ 0x1001820, 0x1001820, NoSymbol, NoSymbol ] }; // A = ᠠ (A)
-  key <AC02> { [ 0x1001830, 0x1001830, NoSymbol, NoSymbol ] }; // S = ᠰ (S)
-  key <AC03> { [ 0x1001833, 0x1001833, NoSymbol, NoSymbol ] }; // D = ᠳ (D)
-  key <AC04> { [ 0x1001839, 0x1001839, NoSymbol, NoSymbol ] }; // F = ᠹ (F)
-  key <AC05> { [ 0x100182d, 0x100182d, NoSymbol, NoSymbol ] }; // G = ᠭ (G)
-  key <AC06> { [ 0x100182c, 0x100182c, NoSymbol, NoSymbol ] }; // H = ᠬ (H/Q)
-  key <AC07> { [ 0x1001835, 0x1001835, NoSymbol, NoSymbol ] }; // J = ᠵ (J)
-  key <AC08> { [ 0x100183a, 0x100183a, NoSymbol, NoSymbol ] }; // K = ᠺ (K)
-  key <AC09> { [ 0x100182f, 0x100182f, NoSymbol, NoSymbol ] }; // L = ᠯ (L)
-  key <AC10> { [ semicolon, colon,     NoSymbol, NoSymbol ] };
-  key <AC11> { [ apostrophe,quotedbl,  0x100180e, NoSymbol ] }; // ' " MVS
+  key <AC01> { [ 0x1001820, 0x1001820, NoSymbol,    NoSymbol ] }; // A = ᠠ (A)
+  key <AC02> { [ 0x1001830, 0x1001830, NoSymbol,    NoSymbol ] }; // S = ᠰ (S)
+  key <AC03> { [ 0x1001833, 0x1001833, 0x1001808,   NoSymbol ] }; // D = ᠳ (D), AltGr = ᠈
+  key <AC04> { [ 0x1001839, 0x1001839, 0x1001809,   NoSymbol ] }; // F = ᠹ (F), AltGr = ᠉
+  key <AC05> { [ 0x100182d, 0x100182d, braceleft,   NoSymbol ] }; // G = ᠭ (G)
+  key <AC06> { [ 0x100182c, 0x100182c, less,        NoSymbol ] }; // H = ᠬ (H)
+  key <AC07> { [ 0x1001835, 0x1001835, greater,     NoSymbol ] }; // J = ᠵ (J)
+  key <AC08> { [ 0x100183a, 0x100183a, braceright,  NoSymbol ] }; // K = ᠺ (K)
+  key <AC09> { [ 0x100182f, 0x100182f, numerosign,  NoSymbol ] }; // L = ᠯ (L)
+  key <AC10> { [ semicolon, colon,     NoSymbol,    NoSymbol ] };
+  key <AC11> { [ apostrophe,quotedbl,  0x100180e,   NoSymbol ] }; // ' " MVS
 
   // Bottom Row: Z X C V B N M , . /
-  key <AB01> { [ 0x100183d, 0x100183d, NoSymbol, NoSymbol ] }; // Z = ᠽ (Z)
-  key <AB02> { [ 0x1001831, 0x1001831, NoSymbol, NoSymbol ] }; // X = ᠱ (Sh)
-  key <AB03> { [ 0x1001834, 0x1001834, NoSymbol, NoSymbol ] }; // C = ᠴ (Ch)
-  key <AB04> { [ 0x1001838, 0x1001838, NoSymbol, NoSymbol ] }; // V = ᠸ (V/W)
-  key <AB05> { [ 0x100182a, 0x100182a, NoSymbol, NoSymbol ] }; // B = ᠪ (B)
-  key <AB06> { [ 0x1001828, 0x1001829, NoSymbol, NoSymbol ] }; // N = ᠨ (N), Shift = ᠩ (Ag/Ng)
-  key <AB07> { [ 0x100182e, 0x100182e, NoSymbol, NoSymbol ] }; // M = ᠮ (M)
-  key <AB08> { [ 0x1001802, comma,     less,     NoSymbol ] }; // , = ᠂ (Mongolian Comma)
-  key <AB09> { [ 0x1001803, period,    greater,  NoSymbol ] }; // . = ᠃ (Mongolian Full Stop / Tseg)
-  key <AB10> { [ slash,     question,  NoSymbol, NoSymbol ] };
+  key <AB01> { [ 0x100183d, 0x100183d, NoSymbol,    NoSymbol ] }; // Z = ᠽ (Z)
+  key <AB02> { [ 0x1001831, 0x1001831, NoSymbol,    NoSymbol ] }; // X = ᠱ (Sh)
+  key <AB03> { [ 0x100183c, 0x100183c, copyright,   NoSymbol ] }; // C = ᠼ (Ts)
+  key <AB04> { [ 0x1001838, 0x1001838, NoSymbol,    NoSymbol ] }; // V = ᠸ (V/W)
+  key <AB05> { [ 0x100182a, 0x100182a, NoSymbol,    NoSymbol ] }; // B = ᠪ (B)
+  key <AB06> { [ 0x1001828, 0x1001829, less,        NoSymbol ] }; // N = ᠨ, Shift+N = ᠩ
+  key <AB07> { [ 0x100182e, 0x100182e, greater,     NoSymbol ] }; // M = ᠮ (M)
+  key <AB08> { [ 0x1001834, comma,     0x1001802,   less     ] }; // , = ᠴ (Ch), Shift+, = ,, AltGr = ᠂
+  key <AB09> { [ 0x1001803, period,    0x1001803,   greater  ] }; // . = ᠃ (Tseg), Shift+. = .
+  key <AB10> { [ slash,     question,  NoSymbol,    NoSymbol ] };
 
   // Space Row: Space & NNBSP (\u202F)
-  key <SPCE> { [ space,     0x100202f, 0x100202f, nobreakspace ] }; // Shift+Space = NNBSP
+  key <SPCE> { [ space,     0x100202f, 0x100202f,   nobreakspace ] }; // Shift+Space = NNBSP
 
   include "level3(ralt_switch)"
 };
-

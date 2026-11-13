@@ -3,7 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20|%20macOS%20|%20Windows%20|%20Web-green.svg)]()
-[![Editions](https://img.shields.io/badge/Editions-Ergonomic%20|%20Classic%20|%20Bichig-purple.svg)]()
+[![Editions](https://img.shields.io/badge/Editions-Cyrillic%20|%20Traditional%20Script-purple.svg)]()
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-ff5e5b?logo=ko-fi&logoColor=white)](https://ko-fi.com/tsengel)
 [![Author: Tsengel](https://img.shields.io/badge/Author-Tsengel%20(tsengel.de)-red.svg)](https://tsengel.de)
 
@@ -14,25 +14,25 @@
 
 ---
 
-## 🗺️ Гарын Байршлын Зураглалууд (Up-to-Date Layout Maps)
+## 🗺️ Гарын Байршлын Зураглалууд (All Layers Illustrated)
 
-### 1. Modern Ergonomic Edition (Шинэ Эргономик Хувилбар)
-> **Зөвлөмж**: `Q = Ө`, `W = Ү`. Бүх эгшгүүд гарын үндсэн хэсэгт багтсан тул 10 хуруугаар маш хурдан шивнэ. Кодчилол, терминалын `{ } [ ] | \` хаалтууд байрандаа хадгалагдсан.
+### 1. Үндсэн үе (Base Layer — Бүх 35 крилл үсэг шууд байрлана)
+> **Зарчим**: Ямар ч Option/AltGr дарах шаардлагагүй. `Q = ъ`, `W = ь`, `Y = е`, `[ = ө`, `] = ү`, `; = щ`, `' = ы`, `\ = й`, `` ` = ё `` шууд 1-р үе дээр байрлана.
 
-![Mongolian Modern Ergonomic Layout](docs/images/layout-ergonomic-normal.png)
+![Mongolian Cyrillic Base Layer](docs/images/layout-cyrillic-normal.png)
 
-### 2. AltGr Өргөтгөл Давхарга (AltGr / Option Layer: ₮, « », —, \u202F)
-> Баруун `Alt` (AltGr) эсвэл Mac-ийн `Option` товчлуураар албан ёсны Төгрөгийн тэмдэгт (**`₮`**), хашилт (**`« »`**), урт зураас (**`—`**), болон Монгол бичгийн дагаврын сул зай (**`\u202F` NNBSP**) шууд гарна.
+### 2. Shift үе (Shift Layer — Том үсгүүд ба тусгай тэмдэгтүүд)
+> Том үсгүүд (**`Ө, Ү, Ъ, Ь, Е, Щ, Ы, Й, Ё`**) болон туслах тэмдэгтүүд.
 
-![Mongolian Ergonomic AltGr Layout](docs/images/layout-ergonomic-altgr.png)
+![Mongolian Cyrillic Shift Layer](docs/images/layout-cyrillic-shift.png)
 
-### 3. Classic Tsengel Edition (2021 Анхны Хувилбар)
-> Эгшгийн эрэмбээр `[` $\rightarrow$ `ө`, `]` $\rightarrow$ `ү`, `Q` $\rightarrow$ `ъ`, `W` $\rightarrow$ `ь` тохируулсан хувилбар.
+### 3. AltGr / Option өргөтгөл үе (AltGr / Option Layer — Програмист & Албан тэмдэгтүүд)
+> Баруун `Alt` (AltGr) эсвэл Mac-ийн `Option` товчлуураар кодын хаалтууд (**`[ ] { } \ | ; : ' "`**), Төгрөгийн тэмдэгт (**`₮`**), Евро (**`€`**), албан хашилт (**`« »`**), болон урт зураас (**`—`**) шууд гарна.
 
-![Mongolian Classic Layout](docs/images/layout-classic-normal.png)
+![Mongolian Cyrillic AltGr Layer](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Classical Mongol Bichig Edition (Худам Монгол Бичиг)
-> Кирилл үсгийн байрлалтай 100% ижил дадлаар Худам монгол бичгээр шивнэ: `Q` = **Ö (Ө)**, `W` = **Ü (Ү)**, `E` = **E (Э)**, `O` = **O (О)**, `U` = **U (У)**, `I` = **I (И)**, `A` = **A (А)**. Тоон товчлуурууд дээр монгол бичгийн сонгодог цифрүүд (0-9) шууд гарна. Дэлгэрэнгүй хуваарилалтыг доорх зургаас харна уу.
+### 4. Худам Монгол Бичиг (Classical Mongol Bichig — Bachka Phonetic Logic)
+> Кирилл үсгийн байрлалтай 100% ижил логикоор Худам монгол бичгээр шивнэ: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. Тоон товчлуурууд дээр монгол бичгийн сонгодог цифрүүд (᠐-᠙) шууд гарна. `Shift + Space` = **NNBSP** (`\u202F`).
 
 ![Classical Mongol Bichig Layout](docs/images/layout-bichig.png)
 
@@ -40,45 +40,52 @@
 
 ## ⌨️ Үсэг ба Тэмдэгтүүдийн Харьцуулсан Хүснэгт (Keymap Reference)
 
-| Товчлуур | Ergonomic (Шинэ) | Classic (2021) | Shift + Товчлуур (Ergo) | AltGr (Баруун Alt) |
-|:---:|:---:|:---:|:---:|:---:|
-| `Q` | **ө** (Feminine O) | **ъ** | **Ө** | **ъ** (Хатуугийн тэмдэг) |
-| `W` | **ү** (Feminine U) | **ь** | **Ү** | **ь** (Зөөлний тэмдэг) |
-| `E` | **э** | **э** | **Э** | € (Евро) |
-| `T` | **т** | **т** | **Т** | **₮ (ТӨГРӨГ \u20AE)** |
-| `Y` | **й** | **е** | **Й** | **е** |
-| `[` | **[** (Кодын хаалт) | **ө** | **{** (Кодын хаалт) | **«** (Зүүн хашилт) |
-| `]` | **]** (Кодын хаалт) | **ү** | **}** (Кодын хаалт) | **»** (Баруун хашилт) |
-| `\` | **\\** (Кодын зураас) | **й** | **\|** (Кодын Pipe) | **\|** |
-| `;` | **;** | **щ** | **:** | **щ** |
-| `'` | **ы** | **ы** | **Ы** | **'** / **"** |
-| `4` | 4 | 4 | $ | **₮ (Төгрөг)** |
-| `-` | - | - | _ | **— (Em-dash урт зураас)** |
-| `Space` | Зай | Зай | Зай | **\u202F (NNBSP бичгийн зай)** |
+| Товчлуур | Үндсэн (Base) | Shift (Том үсэг) | AltGr / Option (3-р үе) | Тэмдэглэл |
+|:---:|:---:|:---:|:---:|:---|
+| `Q` | **ъ** | **Ъ** | `'` | Үндсэн давхарга дээр шууд |
+| `W` | **ь** | **Ь** | `` ` `` | Үндсэн давхарга дээр шууд |
+| `E` | **э** | **Э** | `€` | Евро тэмдэг |
+| `R` | **р** | **Р** | `®` | Баталгаажсан |
+| `T` | **т** | **Т** | **₮ (U+20AE)** | Төгрөг |
+| `Y` | **е** | **Е** | `™` | **"е / Е" товч энд байна!** |
+| `[` | **ө** | **Ө** | `[` | **Ө / Ө үндсэн товч дээр, [ нь AltGr** |
+| `]` | **ү** | **Ү** | `]` | **Ү / Ү үндсэн товч дээр, ] нь AltGr** |
+| `;` | **щ** | **Щ** | `:` | **Щ / Щ үндсэн товч дээр, : нь AltGr** |
+| `'` | **ы** | **Ы** | `…` | **Ы / Ы үндсэн товч дээр, … нь AltGr** |
+| `\` | **й** | **Й** | `\` | **Й / Й үндсэн товч дээр, \ нь AltGr** |
+| `` ` `` | **ё** | **Ё** | `~` | **Ё / Ё үндсэн товч дээр** |
+| `G` | **г** | **Г** | `{` | Нээх их хаалт |
+| `K` | **к** | **К** | `}` | Хаах их хаалт |
+| `D` | **д** | **Д** | `«` | Монгол нээх хашилт |
+| `F` | **ф** | **Ф** | `»` | Монгол хаах хашилт |
+| `4` | 4 | $ | **₮** | Төгрөг |
+| `-` | - | _ | **—** | Em-dash урт зураас |
+| `,` | **ч** | **Ч** | `,` | **Ч / Ч үндсэн товч дээр, Таслал нь AltGr** |
+| `.` | **ю** | **Ю** | `.` | **Ю / Ю үндсэн товч дээр, Цэг нь AltGr** |
+| `/` | **я** | **Я** | `?` | **Я / Я үндсэн товч дээр, Асуулт нь AltGr** |
+| `Space` | Зай | Зай | `\u202F` | **NNBSP (Бичгийн нарийн зай)** |
 
 ---
 
 ## Суулгах Заавар (Installation Guides)
 
 ### 🐧 1. Linux (Ubuntu, Debian, Fedora, Arch)
-Линукс систем дээр нэг тушаалаар **3 хувилбарыг бүгдийг нь нэгэн зэрэг** системд суулгана:
+Линукс систем дээр нэг тушаалаар **Хоёр гарыг (Кирилл ба Монгол бичиг)** хамтад нь системд суулгана:
 
 ```bash
 cd linux
 sudo ./install.sh
 ```
 
-Суулгасны дараа та дараах 3 хувилбарыг шууд ашиглах боломжтой болно:
-1. **Үндсэн (Default)**: `Mongolian (Modern Ergonomic)` (`Q=Ө, W=Ү`)
-2. **Classic**: `Mongolian (Classic Tsengel)` (`[=ө, ]=ү`)
-3. **Монгол бичиг**: `Mongolian Script (Bichig)` (Худам монгол бичиг)
+Суулгасны дараа та дараах хоёр гарыг шууд ашиглана:
+1. **Үндсэн (Default)**: `Mongolian Cyrillic (Bachka)` — Бүх 35 үсэг үндсэн товч дээр (`Q=ъ, W=ь, Y=е, [=ө, ]=ү`)
+2. **Монгол бичиг**: `Mongolian Script (Traditional)` — Bachka авианы дагуу (`[=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...`)
 
 * **Шууд шилжүүлэх (Terminal / X11)**:
-  - `setxkbmap mn` (Ergonomic үндсэн хувилбар)
-  - `setxkbmap mn -variant classic` (Classic хувилбар)
-  - `setxkbmap mn -variant bichig` (Худам монгол бичиг)
-* **График орчин (GNOME / KDE / Ubuntu)**:
-  - `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ `Add 'Mongolian'` (3 хувилбараас хүссэнээ нэмээд `Win + Space`-ээр шилжинэ).
+  - `setxkbmap mn` (Монгол Кирилл)
+  - `setxkbmap mn -variant bichig` (Худам Монгол бичиг)
+* **График орчин (GNOME / Ubuntu / KDE)**:
+  - `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ `Add 'Mongolian'` нэмээд **`Super + Space`** (Win + Space)-ээр шилжинэ.
 * **Буцааж анхны төлөвт оруулах**: `cd linux && sudo ./uninstall.sh`.
 
 ---
@@ -122,16 +129,16 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 
 ```text
 # 🪟 Windows (v1.0.3)
-72967d6b31fd4e7501a752ac4fcc0c5ef0819798725185b239b9fc1609dbc7e3  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
-6527ddc3d370cf7a775314b23f742ef196320f2700a4b63bdf3517a25496d8a2  Mongolian-Keyboard-Windows-v1.0.3.zip
+bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0  Mongolian-Keyboard-Windows-Setup-v1.0.3.exe
+3aeb1527f9b1b77ef6a0e6f74137be12ad974f88d891084f5bba100895b64f46  Mongolian-Keyboard-Windows-v1.0.3.zip
 
 # 🍏 macOS (v1.0.3)
-16f6421edaa3ec6a5dd5076500789716958bbaf998c329105085ab1067c53ef2  Mongolian-Keyboard-macOS-v1.0.3.dmg
-e58b1a468ef6518a6767c7d79acc18472d6463d445660bfb40639046994ee159  Mongolian-Keyboard-macOS-v1.0.3.zip
+968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3  Mongolian-Keyboard-macOS-v1.0.3.dmg
+1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
-f80cf44cd61691ba742cec33de169d54e02f5625a87880dbdc2cbfd373a16aed  Mongolian-Keyboard-Linux-v1.0.3.zip
-438a636ad6b155865c22e6c6bd8020409ba9a8f1d8357cc6126acf40ffa4b8a4  install-linux.sh
+51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe  Mongolian-Keyboard-Linux-v1.0.3.zip
+bb05fa5f7db36133bbff54c190f4fbc069466efdcd2839c3a74956cbe7bf4c59  install-linux.sh
 ```
 
 ---
