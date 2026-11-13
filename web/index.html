@@ -143,28 +143,6 @@
       font-family: "Mongolian Biti", "Noto Sans Mongolian", sans-serif;
     }
 
-    .devops-panel {
-      background: #0f172a;
-      color: #e2e8f0;
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
-    }
-    .devops-panel h4 { color: #38bdf8; margin-bottom: 8px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
-    .devops-panel p { font-size: 13px; color: #94a3b8; margin-bottom: 12px; }
-    .devops-test-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    .devops-snippet {
-      background: #1e293b;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 12px;
-      color: #a7f3d0;
-      cursor: pointer;
-      border: 1px solid #334155;
-    }
-    .devops-snippet:hover { background: #334155; }
 
     .downloads-header {
       display: flex;
@@ -560,18 +538,6 @@
 
   <div class="keyboard-container" id="keyboard">
     <!-- Keys rendered dynamically -->
-  </div>
-
-  <div class="devops-panel" id="devops-panel">
-    <h4 id="i18n-devops-title">💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)</h4>
-    <p id="i18n-devops-desc">Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \</code> болон тушаалуудыг шууд бичиж туршина уу:</p>
-    <div class="devops-test-row">
-      <span id="i18n-devops-samples" style="font-size:12px; color:#94a3b8;">Жишээ тушаалууд (товшиж турш):</span>
-      <span class="devops-snippet" onclick="injectDevOps('docker run -d -p 8080:80 --name web app:latest')">docker run -d -p 8080:80</span>
-      <span class="devops-snippet" onclick="injectDevOps('kubectl get pods -n kube-system | grep Running')">kubectl ... | grep</span>
-      <span class="devops-snippet" onclick="injectDevOps('git commit -m \"fix: update array[0] && {status: true}\"')">array[0] && {status: true}</span>
-      <span class="devops-snippet" onclick="injectDevOps('Төгрөг: 150,000₮ «Албан бичиг» — 2026')">150,000₮ «Хашилт»</span>
-    </div>
   </div>
 
   <div class="editor-grid" id="editor-grid">
@@ -1180,13 +1146,6 @@ function copyText() {
   alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
 }
 
-function injectDevOps(cmd) {
-  const box = document.getElementById('typing-box');
-  box.value += (box.value.length > 0 ? '\n' : '') + cmd;
-  updatePreviews();
-  box.focus();
-}
-
 function updatePreviews() {
   const box = document.getElementById('typing-box');
   const vert = document.getElementById('vertical-preview-box');
@@ -1224,9 +1183,6 @@ const I18N = {
     layerShift: "Shift (Том үсэг / 2-р үе)",
     layerAltGr: "AltGr / Option (Хаалт & Тэмдэгт / 3-р үе)",
     hintPhysical: "💡 Физик гараасаа Shift эсвэл AltGr дарж шууд үзэж болно",
-    devopsTitle: "💻 Хөгжүүлэгч & Инженерийн Туршилт (Developer Zero-Switching)",
-    devopsDesc: "Монгол кириллээр бичиж байхдаа гар солихгүйгээр Bash, Python, Git, JSON/YAML кодын хаалт <code>{ } [ ] | \\</code> болон тушаалуудыг шууд бичиж туршина уу:",
-    devopsSamples: "Жишээ тушаалууд (товшиж турш):",
     editorTitle: "✍️ Бичих ба Турших талбар (Live Workspace)",
     btnClear: "Арилгах",
     btnCopy: "Хуулах",
@@ -1279,9 +1235,6 @@ const I18N = {
     layerShift: "Shift (Capitals / Layer 2)",
     layerAltGr: "AltGr / Option (Brackets & Symbols / Layer 3)",
     hintPhysical: "💡 Press Shift or AltGr on your physical keyboard to preview layers live",
-    devopsTitle: "💻 Developer & Engineering Test (Zero-Switching)",
-    devopsDesc: "Type Bash, Python, Git, and code brackets <code>{ } [ ] | \\</code> natively while typing Mongolian without switching layouts:",
-    devopsSamples: "Sample commands (click to test):",
     editorTitle: "✍️ Typing & Testing Workspace (Live)",
     btnClear: "Clear",
     btnCopy: "Copy",
@@ -1334,9 +1287,6 @@ const I18N = {
     layerShift: "Shift (Großbuchstaben / Ebene 2)",
     layerAltGr: "AltGr / Option (Klammern & Symbole / Ebene 3)",
     hintPhysical: "💡 Halten Sie Shift oder AltGr auf Ihrer Tastatur gedrückt für die Live-Vorschau",
-    devopsTitle: "💻 Entwickler- & Engineering-Test (Zero-Switching)",
-    devopsDesc: "Tippen Sie Bash-, Python-, Git- und Codeklammern <code>{ } [ ] | \\</code> direkt auf Mongolisch, ohne das Tastaturlayout wechseln zu müssen:",
-    devopsSamples: "Beispielbefehle (zum Testen anklicken):",
     editorTitle: "✍️ Eingabe- & Testbereich (Live)",
     btnClear: "Löschen",
     btnCopy: "Kopieren",
@@ -1406,9 +1356,6 @@ function setLanguage(lang) {
     'btn-layer-shift': t.layerShift,
     'btn-layer-altgr': t.layerAltGr,
     'i18n-hint-physical': t.hintPhysical,
-    'i18n-devops-title': t.devopsTitle,
-    'i18n-devops-desc': t.devopsDesc,
-    'i18n-devops-samples': t.devopsSamples,
     'i18n-editor-title': t.editorTitle,
     'i18n-btn-clear': t.btnClear,
     'i18n-btn-copy': t.btnCopy,
