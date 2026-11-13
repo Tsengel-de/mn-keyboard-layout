@@ -52,8 +52,11 @@
     }
     .kb-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
     .key {
+      width: 48px;
       min-width: 48px;
-      height: 56px;
+      height: 54px;
+      flex: 0 0 48px;
+      box-sizing: border-box;
       background: var(--key-bg);
       border: 1px solid var(--key-border);
       border-radius: 6px;
@@ -61,7 +64,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 3px 5px;
+      padding: 3px 4px;
       cursor: pointer;
       position: relative;
       transition: background 0.12s, transform 0.05s, border-color 0.12s;
@@ -75,8 +78,15 @@
     .key .alt { font-size: 11px; color: #d97706; align-self: flex-end; font-weight: 600; }
     .key .latin { font-size: 9px; color: #94a3b8; position: absolute; bottom: 2px; left: 4px; font-weight: 600; font-family: monospace; }
 
-    .key-wide { flex-grow: 1.5; min-width: 68px; }
-    .key-space { flex-grow: 5; min-width: 250px; }
+    .key-tab { width: 72px; min-width: 72px; max-width: 72px; flex: 0 0 72px; }
+    .key-bsp { width: 90px; min-width: 90px; max-width: 90px; flex: 0 0 90px; }
+    .key-caps { width: 84px; min-width: 84px; max-width: 84px; flex: 0 0 84px; }
+    .key-enter { width: 96px; min-width: 96px; max-width: 96px; flex: 0 0 96px; }
+    .key-shift-l { width: 108px; min-width: 108px; max-width: 108px; flex: 0 0 108px; }
+    .key-shift-r { width: 120px; min-width: 120px; max-width: 120px; flex: 0 0 120px; }
+    .key-mod { width: 68px; min-width: 68px; max-width: 68px; flex: 0 0 68px; }
+    .key-space { width: 280px; min-width: 240px; max-width: 320px; flex: 0 0 280px; }
+    .key-wide { flex: 0 0 auto; }
 
     .editor-grid {
       display: grid;
@@ -933,17 +943,17 @@ function renderKeyboard() {
 
     if (idx === 1) {
       const tab = document.createElement('div');
-      tab.className = 'key key-wide';
+      tab.className = 'key key-tab';
       tab.innerHTML = '<span class="main" style="font-size:12px;">Tab</span>';
       rowDiv.appendChild(tab);
     } else if (idx === 2) {
       const caps = document.createElement('div');
-      caps.className = 'key key-wide';
+      caps.className = 'key key-caps';
       caps.innerHTML = '<span class="main" style="font-size:12px;">Caps</span>';
       rowDiv.appendChild(caps);
     } else if (idx === 3) {
       const shiftL = document.createElement('div');
-      shiftL.className = 'key key-wide' + (isShift ? ' active-mod' : '');
+      shiftL.className = 'key key-shift-l' + (isShift ? ' active-mod' : '');
       shiftL.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
       shiftL.onclick = () => setLayer(isShift ? 'normal' : 'shift');
       rowDiv.appendChild(shiftL);
@@ -973,19 +983,19 @@ function renderKeyboard() {
 
     if (idx === 0) {
       const bsp = document.createElement('div');
-      bsp.className = 'key key-wide';
+      bsp.className = 'key key-bsp';
       bsp.innerHTML = '<span class="main" style="font-size:12px;">⌫</span>';
       bsp.onclick = backspaceChar;
       rowDiv.appendChild(bsp);
     } else if (idx === 2) {
       const enter = document.createElement('div');
-      enter.className = 'key key-wide';
+      enter.className = 'key key-enter';
       enter.innerHTML = '<span class="main" style="font-size:12px;">Enter</span>';
       enter.onclick = () => insertChar('\n');
       rowDiv.appendChild(enter);
     } else if (idx === 3) {
       const shiftR = document.createElement('div');
-      shiftR.className = 'key key-wide' + (isShift ? ' active-mod' : '');
+      shiftR.className = 'key key-shift-r' + (isShift ? ' active-mod' : '');
       shiftR.innerHTML = '<span class="main" style="font-size:12px;">Shift</span>';
       shiftR.onclick = () => setLayer(isShift ? 'normal' : 'shift');
       rowDiv.appendChild(shiftR);
@@ -999,12 +1009,12 @@ function renderKeyboard() {
   spaceRow.className = 'kb-row';
 
   const ctrlL = document.createElement('div');
-  ctrlL.className = 'key key-wide';
+  ctrlL.className = 'key key-mod';
   ctrlL.innerHTML = '<span class="main" style="font-size:12px;">Ctrl</span>';
   spaceRow.appendChild(ctrlL);
 
   const altL = document.createElement('div');
-  altL.className = 'key key-wide';
+  altL.className = 'key key-mod';
   altL.innerHTML = '<span class="main" style="font-size:12px;">Alt</span>';
   spaceRow.appendChild(altL);
 
@@ -1015,13 +1025,13 @@ function renderKeyboard() {
   spaceRow.appendChild(space);
 
   const altGr = document.createElement('div');
-  altGr.className = 'key key-wide' + (isAltGr ? ' active-mod' : '');
+  altGr.className = 'key key-mod' + (isAltGr ? ' active-mod' : '');
   altGr.innerHTML = '<span class="main" style="font-size:12px;">AltGr (Option)</span>';
   altGr.onclick = () => setLayer(isAltGr ? 'normal' : 'altgr');
   spaceRow.appendChild(altGr);
 
   const nnbsp = document.createElement('div');
-  nnbsp.className = 'key key-wide';
+  nnbsp.className = 'key key-mod';
   nnbsp.innerHTML = '<span class="main" style="font-size:11px;">NNBSP</span><span class="alt">\\u202F</span>';
   nnbsp.title = 'Narrow No-Break Space (Монгол бичгийн дагаврын зай)';
   nnbsp.onclick = () => insertChar('\u202F');
