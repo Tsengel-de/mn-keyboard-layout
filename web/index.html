@@ -1422,46 +1422,6 @@ function setLanguage(lang) {
     'i18n-linux-hint': t.linuxHint,
     'i18n-checksum-title': t.checksumTitle,
     'i18n-checksum-toggle': t.checksumToggle,
-    'th-file': t.thFile,
-    'th-platform': t.thPlatform,
-    'th-size': t.thSize,
-    'th-hash': t.thHash,
-    'th-status': t.thStatus
-  };
-
-  for (const [id, val] of Object.entries(map)) {
-    const el = document.getElementById(id);
-    if (el && val) el.innerHTML = val;
-  }
-
-  const typingBox = document.getElementById('typing-box');
-  if (typingBox) typingBox.placeholder = t.typingPlaceholder;
-}
-    'i18n-trust-vt-sub': t.trustVtSub,
-    'i18n-trust-zero-title': t.trustZeroTitle,
-    'i18n-trust-zero-sub': t.trustZeroSub,
-    'i18n-trust-native-title': t.trustNativeTitle,
-    'i18n-trust-native-sub': t.trustNativeSub,
-    'i18n-trust-mit-title': t.trustMitTitle,
-    'i18n-trust-mit-sub': t.trustMitSub,
-    'i18n-dl-header': t.dlHeader,
-    'i18n-win-title': t.winTitle,
-    'i18n-win-desc': t.winDesc,
-    'i18n-btn-win-exe': t.btnWinExe,
-    'i18n-btn-win-zip': t.btnWinZip,
-    'i18n-win-hint': t.winHint,
-    'i18n-mac-title': t.macTitle,
-    'i18n-mac-desc': t.macDesc,
-    'i18n-btn-mac-dmg': t.btnMacDmg,
-    'i18n-btn-mac-zip': t.btnMacZip,
-    'i18n-mac-hint': t.macHint,
-    'i18n-linux-title': t.linuxTitle,
-    'i18n-linux-desc': t.linuxDesc,
-    'i18n-btn-linux-zip': t.btnLinuxZip,
-    'i18n-btn-copy-script': t.btnCopyScript,
-    'i18n-linux-hint': t.linuxHint,
-    'i18n-checksum-title': t.checksumTitle,
-    'i18n-checksum-toggle': t.checksumToggle,
     'i18n-th-file': t.thFile,
     'i18n-th-platform': t.thPlatform,
     'i18n-th-size': t.thSize,
