@@ -522,7 +522,7 @@
 
   <header>
     <h1 id="i18n-title">🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал</h1>
-    <p id="i18n-subtitle">Арилжааны бус • Нийтийн хүртээл • Хүн бүхэнд нээлттэй | Зохиогч: <strong>Цэнгэл (Tsengel / Bachka)</strong></p>
+    <p id="i18n-subtitle">Арилжааны бус • Нийтийн хүртээл • Хүн бүхэнд нээлттэй | Зохиогч: <strong>Цэнгэл (Tsengel / tsengel.de)</strong></p>
   </header>
 
   <div class="community-banner">
@@ -533,8 +533,8 @@
     <div class="controls-row">
       <span class="control-label" id="i18n-lbl-edition">Загвар:</span>
       <div class="btn-group">
-        <button class="btn active" id="btn-mode-cyrillic" onclick="setLayoutMode('cyrillic')">🇲🇳 Монгол Кирилл (Bachka mn-custom)</button>
-        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг (Bachka Phonetics)</button>
+        <button class="btn active" id="btn-mode-cyrillic" onclick="setLayoutMode('cyrillic')">🇲🇳 Монгол Кирилл (Tsengel mn-custom)</button>
+        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг (Tsengel Phonetics)</button>
       </div>
     </div>
     <div class="controls-row">
@@ -670,7 +670,7 @@
         <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
         <span class="card-badge">XKB Unified</span>
       </div>
-      <p id="i18n-linux-desc">Монгол Кирилл (Bachka mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай автомат суулгагч.</p>
+      <p id="i18n-linux-desc">Монгол Кирилл (Tsengel mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай автомат суулгагч.</p>
       <a href="downloads/Mongolian-Keyboard-Linux-v1.0.3.zip" download class="btn-dl-primary" id="i18n-btn-linux-zip">
         ⬇️ Linux Багц Татах (.zip, 26 KB)
       </a>
@@ -1198,10 +1198,10 @@ let currentLang = 'mn';
 const I18N = {
   mn: {
     title: "🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал",
-    subtitle: "Монгол Кирилл (Bachka mn-custom) • Худам Монгол Бичиг | Зохиогч: <strong>Bachka (Цэнгэл / tsengel.de)</strong>",
+    subtitle: "Монгол Кирилл (Tsengel mn-custom) • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel / tsengel.de)</strong>",
     labelEdition: "Загвар:",
-    btnCyrillic: "🇲🇳 Монгол Кирилл (Bachka mn-custom)",
-    btnBichig: "📜 Худам Монгол Бичиг (Bachka Phonetics)",
+    btnCyrillic: "🇲🇳 Монгол Кирилл (Tsengel mn-custom)",
+    btnBichig: "📜 Худам Монгол Бичиг (Tsengel Phonetics)",
     labelLayer: "Үе давхарга:",
     layerNormal: "Үндсэн (Normal / 1-р үе)",
     layerShift: "Shift (Том үсэг / 2-р үе)",
@@ -1237,7 +1237,7 @@ const I18N = {
     btnMacZip: "📁 .zip Эх сан",
     macHint: "<strong>Суулгах заавар (Энгийн арга):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li><code>.dmg</code> файл дээр 2 дарж нээнэ.</li><li><code>Keyboard Installer.app</code>-ийг нээж <code>Mongolian.bundle</code>-ийг чирж оруулна (эсвэл <code>~/Library/Keyboard Layouts/</code> руу хуулна).</li><li><code>Fonts</code> доторх 8 сонгодог фонтуудыг <code>~/Library/Fonts/</code> руу хуулна.</li><li>Системээс гарч (Log out) дахин ороод, <code>System Settings &rarr; Keyboard &rarr; Input Sources</code>-оос нэмнэ.</li></ol>",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Монгол Кирилл (Bachka mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
+    linuxDesc: "Монгол Кирилл (Tsengel mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
     btnCopyScript: "Хуулах",
     linuxHint: "<strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> болон <code>mgl</code> шууд гарч ирнэ. Терминалаас <code>setxkbmap mn</code> эсвэл <code>setxkbmap bichig</code>.",
@@ -1253,9 +1253,9 @@ const I18N = {
   },
   en: {
     title: "🇲🇳 Universal Mongolian Keyboard Layout Suite",
-    subtitle: "Mongolian Cyrillic (Bachka mn-custom) • Classical Bichig | Author: <strong>Bachka (Tsengel / tsengel.de)</strong>",
+    subtitle: "Mongolian Cyrillic (Tsengel mn-custom) • Classical Bichig | Author: <strong>Tsengel (tsengel.de)</strong>",
     labelEdition: "Edition:",
-    btnCyrillic: "🇲🇳 Mongolian Cyrillic (Bachka mn-custom)",
+    btnCyrillic: "🇲🇳 Mongolian Cyrillic (Tsengel mn-custom)",
     btnBichig: "📜 Classical Mongol Bichig",
     labelLayer: "Layer / Level:",
     layerNormal: "Base (Normal / Layer 1)",
@@ -1292,7 +1292,7 @@ const I18N = {
     btnMacZip: "📁 .zip Archive",
     macHint: "<strong>Installation:</strong> Open <code>.dmg</code>, run <code>Keyboard Installer.app</code> to install <code>Mongolian.bundle</code>, copy fonts to <code>~/Library/Fonts/</code>, log out and back in.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Unified XKB installer for Mongolian Cyrillic (Bachka) and Classical Script (Bichig).",
+    linuxDesc: "Unified XKB installer for Mongolian Cyrillic (Tsengel) and Classical Script (Tsengel).",
     btnLinuxZip: "⬇️ Download Linux Package (.zip)",
     btnCopyScript: "Copy",
     linuxHint: "<strong>⚠️ Important:</strong> After installation, please <strong>Log Out and Log In</strong> (or Restart) so GNOME/Wayland loads both layouts! Toggle via <code>Super + Space</code> or Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
@@ -1308,9 +1308,9 @@ const I18N = {
   },
   de: {
     title: "🇲🇳 Universelles mongolisches Tastaturlayout",
-    subtitle: "Mongolisches Kyrillisch (Bachka mn-custom) • Traditionelle Schrift | Autor: <strong>Bachka (Tsengel / tsengel.de)</strong>",
+    subtitle: "Mongolisches Kyrillisch (Tsengel mn-custom) • Traditionelle Schrift | Autor: <strong>Tsengel (tsengel.de)</strong>",
     labelEdition: "Edition:",
-    btnCyrillic: "🇲🇳 Mongolisches Kyrillisch (Bachka mn-custom)",
+    btnCyrillic: "🇲🇳 Mongolisches Kyrillisch (Tsengel mn-custom)",
     btnBichig: "📜 Traditionelle Schrift (Bichig)",
     labelLayer: "Tastaturebene:",
     layerNormal: "Basis (Normal / Ebene 1)",
@@ -1347,7 +1347,7 @@ const I18N = {
     btnMacZip: "📁 .zip-Archiv",
     macHint: "<strong>Installation:</strong> <code>.dmg</code> öffnen, <code>Keyboard Installer.app</code> starten, Schriften in <code>~/Library/Fonts/</code> kopieren, ab- und wieder anmelden.",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Sicherer XKB-Installer für mongolisches Kyrillisch (Bachka) und traditionelle mongolische Schrift.",
+    linuxDesc: "Sicherer XKB-Installer für mongolisches Kyrillisch (Tsengel) und traditionelle mongolische Schrift (Tsengel).",
     btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip)",
     btnCopyScript: "Kopieren",
     linuxHint: "<strong>⚠️ Wichtig:</strong> Nach der Installation bitte einmal <strong>Ab- und wieder Anmelden</strong> (oder Neustart)! Umschalten mit <code>Super + Leertaste</code> oder Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
