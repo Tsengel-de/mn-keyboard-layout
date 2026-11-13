@@ -137,8 +137,8 @@ bf75103822f53bcd22e8bd7832743b16c6af9ea840e3dcc953604f04d0651ab0  Mongolian-Keyb
 1ba0275e3dff0d96a9b74da437b83850bb65ca035a277d699e0154138e9fa177  Mongolian-Keyboard-macOS-v1.0.3.zip
 
 # 🐧 Linux (v1.0.3)
-51939f506941ae47327cf6f08605c929c8680ff2535ca56fab05f0e8e370ccfe  Mongolian-Keyboard-Linux-v1.0.3.zip
-bb05fa5f7db36133bbff54c190f4fbc069466efdcd2839c3a74956cbe7bf4c59  install-linux.sh
+784e3b695436c832d0475b16d08475a9b7568fd80b6cac653a95936dd341cb4e  Mongolian-Keyboard-Linux-v1.0.3.zip
+dd0abeaab27594f7555d2e7812f80376a4e56f0d1e8a2be65b2f24e70eade16d  install-linux.sh
 ```
 
 ---

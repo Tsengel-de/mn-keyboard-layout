@@ -95,7 +95,41 @@ if tgt in c:
     fi
 fi
 
-echo "4. Clearing XKB cache..."
+echo "4. Installing Classical Mongolian Fonts..."
+FONT_TARGET="${HOME}/.local/share/fonts"
+mkdir -p "${FONT_TARGET}"
+if [ -d "${SCRIPT_DIR}/fonts" ]; then
+    cp -v "${SCRIPT_DIR}/fonts/"*.ttf "${FONT_TARGET}/" 2>/dev/null || true
+elif [ -d "${SCRIPT_DIR}/../data/fonts" ]; then
+    cp -v "${SCRIPT_DIR}/../data/fonts/"*.ttf "${FONT_TARGET}/" 2>/dev/null || true
+fi
+if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache -f "${FONT_TARGET}" 2>/dev/null || true
+fi
+
+echo "5. Automatically enabling Dual-Layouts (Cyrillic & Bichig) in GNOME..."
+if command -v gsettings >/dev/null 2>&1; then
+    python3 -c '
+import subprocess, ast
+try:
+    res = subprocess.run(["gsettings", "get", "org.gnome.desktop.input-sources", "sources"], capture_output=True, text=True)
+    if res.returncode == 0 and res.stdout.strip():
+        sources = ast.literal_eval(res.stdout.strip())
+        # Remove legacy/useless chinese variants if present
+        sources = [s for s in sources if not s[1].startswith("cn+mon_")]
+        if ("xkb", "mn") not in sources:
+            sources.append(("xkb", "mn"))
+        if ("xkb", "mn+bichig") not in sources:
+            sources.append(("xkb", "mn+bichig"))
+        out_str = "[" + ", ".join(f"(\x27{s[0]}\x27, \x27{s[1]}\x27)" for s in sources) + "]"
+        subprocess.run(["gsettings", "set", "org.gnome.desktop.input-sources", "sources", out_str], check=True)
+        print("   ✅ GNOME input sources enabled:", out_str)
+except Exception as e:
+    print("   (GNOME gsettings notice:", e, ")")
+' || true
+fi
+
+echo "6. Clearing XKB cache..."
 if [ -d "/var/lib/xkb" ]; then
     sudo rm -rf /var/lib/xkb/*.xkm 2>/dev/null || true
 fi
