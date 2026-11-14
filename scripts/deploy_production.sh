@@ -32,6 +32,7 @@ fi
 echo "[1/4] Copying web assets to local Infrastructure repository..."
 mkdir -p "${INFRA_MN_DIR}/downloads" "${INFRA_MN_DIR}/data"
 cp -v "${REPO_ROOT}/web/index.html" "${INFRA_MN_DIR}/index.html"
+cp -v "${REPO_ROOT}/web/"*.ico "${REPO_ROOT}/web/"*.png "${INFRA_MN_DIR}/" 2>/dev/null || true
 if [ -f "${REPO_ROOT}/web/bichig-suggest.js" ]; then
     cp -v "${REPO_ROOT}/web/bichig-suggest.js" "${INFRA_MN_DIR}/bichig-suggest.js"
 fi
