@@ -44,30 +44,64 @@ BACHKA_ROW4 = [
     ('Ю', 'ю', '.', True), ('Я', 'я', '?', True)
 ]
 
-# Classical Mongolian Script (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
+# Classical Mongolian Script (Tsengel Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
 BICHIG_ROW1 = [
-    ('~', '᠄', '`', False), ('!', '᠑', '1', False), ('@', '᠒', '2', False), ('#', '᠓', '3', False),
-    ('₮', '᠔', '4', True), ('%', '᠕', '5', False), ('^', '᠖', '6', False), ('&', '᠗', '7', False),
-    ('*', '᠘', '8', False), ('(', '᠙', '9', False), (')', '᠐', '0', False), ('_', '-', '—', False),
-    ('+', '=', '×', False)
+    ('᠀', '᠄', '~', False, '`', ':'),
+    ('!', '᠑', '1', False, '1', '1'),
+    ('@', '᠒', '2', False, '2', '2'),
+    ('#', '᠓', '3', False, '3', '3'),
+    ('$', '᠔', '₮', True, '4', '4'),
+    ('%', '᠕', '5', False, '5', '5'),
+    ('^', '᠖', '6', False, '6', '6'),
+    ('&', '᠗', '7', False, '7', '7'),
+    ('*', '᠘', '8', False, '8', '8'),
+    ('(', '᠙', '9', False, '9', '9'),
+    (')', '᠐', '0', False, '0', '0'),
+    ('_', '-', '—', False, '-', '-'),
+    ('+', '=', '×', False, '=', '=')
 ]
 
 BICHIG_ROW2 = [
-    ('MVS', 'FVS1', "'", True), ('FVS3', 'FVS2', '`', True), ('E', 'ᠡ', '€', True), ('R', 'ᠷ', '', False),
-    ('T', 'ᠲ', '₮', True), ('Y', 'ᠶ', '', False), ('U', 'ᠤ', '', True), ('I', 'ᠢ', '', False),
-    ('O', 'ᠣ', '', False), ('P', 'ᠫ', ';', False), ('{', 'ᠥ', '[', True), ('}', 'ᠦ', ']', True)
+    ('MVS', '\u180B', "'", True, 'Q', 'FVS1'),
+    ('FVS3', '\u180C', '`', True, 'W', 'FVS2'),
+    ('ᠡ', 'ᠡ', '\u180E', False, 'E', 'э'),
+    ('ᠷ', 'ᠷ', '®', False, 'R', 'р'),
+    ('ᠲ', 'ᠲ', '₮', True, 'T', 'т'),
+    ('ᠶ', 'ᠶ', '™', False, 'Y', 'й'),
+    ('ᠤ', 'ᠤ', '„', False, 'U', 'у'),
+    ('ᠢ', 'ᠢ', '“', False, 'I', 'и'),
+    ('ᠣ', 'ᠣ', '”', False, 'O', 'о'),
+    ('ᠫ', 'ᠫ', ';', False, 'P', 'п'),
+    ('ᠥ', 'ᠥ', '[', True, '[', 'ө'),
+    ('ᠦ', 'ᠦ', ']', True, ']', 'ү')
 ]
 
 BICHIG_ROW3 = [
-    ('A', 'ᠠ', '', False), ('S', 'ᠰ', '', False), ('D', 'ᠳ', '᠈', True), ('F', 'ᠹ', '᠉', True),
-    ('G', 'ᠭ', '{', True), ('H', 'ᠬ', '<', False), ('J', 'ᠵ', '>', False), ('K', 'ᠺ', '}', True),
-    ('L', 'ᠯ', '№', False), (':', ';', ':', False), ('"', "'", 'MVS', True), ('|', '\\', '\\', True)
+    ('ᠠ', 'ᠠ', 'μ', False, 'A', 'а'),
+    ('ᠰ', 'ᠰ', '£', False, 'S', 'с'),
+    ('ᠳ', 'ᠳ', '᠈', True, 'D', 'д'),
+    ('ᠹ', 'ᠹ', '᠉', True, 'F', 'ф'),
+    ('ᠭ', 'ᠭ', '{', True, 'G', 'г'),
+    ('ᠬ', 'ᠬ', '<', False, 'H', 'х'),
+    ('ᠵ', 'ᠵ', '>', False, 'J', 'ж'),
+    ('ᠺ', 'ᠺ', '}', True, 'K', 'к'),
+    ('ᠯ', 'ᠯ', '№', False, 'L', 'л'),
+    (';', ';', ':', True, ';', ';'),
+    ('"', "'", '\u180E', True, "'", "'"),
+    ('|', '\\', '\\', True, '\\', '\\')
 ]
 
 BICHIG_ROW4 = [
-    ('ᠽ', 'ᠵ', '—', False), ('X', 'ᠱ', '–', False), ('C', 'ᠼ', '©', False), ('V', 'ᠸ', '', False),
-    ('B', 'ᠪ', '', False), ('Ag', 'ᠨ', 'ᠩ', True), ('M', 'ᠮ', '', False), ('<', 'ᠴ', ',', True),
-    ('>', '᠃', '.', True), ('?', '/', '?', False)
+    ('ᠽ', 'ᠵ', '—', False, 'Z', 'з'),
+    ('ᠱ', 'ᠱ', '–', False, 'X', 'ш'),
+    ('ᠼ', 'ᠼ', '©', False, 'C', 'ц'),
+    ('ᠸ', 'ᠸ', '', False, 'V', 'в'),
+    ('ᠪ', 'ᠪ', '', False, 'B', 'б'),
+    ('ᠩ', 'ᠨ', '<', True, 'N', 'н'),
+    ('ᠮ', 'ᠮ', '>', False, 'M', 'м'),
+    ('ᠴ', 'ᠴ', ',', True, ',', 'ч'),
+    ('.', '᠃', '.', True, '.', '.'),
+    ('?', '/', '?', False, '/', '/')
 ]
 
 def is_mongol_script(text):
@@ -117,6 +151,8 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     font_alt = ImageFont.truetype(FONT_BOLD, 16)
     font_alt_bichig = ImageFont.truetype(FONT_BICHIG, 20)
     font_special = ImageFont.truetype(FONT_BOLD, 18)
+    font_badge = ImageFont.truetype(FONT_BOLD, 17)
+    font_latin = ImageFont.truetype(FONT_REG, 13)
 
     # Draw flag badge
     draw_flag_badge(draw, 60, 42, h=34)
@@ -134,7 +170,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     # Row 1
     cur_x = start_x
     for k in row1:
-        draw_key(draw, cur_x, start_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
+        draw_key(draw, cur_x, start_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig, font_badge, font_latin)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, start_y, 180, key_h, "Backspace ⌫", font_special)
 
@@ -143,7 +179,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 160, key_h, "Tab ⇥", font_special)
     cur_x = start_x + 160 + gap
     for k in row2:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig, font_badge, font_latin)
         cur_x += key_w + gap
 
     # Row 3
@@ -151,7 +187,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 190, key_h, "Caps Lock ⇪", font_special)
     cur_x = start_x + 190 + gap
     for k in row3:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig, font_badge, font_latin)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, cur_y, 230, key_h, "Enter ↵", font_special, is_accent=True)
 
@@ -160,7 +196,7 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     draw_special_key(draw, start_x, cur_y, 240, key_h, "Shift ⇧", font_special, is_shift=(mode == 'shift'))
     cur_x = start_x + 240 + gap
     for k in row4:
-        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig)
+        draw_key(draw, cur_x, cur_y, key_w, key_h, k, mode, font_main, font_main_bichig, font_top, font_top_bichig, font_alt, font_alt_bichig, font_badge, font_latin)
         cur_x += key_w + gap
     draw_special_key(draw, cur_x, cur_y, 300, key_h, "Shift ⇧", font_special, is_shift=(mode == 'shift'))
 
@@ -184,8 +220,13 @@ def render_layout(title, subtitle, row1, row2, row3, row4, mode='normal', out_fi
     im.save(out_path, quality=95)
     print(f"Generated: {out_path}")
 
-def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bichig, f_alt, f_alt_bichig):
-    top, main, alt, devops = k
+def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bichig, f_alt, f_alt_bichig, f_badge=None, f_latin=None):
+    top = k[0]
+    main = k[1]
+    alt = k[2]
+    devops = k[3]
+    latin = k[4] if len(k) > 4 else ''
+    sub = k[5] if len(k) > 5 else ''
 
     bg = '#1e293b'
     border = '#334155'
@@ -229,9 +270,19 @@ def draw_key(draw, x, y, w, h, k, mode, f_main, f_main_bichig, f_top, f_top_bich
     bbox = draw.textbbox((0, 0), char_to_draw, font=used_main_font)
     text_w = bbox[2] - bbox[0]
     center_x = x + (w - text_w) // 2
-    center_y = y + (40 if is_mongol_script(char_to_draw) else 46)
+    center_y = y + (36 if is_mongol_script(char_to_draw) else 44)
 
     draw.text((center_x, center_y), char_to_draw, fill=fill_color, font=used_main_font)
+
+    # Bottom-left: Physical Latin key
+    if latin and f_latin:
+        draw.text((x + 12, y + h - 26), latin, fill='#64748b', font=f_latin)
+
+    # Bottom-right: Cyrillic companion helper badge
+    if sub and f_badge:
+        bbox_sub = f_badge.getbbox(sub)
+        sub_w = bbox_sub[2] - bbox_sub[0]
+        draw.text((x + w - sub_w - 12, y + h - 28), sub, fill='#38bdf8', font=f_badge)
 
 def draw_special_key(draw, x, y, w, h, label, font, is_accent=False, is_shift=False, is_altgr=False):
     bg = '#1e293b'
