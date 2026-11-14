@@ -1,6 +1,9 @@
 /**
  * bichig-suggest.js
- * Traditional Mongolian Script Predictive Word Recommender & Autocomplete
+ * Dual-Mode Word Recommender & Predictive Autocomplete
+ * Supports:
+ *   1. Traditional Mongolian Script Mode (27,789 classical words from Lexicon)
+ *   2. Mongolian Cyrillic Mode (28,306 words from Tsevel Explanatory Dictionary)
  * Author: Tsengel (tsengel.de)
  * Part of mn-keyboard-layout
  */
@@ -8,7 +11,8 @@
 (function () {
   'use strict';
 
-  let dictData = null;
+  let bichigDict = null;
+  let cyrillicDict = null;
   let isEnabled = true;
   let activeSuggestions = [];
 
@@ -25,23 +29,37 @@
       .replace(/g/g, 'γ');
   }
 
-  // Load compact dictionary
-  async function loadDictionary() {
-    if (dictData) return;
+  // Load Traditional script dictionary lazily
+  async function loadBichigDictionary() {
+    if (bichigDict) return;
     try {
       const resp = await fetch('data/bichig-dict.json');
       if (resp.ok) {
-        dictData = await resp.json();
-        console.log(`[BichigSuggest] Loaded ${dictData.length} words.`);
+        bichigDict = await resp.json();
+        console.log(`[Suggest] Loaded Bichig dictionary (${bichigDict.length} words).`);
       }
     } catch (e) {
-      console.warn('[BichigSuggest] Could not load dictionary:', e);
+      console.warn('[Suggest] Could not load bichig dictionary:', e);
     }
   }
 
-  // Find matching suggestions for a given token
-  function searchSuggestions(token, max = 6) {
-    if (!dictData || !token || token.trim().length < 1) return [];
+  // Load Cyrillic dictionary lazily
+  async function loadCyrillicDictionary() {
+    if (cyrillicDict) return;
+    try {
+      const resp = await fetch('data/cyrillic-dict.json');
+      if (resp.ok) {
+        cyrillicDict = await resp.json();
+        console.log(`[Suggest] Loaded Cyrillic dictionary (${cyrillicDict.length} words).`);
+      }
+    } catch (e) {
+      console.warn('[Suggest] Could not load cyrillic dictionary:', e);
+    }
+  }
+
+  // Search in Traditional Mongolian Script dictionary
+  function searchBichigSuggestions(token, max = 6) {
+    if (!bichigDict || !token || token.trim().length < 1) return [];
     const t = token.trim();
     const tLow = t.toLowerCase();
     const tNorm = normalizeLatin(tLow);
@@ -50,31 +68,48 @@
     const seen = new Set();
 
     // 1. Script prefix match
-    for (let i = 0; i < dictData.length; i++) {
-      const [script, cyr, galig] = dictData[i];
+    for (let i = 0; i < bichigDict.length; i++) {
+      const [script, cyr, galig] = bichigDict[i];
       if (script.startsWith(t)) {
-        matches.push(dictData[i]);
+        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
         seen.add(script);
         if (matches.length >= max) return matches;
       }
     }
 
-    // 2. Cyrillic prefix match
-    for (let i = 0; i < dictData.length; i++) {
-      const [script, cyr, galig] = dictData[i];
+    // 2. Cyrillic prefix match (phonetic lookup for script)
+    for (let i = 0; i < bichigDict.length; i++) {
+      const [script, cyr, galig] = bichigDict[i];
       if (!seen.has(script) && cyr.toLowerCase().startsWith(tLow)) {
-        matches.push(dictData[i]);
+        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
         seen.add(script);
         if (matches.length >= max) return matches;
       }
     }
 
     // 3. Normalized Latin prefix match
-    for (let i = 0; i < dictData.length; i++) {
-      const [script, cyr, galig] = dictData[i];
+    for (let i = 0; i < bichigDict.length; i++) {
+      const [script, cyr, galig] = bichigDict[i];
       if (!seen.has(script) && (galig.toLowerCase().startsWith(tLow) || galig.toLowerCase().startsWith(tNorm))) {
-        matches.push(dictData[i]);
+        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
         seen.add(script);
+        if (matches.length >= max) return matches;
+      }
+    }
+
+    return matches;
+  }
+
+  // Search in Cyrillic dictionary (Tsevel Explanatory Dictionary)
+  function searchCyrillicSuggestions(token, max = 6) {
+    if (!cyrillicDict || !token || token.trim().length < 1) return [];
+    const t = token.trim().toLowerCase();
+
+    const matches = [];
+    for (let i = 0; i < cyrillicDict.length; i++) {
+      const [word, def] = cyrillicDict[i];
+      if (word.startsWith(t)) {
+        matches.push({ word: word, hint: def, detail: '', type: 'cyrillic' });
         if (matches.length >= max) return matches;
       }
     }
@@ -87,7 +122,7 @@
     const pos = textarea.selectionStart;
     const text = textarea.value;
     const leftText = text.substring(0, pos);
-    
+
     // Delimiters: spaces, newlines, tabs, punctuation
     const delimRegex = /[\s\n\r\t.,;:!?()—–"'/\\\[\]{}|]+/g;
     let match;
@@ -109,14 +144,13 @@
     const box = document.getElementById('typing-box');
     if (!box || index < 0 || index >= activeSuggestions.length) return;
 
-    const [scriptWord, cyrWord] = activeSuggestions[index];
+    const item = activeSuggestions[index];
     const { start, end } = getCurrentWordInfo(box);
 
     const before = box.value.substring(0, start);
     const after = box.value.substring(end);
-    
-    // Add non-breaking space or standard space
-    const insertVal = scriptWord + ' ';
+
+    const insertVal = item.word + ' ';
     box.value = before + insertVal + after;
     box.selectionStart = box.selectionEnd = start + insertVal.length;
     box.focus();
@@ -147,15 +181,28 @@
     bar.innerHTML = '';
     bar.style.display = 'flex';
 
-    matches.forEach(([script, cyr, galig], idx) => {
+    matches.forEach((item, idx) => {
       const chip = document.createElement('div');
       chip.className = 'suggest-chip';
-      chip.innerHTML = `
-        <span class="suggest-num">${idx + 1}</span>
-        <span class="suggest-script">${script}</span>
-        <span class="suggest-cyr">(${cyr})</span>
-      `;
-      chip.title = `${cyr} [${galig}]`;
+
+      if (item.type === 'bichig') {
+        chip.innerHTML = `
+          <span class="suggest-num">${idx + 1}</span>
+          <span class="suggest-script">${item.word}</span>
+          <span class="suggest-cyr">(${item.hint})</span>
+        `;
+        chip.title = `${item.hint} [${item.detail || ''}]`;
+      } else {
+        // Cyrillic mode
+        const shortDef = item.hint ? ` (${item.hint})` : '';
+        chip.innerHTML = `
+          <span class="suggest-num">${idx + 1}</span>
+          <span class="suggest-cyr-word">${item.word}</span>
+          <span class="suggest-def">${shortDef}</span>
+        `;
+        chip.title = item.hint || item.word;
+      }
+
       chip.onclick = (e) => {
         e.preventDefault();
         selectSuggestion(idx);
@@ -164,7 +211,7 @@
     });
   }
 
-  // Update suggestions based on current textarea state
+  // Update suggestions based on current textarea state and layout mode
   function updateSuggestions() {
     if (!isEnabled) {
       hideSuggestions();
@@ -180,8 +227,24 @@
       return;
     }
 
-    const matches = searchSuggestions(word, 6);
-    renderSuggestions(matches);
+    const isBichig = (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig');
+
+    if (isBichig) {
+      if (!bichigDict) {
+        loadBichigDictionary().then(updateSuggestions);
+        return;
+      }
+      const matches = searchBichigSuggestions(word, 6);
+      renderSuggestions(matches);
+    } else {
+      // Cyrillic mode
+      if (!cyrillicDict) {
+        loadCyrillicDictionary().then(updateSuggestions);
+        return;
+      }
+      const matches = searchCyrillicSuggestions(word, 6);
+      renderSuggestions(matches);
+    }
   }
 
   // Initialize UI and event listeners
@@ -199,7 +262,7 @@
       box.parentNode.insertBefore(bar, box);
     }
 
-    // Create toggle in editor tools
+    // Create toggle button in editor tools
     const tools = document.querySelector('.editor-tools');
     if (tools && !document.getElementById('btn-toggle-suggest')) {
       const toggleBtn = document.createElement('button');
@@ -220,8 +283,8 @@
     box.addEventListener('keydown', (e) => {
       if (!isEnabled || activeSuggestions.length === 0) return;
 
-      // Number keys 1-6
-      if (e.key >= '1' && e.key <= '6') {
+      // Number keys 1-6 (when Alt/Ctrl not held)
+      if (!e.altKey && !e.ctrlKey && !e.metaKey && e.key >= '1' && e.key <= '6') {
         const num = parseInt(e.key, 10);
         if (num <= activeSuggestions.length) {
           e.preventDefault();
@@ -230,7 +293,7 @@
         }
       }
 
-      // Tab or Enter selects first suggestion if active
+      // Tab selects first suggestion
       if (e.key === 'Tab') {
         e.preventDefault();
         selectSuggestion(0);
@@ -268,7 +331,23 @@
       };
     }
 
-    loadDictionary();
+    // Hook mode change
+    const origSetLayoutMode = window.setLayoutMode;
+    if (origSetLayoutMode) {
+      window.setLayoutMode = function (m) {
+        origSetLayoutMode(m);
+        hideSuggestions();
+        if (m === 'bichig') loadBichigDictionary();
+        else loadCyrillicDictionary();
+      };
+    }
+
+    // Preload current mode dict
+    if (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig') {
+      loadBichigDictionary();
+    } else {
+      loadCyrillicDictionary();
+    }
   }
 
   // Auto-init on DOMContentLoaded
@@ -280,10 +359,11 @@
 
   // Expose API
   window.BichigSuggest = {
-    search: searchSuggestions,
+    searchBichig: searchBichigSuggestions,
+    searchCyrillic: searchCyrillicSuggestions,
     enable: () => { isEnabled = true; },
     disable: () => { isEnabled = false; hideSuggestions(); },
-    update: updateSuggestions
+    update: updateSuggestions,
+    onModeChange: () => { hideSuggestions(); }
   };
 })();
-
