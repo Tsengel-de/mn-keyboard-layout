@@ -1454,6 +1454,7 @@ const I18N = {
 function setLanguage(lang) {
   if (!I18N[lang]) lang = 'mn';
   currentLang = lang;
+  window.currentLang = lang;
   localStorage.setItem('mn_kb_lang', lang);
 
   // Update switcher buttons
@@ -1477,7 +1478,9 @@ function setLanguage(lang) {
     'btn-layer-shift': t.layerShift,
     'btn-layer-altgr': t.layerAltGr,
     'i18n-hint-physical': t.hintPhysical,
-    'i18n-editor-title': t.editorTitle,
+    'i18n-editor-title': (currentMode === 'bichig')
+      ? (lang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (lang === 'de' ? '📜 Klassische mongolische Schrift (Vertikal)' : '📜 Сонгодог Монгол Бичиг турших талбар (Босоо)'))
+      : t.editorTitle,
     'i18n-btn-clear': t.btnClear,
     'i18n-btn-copy': t.btnCopy,
     'i18n-trust-vt-title': t.trustVtTitle,
@@ -1519,11 +1522,21 @@ function setLanguage(lang) {
   }
 
   const box = document.getElementById('typing-box');
-  if (box) box.placeholder = t.typingPlaceholder;
+  if (box) {
+    if (currentMode === 'bichig') {
+      box.placeholder = 'ᠰᠣᠩᠭᠣᠳᠠᠭ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠢᠶᠡᠷ ᠡᠨᠳᠡ ᠲᠤᠷᠰᠢᠵᠤ ᠪᠢᠴᠢᠨ᠎ᠡ ᠤᠤ...';
+    } else {
+      box.placeholder = t.typingPlaceholder;
+    }
+  }
 
   document.querySelectorAll('.badge-clean').forEach(b => {
     b.innerText = t.badgeClean;
   });
+
+  if (window.BichigSuggest && window.BichigSuggest.updateLanguage) {
+    window.BichigSuggest.updateLanguage();
+  }
 
   detectUserOS();
 }
@@ -1588,6 +1601,6 @@ initLanguage();
 renderKeyboard();
 initTypingEmulation();
 </script>
-<script src="bichig-suggest.js?v=2.5"></script>
+<script src="bichig-suggest.js?v=2.6"></script>
 </body>
 </html>

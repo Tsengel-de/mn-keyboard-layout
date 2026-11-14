@@ -23,6 +23,35 @@
   let isEnabled = true;
   let activeSuggestions = [];
 
+  const I18N_SUGGEST = {
+    mn: {
+      label: '💡 Зөв үг санал болгох',
+      on: 'Асаалттай',
+      off: 'Унтраастай'
+    },
+    en: {
+      label: '💡 Word Suggestions',
+      on: 'ON',
+      off: 'OFF'
+    },
+    de: {
+      label: '💡 Wortvorschläge',
+      on: 'AN',
+      off: 'AUS'
+    }
+  };
+
+  function updateToggleBtn() {
+    const btn = document.getElementById('btn-toggle-suggest');
+    if (!btn) return;
+    const lang = (typeof window.currentLang !== 'undefined' && I18N_SUGGEST[window.currentLang])
+      ? window.currentLang
+      : (typeof currentLang !== 'undefined' && I18N_SUGGEST[currentLang] ? currentLang : 'mn');
+    const t = I18N_SUGGEST[lang] || I18N_SUGGEST.mn;
+    btn.classList.toggle('active', isEnabled);
+    btn.innerHTML = `${t.label}: <strong>${isEnabled ? t.on : t.off}</strong>`;
+  }
+
   // Robust mode detector
   function isBichigMode(token) {
     // 1. If token contains traditional script characters, it is always bichig
@@ -253,15 +282,14 @@
       const toggleBtn = document.createElement('button');
       toggleBtn.id = 'btn-toggle-suggest';
       toggleBtn.className = 'btn btn-suggest active';
-      toggleBtn.innerHTML = '💡 Зөв үг санал болгох: <strong>Асаалттай</strong>';
       toggleBtn.onclick = () => {
         isEnabled = !isEnabled;
-        toggleBtn.classList.toggle('active', isEnabled);
-        toggleBtn.innerHTML = `💡 Зөв үг санал болгох: <strong>${isEnabled ? 'Асаалттай' : 'Унтраастай'}</strong>`;
+        updateToggleBtn();
         if (!isEnabled) hideSuggestions();
         else updateSuggestions();
       };
       tools.insertBefore(toggleBtn, tools.firstChild);
+      updateToggleBtn();
     }
 
     // Keyboard navigation in suggestions (Numbers 1-6, Tab) - capture phase to run before emulation
@@ -353,11 +381,12 @@
   // Expose API
   window.BichigSuggest = {
     search: search,
-    enable: () => { isEnabled = true; },
-    disable: () => { isEnabled = false; hideSuggestions(); },
+    enable: () => { isEnabled = true; updateToggleBtn(); },
+    disable: () => { isEnabled = false; updateToggleBtn(); hideSuggestions(); },
     hide: hideSuggestions,
     hasSuggestions: () => activeSuggestions && activeSuggestions.length > 0,
     update: updateSuggestions,
+    updateLanguage: updateToggleBtn,
     onModeChange: () => { hideSuggestions(); }
   };
 })();
