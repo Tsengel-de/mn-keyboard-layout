@@ -633,7 +633,7 @@
       <span class="control-label" id="i18n-lbl-edition">Загвар:</span>
       <div class="btn-group">
         <button class="btn active" id="btn-mode-cyrillic" onclick="setLayoutMode('cyrillic')">🇲🇳 Монгол Кирилл (Tsengel mn-custom)</button>
-        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг (Tsengel Phonetics)</button>
+        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Сонгодог Монгол Бичиг (Tsengel Phonetics)</button>
       </div>
     </div>
     <div class="controls-row">
@@ -748,7 +748,7 @@
         <h4 id="i18n-linux-title">🐧 Linux (Ubuntu, Debian, Fedora, Arch)</h4>
         <span class="card-badge">XKB Unified</span>
       </div>
-      <p id="i18n-linux-desc">Монгол Кирилл (Tsengel mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай автомат суулгагч.</p>
+      <p id="i18n-linux-desc">Монгол Кирилл (Tsengel mn-custom) болон Сонгодог Монгол бичгийг хамтад нь суулгах найдвартай автомат суулгагч.</p>
       <a href="downloads/Mongolian-Keyboard-Linux-v1.0.3.zip" download class="btn-dl-primary" id="i18n-btn-linux-zip">
         ⬇️ Linux Багц Татах (.zip, 26 KB)
       </a>
@@ -1174,8 +1174,8 @@ function setLayoutMode(m) {
 
   if (m === 'bichig') {
     box.classList.add('bichig-mode');
-    box.placeholder = (currentLang === 'en' ? 'Type with Classical Mongolian Script layout...' : (currentLang === 'de' ? 'Tippen mit traditionellem mongolischem Layout...' : 'Худам Монгол бичгийн байрлалаар энд туршиж бичнэ үү...'));
-    if (title) title.innerText = (currentLang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (currentLang === 'de' ? '📜 Traditionelle mongolische Schrift (Vertikal)' : '📜 Худам Монгол Бичиг турших талбар (Босоо)'));
+    box.placeholder = (currentLang === 'en' ? 'Type with Classical Mongolian Script layout...' : (currentLang === 'de' ? 'Tippen mit traditionellem mongolischem Layout...' : 'Сонгодог Монгол бичгийн байрлалаар энд туршиж бичнэ үү...'));
+    if (title) title.innerText = (currentLang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (currentLang === 'de' ? '📜 Traditionelle mongolische Schrift (Vertikal)' : '📜 Сонгодог Монгол Бичиг турших талбар (Босоо)'));
   } else {
     box.classList.remove('bichig-mode');
     box.placeholder = t.typingPlaceholder;
@@ -1290,10 +1290,10 @@ let currentLang = 'mn';
 const I18N = {
   mn: {
     title: "🇲🇳 Бүх Нийтийн Монгол Гарын Байрлал",
-    subtitle: "Монгол Кирилл (Tsengel mn-custom) • Худам Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel / tsengel.de)</strong>",
+    subtitle: "Монгол Кирилл (Tsengel mn-custom) • Сонгодог Монгол Бичиг | Зохиогч: <strong>Цэнгэл (Tsengel / tsengel.de)</strong>",
     labelEdition: "Загвар:",
     btnCyrillic: "🇲🇳 Монгол Кирилл (Tsengel mn-custom)",
-    btnBichig: "📜 Худам Монгол Бичиг (Tsengel Phonetics)",
+    btnBichig: "📜 Сонгодог Монгол Бичиг (Tsengel Phonetics)",
     labelLayer: "Үе давхарга:",
     layerNormal: "Үндсэн (Normal / 1-р үе)",
     layerShift: "Shift (Том үсэг / 2-р үе)",
@@ -1326,7 +1326,7 @@ const I18N = {
     btnMacZip: "📁 .zip Эх сан",
     macHint: "<strong>Суулгах заавар (Энгийн арга):</strong><ol style='margin:6px 0 0 16px; padding:0; line-height:1.5;'><li><code>.dmg</code> файл дээр 2 дарж нээнэ.</li><li><code>Keyboard Installer.app</code>-ийг нээж <code>Mongolian.bundle</code>-ийг чирж оруулна (эсвэл <code>~/Library/Keyboard Layouts/</code> руу хуулна).</li><li><code>Fonts</code> доторх 8 сонгодог фонтуудыг <code>~/Library/Fonts/</code> руу хуулна.</li><li>Системээс гарч (Log out) дахин ороод, <code>System Settings &rarr; Keyboard &rarr; Input Sources</code>-оос нэмнэ.</li></ol>",
     linuxTitle: "🐧 Linux (Ubuntu, Debian, Fedora, Arch)",
-    linuxDesc: "Монгол Кирилл (Tsengel mn-custom) болон Худам Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
+    linuxDesc: "Монгол Кирилл (Tsengel mn-custom) болон Сонгодог Монгол бичгийг хамтад нь суулгах найдвартай XKB суулгагч.",
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
     btnCopyScript: "Хуулах",
     linuxHint: "<strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> болон <code>mgl</code> шууд гарч ирнэ. Терминалаас <code>setxkbmap mn</code> эсвэл <code>setxkbmap bichig</code>.",

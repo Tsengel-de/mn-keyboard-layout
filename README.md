@@ -36,8 +36,8 @@
 
 ![Mongolian Cyrillic AltGr Layer](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Худам Монгол Бичиг (Classical Mongol Bichig — Tsengel Phonetics)
-> Кирилл үсгийн байрлалтай 100% ижил логикоор Худам монгол бичгээр шивнэ: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. `Z` = **ᠵ (Төрөлх ᠵ/з)**, `Shift+Z` = **ᠽ (Али-Гали ᠽ)**. Тоон товчлуурууд дээр монгол бичгийн сонгодог цифрүүд (᠐-᠙) шууд гарна. `Shift + Space` = **NNBSP** (`\u202F`).
+### 4. Сонгодог Монгол Бичиг (Classical Mongol Bichig — Tsengel Phonetics)
+> Кирилл үсгийн байрлалтай 100% ижил логикоор Сонгодог монгол бичгээр шивнэ: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. `Z` = **ᠵ (Төрөлх ᠵ/з)**, `Shift+Z` = **ᠽ (Али-Гали ᠽ)**. Тоон товчлуурууд дээр монгол бичгийн сонгодог цифрүүд (᠐-᠙) шууд гарна. `Shift + Space` = **NNBSP** (`\u202F`).
 
 ![Classical Mongol Bichig Layout](docs/images/layout-bichig.png)
 
@@ -92,7 +92,7 @@ sudo ./install.sh
 
 * **Шууд шилжүүлэх (Terminal / X11)**:
   - `setxkbmap mn` (Монгол Кирилл)
-  - `setxkbmap mn -variant bichig` (Худам Монгол бичиг)
+  - `setxkbmap mn -variant bichig` (Сонгодог Монгол бичиг)
 * **График орчин (GNOME / Ubuntu / KDE)**:
   - `Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Input Sources` $\rightarrow$ `Add 'Mongolian'` нэмээд **`Super + Space`** (Win + Space)-ээр шилжинэ.
 * **Буцааж анхны төлөвт оруулах**: `cd linux && sudo ./uninstall.sh`.
@@ -117,7 +117,7 @@ macOS-д зориулсан Apple албан ёсны стандартын `Mong
 
 ---
 
-## 💡 Худам Монгол Бичгийн Ухаалаг Үг Санал Болгох Систем (`bichig-suggest.js`)
+## 💡 Сонгодог Монгол Бичгийн Ухаалаг Үг Санал Болгох Систем (`bichig-suggest.js`)
 
 Вэб туршилтын хуудсанд зориулсан хөтөч дээр бүрэн ажиллах Монгол бичгийн үгийн сан, зөв бичгийн автомат туслагч:
 
@@ -228,7 +228,7 @@ mn-keyboard-layout/
 * **SIL International**:
   - [SIL International / Ukelele](https://software.sil.org/ukelele/) — macOS Unicode гарын драйверын стандарт болон нэг товшилтоор суулгагч `Keyboard Installer.app` хэрэгсэл.
 * **Dusal.net (Д. Дусал)**:
-  - [Dusal.net](http://dusal.blogmn.net/99944/) — Худам монгол бичгийн `cmdashitseden.ttf` фонтын эх сурвалж.
+  - [Dusal.net](http://dusal.blogmn.net/99944/) — Сонгодог монгол бичгийн `cmdashitseden.ttf` фонтын эх сурвалж.
 
 ---
 
