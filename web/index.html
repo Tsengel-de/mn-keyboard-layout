@@ -1,4 +1,4 @@
-am<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="mn">
 <head>
   <meta charset="UTF-8">
@@ -61,22 +61,56 @@ am<!DOCTYPE html>
       border: 1px solid var(--key-border);
       border-radius: 6px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 3px 4px;
+      justify-content: center;
+      padding: 2px;
       cursor: pointer;
       position: relative;
       transition: background 0.12s, transform 0.05s, border-color 0.12s;
+      overflow: hidden;
     }
     .key:hover { background: #e2e8f0; border-color: #94a3b8; }
     .key:active, .key.key-pressed { transform: translateY(2px); background: #bfdbfe !important; border-color: #2563eb !important; box-shadow: 0 0 8px rgba(37,99,235,0.4); }
     .key.active-mod { background: #dbeafe; border-color: var(--accent-shift); color: var(--accent-shift); }
     .key.devops-key { border-color: #a7f3d0; background: #f0fdf4; }
-    .key .top { font-size: 11px; color: #0284c7; align-self: flex-start; font-weight: 500; }
-    .key .main { font-size: 18px; font-weight: 600; color: #0f172a; }
-    .key .alt { font-size: 11px; color: #d97706; align-self: flex-end; font-weight: 600; }
-    .key .latin { font-size: 9px; color: #94a3b8; position: absolute; bottom: 2px; left: 4px; font-weight: 600; font-family: monospace; }
+    .key .top {
+      font-size: 11px;
+      color: #0284c7;
+      font-weight: 600;
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .key .alt {
+      font-size: 11px;
+      color: #d97706;
+      font-weight: 600;
+      position: absolute;
+      top: 3px;
+      right: 5px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .key .main {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .key .latin {
+      font-size: 9px;
+      color: #94a3b8;
+      position: absolute;
+      bottom: 3px;
+      left: 5px;
+      font-weight: 600;
+      font-family: monospace;
+      line-height: 1;
+      pointer-events: none;
+    }
 
     .key-tab { width: 72px; min-width: 72px; max-width: 72px; flex: 0 0 72px; }
     .key-bsp { width: 90px; min-width: 90px; max-width: 90px; flex: 0 0 90px; }
