@@ -30,15 +30,21 @@ fi
 
 # 2. Update local Infrastructure repo
 echo "[1/4] Copying web assets to local Infrastructure repository..."
-mkdir -p "${INFRA_MN_DIR}/downloads"
+mkdir -p "${INFRA_MN_DIR}/downloads" "${INFRA_MN_DIR}/data"
 cp -v "${REPO_ROOT}/web/index.html" "${INFRA_MN_DIR}/index.html"
+if [ -f "${REPO_ROOT}/web/bichig-suggest.js" ]; then
+    cp -v "${REPO_ROOT}/web/bichig-suggest.js" "${INFRA_MN_DIR}/bichig-suggest.js"
+fi
+if [ -d "${REPO_ROOT}/web/data" ]; then
+    cp -v "${REPO_ROOT}/web/data/"* "${INFRA_MN_DIR}/data/"
+fi
 cp -v "${REPO_ROOT}/web/downloads/"* "${INFRA_MN_DIR}/downloads/"
 
 # 3. Commit & push in Infrastructure repo if changed
 echo "[2/4] Checking Infrastructure Git state..."
 if [ -d "${INFRA_REPO_ROOT}/.git" ]; then
     cd "${INFRA_REPO_ROOT}"
-    if ! git diff --quiet management-standalone/mn-keyboard/; then
+    if ! git diff --quiet management-standalone/mn-keyboard/ || [ -n "$(git status --porcelain management-standalone/mn-keyboard/)" ]; then
         echo "  -> Changes detected. Committing to kubeone-cluster repo..."
         git add management-standalone/mn-keyboard/
         git commit -m "feat(mn-keyboard): automated sync from mn-keyboard-layout source"
@@ -50,7 +56,7 @@ fi
 
 # 4. Sync directly to production server via rsync
 echo "[3/4] Rsyncing directly to production server (${PROD_HOST})..."
-rsync -avz --delete \
+rsync -avz --delete --exclude 'preview/' \
     -e "ssh -i ${SSH_KEY} -o ConnectTimeout=10 -o StrictHostKeyChecking=no" \
     "${INFRA_MN_DIR}/" \
     "${PROD_USER}@${PROD_HOST}:${PROD_PATH}/"
