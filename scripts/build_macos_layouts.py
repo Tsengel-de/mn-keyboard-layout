@@ -80,7 +80,7 @@ CYRILLIC_KEYS = {
     10: ("/", "|", "\\", "\\", "/"),
 }
 
-# Classical Mongolian Script (Bachka Phonetics)
+# Classical Mongolian Script (Tsengel Phonetics)
 SCRIPT_KEYS = {
     # Number Row: classical digits
     50: ("\u1804", "\u1800", "~", "`", "\u1804"),  # ` -> ᠄ (colon), Birga (᠀)
@@ -126,7 +126,7 @@ SCRIPT_KEYS = {
     39: ("'", '"', "\u180e", '"', "'"),            # ' = ', Shift = ", AltGr = MVS
 
     # Bottom Row
-    6:  ("\u183d", "\u183d", "—", "—", "\u183d"),  # Z = ᠽ
+    6:  ("\u1835", "\u183d", "—", "—", "\u1835"),  # Z = ᠵ (native Mongolian J/Z), Shift = ᠽ (Ali Gali)
     7:  ("\u1831", "\u1831", "–", "–", "\u1831"),  # X = ᠱ
     8:  ("\u183c", "\u183c", "©", "©", "\u183c"),  # C = ᠼ
     9:  ("\u1838", "\u1838", "√", "√", "\u1838"),  # V = ᠸ
@@ -198,30 +198,41 @@ def generate_keylayout_xml(template_path, name, layout_id, key_dict):
     return content
 
 def main():
-    print("🚀 Building macOS Dual-Layout Suite (Bachka mn-custom)...")
-    template_path = os.path.join(RES_DIR, "MongolianCyrillicErgonomic.keylayout")
-    if not os.path.exists(template_path):
-        template_path = os.path.join(MACOS_DIR, "MongolianCyrillicErgonomic.keylayout")
+    print("🚀 Building macOS Dual-Layout Suite (Tsengel mn-custom)...")
+    template_candidates = [
+        os.path.join(RES_DIR, "Mongolian (Cyrillic - Tsengel).keylayout"),
+        os.path.join(RES_DIR, "Mongolian Cyrillic (Bachka).keylayout"),
+        os.path.join(RES_DIR, "MongolianCyrillicErgonomic.keylayout"),
+        os.path.join(MACOS_DIR, "Mongolian Cyrillic (Bachka).keylayout"),
+        os.path.join(MACOS_DIR, "MongolianCyrillicErgonomic.keylayout"),
+    ]
+    template_path = None
+    for cand in template_candidates:
+        if os.path.exists(cand):
+            template_path = cand
+            break
+    if not template_path:
+        raise FileNotFoundError("Could not find base keylayout template.")
 
-    # 1. Generate Mongolian Cyrillic (Bachka)
-    cyrillic_name = "Mongolian Cyrillic (Bachka)"
+    # 1. Generate Mongolian (Cyrillic - Tsengel)
+    cyrillic_name = "Mongolian (Cyrillic - Tsengel)"
     cyrillic_xml = generate_keylayout_xml(template_path, cyrillic_name, "-13215", CYRILLIC_KEYS)
 
-    # 2. Generate Mongolian Script (Bachka)
-    script_name = "Mongolian Script (Bachka)"
+    # 2. Generate Mongolian Script (Traditional - Tsengel)
+    script_name = "Mongolian Script (Traditional - Tsengel)"
     script_xml = generate_keylayout_xml(template_path, script_name, "-13216", SCRIPT_KEYS)
 
     # Write bundle resources
-    cyrillic_res_path = os.path.join(RES_DIR, "Mongolian Cyrillic (Bachka).keylayout")
-    script_res_path = os.path.join(RES_DIR, "Mongolian Script (Bachka).keylayout")
+    cyrillic_res_path = os.path.join(RES_DIR, f"{cyrillic_name}.keylayout")
+    script_res_path = os.path.join(RES_DIR, f"{script_name}.keylayout")
     with open(cyrillic_res_path, "w", encoding="utf-8") as f:
         f.write(cyrillic_xml)
     with open(script_res_path, "w", encoding="utf-8") as f:
         f.write(script_xml)
 
     # Write standalone keylayouts in macos/
-    cyrillic_standalone = os.path.join(MACOS_DIR, "Mongolian Cyrillic (Bachka).keylayout")
-    script_standalone = os.path.join(MACOS_DIR, "Mongolian Script (Bachka).keylayout")
+    cyrillic_standalone = os.path.join(MACOS_DIR, f"{cyrillic_name}.keylayout")
+    script_standalone = os.path.join(MACOS_DIR, f"{script_name}.keylayout")
     with open(cyrillic_standalone, "w", encoding="utf-8") as f:
         f.write(cyrillic_xml)
     with open(script_standalone, "w", encoding="utf-8") as f:
@@ -231,21 +242,29 @@ def main():
     src_cyr_icon = os.path.join(RES_DIR, "Mongolian.icns")
     src_script_icon = os.path.join(RES_DIR, "Mongolian (traditional).icns")
 
-    shutil.copy2(src_cyr_icon, os.path.join(RES_DIR, "Mongolian Cyrillic (Bachka).icns"))
-    shutil.copy2(src_cyr_icon, os.path.join(MACOS_DIR, "Mongolian Cyrillic (Bachka).icns"))
+    shutil.copy2(src_cyr_icon, os.path.join(RES_DIR, f"{cyrillic_name}.icns"))
+    shutil.copy2(src_cyr_icon, os.path.join(MACOS_DIR, f"{cyrillic_name}.icns"))
 
-    shutil.copy2(src_script_icon, os.path.join(RES_DIR, "Mongolian Script (Bachka).icns"))
-    shutil.copy2(src_script_icon, os.path.join(MACOS_DIR, "Mongolian Script (Bachka).icns"))
+    shutil.copy2(src_script_icon, os.path.join(RES_DIR, f"{script_name}.icns"))
+    shutil.copy2(src_script_icon, os.path.join(MACOS_DIR, f"{script_name}.icns"))
 
-    # Remove obsolete files from bundle
+    # Remove obsolete files from bundle and macos/
     obsolete_files = [
         os.path.join(RES_DIR, "Mongolian (qwerty).keylayout"),
         os.path.join(RES_DIR, "Mongolian (qwerty).icns"),
         os.path.join(RES_DIR, "Mongolian (traditional).keylayout"),
         os.path.join(RES_DIR, "MongolianCyrillicErgonomic.keylayout"),
         os.path.join(RES_DIR, "MongolianCyrillicErgonomic.icns"),
+        os.path.join(RES_DIR, "Mongolian Cyrillic (Bachka).keylayout"),
+        os.path.join(RES_DIR, "Mongolian Cyrillic (Bachka).icns"),
+        os.path.join(RES_DIR, "Mongolian Script (Bachka).keylayout"),
+        os.path.join(RES_DIR, "Mongolian Script (Bachka).icns"),
         os.path.join(MACOS_DIR, "MongolianCyrillicErgonomic.keylayout"),
         os.path.join(MACOS_DIR, "MongolianCyrillicErgonomic.icns"),
+        os.path.join(MACOS_DIR, "Mongolian Cyrillic (Bachka).keylayout"),
+        os.path.join(MACOS_DIR, "Mongolian Cyrillic (Bachka).icns"),
+        os.path.join(MACOS_DIR, "Mongolian Script (Bachka).keylayout"),
+        os.path.join(MACOS_DIR, "Mongolian Script (Bachka).icns"),
     ]
     for obs in obsolete_files:
         if os.path.exists(obs):
@@ -254,7 +273,7 @@ def main():
 
     # Update Info.plist
     info_plist_path = os.path.join(BUNDLE_DIR, "Contents", "Info.plist")
-    info_plist_content = """<?xml version="1.0" encoding="UTF-8"?>
+    info_plist_content = f"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -271,7 +290,7 @@ def main():
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 
-	<key>KLInfo_Mongolian Cyrillic (Bachka)</key>
+	<key>KLInfo_{cyrillic_name}</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
@@ -283,7 +302,7 @@ def main():
 		<string>mn-Cyrl</string>
 	</dict>
 
-	<key>KLInfo_Mongolian Script (Bachka)</key>
+	<key>KLInfo_{script_name}</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
@@ -302,16 +321,16 @@ def main():
 
     # Update en.lproj/InfoPlist.strings
     en_strings_path = os.path.join(RES_DIR, "en.lproj", "InfoPlist.strings")
-    en_strings_content = """"Mongolian Cyrillic (Bachka)" = "Mongolian Cyrillic (Bachka)";
-"Mongolian Script (Bachka)" = "Mongolian Script (Bachka)";
+    en_strings_content = f""""{cyrillic_name}" = "{cyrillic_name}";
+"{script_name}" = "{script_name}";
 """
     with open(en_strings_path, "w", encoding="utf-8") as f:
         f.write(en_strings_content)
 
     # Update mn.lproj/InfoPlist.strings
     mn_strings_path = os.path.join(RES_DIR, "mn.lproj", "InfoPlist.strings")
-    mn_strings_content = """"Mongolian Cyrillic (Bachka)" = "Монгол Кирилл (Bachka)";
-"Mongolian Script (Bachka)" = "Худам Монгол бичиг (Bachka)";
+    mn_strings_content = f""""{cyrillic_name}" = "Монгол Кирилл (Цэнгэл)";
+"{script_name}" = "Худам Монгол бичиг (Цэнгэл)";
 """
     with open(mn_strings_path, "w", encoding="utf-8") as f:
         f.write(mn_strings_content)

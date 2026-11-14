@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 
-	<key>KLInfo_Mongolian Cyrillic (Bachka)</key>
+	<key>KLInfo_Mongolian (Cyrillic - Tsengel)</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
@@ -27,7 +27,7 @@
 		<string>mn-Cyrl</string>
 	</dict>
 
-	<key>KLInfo_Mongolian Script (Bachka)</key>
+	<key>KLInfo_Mongolian Script (Traditional - Tsengel)</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>

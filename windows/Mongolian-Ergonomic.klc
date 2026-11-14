@@ -1,4 +1,4 @@
-KBD	MongolBachka	"Mongolian Cyrillic (Bachka)"
+KBD	MongolTsengel	"Mongolian (Cyrillic - Tsengel)"
 
 COPYRIGHT	"(c) 2026 Tsengel (tsengel.de)"
 
@@ -75,8 +75,8 @@ LAYOUT
 39	SPACE		0	0020	0020	-1	202f	00a0	// Space, AltGr+Space = NNBSP (202f)
 
 DESCRIPTIONS
-0409	Mongolian Cyrillic (Bachka)
-0450	Монгол Кирилл (Bachka)
+0409	Mongolian (Cyrillic - Tsengel)
+0450	Монгол Кирилл (Цэнгэл)
 
 LANGUAGENAMES
 0450	Mongolian (Cyrillic)

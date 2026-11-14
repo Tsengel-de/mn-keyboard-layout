@@ -2,7 +2,7 @@
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 3.4.2.314 on 2020-09-16 at 18:08 (GMT+8)-->
 <!--Last edited by Ukelele version 359 on 2022-09-01 at 14:32 (GMT-7)-->
-<keyboard group="126" id="-13215" name="Mongolian Cyrillic (Bachka)" maxout="1">
+<keyboard group="126" id="-13215" name="Mongolian (Cyrillic - Tsengel)" maxout="1">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
         <layout first="18" last="18" mapSet="JIS" modifiers="Modifiers"/>

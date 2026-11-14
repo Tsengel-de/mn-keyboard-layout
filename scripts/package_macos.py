@@ -17,7 +17,7 @@ FONTS_DIR = os.path.join(MACOS_DIR, "fonts")
 DOWNLOADS_DIR = os.path.join(REPO_DIR, "web", "downloads")
 
 README_TEXT = """🇲🇳 Монгол гарын байрлал (macOS) - Суулгах заавар
-Хувилбар: Bachka mn-custom & Mongolian Script (All-in-One Dual-Layout)
+Хувилбар: Tsengel mn-custom & Mongolian Script (All-in-One Dual-Layout)
 
 Хамгийн хялбар арга:
 1. "Keyboard Installer.app"-ийг давхар товшиж нээнэ.
@@ -25,8 +25,8 @@ README_TEXT = """🇲🇳 Монгол гарын байрлал (macOS) - Су�
 3. ЧУХАЛ: Системээс заавал 1 удаа гарч (Log out) дахин орно (эсвэл компьютерээ дахин ачаална/restart).
 4. System Settings -> Keyboard -> Input Sources руу орж "+" товч дарна.
 5. "Mongolian" (эсвэл "Others") дотроос:
-   - "Mongolian Cyrillic (Bachka)"
-   - "Mongolian Script (Bachka)"
+   - "Mongolian (Cyrillic - Tsengel)"
+   - "Mongolian Script (Traditional - Tsengel)"
    сонгож Add дарна.
 6. Хооронд нь Ctrl + Space эсвэл Globe 🌐 товчоор шууд шилжинэ.
 

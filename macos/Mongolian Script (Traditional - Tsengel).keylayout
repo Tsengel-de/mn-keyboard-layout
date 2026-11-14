@@ -2,7 +2,7 @@
 <!DOCTYPE keyboard SYSTEM "file://localhost/System/Library/DTDs/KeyboardLayout.dtd">
 <!--Created by Ukelele version 3.4.2.314 on 2020-09-16 at 18:08 (GMT+8)-->
 <!--Last edited by Ukelele version 359 on 2022-09-01 at 14:32 (GMT-7)-->
-<keyboard group="126" id="-13216" name="Mongolian Script (Bachka)" maxout="1">
+<keyboard group="126" id="-13216" name="Mongolian Script (Traditional - Tsengel)" maxout="1">
     <layouts>
         <layout first="0" last="17" mapSet="ANSI" modifiers="Modifiers"/>
         <layout first="18" last="18" mapSet="JIS" modifiers="Modifiers"/>
@@ -58,7 +58,7 @@
             <key code="3" output="ᠹ"/>
             <key code="4" output="ᠬ"/>
             <key code="5" output="ᠭ"/>
-            <key code="6" output="ᠽ"/>
+            <key code="6" output="ᠵ"/>
             <key code="7" output="ᠱ"/>
             <key code="8" output="ᠼ"/>
             <key code="9" output="ᠸ"/>
@@ -553,7 +553,7 @@
             <key code="37" output="ᠯ"/>
             <key code="41" output=";"/>
             <key code="39" output="'"/>
-            <key code="6" output="ᠽ"/>
+            <key code="6" output="ᠵ"/>
             <key code="7" output="ᠱ"/>
             <key code="8" output="ᠼ"/>
             <key code="9" output="ᠸ"/>
