@@ -19,21 +19,21 @@ DOWNLOADS_DIR = os.path.join(REPO_DIR, "web", "downloads")
 README_TEXT = """🇲🇳 Монгол гарын байрлал (macOS) - Суулгах заавар
 Хувилбар: Tsengel mn-custom & Mongolian Script (All-in-One Dual-Layout)
 
-Хамгийн хялбар арга:
+Суулгах алхам:
 1. "Keyboard Installer.app"-ийг давхар товшиж нээнэ.
-2. "Mongolian.bundle"-ийг уг Installer цонх руу чирч тавина.
-3. ЧУХАЛ: Системээс заавал 1 удаа гарч (Log out) дахин орно (эсвэл компьютерээ дахин ачаална/restart).
-4. System Settings -> Keyboard -> Input Sources руу орж "+" товч дарна.
-5. "Mongolian" (эсвэл "Others") дотроос:
+2. "Mongolian.bundle"-ийг уг Installer цонх руу чирч тавина ("Install for current user" сонгоно).
+3. "Fonts" хавтас дахь фонтуудыг суулгана (давхар товшиж "Install" дарах эсвэл ~/Library/Fonts руу хуулна).
+4. ЧУХАЛ: Системээс заавал 1 удаа гарч (Log out) дахин орно (эсвэл компьютерээ Restart хийнэ).
+5. System Settings -> Keyboard -> Input Sources руу орж "+" товч дарна.
+6. "Mongolian" хэсгээс дараах хоёр гарыг нэмнэ:
    - "Mongolian (Cyrillic - Tsengel)"
    - "Mongolian Script (Traditional - Tsengel)"
-   сонгож Add дарна.
-6. Хооронд нь Ctrl + Space эсвэл Globe 🌐 товчоор шууд шилжинэ.
+7. Хооронд нь Ctrl + Space эсвэл Globe 🌐 товчоор шууд шилжинэ.
 
 Гараар суулгах арга:
 - Finder-ийн Go цэснээс "Go to Folder" (Command + Shift + G) дарж:
   ~/Library/Keyboard Layouts/
-  гэж бичээд "Mongolian.bundle" эсвэл .keylayout файлуудыг хуулна.
+  гэж бичээд "Mongolian.bundle"-ийг хуулна.
 - Фонтуудыг ~/Library/Fonts/ хавтас руу хуулна.
 - Заавал 1 удаа Log Out эсвэл Restart хийнэ.
 """
@@ -44,19 +44,14 @@ def make_dist_folder(target_dir):
     # 1. Copy Keyboard Installer.app
     shutil.copytree(INSTALLER_APP, os.path.join(target_dir, "Keyboard Installer.app"))
 
-    # 2. Copy Mongolian.bundle
+    # 2. Copy Mongolian.bundle (contains both Cyrillic and Classical layouts)
     shutil.copytree(BUNDLE_DIR, os.path.join(target_dir, "Mongolian.bundle"))
 
-    # 3. Copy standalone keylayouts and icons
-    for f in os.listdir(MACOS_DIR):
-        if f.endswith(".keylayout") or f.endswith(".icns"):
-            shutil.copy2(os.path.join(MACOS_DIR, f), target_dir)
-
-    # 4. Copy Fonts
+    # 3. Copy Fonts
     fonts_dest = os.path.join(target_dir, "Fonts")
     shutil.copytree(FONTS_DIR, fonts_dest)
 
-    # 5. Write Readme
+    # 4. Write Readme
     with open(os.path.join(target_dir, "01-Суулгах Заавар (ReadMe).txt"), "w", encoding="utf-8") as f:
         f.write(README_TEXT)
 

@@ -36,7 +36,7 @@
 		<key>TISInputSourceID</key>
 		<string>org.sil.ukelele.keyboardlayout.mongolian.script</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-Mong</string>
+		<string>mn-Cyrl</string>
 	</dict>
 </dict>
 </plist>

@@ -311,7 +311,7 @@ def main():
 		<key>TISInputSourceID</key>
 		<string>org.sil.ukelele.keyboardlayout.mongolian.script</string>
 		<key>TISIntendedLanguage</key>
-		<string>mn-Mong</string>
+		<string>mn-Cyrl</string>
 	</dict>
 </dict>
 </plist>
@@ -330,7 +330,7 @@ def main():
     # Update mn.lproj/InfoPlist.strings
     mn_strings_path = os.path.join(RES_DIR, "mn.lproj", "InfoPlist.strings")
     mn_strings_content = f""""{cyrillic_name}" = "Монгол Кирилл (Цэнгэл)";
-"{script_name}" = "Худам Монгол бичиг (Цэнгэл)";
+"{script_name}" = "Сонгодог Монгол бичиг (Цэнгэл)";
 """
     with open(mn_strings_path, "w", encoding="utf-8") as f:
         f.write(mn_strings_content)
