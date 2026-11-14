@@ -30,10 +30,9 @@ fi
 
 # 2. Update local Infrastructure repo
 echo "[1/4] Copying web assets to local Infrastructure repository..."
-mkdir -p "${INFRA_MN_DIR}/downloads" "${INFRA_MN_DIR}/images"
+mkdir -p "${INFRA_MN_DIR}/downloads"
 cp -v "${REPO_ROOT}/web/index.html" "${INFRA_MN_DIR}/index.html"
 cp -v "${REPO_ROOT}/web/downloads/"* "${INFRA_MN_DIR}/downloads/"
-cp -rv "${REPO_ROOT}/web/images/"* "${INFRA_MN_DIR}/images/"
 
 # 3. Commit & push in Infrastructure repo if changed
 echo "[2/4] Checking Infrastructure Git state..."
