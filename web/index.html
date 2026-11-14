@@ -856,6 +856,7 @@
 
 <script>
 let currentMode = 'cyrillic'; // 'cyrillic', 'bichig'
+window.currentMode = 'cyrillic';
 let currentBase = 'us';       // 'us', 'de'
 let isShift = false;
 let isAltGr = false;
@@ -1145,6 +1146,7 @@ window.addEventListener('keyup', (e) => {
 
 function setLayoutMode(m) {
   currentMode = m;
+  window.currentMode = m;
   document.getElementById('btn-mode-cyrillic')?.classList.toggle('active', m === 'cyrillic');
   document.getElementById('btn-mode-bichig')?.classList.toggle('active', m === 'bichig');
 
@@ -1173,6 +1175,7 @@ function insertChar(ch) {
   box.value = box.value.substring(0, start) + ch + box.value.substring(end);
   box.selectionStart = box.selectionEnd = start + ch.length;
   box.focus();
+  box.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 function backspaceChar() {
@@ -1184,6 +1187,7 @@ function backspaceChar() {
     box.selectionStart = box.selectionEnd = start - 1;
   }
   box.focus();
+  box.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 // Emulation for typing workspace
@@ -1193,6 +1197,10 @@ function initTypingEmulation() {
     box.dataset.emulationBound = 'true';
     box.addEventListener('keydown', (e) => {
       if (e.ctrlKey || e.metaKey || e.key === 'Backspace' || e.key === 'Enter' || e.key === 'Tab' || e.key.startsWith('Arrow')) {
+        return;
+      }
+      // If suggestions are active and user pressed 1-6, do NOT emulate typing! Let suggestion handler pick it!
+      if (!e.altKey && !e.shiftKey && e.key >= '1' && e.key <= '6' && window.BichigSuggest && window.BichigSuggest.hasSuggestions && window.BichigSuggest.hasSuggestions()) {
         return;
       }
       const layout = getCurrentLayout();
@@ -1225,7 +1233,15 @@ function setBase(b) {
 }
 
 function clearText() {
-  document.getElementById('typing-box').value = '';
+  const box = document.getElementById('typing-box');
+  if (box) {
+    box.value = '';
+    box.focus();
+    box.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  if (window.BichigSuggest && window.BichigSuggest.hide) {
+    window.BichigSuggest.hide();
+  }
 }
 
 function copyText() {
@@ -1549,6 +1565,6 @@ initLanguage();
 renderKeyboard();
 initTypingEmulation();
 </script>
-<script src="bichig-suggest.js?v=2.2"></script>
+<script src="bichig-suggest.js?v=2.4"></script>
 </body>
 </html>

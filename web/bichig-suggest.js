@@ -23,6 +23,24 @@
   let isEnabled = true;
   let activeSuggestions = [];
 
+  // Robust mode detector
+  function isBichigMode(token) {
+    // 1. If token contains traditional script characters, it is always bichig
+    if (token && /[\u1800-\u18AF]/.test(token)) {
+      return true;
+    }
+    // 2. Check if typing box is in vertical bichig-mode
+    const box = document.getElementById('typing-box');
+    if (box && box.classList.contains('bichig-mode')) {
+      return true;
+    }
+    // 3. Check global window.currentMode
+    if (typeof window.currentMode !== 'undefined') {
+      return window.currentMode === 'bichig';
+    }
+    return false;
+  }
+
   // Load unified dictionary
   async function loadDictionary() {
     if (dict) return;
@@ -43,8 +61,8 @@
     const text = textarea.value;
     const leftText = text.substring(0, pos);
 
-    // Delimiters: spaces, newlines, tabs, punctuation
-    const delimRegex = /[\s\n\r\t.,;:!?()—–"'/\\\[\]{}|]+/g;
+    // Delimiters: spaces, newlines, tabs, punctuation, traditional punctuation
+    const delimRegex = /[\s\n\r\t.,;:!?()—–"'/\\\[\]{}|\u1800\u1802\u1803\u1804\u1805\u1808\u1809\u202F]+/g;
     let match;
     let lastIndex = 0;
     while ((match = delimRegex.exec(leftText)) !== null) {
@@ -79,7 +97,7 @@
         }
       }
 
-      // 2. Cyrillic phonetic prefix match (typing cyrillic to get script)
+      // 2. Cyrillic phonetic prefix match (e.g. typing аав in bichig mode to get ᠠᠪᠤ)
       for (let i = 0; i < dict.length; i++) {
         const [cyr, script, defn] = dict[i];
         if (!seen.has(script) && cyr.startsWith(tLow)) {
@@ -116,7 +134,7 @@
     let insertWord = item.target;
 
     // Preserve first-letter capitalization in Cyrillic mode
-    const isBichig = (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig');
+    const isBichig = isBichigMode(word);
     if (!isBichig && word.length > 0 && word[0] === word[0].toUpperCase() && word[0] !== word[0].toLowerCase()) {
       insertWord = insertWord.charAt(0).toUpperCase() + insertWord.slice(1);
     }
@@ -176,6 +194,9 @@
         chip.title = `${item.cyr} [${item.script}]: ${item.defn || ''}`;
       }
 
+      chip.onmousedown = (e) => {
+        e.preventDefault(); // Prevent blur
+      };
       chip.onclick = (e) => {
         e.preventDefault();
         selectSuggestion(idx);
@@ -200,7 +221,7 @@
       return;
     }
 
-    const isBichig = (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig');
+    const isBichig = isBichigMode(word);
 
     if (!dict) {
       loadDictionary().then(updateSuggestions);
@@ -243,15 +264,26 @@
       tools.insertBefore(toggleBtn, tools.firstChild);
     }
 
-    // Keyboard navigation in suggestions (Numbers 1-6, Tab)
-    box.addEventListener('keydown', (e) => {
+    // Keyboard navigation in suggestions (Numbers 1-6, Tab) - capture phase to run before emulation
+    function handleKeyDown(e) {
       if (!isEnabled || activeSuggestions.length === 0) return;
 
-      // Number keys 1-6 (when Alt/Ctrl not held)
-      if (!e.altKey && !e.ctrlKey && !e.metaKey && e.key >= '1' && e.key <= '6') {
-        const num = parseInt(e.key, 10);
-        if (num <= activeSuggestions.length) {
+      if (!e.altKey && !e.ctrlKey && !e.metaKey) {
+        let num = -1;
+        if (e.key >= '1' && e.key <= '6') {
+          num = parseInt(e.key, 10);
+        } else if (e.code && e.code.startsWith('Digit')) {
+          const d = parseInt(e.code.replace('Digit', ''), 10);
+          if (d >= 1 && d <= 6) num = d;
+        } else if (e.code && e.code.startsWith('Numpad')) {
+          const d = parseInt(e.code.replace('Numpad', ''), 10);
+          if (d >= 1 && d <= 6) num = d;
+        }
+
+        if (num >= 1 && num <= activeSuggestions.length) {
           e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
           selectSuggestion(num - 1);
           return;
         }
@@ -260,6 +292,8 @@
       // Tab selects first suggestion
       if (e.key === 'Tab') {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
         selectSuggestion(0);
         return;
       }
@@ -269,7 +303,8 @@
         hideSuggestions();
         return;
       }
-    });
+    }
+    box.addEventListener('keydown', handleKeyDown, true);
 
     box.addEventListener('input', updateSuggestions);
     box.addEventListener('keyup', (e) => {
@@ -320,6 +355,8 @@
     search: search,
     enable: () => { isEnabled = true; },
     disable: () => { isEnabled = false; hideSuggestions(); },
+    hide: hideSuggestions,
+    hasSuggestions: () => activeSuggestions && activeSuggestions.length > 0,
     update: updateSuggestions,
     onModeChange: () => { hideSuggestions(); }
   };
