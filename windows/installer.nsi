@@ -18,7 +18,7 @@ SetCompressor /SOLID lzma
 ; ------------------------------------------------------------------------------
 !define PRODUCT_NAME "Universal Mongolian Keyboard Layout Suite"
 !define PRODUCT_NAME_SHORT "Mongolian Keyboard"
-!define PRODUCT_VERSION "1.0.0"
+!define PRODUCT_VERSION "1.0.3"
 !define PRODUCT_PUBLISHER "Tsengel (tsengel.de)"
 !define PRODUCT_WEB_SITE "https://mn.tsengel.de"
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\MongolianKeyboardSuite"
@@ -158,7 +158,7 @@ SectionEnd
 ; Descriptions
 ; ------------------------------------------------------------------------------
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SecUS} "АНУ / Олон улсын стандарт (US QWERTY) гарт зориулсан Монгол гарын байрлал (Q=Ө, W=Ү / AltGr тэмдэгтүүд)."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecUS} "АНУ / Олон улсын стандарт (US QWERTY) гарт зориулсан Монгол гарын байрлал (Q=ъ, W=ь, Y=е, [=ө, ]=ү / AltGr тэмдэгтүүд)."
   !insertmacro MUI_DESCRIPTION_TEXT ${SecDE} "Герман стандарт (DE QWERTZ) гарт зориулсан Монгол гарын байрлал."
   !insertmacro MUI_DESCRIPTION_TEXT ${SecFonts} "Монгол бичгээр зөв унших, бичихэд шаардлагатай TrueType фонтууд."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
