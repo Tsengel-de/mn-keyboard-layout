@@ -41,52 +41,6 @@ am<!DOCTYPE html>
     .btn.active { background: var(--primary); color: #fff; }
     .btn.active-devops { background: var(--accent-devops); color: #fff; }
 
-    .keyboard-container {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-      margin-bottom: 24px;
-      user-select: none;
-      overflow-x: auto;
-    }
-    .kb-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
-    .key {
-      width: 48px;
-      min-width: 48px;
-      height: 54px;
-      flex: 0 0 48px;
-      box-sizing: border-box;
-      background: var(--key-bg);
-      border: 1px solid var(--key-border);
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 3px 4px;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.12s, transform 0.05s, border-color 0.12s;
-    }
-    .key:hover { background: #e2e8f0; border-color: #94a3b8; }
-    .key:active, .key.key-pressed { transform: translateY(2px); background: #bfdbfe !important; border-color: #2563eb !important; box-shadow: 0 0 8px rgba(37,99,235,0.4); }
-    .key.active-mod { background: #dbeafe; border-color: var(--accent-shift); color: var(--accent-shift); }
-    .key.devops-key { border-color: #a7f3d0; background: #f0fdf4; }
-    .key .top { font-size: 11px; color: #0284c7; align-self: flex-start; font-weight: 500; }
-    .key .main { font-size: 18px; font-weight: 600; color: #0f172a; }
-    .key .alt { font-size: 11px; color: #d97706; align-self: flex-end; font-weight: 600; }
-    .key .latin { font-size: 9px; color: #94a3b8; position: absolute; bottom: 2px; left: 4px; font-weight: 600; font-family: monospace; }
-
-    .key-tab { width: 72px; min-width: 72px; max-width: 72px; flex: 0 0 72px; }
-    .key-bsp { width: 90px; min-width: 90px; max-width: 90px; flex: 0 0 90px; }
-    .key-caps { width: 84px; min-width: 84px; max-width: 84px; flex: 0 0 84px; }
-    .key-enter { width: 96px; min-width: 96px; max-width: 96px; flex: 0 0 96px; }
-    .key-shift-l { width: 108px; min-width: 108px; max-width: 108px; flex: 0 0 108px; }
-    .key-shift-r { width: 120px; min-width: 120px; max-width: 120px; flex: 0 0 120px; }
-    .key-mod { width: 68px; min-width: 68px; max-width: 68px; flex: 0 0 68px; }
-    .key-space { width: 280px; min-width: 240px; max-width: 320px; flex: 0 0 280px; }
-    .key-wide { flex: 0 0 auto; }
 
     .editor-section {
       background: var(--card-bg);
@@ -495,27 +449,26 @@ am<!DOCTYPE html>
     <p id="i18n-community-banner">🌿 <strong>Арилжааны бус • Нийтийн хүртээл.</strong> Нийтийн тусын тулд сайн дураар бүтээв. <strong>Хүн бүхэнд нээлттэй</strong> — хэн ч үүнээс мөнгө олдоггүй, хэнээс ч төлбөр шаарддаггүй.</p>
   </div>
 
-  <div class="controls-wrapper">
+  <div class="controls-wrapper" style="margin-bottom: 16px;">
     <div class="controls-row">
-      <span class="control-label" id="i18n-lbl-edition">Загвар:</span>
+      <span class="control-label" id="i18n-lbl-diagram">Гарын үе сонгох:</span>
       <div class="btn-group">
-        <button class="btn active" id="btn-mode-cyrillic" onclick="setLayoutMode('cyrillic')">🇲🇳 Монгол Кирилл (Tsengel mn-custom)</button>
-        <button class="btn" id="btn-mode-bichig" onclick="setLayoutMode('bichig')">📜 Худам Монгол Бичиг (Tsengel Phonetics)</button>
+        <button class="btn active" id="btn-diag-normal" onclick="showDiagram('normal')">1. Үндсэн үе (Normal)</button>
+        <button class="btn" id="btn-diag-shift" onclick="showDiagram('shift')">2. Shift үе (Том үсэг)</button>
+        <button class="btn" id="btn-diag-altgr" onclick="showDiagram('altgr')">3. AltGr / Option (Тэмдэгт)</button>
+        <button class="btn" id="btn-diag-bichig" onclick="showDiagram('bichig')">4. 📜 Монгол бичиг (Bichig)</button>
       </div>
-    </div>
-    <div class="controls-row">
-      <span class="control-label" id="i18n-lbl-layer">Үе давхарга:</span>
-      <div class="btn-group">
-        <button class="btn active" id="btn-layer-normal" onclick="setLayer('normal')">Үндсэн (Normal / 1-р үе)</button>
-        <button class="btn" id="btn-layer-shift" onclick="setLayer('shift')">Shift (Том үсэг / 2-р үе)</button>
-        <button class="btn" id="btn-layer-altgr" onclick="setLayer('altgr')">AltGr / Option (Хаалт &amp; Тэмдэгт / 3-р үе)</button>
-      </div>
-      <span style="font-size:12px; color:#64748b; margin-left:12px;" id="i18n-hint-physical">💡 Физик гараасаа Shift эсвэл AltGr дарж шууд үзэж болно</span>
     </div>
   </div>
 
-  <div class="keyboard-container" id="keyboard">
-    <!-- Keys rendered dynamically -->
+  <div class="diagram-section" style="margin-bottom: 24px; text-align: center;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span style="font-size: 13px; font-weight: 600; color: #475569;" id="diag-caption">Үндсэн үе: Бүх 35 үсэг 1-р үе дээр шууд</span>
+      <a id="diagram-dl-link" href="images/layout-cyrillic-normal.png" target="_blank" download style="font-size: 12px; color: #0284c7; text-decoration: none; font-weight: 500;">Татах (Download HD) ↗</a>
+    </div>
+    <a id="diagram-view-link" href="images/layout-cyrillic-normal.png" target="_blank" title="Томоор харах">
+      <img id="layer-diagram-img" src="images/layout-cyrillic-normal.png" alt="Keyboard Layer Diagram" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; border: 1px solid var(--key-border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); display: block; margin: 0 auto;">
+    </a>
   </div>
 
   <div class="editor-section">
@@ -975,6 +928,83 @@ function renderKeyboard() {
   container.appendChild(spaceRow);
 }
 
+const DIAGRAMS = {
+  normal: {
+    src: 'images/layout-cyrillic-normal.png',
+    mn: 'Үндсэн үе: Бүх 35 үсэг 1-р үе дээр шууд (Q=ъ, W=ь, E=э, Y=е, [=ө, ]=ү, ;=щ, \'\\=ы й)',
+    en: 'Base Layer: All 35 Cyrillic letters direct on Layer 1',
+    de: 'Basisebene: Alle 35 kyrillischen Buchstaben direkt erreichbar'
+  },
+  shift: {
+    src: 'images/layout-cyrillic-shift.png',
+    mn: 'Shift үе: Том үсгүүд (Ъ, Ь, Э, Е, Ө, Ү, Щ, Ы, Й, Ё болон тэмдэгтүүд)',
+    en: 'Shift Layer: Capital letters & special characters',
+    de: 'Shift-Ebene: Großbuchstaben und Sonderzeichen'
+  },
+  altgr: {
+    src: 'images/layout-cyrillic-altgr.png',
+    mn: 'AltGr / Option үе: Програмист хаалтууд [ ] { } \\ | болон ₮ € « » —',
+    en: 'AltGr / Option Layer: Developer brackets [ ] { } \\ | and symbols ₮ € « »',
+    de: 'AltGr / Option-Ebene: Programmierer-Klammern [ ] { } \\ | und Symbole ₮ €'
+  },
+  bichig: {
+    src: 'images/layout-bichig.png',
+    mn: 'Худам Монгол бичиг: Фонетик байрлал ([=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ, Z=ᠵ, Shift+Space=NNBSP)',
+    en: 'Classical Mongolian Script: Phonetic layout ([=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ, Z=ᠵ)',
+    de: 'Traditionelle mongolische Schrift: Phonetisches Layout'
+  }
+};
+
+let currentDiag = 'normal';
+
+function showDiagram(layer) {
+  currentDiag = layer;
+  ['normal', 'shift', 'altgr', 'bichig'].forEach(l => {
+    document.getElementById('btn-diag-' + l)?.classList.toggle('active', l === layer);
+  });
+  const d = DIAGRAMS[layer];
+  if (!d) return;
+  const img = document.getElementById('layer-diagram-img');
+  const caption = document.getElementById('diag-caption');
+  const dlLink = document.getElementById('diagram-dl-link');
+  const viewLink = document.getElementById('diagram-view-link');
+  if (img) img.src = d.src;
+  if (dlLink) dlLink.href = d.src;
+  if (viewLink) viewLink.href = d.src;
+  if (caption) caption.innerText = d[currentLang] || d.mn;
+
+  const box = document.getElementById('typing-box');
+  if (box) {
+    if (layer === 'bichig') {
+      box.classList.add('bichig-mode');
+      box.placeholder = 'Худам Монгол бичгийн гараар энд туршиж бичнэ үү...';
+    } else {
+      box.classList.remove('bichig-mode');
+      box.placeholder = (I18N[currentLang] && I18N[currentLang].typingPlaceholder) || 'Энд бичиж туршина уу...';
+    }
+  }
+}
+
+function updateDiagramImage() {
+  const img = document.getElementById('layer-diagram-img');
+  const dlLink = document.getElementById('diagram-dl-link');
+  const viewLink = document.getElementById('diagram-view-link');
+  if (!img) return;
+
+  let src = 'images/layout-cyrillic-normal.png';
+  if (currentMode === 'bichig') {
+    src = 'images/layout-bichig.png';
+  } else if (isShift) {
+    src = 'images/layout-cyrillic-shift.png';
+  } else if (isAltGr) {
+    src = 'images/layout-cyrillic-altgr.png';
+  }
+
+  img.src = src;
+  if (dlLink) dlLink.href = src;
+  if (viewLink) viewLink.href = src;
+}
+
 function setLayer(layer) {
   if (layer === 'shift') {
     isShift = true;
@@ -988,6 +1018,7 @@ function setLayer(layer) {
   }
   updateLayerButtons();
   renderKeyboard();
+  updateDiagramImage();
 }
 
 function updateLayerButtons() {
@@ -1002,10 +1033,12 @@ window.addEventListener('keydown', (e) => {
     isShift = true;
     updateLayerButtons();
     renderKeyboard();
+    updateDiagramImage();
   } else if (e.key === 'AltGraph' || (e.altKey && !e.ctrlKey)) {
     isAltGr = true;
     updateLayerButtons();
     renderKeyboard();
+    updateDiagramImage();
   }
   const keyEl = document.querySelector(`.key[data-code="${e.code}"]`);
   if (keyEl) keyEl.classList.add('key-pressed');
@@ -1016,10 +1049,12 @@ window.addEventListener('keyup', (e) => {
     isShift = false;
     updateLayerButtons();
     renderKeyboard();
+    updateDiagramImage();
   } else if (e.key === 'AltGraph' || !e.altKey) {
     isAltGr = false;
     updateLayerButtons();
     renderKeyboard();
+    updateDiagramImage();
   }
   const keyEl = document.querySelector(`.key[data-code="${e.code}"]`);
   if (keyEl) keyEl.classList.remove('key-pressed');
@@ -1046,6 +1081,7 @@ function setLayoutMode(m) {
 
   box.value = '';
   renderKeyboard();
+  updateDiagramImage();
 }
 
 function insertChar(ch) {

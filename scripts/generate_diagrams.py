@@ -65,7 +65,7 @@ BICHIG_ROW3 = [
 ]
 
 BICHIG_ROW4 = [
-    ('Z', 'ᠽ', '—', False), ('X', 'ᠱ', '–', False), ('C', 'ᠼ', '©', False), ('V', 'ᠸ', '', False),
+    ('Z', 'ᠵ', 'ᠽ', False), ('X', 'ᠱ', '–', False), ('C', 'ᠼ', '©', False), ('V', 'ᠸ', '', False),
     ('B', 'ᠪ', '', False), ('Ag', 'ᠨ', 'ᠩ', True), ('M', 'ᠮ', '', False), ('<', 'ᠴ', ',', True),
     ('>', '᠃', '.', True), ('?', '/', '?', False)
 ]
@@ -255,28 +255,28 @@ def draw_special_key(draw, x, y, w, h, label, font, is_accent=False, is_shift=Fa
     draw.text((x + 18, y + 42), label, fill=text_color, font=font)
 
 if __name__ == '__main__':
-    # 1. Bachka Cyrillic - Base (Normal) Layer
+    # 1. Tsengel Cyrillic - Base (Normal) Layer
     render_layout(
         "Mongolian Cyrillic Keyboard Layout - Base Layer (Үндсэн үе)",
-        "Бүх 35 үсэг 1-р үе дээр шууд: Q=ъ, W=ь, E=э, Y=е, [=ө, ]=ү, ;=щ, '=ы, \\=й | Зохиогч: Bachka (tsengel.de)",
+        "Бүх 35 үсэг 1-р үе дээр шууд: Q=ъ, W=ь, E=э, Y=е, [=ө, ]=ү, ;=щ, '=ы, \\=й | Зохиогч: Tsengel (tsengel.de)",
         BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
         mode='normal',
         out_filename="layout-cyrillic-normal.png"
     )
 
-    # 2. Bachka Cyrillic - Shift Layer
+    # 2. Tsengel Cyrillic - Shift Layer
     render_layout(
         "Mongolian Cyrillic Keyboard Layout - Shift Layer (Shift дарсан үе)",
-        "Том үсгүүд: Ъ, Ь, Э, Е, Ө, Ү, Щ, Ы, Й, Ё болон тусгай тэмдэгтүүд | Зохиогч: Bachka (tsengel.de)",
+        "Том үсгүүд: Ъ, Ь, Э, Е, Ө, Ү, Щ, Ы, Й, Ё болон тусгай тэмдэгтүүд | Зохиогч: Tsengel (tsengel.de)",
         BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
         mode='shift',
         out_filename="layout-cyrillic-shift.png"
     )
 
-    # 3. Bachka Cyrillic - AltGr / Option Layer
+    # 3. Tsengel Cyrillic - AltGr / Option Layer
     render_layout(
         "Mongolian Cyrillic Keyboard Layout - AltGr / Option Layer (Програмист & Тэмдэгт үе)",
-        "AltGr: [ ] { } \\ | ; : ` ' \" ₮ € « » — – … | Зохиогч: Bachka (tsengel.de)",
+        "AltGr: [ ] { } \\ | ; : ` ' \" ₮ € « » — – … | Зохиогч: Tsengel (tsengel.de)",
         BACHKA_ROW1, BACHKA_ROW2, BACHKA_ROW3, BACHKA_ROW4,
         mode='altgr',
         out_filename="layout-cyrillic-altgr.png"
@@ -284,8 +284,8 @@ if __name__ == '__main__':
 
     # 4. Classical Mongol Bichig
     render_layout(
-        "Classical Mongolian Script Layout - Bachka Phonetics (Худам Монгол Бичиг)",
-        "[ = ᠥ (Ö), ] = ᠦ (Ü), A=ᠠ, E=ᠡ, I=ᠢ, O=ᠣ, U=ᠤ | Shift+Space = \\u202F (NNBSP) | Зохиогч: Bachka (tsengel.de)",
+        "Classical Mongolian Script Layout - Tsengel Phonetics (Худам Монгол Бичиг)",
+        "[ = ᠥ (Ö), ] = ᠦ (Ü), A=ᠠ, E=ᠡ, I=ᠢ, O=ᠣ, U=ᠤ | Shift+Space = \\u202F (NNBSP) | Зохиогч: Tsengel (tsengel.de)",
         BICHIG_ROW1, BICHIG_ROW2, BICHIG_ROW3, BICHIG_ROW4,
         mode='normal',
         out_filename="layout-bichig.png"
