@@ -11,8 +11,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-INFRA_MN_DIR="${REPO_ROOT}/../Infrastructure/kubeone-cluster/management-standalone/mn-keyboard"
-INFRA_REPO_ROOT="${REPO_ROOT}/../Infrastructure/kubeone-cluster"
+INFRA_MN_DIR="${REPO_ROOT}/../../Infrastructure/kubeone-cluster/management-standalone/mn-keyboard"
+INFRA_REPO_ROOT="${REPO_ROOT}/../../Infrastructure/kubeone-cluster"
 PROD_HOST="192.168.88.248"
 PROD_USER="tsengel"
 PROD_PATH="/opt/kubeone-cluster/management-standalone/mn-keyboard"
