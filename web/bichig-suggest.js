@@ -1,9 +1,17 @@
 /**
  * bichig-suggest.js
  * Dual-Mode Word Recommender & Predictive Autocomplete
- * Supports:
- *   1. Traditional Mongolian Script Mode (27,789 classical words from Lexicon)
- *   2. Mongolian Cyrillic Mode (28,306 words from Tsevel Explanatory Dictionary)
+ * 
+ * In Cyrillic Mode:
+ *   - Searches by Cyrillic prefix
+ *   - Displays Cyrillic word + Traditional script counter-part + Tsevel definition
+ *   - Selecting INSERTS CYRILLIC word into textarea!
+ * 
+ * In Traditional Script Mode:
+ *   - Searches by Traditional script prefix (or Cyrillic phonetic prefix)
+ *   - Displays Traditional script + Cyrillic meaning
+ *   - Selecting INSERTS TRADITIONAL SCRIPT word into textarea!
+ * 
  * Author: Tsengel (tsengel.de)
  * Part of mn-keyboard-layout
  */
@@ -11,110 +19,22 @@
 (function () {
   'use strict';
 
-  let bichigDict = null;
-  let cyrillicDict = null;
+  let dict = null;
   let isEnabled = true;
   let activeSuggestions = [];
 
-  // Normalize Latin input to match classical Mongolian transliteration
-  function normalizeLatin(s) {
-    return s.toLowerCase()
-      .replace(/z/g, 'ǰ')
-      .replace(/j/g, 'ǰ')
-      .replace(/ch/g, 'č')
-      .replace(/c/g, 'č')
-      .replace(/sh/g, 'š')
-      .replace(/x/g, 'q')
-      .replace(/h/g, 'q')
-      .replace(/g/g, 'γ');
-  }
-
-  // Load Traditional script dictionary lazily
-  async function loadBichigDictionary() {
-    if (bichigDict) return;
+  // Load unified dictionary
+  async function loadDictionary() {
+    if (dict) return;
     try {
-      const resp = await fetch('data/bichig-dict.json');
+      const resp = await fetch('data/mongol-dict.json');
       if (resp.ok) {
-        bichigDict = await resp.json();
-        console.log(`[Suggest] Loaded Bichig dictionary (${bichigDict.length} words).`);
+        dict = await resp.json();
+        console.log(`[Suggest] Loaded Mongol dictionary (${dict.length} words).`);
       }
     } catch (e) {
-      console.warn('[Suggest] Could not load bichig dictionary:', e);
+      console.warn('[Suggest] Could not load dictionary:', e);
     }
-  }
-
-  // Load Cyrillic dictionary lazily
-  async function loadCyrillicDictionary() {
-    if (cyrillicDict) return;
-    try {
-      const resp = await fetch('data/cyrillic-dict.json');
-      if (resp.ok) {
-        cyrillicDict = await resp.json();
-        console.log(`[Suggest] Loaded Cyrillic dictionary (${cyrillicDict.length} words).`);
-      }
-    } catch (e) {
-      console.warn('[Suggest] Could not load cyrillic dictionary:', e);
-    }
-  }
-
-  // Search in Traditional Mongolian Script dictionary
-  function searchBichigSuggestions(token, max = 6) {
-    if (!bichigDict || !token || token.trim().length < 1) return [];
-    const t = token.trim();
-    const tLow = t.toLowerCase();
-    const tNorm = normalizeLatin(tLow);
-
-    const matches = [];
-    const seen = new Set();
-
-    // 1. Script prefix match
-    for (let i = 0; i < bichigDict.length; i++) {
-      const [script, cyr, galig] = bichigDict[i];
-      if (script.startsWith(t)) {
-        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
-        seen.add(script);
-        if (matches.length >= max) return matches;
-      }
-    }
-
-    // 2. Cyrillic prefix match (phonetic lookup for script)
-    for (let i = 0; i < bichigDict.length; i++) {
-      const [script, cyr, galig] = bichigDict[i];
-      if (!seen.has(script) && cyr.toLowerCase().startsWith(tLow)) {
-        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
-        seen.add(script);
-        if (matches.length >= max) return matches;
-      }
-    }
-
-    // 3. Normalized Latin prefix match
-    for (let i = 0; i < bichigDict.length; i++) {
-      const [script, cyr, galig] = bichigDict[i];
-      if (!seen.has(script) && (galig.toLowerCase().startsWith(tLow) || galig.toLowerCase().startsWith(tNorm))) {
-        matches.push({ word: script, hint: cyr, detail: galig, type: 'bichig' });
-        seen.add(script);
-        if (matches.length >= max) return matches;
-      }
-    }
-
-    return matches;
-  }
-
-  // Search in Cyrillic dictionary (Tsevel Explanatory Dictionary)
-  function searchCyrillicSuggestions(token, max = 6) {
-    if (!cyrillicDict || !token || token.trim().length < 1) return [];
-    const t = token.trim().toLowerCase();
-
-    const matches = [];
-    for (let i = 0; i < cyrillicDict.length; i++) {
-      const [word, def] = cyrillicDict[i];
-      if (word.startsWith(t)) {
-        matches.push({ word: word, hint: def, detail: '', type: 'cyrillic' });
-        if (matches.length >= max) return matches;
-      }
-    }
-
-    return matches;
   }
 
   // Get current word around cursor
@@ -139,18 +59,69 @@
     };
   }
 
+  // Search suggestions based on mode
+  function search(token, isBichig, max = 6) {
+    if (!dict || !token || token.trim().length < 1) return [];
+    const t = token.trim();
+    const tLow = t.toLowerCase();
+
+    const matches = [];
+    const seen = new Set();
+
+    if (isBichig) {
+      // 1. Script prefix match
+      for (let i = 0; i < dict.length; i++) {
+        const [cyr, script, defn] = dict[i];
+        if (script.startsWith(t)) {
+          matches.push({ cyr, script, defn, target: script });
+          seen.add(script);
+          if (matches.length >= max) return matches;
+        }
+      }
+
+      // 2. Cyrillic phonetic prefix match (typing cyrillic to get script)
+      for (let i = 0; i < dict.length; i++) {
+        const [cyr, script, defn] = dict[i];
+        if (!seen.has(script) && cyr.startsWith(tLow)) {
+          matches.push({ cyr, script, defn, target: script });
+          seen.add(script);
+          if (matches.length >= max) return matches;
+        }
+      }
+    } else {
+      // Cyrillic mode: search by Cyrillic prefix
+      for (let i = 0; i < dict.length; i++) {
+        const [cyr, script, defn] = dict[i];
+        if (cyr.startsWith(tLow)) {
+          matches.push({ cyr, script, defn, target: cyr });
+          if (matches.length >= max) return matches;
+        }
+      }
+    }
+
+    return matches;
+  }
+
   // Select a suggestion and insert into textarea
   function selectSuggestion(index) {
     const box = document.getElementById('typing-box');
     if (!box || index < 0 || index >= activeSuggestions.length) return;
 
     const item = activeSuggestions[index];
-    const { start, end } = getCurrentWordInfo(box);
+    const { word, start, end } = getCurrentWordInfo(box);
 
     const before = box.value.substring(0, start);
     const after = box.value.substring(end);
 
-    const insertVal = item.word + ' ';
+    let insertWord = item.target;
+
+    // Preserve first-letter capitalization in Cyrillic mode
+    const isBichig = (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig');
+    if (!isBichig && word.length > 0 && word[0] === word[0].toUpperCase() && word[0] !== word[0].toLowerCase()) {
+      insertWord = insertWord.charAt(0).toUpperCase() + insertWord.slice(1);
+    }
+
+    const insertVal = insertWord + ' ';
     box.value = before + insertVal + after;
     box.selectionStart = box.selectionEnd = start + insertVal.length;
     box.focus();
@@ -168,7 +139,7 @@
   }
 
   // Render suggestion bar
-  function renderSuggestions(matches) {
+  function renderSuggestions(matches, isBichig) {
     activeSuggestions = matches;
     const bar = document.getElementById('bichig-suggest-bar');
     if (!bar) return;
@@ -185,22 +156,24 @@
       const chip = document.createElement('div');
       chip.className = 'suggest-chip';
 
-      if (item.type === 'bichig') {
+      if (isBichig) {
+        // Traditional Script is primary
         chip.innerHTML = `
           <span class="suggest-num">${idx + 1}</span>
-          <span class="suggest-script">${item.word}</span>
-          <span class="suggest-cyr">(${item.hint})</span>
+          <span class="suggest-script">${item.script}</span>
+          <span class="suggest-cyr">(${item.cyr})</span>
         `;
-        chip.title = `${item.hint} [${item.detail || ''}]`;
+        chip.title = `${item.cyr}: ${item.defn || ''}`;
       } else {
-        // Cyrillic mode
-        const shortDef = item.hint ? ` (${item.hint})` : '';
+        // Cyrillic is primary, traditional script shown as companion
+        const shortDef = item.defn ? ` - ${item.defn}` : '';
         chip.innerHTML = `
           <span class="suggest-num">${idx + 1}</span>
-          <span class="suggest-cyr-word">${item.word}</span>
-          <span class="suggest-def">${shortDef}</span>
+          <span class="suggest-cyr-word">${item.cyr}</span>
+          <span class="suggest-script-mini">${item.script}</span>
+          ${item.defn ? `<span class="suggest-def">${shortDef}</span>` : ''}
         `;
-        chip.title = item.hint || item.word;
+        chip.title = `${item.cyr} [${item.script}]: ${item.defn || ''}`;
       }
 
       chip.onclick = (e) => {
@@ -229,22 +202,13 @@
 
     const isBichig = (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig');
 
-    if (isBichig) {
-      if (!bichigDict) {
-        loadBichigDictionary().then(updateSuggestions);
-        return;
-      }
-      const matches = searchBichigSuggestions(word, 6);
-      renderSuggestions(matches);
-    } else {
-      // Cyrillic mode
-      if (!cyrillicDict) {
-        loadCyrillicDictionary().then(updateSuggestions);
-        return;
-      }
-      const matches = searchCyrillicSuggestions(word, 6);
-      renderSuggestions(matches);
+    if (!dict) {
+      loadDictionary().then(updateSuggestions);
+      return;
     }
+
+    const matches = search(word, isBichig, 6);
+    renderSuggestions(matches, isBichig);
   }
 
   // Initialize UI and event listeners
@@ -337,17 +301,11 @@
       window.setLayoutMode = function (m) {
         origSetLayoutMode(m);
         hideSuggestions();
-        if (m === 'bichig') loadBichigDictionary();
-        else loadCyrillicDictionary();
+        setTimeout(updateSuggestions, 10);
       };
     }
 
-    // Preload current mode dict
-    if (typeof window.currentMode !== 'undefined' && window.currentMode === 'bichig') {
-      loadBichigDictionary();
-    } else {
-      loadCyrillicDictionary();
-    }
+    loadDictionary();
   }
 
   // Auto-init on DOMContentLoaded
@@ -359,8 +317,7 @@
 
   // Expose API
   window.BichigSuggest = {
-    searchBichig: searchBichigSuggestions,
-    searchCyrillic: searchCyrillicSuggestions,
+    search: search,
     enable: () => { isEnabled = true; },
     disable: () => { isEnabled = false; hideSuggestions(); },
     update: updateSuggestions,
