@@ -16,26 +16,31 @@ INSTALLER_APP = os.path.join(MACOS_DIR, "Keyboard Installer.app")
 FONTS_DIR = os.path.join(MACOS_DIR, "fonts")
 DOWNLOADS_DIR = os.path.join(REPO_DIR, "web", "downloads")
 
-README_TEXT = """🇲🇳 Монгол гарын байрлал (macOS) - Суулгах заавар
+README_TEXT = r"""🇲🇳 Монгол гарын байрлал (macOS) - Суулгах заавар
 Хувилбар: Tsengel mn-custom & Mongolian Script (All-in-One Dual-Layout)
 
-Суулгах алхам:
-1. "Keyboard Installer.app"-ийг давхар товшиж нээнэ.
-2. "Mongolian.bundle"-ийг уг Installer цонх руу чирч тавина ("Install for current user" сонгоно).
-3. "Fonts" хавтас дахь фонтуудыг суулгана (давхар товшиж "Install" дарах эсвэл ~/Library/Fonts руу хуулна).
-4. ЧУХАЛ: Системээс заавал 1 удаа гарч (Log out) дахин орно (эсвэл компьютерээ Restart хийнэ).
-5. System Settings -> Keyboard -> Input Sources руу орж "+" товч дарна.
-6. "Mongolian" хэсгээс дараах хоёр гарыг нэмнэ:
-   - "Mongolian (Cyrillic - Tsengel)"
-   - "Mongolian Script (Traditional - Tsengel)"
-7. Хооронд нь Ctrl + Space эсвэл Globe 🌐 товчоор шууд шилжинэ.
+1. ГАРЫН БАЙРЛАЛ СУУЛГАХ:
+   - "Keyboard Installer.app"-ийг давхар товшиж нээнэ.
+   - "Mongolian.bundle"-ийг уг Installer цонх руу чирч тавина ("Install for current user" сонгоно).
 
-Гараар суулгах арга:
-- Finder-ийн Go цэснээс "Go to Folder" (Command + Shift + G) дарж:
-  ~/Library/Keyboard Layouts/
-  гэж бичээд "Mongolian.bundle"-ийг хуулна.
-- Фонтуудыг ~/Library/Fonts/ хавтас руу хуулна.
-- Заавал 1 удаа Log Out эсвэл Restart хийнэ.
+2. МОНГОЛ БИЧГИЙН ФОНТУУД СУУЛГАХ:
+   - Арга А (Терминалаас нэг командаар):
+     cp /Volumes/Mongolian\ Keyboard/Fonts/*.ttf ~/Library/Fonts/
+   - Арга Б (Font Book аппаар):
+     "Fonts" хавтас руу ороод бүх файлуудыг сонгон (Command + A) давхар товшиж "Install" дарна.
+
+3. ИДЭВХЖҮҮЛЭХ:
+   - ЧУХАЛ: Системээс заавал 1 удаа гарч (Log out) дахин орно (эсвэл компьютерээ Restart хийнэ).
+   - System Settings -> Keyboard -> Input Sources руу орж "+" товч дарна.
+   - "Mongolian" хэсгээс дараах хоёр гарыг нэмнэ:
+     • "Mongolian (Cyrillic - Tsengel)"
+     • "Mongolian Script (Traditional - Tsengel)"
+   - Хооронд нь Ctrl + Space эсвэл Globe 🌐 товчоор шууд шилжинэ.
+
+Терминалаас гар болон фонтыг бүрэн суулгах команд:
+  mkdir -p ~/Library/Fonts ~/Library/Keyboard\ Layouts
+  cp -R /Volumes/Mongolian\ Keyboard/Mongolian.bundle ~/Library/Keyboard\ Layouts/
+  cp /Volumes/Mongolian\ Keyboard/Fonts/*.ttf ~/Library/Fonts/
 """
 
 def make_dist_folder(target_dir):

@@ -102,14 +102,19 @@ Nach der Installation stehen beide Layouts sofort zur Verfügung:
 ### 🍏 2. macOS (Apple OS X / macOS)
 Offizielles Apple-Standard `Mongolian.bundle` und Installationsprogramm für macOS:
 
-* **Installation über Disk Image (.dmg — Empfohlene 1-Klick-Methode)**:
-  1. Öffnen Sie `Mongolian-Keyboard-macOS-v1.0.3.dmg` per Doppelklick.
-  2. Öffnen Sie darin **`Keyboard Installer.app`** und ziehen Sie **`Mongolian.bundle`** in das Fenster der App.
-  3. *(Manuelle Installation)*: Öffnen Sie den Finder, drücken Sie **Cmd + Shift + G**, geben Sie `~/Library/Keyboard Layouts` ein und kopieren Sie `Mongolian.bundle` oder `MongolianCyrillicErgonomic.keylayout` hinein.
+* **Installation über Disk Image (.dmg — Empfohlene Methode)**:
+  1. Öffnen Sie `Mongolian-Keyboard-macOS.dmg` per Doppelklick.
+  2. Öffnen Sie darin **`Keyboard Installer.app`** und ziehen Sie **`Mongolian.bundle`** in das Fenster der App (*"Install for current user"* wählen).
+  3. **Die 8 traditionellen Schriftarten (Fonts) installieren**:
+     - *Per Terminal (1-Zeilen-Befehl)*:
+       ```bash
+       cp /Volumes/Mongolian\ Keyboard/Fonts/*.ttf ~/Library/Fonts/
+       ```
+     - *Oder per GUI*: Öffnen Sie den Ordner `Fonts` im DMG, wählen Sie alle Dateien aus (**Cmd + A**), doppelklicken Sie darauf und klicken Sie auf **Installieren**.
   4. **WICHTIG: Melden Sie sich unbedingt einmal von macOS ab und wieder an (oder starten Sie den Mac neu)**. macOS kompiliert und lädt Tastaturlayouts nur beim Anmelden in den Speicher.
 * **Aktivierung in macOS**:
   1. Öffnen Sie `Systemeinstellungen` $\rightarrow$ `Tastatur` $\rightarrow$ `Texteingabe` (Eingabequellen) $\rightarrow$ `Bearbeiten...` (oder `+`).
-  2. Fügen Sie unter `Mongolisch` (oder `Andere`) hinzu:
+  2. Fügen Sie unter `Mongolisch` hinzu:
      - **`Mongolian (Cyrillic - Tsengel)`**
      - **`Mongolian Script (Traditional - Tsengel)`**
   3. Wechseln Sie sofort mit **`Ctrl + Leertaste`** oder der Globus-Taste 🌐.

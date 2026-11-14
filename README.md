@@ -102,14 +102,19 @@ sudo ./install.sh
 ### 🍏 2. macOS (Apple OS X / macOS)
 macOS-д зориулсан Apple албан ёсны стандартын `Mongolian.bundle` болон суулгагч:
 
-* **Виртуал дискээр суулгах (.dmg — Drag & Drop хамгийн хялбар арга)**:
-  1. `Mongolian-Keyboard-macOS-v1.0.3.dmg` файлыг давхар товшиж нээнэ.
-  2. Цонхон доторх **`Keyboard Installer.app`**-ийг нээгээд **`Mongolian.bundle`**-ийг цонх руу нь чирж тавина.
-  3. *(Гараар суулгах бол)*: Finder нээгээд **Cmd + Shift + G** даран `~/Library/Keyboard Layouts` орж `Mongolian.bundle` эсвэл `MongolianCyrillicErgonomic.keylayout` файлыг хуулна.
+* **Виртуал дискээр суулгах (.dmg — Drag & Drop арга)**:
+  1. `Mongolian-Keyboard-macOS.dmg` файлыг давхар товшиж нээнэ.
+  2. Цонхон доторх **`Keyboard Installer.app`**-ийг нээгээд **`Mongolian.bundle`**-ийг цонх руу нь чирж тавина (*"Install for current user"* сонгоно).
+  3. **Монгол бичгийн 8 фонтыг суулгах**:
+     - *Терминалаас нэг командаар*:
+       ```bash
+       cp /Volumes/Mongolian\ Keyboard/Fonts/*.ttf ~/Library/Fonts/
+       ```
+     - *Эсвэл графикаар*: DMG доторх `Fonts` хавтас руу ороод бүх файлуудыг сонгон (**Cmd + A**) давхар товшиж "Install" дарна.
   4. **ЧУХАЛ: Системээс заавал нэг удаа Log Out хийж дахин нэвтэрнэ (эсвэл компьютерээ Restart хийнэ)**. Учир нь macOS нь шинэ гарын драйверийг зөвхөн хэрэглэгч системд нэвтрэх үед санах ойд ачаалдаг.
 * **macOS дээр шинэ гараа идэвхжүүлэх**:
   1. `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ `Edit...` (эсвэл `+`) товшино.
-  2. `Mongolian` (эсвэл `Others`) хэсгээс:
+  2. `Mongolian` хэсгээс:
      - **`Mongolian (Cyrillic - Tsengel)`**
      - **`Mongolian Script (Traditional - Tsengel)`**
      хоёрыг нэмнэ.
