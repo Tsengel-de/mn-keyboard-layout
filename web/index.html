@@ -253,6 +253,11 @@
       overflow-y: hidden;
       resize: none;
     }
+    textarea.bichig-mode::placeholder {
+      color: #94a3b8;
+      font-family: "Noto Sans Mongolian", "Mongolian Baiti", sans-serif;
+      opacity: 0.8;
+    }
 
 
     .downloads-header {
@@ -1174,8 +1179,8 @@ function setLayoutMode(m) {
 
   if (m === 'bichig') {
     box.classList.add('bichig-mode');
-    box.placeholder = (currentLang === 'en' ? 'Type with Classical Mongolian Script layout...' : (currentLang === 'de' ? 'Tippen mit traditionellem mongolischem Layout...' : 'Сонгодог Монгол бичгийн байрлалаар энд туршиж бичнэ үү...'));
-    if (title) title.innerText = (currentLang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (currentLang === 'de' ? '📜 Traditionelle mongolische Schrift (Vertikal)' : '📜 Сонгодог Монгол Бичиг турших талбар (Босоо)'));
+    box.placeholder = 'ᠰᠣᠩᠭᠣᠳᠠᠭ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠢᠶᠡᠷ ᠡᠨᠳᠡ ᠲᠤᠷᠰᠢᠵᠤ ᠪᠢᠴᠢᠨ᠎ᠡ ᠤᠤ...';
+    if (title) title.innerText = (currentLang === 'en' ? '📜 Classical Mongolian Script Workspace (Vertical)' : (currentLang === 'de' ? '📜 Klassische mongolische Schrift (Vertikal)' : '📜 Сонгодог Монгол Бичиг турших талбар (Босоо)'));
   } else {
     box.classList.remove('bichig-mode');
     box.placeholder = t.typingPlaceholder;
@@ -1394,10 +1399,10 @@ const I18N = {
   },
   de: {
     title: "🇲🇳 Universelles mongolisches Tastaturlayout",
-    subtitle: "Mongolisches Kyrillisch (Tsengel mn-custom) • Traditionelle Schrift | Autor: <strong>Tsengel (tsengel.de)</strong>",
+    subtitle: "Mongolisches Kyrillisch (Tsengel mn-custom) • Klassische Schrift | Autor: <strong>Tsengel (tsengel.de)</strong>",
     labelEdition: "Edition:",
     btnCyrillic: "🇲🇳 Mongolisches Kyrillisch (Tsengel mn-custom)",
-    btnBichig: "📜 Traditionelle Schrift (Bichig)",
+    btnBichig: "📜 Klassische mongolische Schrift (Bichig)",
     labelLayer: "Tastaturebene:",
     layerNormal: "Basis (Normal / Ebene 1)",
     layerShift: "Shift (Großbuchstaben / Ebene 2)",
