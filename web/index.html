@@ -111,6 +111,21 @@
       line-height: 1;
       pointer-events: none;
     }
+    .key .sub {
+      font-size: 11px;
+      color: #0284c7;
+      position: absolute;
+      bottom: 3px;
+      right: 5px;
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .key.has-bichig .main,
+    .key.has-bichig .top {
+      font-family: "Noto Sans Mongolian", "Mongolian Baiti", sans-serif;
+      font-size: 19px;
+    }
 
     .key-tab { width: 72px; min-width: 72px; max-width: 72px; flex: 0 0 72px; }
     .key-bsp { width: 90px; min-width: 90px; max-width: 90px; flex: 0 0 90px; }
@@ -920,62 +935,62 @@ const LAYOUT_CYRILLIC = {
   ]
 };
 
-// 2. Classical Mongol Bichig Layout (Bachka Phonetics: [=ᠥ, ]=ᠦ, A=ᠠ, E=ᠡ...)
+// 2. Classical Mongol Bichig Layout (Bachka Phonetics: [=ᠥ/ө, ]=ᠦ/ү, A=ᠠ/а, E=ᠡ/э...)
 const LAYOUT_BICHIG = {
   row1: [
-    { code: 'Backquote', key: '`', top: '᠀', main: '᠄', base: '᠄', alt: '~' },
-    { code: 'Digit1', key: '1', top: '!', main: '᠑', base: '᠑', alt: '1' },
-    { code: 'Digit2', key: '2', top: '@', main: '᠒', base: '᠒', alt: '2' },
-    { code: 'Digit3', key: '3', top: '#', main: '᠓', base: '᠓', alt: '3' },
-    { code: 'Digit4', key: '4', top: '$', main: '᠔', base: '᠔', alt: '₮', devops: true },
-    { code: 'Digit5', key: '5', top: '%', main: '᠕', base: '᠕', alt: '5' },
-    { code: 'Digit6', key: '6', top: '^', main: '᠖', base: '᠖', alt: '6' },
-    { code: 'Digit7', key: '7', top: '&', main: '᠗', base: '᠗', alt: '7' },
-    { code: 'Digit8', key: '8', top: '*', main: '᠘', base: '᠘', alt: '8' },
-    { code: 'Digit9', key: '9', top: '(', main: '᠙', base: '᠙', alt: '9' },
-    { code: 'Digit0', key: '0', top: ')', main: '᠐', base: '᠐', alt: '0' },
-    { code: 'Minus', key: '-', top: '_', main: '-', base: '-', alt: '—' },
-    { code: 'Equal', key: '=', top: '+', main: '=', base: '=', alt: '×' }
+    { code: 'Backquote', key: '`', top: '᠀', main: '᠄', base: '᠄', alt: '~', sub: ':' },
+    { code: 'Digit1', key: '1', top: '!', main: '᠑', base: '᠑', alt: '1', sub: '1' },
+    { code: 'Digit2', key: '2', top: '@', main: '᠒', base: '᠒', alt: '2', sub: '2' },
+    { code: 'Digit3', key: '3', top: '#', main: '᠓', base: '᠓', alt: '3', sub: '3' },
+    { code: 'Digit4', key: '4', top: '$', main: '᠔', base: '᠔', alt: '₮', devops: true, sub: '4' },
+    { code: 'Digit5', key: '5', top: '%', main: '᠕', base: '᠕', alt: '5', sub: '5' },
+    { code: 'Digit6', key: '6', top: '^', main: '᠖', base: '᠖', alt: '6', sub: '6' },
+    { code: 'Digit7', key: '7', top: '&', main: '᠗', base: '᠗', alt: '7', sub: '7' },
+    { code: 'Digit8', key: '8', top: '*', main: '᠘', base: '᠘', alt: '8', sub: '8' },
+    { code: 'Digit9', key: '9', top: '(', main: '᠙', base: '᠙', alt: '9', sub: '9' },
+    { code: 'Digit0', key: '0', top: ')', main: '᠐', base: '᠐', alt: '0', sub: '0' },
+    { code: 'Minus', key: '-', top: '_', main: '-', base: '-', alt: '—', sub: '-' },
+    { code: 'Equal', key: '=', top: '+', main: '=', base: '=', alt: '×', sub: '=' }
   ],
   row2: [
-    { code: 'KeyQ', key: 'q', top: '\u180E', main: '\u180B', base: '\u180B', alt: "'", devops: true },
-    { code: 'KeyW', key: 'w', top: '\u180D', main: '\u180C', base: '\u180C', alt: '`', devops: true },
-    { code: 'KeyE', key: 'e', top: 'ᠡ', main: 'ᠡ', base: 'ᠡ', alt: '\u180E' },
-    { code: 'KeyR', key: 'r', top: 'ᠷ', main: 'ᠷ', base: 'ᠷ', alt: '®' },
-    { code: 'KeyT', key: 't', top: 'ᠲ', main: 'ᠲ', base: 'ᠲ', alt: '₮', devops: true },
-    { code: 'KeyY', key: 'y', top: 'ᠶ', main: 'ᠶ', base: 'ᠶ', alt: '™' },
-    { code: 'KeyU', key: 'u', top: 'ᠤ', main: 'ᠤ', base: 'ᠤ', alt: '„' },
-    { code: 'KeyI', key: 'i', top: 'ᠢ', main: 'ᠢ', base: 'ᠢ', alt: '“' },
-    { code: 'KeyO', key: 'o', top: 'ᠣ', main: 'ᠣ', base: 'ᠣ', alt: '”' },
-    { code: 'KeyP', key: 'p', top: 'ᠫ', main: 'ᠫ', base: 'ᠫ', alt: ';', devops: true },
-    { code: 'BracketLeft', key: '[', top: 'ᠥ', main: 'ᠥ', base: 'ᠥ', alt: '[', devops: true },
-    { code: 'BracketRight', key: ']', top: 'ᠦ', main: 'ᠦ', base: 'ᠦ', alt: ']', devops: true }
+    { code: 'KeyQ', key: 'q', top: '\u180E', main: '\u180B', base: '\u180B', alt: "'", devops: true, sub: 'FVS1', topSub: 'MVS' },
+    { code: 'KeyW', key: 'w', top: '\u180D', main: '\u180C', base: '\u180C', alt: '`', devops: true, sub: 'FVS2', topSub: 'FVS3' },
+    { code: 'KeyE', key: 'e', top: 'ᠡ', main: 'ᠡ', base: 'ᠡ', alt: '\u180E', sub: 'э' },
+    { code: 'KeyR', key: 'r', top: 'ᠷ', main: 'ᠷ', base: 'ᠷ', alt: '®', sub: 'р' },
+    { code: 'KeyT', key: 't', top: 'ᠲ', main: 'ᠲ', base: 'ᠲ', alt: '₮', devops: true, sub: 'т' },
+    { code: 'KeyY', key: 'y', top: 'ᠶ', main: 'ᠶ', base: 'ᠶ', alt: '™', sub: 'й' },
+    { code: 'KeyU', key: 'u', top: 'ᠤ', main: 'ᠤ', base: 'ᠤ', alt: '„', sub: 'у' },
+    { code: 'KeyI', key: 'i', top: 'ᠢ', main: 'ᠢ', base: 'ᠢ', alt: '“', sub: 'и' },
+    { code: 'KeyO', key: 'o', top: 'ᠣ', main: 'ᠣ', base: 'ᠣ', alt: '”', sub: 'о' },
+    { code: 'KeyP', key: 'p', top: 'ᠫ', main: 'ᠫ', base: 'ᠫ', alt: ';', devops: true, sub: 'п' },
+    { code: 'BracketLeft', key: '[', top: 'ᠥ', main: 'ᠥ', base: 'ᠥ', alt: '[', devops: true, sub: 'ө' },
+    { code: 'BracketRight', key: ']', top: 'ᠦ', main: 'ᠦ', base: 'ᠦ', alt: ']', devops: true, sub: 'ү' }
   ],
   row3: [
-    { code: 'KeyA', key: 'a', top: 'ᠠ', main: 'ᠠ', base: 'ᠠ', alt: 'μ' },
-    { code: 'KeyS', key: 's', top: 'ᠰ', main: 'ᠰ', base: 'ᠰ', alt: '£' },
-    { code: 'KeyD', key: 'd', top: 'ᠳ', main: 'ᠳ', base: 'ᠳ', alt: '᠈', devops: true },
-    { code: 'KeyF', key: 'f', top: 'ᠹ', main: 'ᠹ', base: 'ᠹ', alt: '᠉', devops: true },
-    { code: 'KeyG', key: 'g', top: 'ᠭ', main: 'ᠭ', base: 'ᠭ', alt: '{', devops: true },
-    { code: 'KeyH', key: 'h', top: 'ᠬ', main: 'ᠬ', base: 'ᠬ', alt: '<' },
-    { code: 'KeyJ', key: 'j', top: 'ᠵ', main: 'ᠵ', base: 'ᠵ', alt: '>' },
-    { code: 'KeyK', key: 'k', top: 'ᠺ', main: 'ᠺ', base: 'ᠺ', alt: '}', devops: true },
-    { code: 'KeyL', key: 'l', top: 'ᠯ', main: 'ᠯ', base: 'ᠯ', alt: '№' },
-    { code: 'Semicolon', key: ';', top: ';', main: ';', base: ';', alt: ':', devops: true },
-    { code: 'Quote', key: "'", top: '"', main: "'", base: "'", alt: '\u180E', devops: true },
-    { code: 'Backslash', key: '\\', top: '|', main: '\\', base: '\\', alt: '\\', devops: true }
+    { code: 'KeyA', key: 'a', top: 'ᠠ', main: 'ᠠ', base: 'ᠠ', alt: 'μ', sub: 'а' },
+    { code: 'KeyS', key: 's', top: 'ᠰ', main: 'ᠰ', base: 'ᠰ', alt: '£', sub: 'с' },
+    { code: 'KeyD', key: 'd', top: 'ᠳ', main: 'ᠳ', base: 'ᠳ', alt: '᠈', devops: true, sub: 'д' },
+    { code: 'KeyF', key: 'f', top: 'ᠹ', main: 'ᠹ', base: 'ᠹ', alt: '᠉', devops: true, sub: 'ф' },
+    { code: 'KeyG', key: 'g', top: 'ᠭ', main: 'ᠭ', base: 'ᠭ', alt: '{', devops: true, sub: 'г' },
+    { code: 'KeyH', key: 'h', top: 'ᠬ', main: 'ᠬ', base: 'ᠬ', alt: '<', sub: 'х' },
+    { code: 'KeyJ', key: 'j', top: 'ᠵ', main: 'ᠵ', base: 'ᠵ', alt: '>', sub: 'ж' },
+    { code: 'KeyK', key: 'k', top: 'ᠺ', main: 'ᠺ', base: 'ᠺ', alt: '}', devops: true, sub: 'к' },
+    { code: 'KeyL', key: 'l', top: 'ᠯ', main: 'ᠯ', base: 'ᠯ', alt: '№', sub: 'л' },
+    { code: 'Semicolon', key: ';', top: ';', main: ';', base: ';', alt: ':', devops: true, sub: ';' },
+    { code: 'Quote', key: "'", top: '"', main: "'", base: "'", alt: '\u180E', devops: true, sub: "'" },
+    { code: 'Backslash', key: '\\', top: '|', main: '\\', base: '\\', alt: '\\', devops: true, sub: '\\' }
   ],
   row4: [
-    { code: 'KeyZ', key: 'z', top: 'ᠽ', main: 'ᠵ', base: 'ᠵ', alt: '—' },
-    { code: 'KeyX', key: 'x', top: 'ᠱ', main: 'ᠱ', base: 'ᠱ', alt: '–' },
-    { code: 'KeyC', key: 'c', top: 'ᠼ', main: 'ᠼ', base: 'ᠼ', alt: '©' },
-    { code: 'KeyV', key: 'v', top: 'ᠸ', main: 'ᠸ', base: 'ᠸ', alt: '' },
-    { code: 'KeyB', key: 'b', top: 'ᠪ', main: 'ᠪ', base: 'ᠪ', alt: '' },
-    { code: 'KeyN', key: 'n', top: 'ᠩ', main: 'ᠨ', base: 'ᠨ', alt: '<', devops: true },
-    { code: 'KeyM', key: 'm', top: 'ᠮ', main: 'ᠮ', base: 'ᠮ', alt: '>' },
-    { code: 'Comma', key: ',', top: 'ᠴ', main: 'ᠴ', base: 'ᠴ', alt: ',', devops: true },
-    { code: 'Period', key: '.', top: '.', main: '᠃', base: '᠃', alt: '.', devops: true },
-    { code: 'Slash', key: '/', top: '?', main: '/', base: '/', alt: '?' }
+    { code: 'KeyZ', key: 'z', top: 'ᠽ', main: 'ᠵ', base: 'ᠵ', alt: '—', sub: 'з' },
+    { code: 'KeyX', key: 'x', top: 'ᠱ', main: 'ᠱ', base: 'ᠱ', alt: '–', sub: 'ш' },
+    { code: 'KeyC', key: 'c', top: 'ᠼ', main: 'ᠼ', base: 'ᠼ', alt: '©', sub: 'ц' },
+    { code: 'KeyV', key: 'v', top: 'ᠸ', main: 'ᠸ', base: 'ᠸ', alt: '', sub: 'в' },
+    { code: 'KeyB', key: 'b', top: 'ᠪ', main: 'ᠪ', base: 'ᠪ', alt: '', sub: 'б' },
+    { code: 'KeyN', key: 'n', top: 'ᠩ', main: 'ᠨ', base: 'ᠨ', alt: '<', devops: true, sub: 'н', topSub: 'нг' },
+    { code: 'KeyM', key: 'm', top: 'ᠮ', main: 'ᠮ', base: 'ᠮ', alt: '>', sub: 'м' },
+    { code: 'Comma', key: ',', top: 'ᠴ', main: 'ᠴ', base: 'ᠴ', alt: ',', devops: true, sub: 'ч' },
+    { code: 'Period', key: '.', top: '.', main: '᠃', base: '᠃', alt: '.', devops: true, sub: '.' },
+    { code: 'Slash', key: '/', top: '?', main: '/', base: '/', alt: '?', sub: '/' }
   ]
 };
 
@@ -1014,8 +1029,9 @@ function renderKeyboard() {
     }
 
     row.forEach(k => {
+      const isBichigChar = /[\u1800-\u18AF]/.test(k.base) || /[\u1800-\u18AF]/.test(k.top);
       const keyDiv = document.createElement('div');
-      keyDiv.className = 'key' + (k.devops ? ' devops-key' : '');
+      keyDiv.className = 'key' + (k.devops ? ' devops-key' : '') + (isBichigChar ? ' has-bichig' : '');
       keyDiv.setAttribute('data-code', k.code);
       
       let charToType = k.base;
@@ -1023,12 +1039,14 @@ function renderKeyboard() {
       if (isAltGr && k.alt) charToType = k.alt;
 
       const latinKey = (k.key || '').toUpperCase();
+      const subLabel = isShift && k.topSub ? k.topSub : (k.sub || '');
 
       keyDiv.innerHTML = `
         <span class="top" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
         <span class="main" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
         <span class="alt" style="${isAltGr ? 'color:#d97706; font-weight:700;' : ''}">${k.alt || ''}</span>
         <span class="latin">${latinKey}</span>
+        ${subLabel ? `<span class="sub">${subLabel}</span>` : ''}
       `;
 
       keyDiv.onclick = () => insertChar(charToType);
