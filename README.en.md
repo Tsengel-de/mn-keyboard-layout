@@ -36,8 +36,8 @@
 
 ![Mongolian Cyrillic AltGr Layer](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Traditional Script Edition (Classical Mongol Bichig — Bachka Phonetic Logic)
-> Matches Cyrillic finger habits with 100% muscle memory: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. Number keys type classical numerals (᠐-᠙). `Shift + Space` = **NNBSP** (`\u202F`).
+### 4. Traditional Script Edition (Classical Mongol Bichig — Tsengel Phonetics)
+> Matches Cyrillic finger habits with 100% muscle memory: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. `Z` = **ᠵ (Native J/Z)**, `Shift+Z` = **ᠽ (Ali Gali DZ)**. Number keys type classical numerals (᠐-᠙). `Shift + Space` = **NNBSP** (`\u202F`).
 
 ![Classical Mongol Bichig Layout](docs/images/layout-bichig.png)
 
@@ -111,8 +111,24 @@ Official Apple-standard `Mongolian.bundle` and installer for macOS:
   4. **CRITICAL: You MUST Log Out of macOS and log back in (or Restart your Mac)**. macOS only compiles and caches keyboard layouts into memory during user login.
 * **To Activate in macOS**:
   1. Go to `System Settings` $\rightarrow$ `Keyboard` $\rightarrow$ `Text Input` (Input Sources) $\rightarrow$ click `Edit...` (or `+`).
-  2. Under `Mongolian`, select **`Mongolian Cyrillic Ergonomic (Tsengel)`** and click `Add`.
-  3. The bundle also provides `Mongolian (qwerty)` and `Mongolian (traditional)` (Classical Mongol Bichig).
+  2. Under `Mongolian` (or `Others`), add:
+     - **`Mongolian (Cyrillic - Tsengel)`**
+     - **`Mongolian Script (Traditional - Tsengel)`**
+  3. Switch between them instantly using **`Ctrl + Space`** or the Globe 🌐 key.
+
+---
+
+## 💡 Traditional Mongolian Predictive Autocomplete (`bichig-suggest.js`)
+
+The web suite includes a high-speed, zero-dependency, client-side predictive autocomplete and word recommendation engine for Classical Mongolian Script:
+
+* **27,789-word Classical Mongolian Dictionary** (`web/data/bichig-dict.json`): Built directly from verified lexical records.
+* **Triple-Search Mode**:
+  1. **Script prefix**: Typing `ᠠᠪ` suggests `ᠠᠪᠤ` (*aav*), `ᠠᠪᠠᠭ᠎ᠠ` (*avga*), `ᠠᠪᠤᠯᠭ᠎ᠠ` (*avlaga*).
+  2. **Cyrillic phonetic**: Typing `аав` suggests `ᠠᠪᠤ`.
+  3. **Latin transliteration**: Typing `zas` or `abu` immediately surfaces matching classical Mongolian words.
+* **Keyboard Navigation**: Press numbers **`1` through `6`** or **`Tab`** to instantly select and insert the word with proper trailing space.
+* **Client-side & Offline Ready**: Runs in 0.04ms purely in vanilla JavaScript without requiring any backend servers. Can be toggled on/off at will.
 
 ---
 

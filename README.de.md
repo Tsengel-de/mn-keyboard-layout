@@ -36,8 +36,8 @@
 
 ![Mongolisches Kyrillisch AltGr-Ebene](docs/images/layout-cyrillic-altgr.png)
 
-### 4. Traditionelle mongolische Schrift (Hudam Mongol Bichig — Bachka Phonetik)
-> Phonetisches Layout mit 100% übereinstimmendem Muskelgedächtnis: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. Die Ziffernreihe tippt traditionelle Ziffern (᠐-᠙). `Umschalt + Leertaste` = **NNBSP** (`\u202F`).
+### 4. Traditionelle mongolische Schrift (Hudam Mongol Bichig — Tsengel Phonetik)
+> Phonetisches Layout mit 100% übereinstimmendem Muskelgedächtnis: `[` = **ᠥ (Ö)**, `]` = **ᠦ (Ü)**, `E` = **ᠡ (E)**, `O` = **ᠣ (O)**, `U` = **ᠤ (U)**, `I` = **ᠢ (I)**, `A` = **ᠠ (A)**, `N` = **ᠨ (N)**, `Shift+N` = **ᠩ (Ag/Ng)**. `Z` = **ᠵ (Traditionelles J/Z)**, `Shift+Z` = **ᠽ (Ali-Gali DZ)**. Die Ziffernreihe tippt traditionelle Ziffern (᠐-᠙). `Umschalt + Leertaste` = **NNBSP** (`\u202F`).
 
 ![Traditionelle mongolische Schrift](docs/images/layout-bichig.png)
 
@@ -109,8 +109,24 @@ Offizielles Apple-Standard `Mongolian.bundle` und Installationsprogramm für mac
   4. **WICHTIG: Melden Sie sich unbedingt einmal von macOS ab und wieder an (oder starten Sie den Mac neu)**. macOS kompiliert und lädt Tastaturlayouts nur beim Anmelden in den Speicher.
 * **Aktivierung in macOS**:
   1. Öffnen Sie `Systemeinstellungen` $\rightarrow$ `Tastatur` $\rightarrow$ `Texteingabe` (Eingabequellen) $\rightarrow$ `Bearbeiten...` (oder `+`).
-  2. Wählen Sie unter `Mongolisch` **`Mongolian Cyrillic Ergonomic (Tsengel)`** und klicken Sie auf `Hinzufügen`.
-  3. Das Paket enthält auch `Mongolian (qwerty)` und `Mongolian (traditional)` (traditionelle mongolische Schrift).
+  2. Fügen Sie unter `Mongolisch` (oder `Andere`) hinzu:
+     - **`Mongolian (Cyrillic - Tsengel)`**
+     - **`Mongolian Script (Traditional - Tsengel)`**
+  3. Wechseln Sie sofort mit **`Ctrl + Leertaste`** oder der Globus-Taste 🌐.
+
+---
+
+## 💡 Prädiktive Autovervollständigung für traditionelle Schrift (`bichig-suggest.js`)
+
+Das Web-Eingabefeld verfügt über eine extrem schnelle, clientseitige Autovervollständigung für die klassische mongolische Schrift:
+
+* **27.789 Wörter umfassendes Wörterbuch** (`web/data/bichig-dict.json`): Basierend auf verifizierten Quellen.
+* **3-facher Suchmodus**:
+  1. **Traditionelle Schrift**: Bei Eingabe von `ᠠᠪ` erscheinen Vorschläge wie `ᠠᠪᠤ` (*aav*), `ᠠᠪᠠᠭ᠎ᠠ` (*avga*), `ᠠᠪᠤᠯᠭ᠎ᠠ` (*avlaga*).
+  2. **Kyrillische Phonetik**: Bei Eingabe von `аав` wird direkt `ᠠᠪᠤ` vorgeschlagen.
+  3. **Lateinische Transliteration**: `zas` oder `abu` liefert sofort die passenden traditionellen Schriftwörter.
+* **Schnellauswahl per Tastatur**: Zifferntasten **`1` bis `6`** oder die **`Tab`**-Taste drücken, um das Wort samt Leerzeichen einzufügen.
+* **100% Client-seitig & Offline**: Reine Vanilla-JavaScript-Lösung (0,04 ms Suchzeit), komplett ohne Backend. Jederzeit per Button ein-/ausschaltbar.
 
 ---
 
