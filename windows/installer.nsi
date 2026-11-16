@@ -142,17 +142,20 @@ Section "Сонгодог Монгол бичиг (Traditional Script)" SecScrip
     File /oname=mnscript.dll "script\i386\mnscript.dll"
   ${EndIf}
 
-  ; Clean up any previous accidental assignment of mnscript to a0010450
-  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 1)"
-  DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450"
+  ; Register Traditional Script under 0450 (Mongolian language in Windows)
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout File" "mnscript.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Id" "00c1"
 
-  ; Register Traditional Script STRICTLY under 0850 (Traditional Mongolian)
+  ; Also register under 0850 (Traditional Mongolian) if language pack is present
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout File" "mnscript.dll"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Id" "00c1"
 
   DetailPrint "Activating Traditional Mongolian Script in Language Bar..."
+  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 0)"
   System::Call "input.dll::InstallLayoutOrTip(w '0850:a0000850', i 0)"
 
   WriteRegDWORD HKLM "${REG_APP}" "InstalledScript" 1
