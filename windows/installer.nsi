@@ -71,43 +71,63 @@ Var RadioState
 ; Sections
 ; ------------------------------------------------------------------------------
 Section "Монгол гар (АНУ / US QWERTY суурьтай)" SecUS
-  DetailPrint "Extracting US QWERTY Keyboard Layout package..."
-  InitPluginsDir
-  SetOutPath "$PLUGINSDIR\us"
-  File /r "us-qwerty\*.*"
+  DetailPrint "Installing Mongolian Cyrillic Layout (US QWERTY)..."
 
   ${If} ${RunningX64}
-    DetailPrint "Installing 64-bit Mongolian Keyboard Layout (US QWERTY)..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\us\Mongol_amd64.msi" /quiet /norestart' $0
+    ${DisableX64FSRedirection}
+    SetOutPath "$SYSDIR"
+    File /oname=Mongol.dll "us-qwerty\amd64\Mongol.dll"
+    ${EnableX64FSRedirection}
+
+    SetOutPath "$WINDIR\SysWOW64"
+    File /oname=Mongol.dll "us-qwerty\wow64\Mongol.dll"
   ${Else}
-    DetailPrint "Installing 32-bit Mongolian Keyboard Layout (US QWERTY)..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\us\Mongol_i386.msi" /quiet /norestart' $0
+    SetOutPath "$SYSDIR"
+    File /oname=Mongol.dll "us-qwerty\i386\Mongol.dll"
   ${EndIf}
 
-  DetailPrint "Installation result code: $0"
+  ; Register Cyrillic under 0450 (Mongolian Cyrillic)
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout File" "Mongol.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Text" "Монгол (Кирилл - Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Display Name" "@%SystemRoot%\system32\Mongol.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Id" "00c0"
+
+  DetailPrint "Activating Mongolian Cyrillic in Language Bar..."
+  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0000450', i 0)"
+
   WriteRegDWORD HKLM "${REG_APP}" "InstalledUS" 1
 SectionEnd
 
 Section /o "Монгол гар (Герман / DE QWERTZ суурьтай)" SecDE
-  DetailPrint "Extracting DE QWERTZ Keyboard Layout package..."
-  InitPluginsDir
-  SetOutPath "$PLUGINSDIR\de"
-  File /r "de-qwertz\*.*"
+  DetailPrint "Installing Mongolian Cyrillic Layout (DE QWERTZ)..."
 
   ${If} ${RunningX64}
-    DetailPrint "Installing 64-bit Mongolian Keyboard Layout (DE QWERTZ)..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\de\mongolis_amd64.msi" /quiet /norestart' $0
+    ${DisableX64FSRedirection}
+    SetOutPath "$SYSDIR"
+    File /oname=Mongolis.dll "de-qwertz\amd64\Mongolis.dll"
+    ${EnableX64FSRedirection}
+
+    SetOutPath "$WINDIR\SysWOW64"
+    File /oname=Mongolis.dll "de-qwertz\wow64\Mongolis.dll"
   ${Else}
-    DetailPrint "Installing 32-bit Mongolian Keyboard Layout (DE QWERTZ)..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\de\mongolis_i386.msi" /quiet /norestart' $0
+    SetOutPath "$SYSDIR"
+    File /oname=Mongolis.dll "de-qwertz\i386\Mongolis.dll"
   ${EndIf}
 
-  DetailPrint "Installation result code: $0"
+  ; Register Cyrillic DE under 0450 (Mongolian Cyrillic)
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout File" "Mongolis.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Text" "Монгол (Герман суурьтай - Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Display Name" "@%SystemRoot%\system32\Mongolis.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450" "Layout Id" "00c0"
+
+  DetailPrint "Activating Mongolian Cyrillic DE in Language Bar..."
+  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0000450', i 0)"
+
   WriteRegDWORD HKLM "${REG_APP}" "InstalledDE" 1
 SectionEnd
 
 Section "Сонгодог Монгол бичиг (Traditional Script)" SecScript
-  DetailPrint "Installing Traditional Mongolian Script Keyboard Layout files..."
+  DetailPrint "Installing Traditional Mongolian Script Layout files..."
 
   ${If} ${RunningX64}
     ${DisableX64FSRedirection}
@@ -122,22 +142,18 @@ Section "Сонгодог Монгол бичиг (Traditional Script)" SecScrip
     File /oname=mnscript.dll "script\i386\mnscript.dll"
   ${EndIf}
 
-  ; 1. Register under Mongolian Cyrillic locale (0450)
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout File" "mnscript.dll"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Id" "00c1"
+  ; Clean up any previous accidental assignment of mnscript to a0010450
+  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 1)"
+  DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450"
 
-  ; 2. Register under Traditional Mongolian locale (0850)
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout File" "mnscript.dll"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
-  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Id" "00c1"
+  ; Register Traditional Script STRICTLY under 0850 (Traditional Mongolian)
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout File" "mnscript.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850" "Layout Id" "00c1"
 
-  ; 3. Activate in Language Bar & Win+Space switcher
   DetailPrint "Activating Traditional Mongolian Script in Language Bar..."
-  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 0)"
-  System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 0)"
+  System::Call "input.dll::InstallLayoutOrTip(w '0850:a0000850', i 0)"
 
   WriteRegDWORD HKLM "${REG_APP}" "InstalledScript" 1
 SectionEnd
@@ -222,22 +238,42 @@ Section "Uninstall"
 
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledUS"
   ${If} $0 == 1
-    DetailPrint "Uninstalling US QWERTY Keyboard Layout MSI..."
-    ExecWait '"$SYSDIR\msiexec.exe" /x {7F1B3916-A8A5-4716-8FCB-C3193E9DBAB3} /quiet /norestart'
+    DetailPrint "Uninstalling US QWERTY Keyboard Layout..."
+    System::Call "input.dll::InstallLayoutOrTip(w '0450:a0000450', i 1)"
+    DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450"
+    ${If} ${RunningX64}
+      ${DisableX64FSRedirection}
+      Delete "$SYSDIR\Mongol.dll"
+      ${EnableX64FSRedirection}
+      Delete "$WINDIR\SysWOW64\Mongol.dll"
+    ${Else}
+      Delete "$SYSDIR\Mongol.dll"
+    ${EndIf}
   ${EndIf}
 
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledDE"
   ${If} $0 == 1
-    DetailPrint "Uninstalling DE QWERTZ Keyboard Layout MSI..."
-    ExecWait '"$SYSDIR\msiexec.exe" /x {BEB1FF3B-994B-47F7-BB2C-77DAB9DF311C} /quiet /norestart'
+    DetailPrint "Uninstalling DE QWERTZ Keyboard Layout..."
+    System::Call "input.dll::InstallLayoutOrTip(w '0450:a0000450', i 1)"
+    DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000450"
+    ${If} ${RunningX64}
+      ${DisableX64FSRedirection}
+      Delete "$SYSDIR\Mongolis.dll"
+      ${EnableX64FSRedirection}
+      Delete "$WINDIR\SysWOW64\Mongolis.dll"
+    ${Else}
+      Delete "$SYSDIR\Mongolis.dll"
+    ${EndIf}
   ${EndIf}
 
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledScript"
   ${If} $0 == 1
     DetailPrint "Uninstalling Traditional Mongolian Script Layout..."
     System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 1)"
+    System::Call "input.dll::InstallLayoutOrTip(w '0850:a0000850', i 1)"
     System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 1)"
     DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450"
+    DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0000850"
     DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850"
 
     ${If} ${RunningX64}
