@@ -107,28 +107,38 @@ Section /o "Монгол гар (Герман / DE QWERTZ суурьтай)" Sec
 SectionEnd
 
 Section "Сонгодог Монгол бичиг (Traditional Script)" SecScript
-  DetailPrint "Extracting Traditional Mongolian Script Layout package..."
-  InitPluginsDir
-  SetOutPath "$PLUGINSDIR\script"
-  File /r "script\*.*"
+  DetailPrint "Installing Traditional Mongolian Script Keyboard Layout files..."
 
   ${If} ${RunningX64}
-    DetailPrint "Installing 64-bit Traditional Mongolian Script Layout..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\script\MongolScript_amd64.msi" /quiet /norestart' $0
+    ${DisableX64FSRedirection}
+    SetOutPath "$SYSDIR"
+    File /oname=mnscript.dll "script\amd64\mnscript.dll"
+    ${EnableX64FSRedirection}
+
+    SetOutPath "$WINDIR\SysWOW64"
+    File /oname=mnscript.dll "script\wow64\mnscript.dll"
   ${Else}
-    DetailPrint "Installing 32-bit Traditional Mongolian Script Layout..."
-    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\script\MongolScript_i386.msi" /quiet /norestart' $0
+    SetOutPath "$SYSDIR"
+    File /oname=mnscript.dll "script\i386\mnscript.dll"
   ${EndIf}
 
-  ; Also register under Traditional Mongolian locale (0850) for users with Traditional Mongolian language packs
+  ; 1. Register under Mongolian Cyrillic locale (0450)
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout File" "mnscript.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450" "Layout Id" "00c1"
+
+  ; 2. Register under Traditional Mongolian locale (0850)
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout File" "mnscript.dll"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
   WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Id" "00c1"
 
+  ; 3. Activate in Language Bar & Win+Space switcher
+  DetailPrint "Activating Traditional Mongolian Script in Language Bar..."
+  System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 0)"
   System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 0)"
 
-  DetailPrint "Installation result code: $0"
   WriteRegDWORD HKLM "${REG_APP}" "InstalledScript" 1
 SectionEnd
 
@@ -225,10 +235,19 @@ Section "Uninstall"
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledScript"
   ${If} $0 == 1
     DetailPrint "Uninstalling Traditional Mongolian Script Layout..."
+    System::Call "input.dll::InstallLayoutOrTip(w '0450:a0010450', i 1)"
     System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 1)"
+    DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010450"
     DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850"
-    ExecWait '"$SYSDIR\msiexec.exe" /x {8B3E6C4A-57C9-4C82-9B7E-7B93427E8D31} /quiet /norestart'
-    ExecWait '"$SYSDIR\msiexec.exe" /x {8B3E6C4A-57C9-4C82-9B7E-7B93427E8D32} /quiet /norestart'
+
+    ${If} ${RunningX64}
+      ${DisableX64FSRedirection}
+      Delete "$SYSDIR\mnscript.dll"
+      ${EnableX64FSRedirection}
+      Delete "$WINDIR\SysWOW64\mnscript.dll"
+    ${Else}
+      Delete "$SYSDIR\mnscript.dll"
+    ${EndIf}
   ${EndIf}
 
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledFonts"
