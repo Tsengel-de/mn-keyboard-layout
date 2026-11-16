@@ -18,7 +18,7 @@ SetCompressor /SOLID lzma
 ; ------------------------------------------------------------------------------
 !define PRODUCT_NAME "Universal Mongolian Keyboard Layout Suite"
 !define PRODUCT_NAME_SHORT "Mongolian Keyboard"
-!define PRODUCT_VERSION "1.0.3"
+!define PRODUCT_VERSION "1.0.4"
 !define PRODUCT_PUBLISHER "Tsengel (tsengel.de)"
 !define PRODUCT_WEB_SITE "https://mn.tsengel.de"
 !define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\MongolianKeyboardSuite"
@@ -106,6 +106,32 @@ Section /o "Монгол гар (Герман / DE QWERTZ суурьтай)" Sec
   WriteRegDWORD HKLM "${REG_APP}" "InstalledDE" 1
 SectionEnd
 
+Section "Сонгодог Монгол бичиг (Traditional Script)" SecScript
+  DetailPrint "Extracting Traditional Mongolian Script Layout package..."
+  InitPluginsDir
+  SetOutPath "$PLUGINSDIR\script"
+  File /r "script\*.*"
+
+  ${If} ${RunningX64}
+    DetailPrint "Installing 64-bit Traditional Mongolian Script Layout..."
+    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\script\MongolScript_amd64.msi" /quiet /norestart' $0
+  ${Else}
+    DetailPrint "Installing 32-bit Traditional Mongolian Script Layout..."
+    ExecWait '"$SYSDIR\msiexec.exe" /i "$PLUGINSDIR\script\MongolScript_i386.msi" /quiet /norestart' $0
+  ${EndIf}
+
+  ; Also register under Traditional Mongolian locale (0850) for users with Traditional Mongolian language packs
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout File" "mnscript.dll"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Text" "Сонгодог Монгол бичиг (Цэнгэл)"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Display Name" "@%SystemRoot%\system32\mnscript.dll,-1000"
+  WriteRegStr HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850" "Layout Id" "00c1"
+
+  System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 0)"
+
+  DetailPrint "Installation result code: $0"
+  WriteRegDWORD HKLM "${REG_APP}" "InstalledScript" 1
+SectionEnd
+
 Section "Монгол бичгийн фонтууд (TrueType Fonts)" SecFonts
   DetailPrint "Installing Mongolian Script TrueType Fonts..."
   SetOutPath "$FONTS"
@@ -160,6 +186,7 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SecUS} "АНУ / Олон улсын стандарт (US QWERTY) гарт зориулсан Монгол гарын байрлал (Q=ъ, W=ь, Y=е, [=ө, ]=ү / AltGr тэмдэгтүүд)."
   !insertmacro MUI_DESCRIPTION_TEXT ${SecDE} "Герман стандарт (DE QWERTZ) гарт зориулсан Монгол гарын байрлал."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecScript} "Монгол бичгийн гарын байрлал (Сонгодог босоо бичгийн бүх үсэг, дэвсгэр, үгийн төгсгөлийн хэлбэрүүдийг бичихэд зориулсан)."
   !insertmacro MUI_DESCRIPTION_TEXT ${SecFonts} "Монгол бичгээр зөв унших, бичихэд шаардлагатай TrueType фонтууд."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
@@ -193,6 +220,15 @@ Section "Uninstall"
   ${If} $0 == 1
     DetailPrint "Uninstalling DE QWERTZ Keyboard Layout MSI..."
     ExecWait '"$SYSDIR\msiexec.exe" /x {BEB1FF3B-994B-47F7-BB2C-77DAB9DF311C} /quiet /norestart'
+  ${EndIf}
+
+  ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledScript"
+  ${If} $0 == 1
+    DetailPrint "Uninstalling Traditional Mongolian Script Layout..."
+    System::Call "input.dll::InstallLayoutOrTip(w '0850:a0010850', i 1)"
+    DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Keyboard Layouts\a0010850"
+    ExecWait '"$SYSDIR\msiexec.exe" /x {8B3E6C4A-57C9-4C82-9B7E-7B93427E8D31} /quiet /norestart'
+    ExecWait '"$SYSDIR\msiexec.exe" /x {8B3E6C4A-57C9-4C82-9B7E-7B93427E8D32} /quiet /norestart'
   ${EndIf}
 
   ReadRegDWORD $0 HKLM "${REG_APP}" "InstalledFonts"
