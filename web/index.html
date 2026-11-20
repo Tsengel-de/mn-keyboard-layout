@@ -613,6 +613,330 @@
       line-height: 1.5;
       color: #166534;
     }
+
+    /* Apple Dictionaries Showcase Section */
+    .dict-showcase-section {
+      background: #ffffff;
+      border: 1px solid var(--key-border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-top: 32px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .dict-showcase-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .dict-showcase-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      border: 1px solid #bfdbfe;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .dict-showcase-header h2 {
+      font-size: 26px;
+      color: #0f172a;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .dict-showcase-header p {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 840px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .dict-features-chips {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+    .feat-chip {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .feat-chip:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .chip-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .feat-chip strong {
+      display: block;
+      font-size: 13px;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+    .feat-chip span {
+      display: block;
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .dict-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .dict-detail-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+    }
+    .dict-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .dict-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .tag-en { background: #e0f2fe; color: #0369a1; }
+    .tag-mn { background: #fef3c7; color: #92400e; }
+    .dict-entries-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .dict-detail-card h3 {
+      font-size: 18px;
+      color: #0f172a;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .dict-detail-card p {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .dict-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12.5px;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-top: 1px dashed #e2e8f0;
+      padding-top: 14px;
+      line-height: 1.45;
+    }
+    .dict-gallery {
+      margin-bottom: 32px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .gallery-heading {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .gallery-heading h3 {
+      font-size: 19px;
+      color: #0f172a;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .gallery-heading p {
+      font-size: 13px;
+      color: #64748b;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .gallery-mac-window {
+      background: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gallery-mac-window:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    .mac-win-header {
+      background: #e2e8f0;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #10b981; }
+    .win-title {
+      font-size: 11.5px;
+      color: #475569;
+      margin-left: 6px;
+      font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .gallery-mac-window img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+    }
+    .gallery-caption {
+      font-size: 12.5px;
+      color: #475569;
+      margin-top: 10px;
+      line-height: 1.45;
+      text-align: center;
+      padding: 0 6px;
+    }
+    .dict-install-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .dict-install-box h4 {
+      font-size: 16px;
+      color: #0f172a;
+      margin-bottom: 18px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .install-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .step-card {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content strong {
+      display: block;
+      font-size: 13px;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+    .step-content p {
+      font-size: 12px;
+      color: #64748b;
+      line-height: 1.45;
+    }
+    .step-content code {
+      background: #e2e8f0;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 11px;
+      color: #0f172a;
+    }
+    .dict-actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .btn-dict-action-primary {
+      background: var(--primary);
+      color: #fff !important;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-dict-action-primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn-dict-action-sub {
+      background: #f1f5f9;
+      color: #1e293b !important;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 12px;
+      border: 1px solid #cbd5e1;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-dict-action-sub:hover {
+      background: #e2e8f0;
+    }
   </style>
 </head>
 <body>
@@ -786,8 +1110,175 @@
       <div class="install-hint" id="i18n-dict-hint">
         <strong>Суулгах:</strong> <code>.dmg</code> нээгээд доторх хоёр <code>.dictionary</code> багцыг Finder дээр <strong>Cmd + Shift + G</strong> дараад <code>~/Library/Dictionaries/</code> хавтас руу чирж хуулна. Дараа нь <strong>Dictionary.app</strong>-ийн Тохиргоо (Cmd + ,) цонхноос идэвхжүүлнэ.
       </div>
+      <div style="margin-top:10px; text-align:center;">
+        <a href="#dict-showcase" id="i18n-dict-learn-more" style="font-size:12px; color:var(--primary); text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:4px;">
+          📖 Дэлгэрэнгүй тайлбар &amp; Дэлгэцийн агшин үзэх &darr;
+        </a>
+      </div>
     </div>
   </div>
+
+
+  <!-- Apple Dictionaries Showcase Section -->
+  <section class="dict-showcase-section" id="dict-showcase">
+    <div class="dict-showcase-header">
+      <div class="dict-showcase-badge" id="i18n-dict-sec-badge">🍎 macOS Native Dictionary Suite • v1.0.6</div>
+      <h2 id="i18n-dict-sec-title">Apple macOS-д Зориулсан Албан Ёсны Монгол Толь Бичгийн Багц</h2>
+      <p id="i18n-dict-sec-subtitle">
+        Apple-ийн албан ёсны стандартын (.dictionary) хоёр толь бичиг. Safari, Mail, Pages, Preview болон бүх аппликейшн дээр <strong>3 хурууны товшилт (Look Up)</strong>, <strong>Spotlight (Cmd + Space)</strong> хайлт, <strong>Ctrl + Cmd + D</strong> товчлолоор шууд ажиллана. Сонгодог босоо монгол бичиг, латин галиг, дэлгэрэнгүй тайлбарыг бүрэн агуулсан.
+      </p>
+    </div>
+
+    <!-- Feature Highlights Chips -->
+    <div class="dict-features-chips">
+      <div class="feat-chip">
+        <span class="chip-icon">👆</span>
+        <div>
+          <strong id="i18n-feat-lookup-title">3-Хурууны Товшилт (Look Up)</strong>
+          <span id="i18n-feat-lookup-desc">Safari, ном, мэйл дээр үгэн дээр шууд товшиж тайлбарыг харна</span>
+        </div>
+      </div>
+      <div class="feat-chip">
+        <span class="chip-icon">🔍</span>
+        <div>
+          <strong id="i18n-feat-spotlight-title">Spotlight Хайлт (Cmd + Space)</strong>
+          <span id="i18n-feat-spotlight-desc">Системийн үндсэн хайлтын талбараас монгол, англи үгийг шууд толилно</span>
+        </div>
+      </div>
+      <div class="feat-chip">
+        <span class="chip-icon">⌨️</span>
+        <div>
+          <strong id="i18n-feat-shortcut-title">Ctrl + Cmd + D Товчлол</strong>
+          <span id="i18n-feat-shortcut-desc">Курсор байрлаж буй үгийн утгыг дурын программын дотроос нээнэ</span>
+        </div>
+      </div>
+      <div class="feat-chip">
+        <span class="chip-icon">🌓</span>
+        <div>
+          <strong id="i18n-feat-darkmode-title">Retina & Dynamic Dark Mode</strong>
+          <span id="i18n-feat-darkmode-desc">macOS-ийн Гэрэлтэй болон Харанхуй горимд төгс нийцсэн өнгө, тодотгол</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- The 2 Dictionaries Cards -->
+    <div class="dict-cards-grid">
+      <!-- Dictionary 1: Altangerel Damdinsuren -->
+      <div class="dict-detail-card">
+        <div class="dict-card-top">
+          <span class="dict-tag tag-en" id="i18n-tag-alt">🇬🇧 &rarr; 🇲🇳 English &bull; Mongolian</span>
+          <span class="dict-entries-badge" id="i18n-badge-alt">25,252 үг</span>
+        </div>
+        <h3 id="i18n-card-alt-title">Д. Алтангэрэл — Англи-Монгол Толь</h3>
+        <p id="i18n-card-alt-desc">
+          Эрдэмтэн Д. Алтангэрэлийн алдарт Англи-Монгол толь бичиг. Англи толгой үгс, олон улсын авиа зүйн транскрипц (IPA дуудлага), үг зүйн ай (noun, verb, adj), сонгодог монгол бичгийн бичлэг, дэлгэрэнгүй монгол орчуулга, жишээ хэлцүүд багтсан.
+        </p>
+        <ul class="dict-bullets" id="i18n-card-alt-bullets">
+          <li>✓ Англи хэл дээр ном, нийтлэл унших үед үгэн дээрээ 3 хуруугаараа товшиход монгол утга шууд гарна</li>
+          <li>✓ Монгол бичгийн зөв бичлэг, галиг давхар харагдана</li>
+          <li>✓ Олон улсын авиа зүйн дуудлагатай</li>
+        </ul>
+      </div>
+
+      <!-- Dictionary 2: Ya. Tsevel -->
+      <div class="dict-detail-card">
+        <div class="dict-card-top">
+          <span class="dict-tag tag-mn" id="i18n-tag-tsev">🇲🇳 &rarr; 🇲🇳 Сонгодог Босоо Бичигтэй Тайлбар Толь</span>
+          <span class="dict-entries-badge" id="i18n-badge-tsev">30,626 үг</span>
+        </div>
+        <h3 id="i18n-card-tsev-title">Я. Цэвэл — Монгол Хэлний Тайлбар Толь</h3>
+        <p id="i18n-card-tsev-desc">
+          Монгол хэл шинжлэлийн суурь бүтээл болох Я. Цэвэлийн тайлбар толь. Үг бүрийн зүүн талд <strong>жинхэнэ босоо монгол бичгийн тууз (vertical ribbon)</strong> байрлах бөгөөд латин галиг, үндэс, салаа утга, жишээ өгүүлбэр, зүйр цэцэн үгсийг бүрэн агуулсан.
+        </p>
+        <ul class="dict-bullets" id="i18n-card-tsev-bullets">
+          <li>✓ Үг бүрт босоо монгол бичгийн өвөрмөц тууз (ᠮᠣᠷᠢ, ᠮᠣᠩᠭᠣᠯ)</li>
+          <li>✓ Сонгодог латин галиг (mori, mongyul) ба хэл зүйн ангилал</li>
+          <li>✓ Эртний болон орчин үеийн монгол үгийн утгын тайлбар, зүйр үгс</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Screenshots Preview Section -->
+    <div class="dict-gallery">
+      <div class="gallery-heading">
+        <h3 id="i18n-gallery-title">📸 macOS Look Up & Safari Бодит Ажиллагаа</h3>
+        <p id="i18n-gallery-sub">macOS Sonoma / Sequoia болон Safari хөтөч дээр авсан бодит дэлгэцийн агшин</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-mac-window">
+            <div class="mac-win-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="win-title">Safari &bull; Wikipedia — Look Up "Монгол морь"</span>
+            </div>
+            <a href="dict-preview-mori.jpg" target="_blank" title="Зургийг бүтнээр үзэх">
+              <img src="dict-preview-mori.jpg" alt="macOS Safari Look Up - морь үгийн тайлбар болон босоо монгол бичиг" loading="lazy">
+            </a>
+          </div>
+          <p class="gallery-caption" id="i18n-cap-mori">
+            Safari дээр <strong>"морь"</strong> үгэн дээр 3 хуруугаараа товшиход: Цэвэлийн толь босоо монгол бичгийн тууз (ᠮᠣᠷᠢ), латин галиг (mori), зүйр цэцэн үгстэйгээ шууд гарч ирж буй байдал.
+          </p>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-mac-window">
+            <div class="mac-win-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="win-title">macOS Dark Mode — Look Up "Монгол"</span>
+            </div>
+            <a href="dict-preview-mongol.jpg" target="_blank" title="Зургийг бүтнээр үзэх">
+              <img src="dict-preview-mongol.jpg" alt="macOS Dark Mode Look Up - монгол үгийн тайлбар болон босоо монгол бичиг" loading="lazy">
+            </a>
+          </div>
+          <p class="gallery-caption" id="i18n-cap-mongol">
+            macOS Dark Mode (Харанхуй горим): <strong>"монгол"</strong> (ᠮᠣᠩᠭᠣᠯ) үгийн тайлбар. Apple-ийн системийн өнгөнд зохицсон өндөр тодотгол, цэвэр тунгалаг үзэмж.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Installation Steps Box -->
+    <div class="dict-install-box">
+      <h4 id="i18n-dict-inst-title">🚀 Хялбар Суулгах Заавар (3 алхам)</h4>
+      <div class="install-steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong id="i18n-step1-t">DMG Дискийг Татаж Нээх</strong>
+            <p id="i18n-step1-d">Доорх товчоор <code>Mongolian-Dictionaries-macOS.dmg</code> файлыг татаж аваад 2 товшиж нээнэ.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong id="i18n-step2-t">Dictionaries Хавтас руу Хуулах</strong>
+            <p id="i18n-step2-d">Finder дээр <code>Cmd + Shift + G</code> дараад <code>~/Library/Dictionaries/</code> хавтас руу хоёр толь бичгийн багцыг чирж хуулна.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong id="i18n-step3-t">Тохиргооноос Идэвхжүүлэх</strong>
+            <p id="i18n-step3-d"><strong>Dictionary.app</strong>-ийг нээж <code>Cmd + ,</code> (Preferences) цонхноос хоёр толийг чагтална. Систем даяар шууд ажиллана!</p>
+          </div>
+        </div>
+      </div>
+      <div class="dict-actions-bar">
+        <a href="downloads/Mongolian-Dictionaries-macOS.dmg" download class="btn-dict-action-primary" id="i18n-action-dmg">
+          💿 DMG Багц Татах (24.6 MB, v1.0.6)
+        </a>
+        <a href="downloads/Mongolian-English-Altangerel.dictionary.zip" download class="btn-dict-action-sub" id="i18n-action-alt">
+          🇬🇧 Altangerel .zip (9.7 MB)
+        </a>
+        <a href="downloads/Mongolian-Tsevel-Explanatory.dictionary.zip" download class="btn-dict-action-sub" id="i18n-action-tsev">
+          🇲🇳 Tsevel .zip (14.3 MB)
+        </a>
+        <a href="https://github.com/Tsengel-de/apple-dictionary-mongolian" target="_blank" rel="noopener" class="btn-dict-action-sub" id="i18n-action-repo">
+          ⭐ GitHub Эх код
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Checksum Verification Section -->
   <div class="checksum-section">
@@ -1399,6 +1890,43 @@ const I18N = {
     btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
     btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
     dictHint: "<strong>Суулгах заавар:</strong> <code>.dmg</code> файлыг нээгээд доторх хоёр <code>.dictionary</code> багцыг <code>~/Library/Dictionaries/</code> хавтас руу чирж хуулна. Дараа нь <strong>Dictionary.app</strong> &rarr; Settings (Cmd + ,) цонхноос хоёуланг нь чеклэж идэвхжүүлнэ.",
+    dictLearnMore: "📖 Дэлгэрэнгүй тайлбар &amp; Дэлгэцийн агшин үзэх &darr;",
+    dictSecBadge: "🍎 macOS Native Dictionary Suite • v1.0.6",
+    dictSecTitle: "Apple macOS-д Зориулсан Албан Ёсны Монгол Толь Бичгийн Багц",
+    dictSecSubtitle: "Apple-ийн албан ёсны стандартын (.dictionary) хоёр толь бичиг. Safari, Mail, Pages, Preview болон бүх аппликейшн дээр <strong>3 хурууны товшилт (Look Up)</strong>, <strong>Spotlight (Cmd + Space)</strong> хайлт, <strong>Ctrl + Cmd + D</strong> товчлолоор шууд ажиллана. Сонгодог босоо монгол бичиг, латин галиг, дэлгэрэнгүй тайлбарыг бүрэн агуулсан.",
+    featLookupTitle: "3-Хурууны Товшилт (Look Up)",
+    featLookupDesc: "Safari, ном, мэйл дээр үгэн дээр шууд товшиж тайлбарыг харна",
+    featSpotlightTitle: "Spotlight Хайлт (Cmd + Space)",
+    featSpotlightDesc: "Системийн үндсэн хайлтын талбараас монгол, англи үгийг шууд толилно",
+    featShortcutTitle: "Ctrl + Cmd + D Товчлол",
+    featShortcutDesc: "Курсор байрлаж буй үгийн утгыг дурын программын дотроос нээнэ",
+    featDarkmodeTitle: "Retina & Dynamic Dark Mode",
+    featDarkmodeDesc: "macOS-ийн Гэрэлтэй болон Харанхуй горимд төгс нийцсэн өнгө, тодотгол",
+    tagAlt: "🇬🇧 &rarr; 🇲🇳 English &bull; Mongolian",
+    badgeAlt: "25,252 үг",
+    cardAltTitle: "Д. Алтангэрэл — Англи-Монгол Толь",
+    cardAltDesc: "Эрдэмтэн Д. Алтангэрэлийн алдарт Англи-Монгол толь бичиг. Англи толгой үгс, олон улсын авиа зүйн транскрипц (IPA дуудлага), үг зүйн ай (noun, verb, adj), сонгодог монгол бичгийн бичлэг, дэлгэрэнгүй монгол орчуулга, жишээ хэлцүүд багтсан.",
+    cardAltBullets: "<li>✓ Англи хэл дээр ном, нийтлэл унших үед үгэн дээрээ 3 хуруугаараа товшиход монгол утга шууд гарна</li><li>✓ Монгол бичгийн зөв бичлэг, галиг давхар харагдана</li><li>✓ Олон улсын авиа зүйн дуудлагатай</li>",
+    tagTsev: "🇲🇳 &rarr; 🇲🇳 Сонгодог Босоо Бичигтэй Тайлбар Толь",
+    badgeTsev: "30,626 үг",
+    cardTsevTitle: "Я. Цэвэл — Монгол Хэлний Тайлбар Толь",
+    cardTsevDesc: "Монгол хэл шинжлэлийн суурь бүтээл болох Я. Цэвэлийн тайлбар толь. Үг бүрийн зүүн талд <strong>жинхэнэ босоо монгол бичгийн тууз (vertical ribbon)</strong> байрлах бөгөөд латин галиг, үндэс, салаа утга, жишээ өгүүлбэр, зүйр цэцэн үгсийг бүрэн агуулсан.",
+    cardTsevBullets: "<li>✓ Үг бүрт босоо монгол бичгийн өвөрмөц тууз (ᠮᠣᠷᠢ, ᠮᠣᠩᠭᠣᠯ)</li><li>✓ Сонгодог латин галиг (mori, mongyul) ба хэл зүйн ангилал</li><li>✓ Эртний болон орчин үеийн монгол үгийн утгын тайлбар, зүйр үгс</li>",
+    galleryTitle: "📸 macOS Look Up & Safari Бодит Ажиллагаа",
+    gallerySub: "macOS Sonoma / Sequoia болон Safari хөтөч дээр авсан бодит дэлгэцийн агшин",
+    capMori: "Safari дээр <strong>\"морь\"</strong> үгэн дээр 3 хуруугаараа товшиход: Цэвэлийн толь босоо монгол бичгийн тууз (ᠮᠣᠷᠢ), латин галиг (mori), зүйр цэцэн үгстэйгээ шууд гарч ирж буй байдал.",
+    capMongol: "macOS Dark Mode (Харанхуй горим): <strong>\"монгол\"</strong> (ᠮᠣᠩᠭᠣᠯ) үгийн тайлбар. Apple-ийн системийн өнгөнд зохицсон өндөр тодотгол, цэвэр тунгалаг үзэмж.",
+    dictInstTitle: "🚀 Хялбар Суулгах Заавар (3 алхам)",
+    step1T: "DMG Дискийг Татаж Нээх",
+    step1D: "Доорх товчоор <code>Mongolian-Dictionaries-macOS.dmg</code> файлыг татаж аваад 2 товшиж нээнэ.",
+    step2T: "Dictionaries Хавтас руу Хуулах",
+    step2D: "Finder дээр <code>Cmd + Shift + G</code> дараад <code>~/Library/Dictionaries/</code> хавтас руу хоёр толь бичгийн багцыг чирж хуулна.",
+    step3T: "Тохиргооноос Идэвхжүүлэх",
+    step3D: "<strong>Dictionary.app</strong>-ийг нээж <code>Cmd + ,</code> (Preferences) цонхноос хоёр толийг чагтална. Систем даяар шууд ажиллана!",
+    actionDmg: "💿 DMG Багц Татах (24.6 MB, v1.0.6)",
+    actionAlt: "🇬🇧 Altangerel .zip (9.7 MB)",
+    actionTsev: "🇲🇳 Tsevel .zip (14.3 MB)",
+    actionRepo: "⭐ GitHub Эх код",
     checksumTitle: "🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)",
     checksumToggle: "[Дэлгэх ▾]",
     thFile: "Файлын нэр",
@@ -1457,6 +1985,43 @@ const I18N = {
     btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
     btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
     dictHint: "<strong>Installation:</strong> Open <code>.dmg</code> and drag both <code>.dictionary</code> bundles into <code>~/Library/Dictionaries/</code>. Then enable them in <strong>Dictionary.app</strong> &rarr; Settings (Cmd + ,).",
+    dictLearnMore: "📖 View Detailed Showcase &amp; Screenshots &darr;",
+    dictSecBadge: "🍎 macOS Native Dictionary Suite • v1.0.6",
+    dictSecTitle: "Official Native Apple Dictionaries for macOS",
+    dictSecSubtitle: "A complete dual-dictionary suite built strictly to Apple's official (.dictionary) bundle standard. Seamless system-wide integration via <strong>3-finger tap (Look Up / Force Touch)</strong>, <strong>Spotlight (Cmd + Space)</strong>, and <strong>Ctrl + Cmd + D</strong>. Featuring authentic vertical traditional Mongolian script ribbons, classical Latin transliteration, and comprehensive definitions.",
+    featLookupTitle: "3-Finger Tap / Force Touch",
+    featLookupDesc: "Tap any word in Safari, Books, Mail, or Notes to view full instant definitions",
+    featSpotlightTitle: "Spotlight Search (Cmd + Space)",
+    featSpotlightDesc: "Search English or Mongolian words straight from the system search bar",
+    featShortcutTitle: "Global Shortcut (Ctrl + Cmd + D)",
+    featShortcutDesc: "Instant definition under mouse cursor anywhere across macOS",
+    featDarkmodeTitle: "Retina & Dynamic Dark Mode",
+    featDarkmodeDesc: "Crystal clear readability matching Apple's native vibrant Light & Dark appearance",
+    tagAlt: "🇬🇧 &rarr; 🇲🇳 English &bull; Mongolian",
+    badgeAlt: "25,252 entries",
+    cardAltTitle: "D. Altangerel — English-Mongolian Dictionary",
+    cardAltDesc: "The acclaimed English-Mongolian dictionary by scholar D. Altangerel. Contains English headwords, international phonetic transcription (IPA), parts of speech (noun, verb, adj), traditional script entries, comprehensive Mongolian translations, and common idiomatic expressions.",
+    cardAltBullets: "<li>✓ Instant Mongolian translation when tapping English words while reading in Safari or Books</li><li>✓ Traditional script forms and transliteration included</li><li>✓ International Phonetic Alphabet (IPA) pronunciations</li>",
+    tagTsev: "🇲🇳 &rarr; 🇲🇳 Monolingual Explanatory with Vertical Script",
+    badgeTsev: "30,626 entries",
+    cardTsevTitle: "Ya. Tsevel — Mongolian Explanatory Dictionary",
+    cardTsevDesc: "The seminal monolingual explanatory dictionary by Ya. Tsevel. Each entry features an <strong>authentic vertical Mongolian script ribbon (vertical-lr)</strong> on the left, classical Latin transcription (galig), root classification, nuanced definitions, and traditional proverbs.",
+    cardTsevBullets: "<li>✓ Unique vertical traditional script ribbon (ᠮᠣᠷᠢ, ᠮᠣᠩᠭᠣᠯ) for every headword</li><li>✓ Classical Latin galig (mori, mongyul) and morphological class</li><li>✓ Rich definitions, idioms, examples, and traditional Mongolian proverbs</li>",
+    galleryTitle: "📸 macOS Look Up & Safari in Action",
+    gallerySub: "Actual screenshots captured on macOS Sonoma / Sequoia and Safari",
+    capMori: "3-finger tap on <strong>\"морь\"</strong> in Safari: Tsevel Explanatory dictionary showing the vertical traditional script ribbon (ᠮᠣᠷᠢ), Latin galig (mori), and full cultural idioms.",
+    capMongol: "macOS Dark Mode: Looking up <strong>\"монгол\"</strong> (ᠮᠣᠩᠭᠣᠯ). High contrast, crisp typography tuned to Apple's native dark appearance palette.",
+    dictInstTitle: "🚀 Quick Installation Guide (3 Simple Steps)",
+    step1T: "Download & Open DMG",
+    step1D: "Download <code>Mongolian-Dictionaries-macOS.dmg</code> below and double-click to open.",
+    step2T: "Copy to Dictionaries Folder",
+    step2D: "In Finder press <code>Cmd + Shift + G</code>, go to <code>~/Library/Dictionaries/</code>, and drag both dictionary packages in.",
+    step3T: "Enable in Dictionary App",
+    step3D: "Launch <strong>Dictionary.app</strong>, open Preferences (<code>Cmd + ,</code>), and check both dictionaries. Works system-wide immediately!",
+    actionDmg: "💿 Download DMG Bundle (24.6 MB, v1.0.6)",
+    actionAlt: "🇬🇧 Altangerel .zip (9.7 MB)",
+    actionTsev: "🇲🇳 Tsevel .zip (14.3 MB)",
+    actionRepo: "⭐ GitHub Repository",
     checksumTitle: "🔍 File SHA-256 Checksums & Antivirus Verification",
     checksumToggle: "[Expand ▾]",
     thFile: "File Name",
@@ -1515,6 +2080,43 @@ const I18N = {
     btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
     btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
     dictHint: "<strong>Installation:</strong> Öffnen Sie die <code>.dmg</code> und ziehen Sie beide <code>.dictionary</code>-Pakete in Ihren Ordner <code>~/Library/Dictionaries/</code>. Aktivieren Sie diese anschließend in <strong>Dictionary.app</strong> &rarr; Einstellungen (Cmd + ,).",
+    dictLearnMore: "📖 Ausführliche Vorstellung &amp; Bildschirmfotos &darr;",
+    dictSecBadge: "🍎 macOS Native Wörterbuch-Suite • v1.0.6",
+    dictSecTitle: "Offizielle native Apple-Wörterbücher für macOS",
+    dictSecSubtitle: "Vollständige Suite zweier mongolischer Wörterbücher nach offiziellem Apple (.dictionary)-Standard. Nahtlose systemweite Integration über <strong>3-Finger-Tippen (Nachschlagen / Force Touch)</strong>, <strong>Spotlight (Cmd + Leertaste)</strong> und <strong>Ctrl + Cmd + D</strong>. Mit vertikaler traditioneller mongolischer Schrift, klassischer Transliteration und ausführlichen Erklärungen.",
+    featLookupTitle: "3-Finger-Tippen / Force Touch",
+    featLookupDesc: "Jedes Wort in Safari, Mail, Büchern oder Notizen antippen für sofortige Begriffserklärung",
+    featSpotlightTitle: "Spotlight-Suche (Cmd + Space)",
+    featSpotlightDesc: "Englische und mongolische Begriffe direkt in der macOS-Suchleiste nachschlagen",
+    featShortcutTitle: "Globaler Kurzbefehl (Ctrl + Cmd + D)",
+    featShortcutDesc: "Sofortige Definition unter dem Mauszeiger in allen Mac-Apps öffnen",
+    featDarkmodeTitle: "Retina & Dynamischer Dark Mode",
+    featDarkmodeDesc: "Kristallklare Lesbarkeit abgestimmt auf Apples helle und dunkle Systemoptik",
+    tagAlt: "🇬🇧 &rarr; 🇲🇳 Englisch &bull; Mongolisch",
+    badgeAlt: "25.252 Einträge",
+    cardAltTitle: "D. Altangerel — Englisch-Mongolisches Wörterbuch",
+    cardAltDesc: "Das renommierte Englisch-Mongolische Wörterbuch von D. Altangerel. Enthält englische Stichwörter, Lautschrift (IPA), grammatische Wortarten, traditionelle mongolische Schriftformen, mongolische Übersetzungen und gängige Redewendungen.",
+    cardAltBullets: "<li>✓ Sofortige mongolische Übersetzung beim Antippen englischer Wörter in Safari oder Büchern</li><li>✓ Traditionelle mongolische Schrift und Umschrift enthalten</li><li>✓ Internationale phonetische Lautschrift (IPA)</li>",
+    tagTsev: "🇲🇳 &rarr; 🇲🇳 Einsprachiges Erklärungswörterbuch mit Vertikalschrift",
+    badgeTsev: "30.626 Einträge",
+    cardTsevTitle: "Ja. Tsevel — Mongolisches Erklärungswörterbuch",
+    cardTsevDesc: "Das grundlegende einsprachige Erklärungswörterbuch von Ja. Tsevel. Jedes Stichwort besitzt links ein <strong>vertikales Band in traditioneller Schrift (vertical-lr)</strong>, klassische Transliteration (Galig), etymologische Wurzeln, detaillierte Bedeutungen und Sprichwörter.",
+    cardTsevBullets: "<li>✓ Echtes vertikales Band in traditioneller Schrift (ᠮᠣᠷᠢ, ᠮᠣᠩᠭᠣᠯ) bei jedem Wort</li><li>✓ Klassische Transkription (mori, mongyul) und Wortarten</li><li>✓ Reichhaltige Definitionen, historische Kontexte und mongolische Sprichwörter</li>",
+    galleryTitle: "📸 macOS Nachschlagen & Safari in Aktion",
+    gallerySub: "Echte Bildschirmfotos aufgenommen unter macOS Sonoma / Sequoia in Safari",
+    capMori: "3-Finger-Tippen auf <strong>\"морь\"</strong> in Safari: Tsevel-Wörterbuch mit vertikalem Schriftband (ᠮᠣᠷᠢ), Transliteration (mori) und volkstümlichen Redewendungen.",
+    capMongol: "macOS Dark Mode: Nachschlagen von <strong>\"монгол\"</strong> (ᠮᠣᠩᠭᠣᠯ). Hoher Kontrast, augenschonend und perfekt an das Apple-Dunkeldesign angepasst.",
+    dictInstTitle: "🚀 Schnellanleitung zur Installation (3 Schritte)",
+    step1T: "DMG herunterladen & öffnen",
+    step1D: "Laden Sie <code>Mongolian-Dictionaries-macOS.dmg</code> herunter und öffnen Sie es per Doppelklick.",
+    step2T: "In Dictionaries-Ordner kopieren",
+    step2D: "Drücken Sie im Finder <code>Cmd + Shift + G</code>, geben Sie <code>~/Library/Dictionaries/</code> ein und ziehen Sie beide Pakete hinein.",
+    step3T: "In Lexikon.app aktivieren",
+    step3D: "Öffnen Sie <strong>Lexikon.app (Dictionary)</strong>, gehen Sie in die Einstellungen (<code>Cmd + ,</code>) und aktivieren Sie beide Wörterbücher.",
+    actionDmg: "💿 Wörterbuch DMG herunterladen (24.6 MB, v1.0.6)",
+    actionAlt: "🇬🇧 Altangerel .zip (9.7 MB)",
+    actionTsev: "🇲🇳 Tsevel .zip (14.3 MB)",
+    actionRepo: "⭐ GitHub-Repository",
     checksumTitle: "🔍 SHA-256-Prüfsummen & Antivirus-Verifizierung",
     checksumToggle: "[Ausklappen ▾]",
     thFile: "Dateiname",
@@ -1589,6 +2191,43 @@ function setLanguage(lang) {
     'i18n-btn-dict-alt-zip': t.btnDictAltZip,
     'i18n-btn-dict-tsev-zip': t.btnDictTsevZip,
     'i18n-dict-hint': t.dictHint,
+    'i18n-dict-learn-more': t.dictLearnMore,
+    'i18n-dict-sec-badge': t.dictSecBadge,
+    'i18n-dict-sec-title': t.dictSecTitle,
+    'i18n-dict-sec-subtitle': t.dictSecSubtitle,
+    'i18n-feat-lookup-title': t.featLookupTitle,
+    'i18n-feat-lookup-desc': t.featLookupDesc,
+    'i18n-feat-spotlight-title': t.featSpotlightTitle,
+    'i18n-feat-spotlight-desc': t.featSpotlightDesc,
+    'i18n-feat-shortcut-title': t.featShortcutTitle,
+    'i18n-feat-shortcut-desc': t.featShortcutDesc,
+    'i18n-feat-darkmode-title': t.featDarkmodeTitle,
+    'i18n-feat-darkmode-desc': t.featDarkmodeDesc,
+    'i18n-tag-alt': t.tagAlt,
+    'i18n-badge-alt': t.badgeAlt,
+    'i18n-card-alt-title': t.cardAltTitle,
+    'i18n-card-alt-desc': t.cardAltDesc,
+    'i18n-card-alt-bullets': t.cardAltBullets,
+    'i18n-tag-tsev': t.tagTsev,
+    'i18n-badge-tsev': t.badgeTsev,
+    'i18n-card-tsev-title': t.cardTsevTitle,
+    'i18n-card-tsev-desc': t.cardTsevDesc,
+    'i18n-card-tsev-bullets': t.cardTsevBullets,
+    'i18n-gallery-title': t.galleryTitle,
+    'i18n-gallery-sub': t.gallerySub,
+    'i18n-cap-mori': t.capMori,
+    'i18n-cap-mongol': t.capMongol,
+    'i18n-dict-inst-title': t.dictInstTitle,
+    'i18n-step1-t': t.step1T,
+    'i18n-step1-d': t.step1D,
+    'i18n-step2-t': t.step2T,
+    'i18n-step2-d': t.step2D,
+    'i18n-step3-t': t.step3T,
+    'i18n-step3-d': t.step3D,
+    'i18n-action-dmg': t.actionDmg,
+    'i18n-action-alt': t.actionAlt,
+    'i18n-action-tsev': t.actionTsev,
+    'i18n-action-repo': t.actionRepo,
     'i18n-checksum-title': t.checksumTitle,
     'i18n-checksum-toggle': t.checksumToggle,
     'i18n-th-file': t.thFile,
