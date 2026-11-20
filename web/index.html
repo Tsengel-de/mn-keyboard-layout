@@ -768,6 +768,25 @@
         <strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> (Кирилл) болон <code>mgl</code> (Монгол бичиг) шууд харагдана.
       </div>
     </div>
+
+    <!-- 4. macOS Dictionaries -->
+    <div class="download-card" id="card-dict">
+      <div class="card-header-row">
+        <h4 id="i18n-dict-title">📚 macOS Монгол Толь Бичиг</h4>
+        <span class="card-badge" style="background:#fef3c7; color:#92400e;">Altangerel & Tsevel</span>
+      </div>
+      <p id="i18n-dict-desc">Apple macOS-д зориулсан Англи-Монгол (Алтангэрэл, 25,252 үг) болон Монгол хэлний тайлбар толь (Цэвэл, 30,626 үг). Safari Look Up, 3 хурууны товшилт, Spotlight-тай бүрэн нийцнэ.</p>
+      <a href="downloads/Mongolian-Dictionaries-macOS.dmg" download class="btn-dl-primary" id="i18n-btn-dict-dmg">
+        💿 Толь Бичгийн DMG Татах (.dmg, 24.6 MB)
+      </a>
+      <div class="sub-dl-group">
+        <a href="downloads/Mongolian-English-Altangerel.dictionary.zip" download class="btn-dl-sub" id="i18n-btn-dict-alt-zip">🇬🇧 Altangerel (9.7 MB)</a>
+        <a href="downloads/Mongolian-Tsevel-Explanatory.dictionary.zip" download class="btn-dl-sub" id="i18n-btn-dict-tsev-zip">🇲🇳 Tsevel (14.3 MB)</a>
+      </div>
+      <div class="install-hint" id="i18n-dict-hint">
+        <strong>Суулгах:</strong> <code>.dmg</code> нээгээд доторх хоёр <code>.dictionary</code> багцыг Finder дээр <strong>Cmd + Shift + G</strong> дараад <code>~/Library/Dictionaries/</code> хавтас руу чирж хуулна. Дараа нь <strong>Dictionary.app</strong>-ийн Тохиргоо (Cmd + ,) цонхноос идэвхжүүлнэ.
+      </div>
+    </div>
   </div>
 
   <!-- Checksum Verification Section -->
@@ -821,6 +840,42 @@
                 <div class="hash-cell">
                   <span class="hash-text">968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3</span>
                   <button class="hash-copy" onclick="copyHash('968a5019f5f3a5c563a842918b138a0a07f9f81df43bd94accf4e28194fcdbc3', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
+            </tr>
+            <tr>
+              <td><code>Mongolian-Dictionaries-macOS.dmg</code></td>
+              <td>macOS</td>
+              <td>24.6 MB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">5a3623bdeaf4a2c175b0b15a0d38ca900fa5f45420b187b94925bc5bb1986537</span>
+                  <button class="hash-copy" onclick="copyHash('5a3623bdeaf4a2c175b0b15a0d38ca900fa5f45420b187b94925bc5bb1986537', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
+            </tr>
+            <tr>
+              <td><code>Mongolian-English-Altangerel.dictionary.zip</code></td>
+              <td>macOS</td>
+              <td>9.7 MB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">722dde531e45f4379d7c15c62566ff10ce42fed0862145060f12d065732fe468</span>
+                  <button class="hash-copy" onclick="copyHash('722dde531e45f4379d7c15c62566ff10ce42fed0862145060f12d065732fe468', this)">Хуулах</button>
+                </div>
+              </td>
+              <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
+            </tr>
+            <tr>
+              <td><code>Mongolian-Tsevel-Explanatory.dictionary.zip</code></td>
+              <td>macOS</td>
+              <td>14.3 MB</td>
+              <td>
+                <div class="hash-cell">
+                  <span class="hash-text">86db3f939adc47a82cabf622af6d6dba5019c285b5e3047242bbf3f8e2dd9b65</span>
+                  <button class="hash-copy" onclick="copyHash('86db3f939adc47a82cabf622af6d6dba5019c285b5e3047242bbf3f8e2dd9b65', this)">Хуулах</button>
                 </div>
               </td>
               <td><span class="badge-clean">✓ 100% Вирусгүй</span></td>
@@ -1338,6 +1393,12 @@ const I18N = {
     btnLinuxZip: "⬇️ Linux Багц Татах (.zip, 26 KB)",
     btnCopyScript: "Хуулах",
     linuxHint: "<strong>⚠️ Анхаар:</strong> Суулгасны дараа заавал системээс нэг удаа <strong>Log Out / Log In</strong> (эсвэл Restart) хийнэ үү! Тэгсний дараа дээд цэс дээр <code>mn</code> болон <code>mgl</code> шууд гарч ирнэ. Терминалаас <code>setxkbmap mn</code> эсвэл <code>setxkbmap bichig</code>.",
+    dictTitle: "📚 macOS Монгол Толь Бичиг (Dual-Script)",
+    dictDesc: "Apple macOS-д зориулсан Англи-Монгол (Алтангэрэл, 25,252 үг) болон Монгол хэлний тайлбар толь (Цэвэл, 30,626 үг). Safari Look Up, 3 хурууны товшилт, Spotlight-тай бүрэн нийцнэ.",
+    btnDictDmg: "💿 Толь Бичгийн DMG Татах (.dmg, 24.6 MB)",
+    btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
+    btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
+    dictHint: "<strong>Суулгах заавар:</strong> <code>.dmg</code> файлыг нээгээд доторх хоёр <code>.dictionary</code> багцыг <code>~/Library/Dictionaries/</code> хавтас руу чирж хуулна. Дараа нь <strong>Dictionary.app</strong> &rarr; Settings (Cmd + ,) цонхноос хоёуланг нь чеклэж идэвхжүүлнэ.",
     checksumTitle: "🔍 Файлуудын SHA-256 хяналтын нийлбэр (Checksums & Antivirus Шалгалт)",
     checksumToggle: "[Дэлгэх ▾]",
     thFile: "Файлын нэр",
@@ -1390,6 +1451,12 @@ const I18N = {
     btnLinuxZip: "⬇️ Download Linux Package (.zip)",
     btnCopyScript: "Copy",
     linuxHint: "<strong>⚠️ Important:</strong> After installation, please <strong>Log Out and Log In</strong> (or Restart) so GNOME/Wayland loads both layouts! Toggle via <code>Super + Space</code> or Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
+    dictTitle: "📚 macOS Mongolian Dictionaries (Dual-Script)",
+    dictDesc: "Native Apple Dictionary suite: English-Mongolian (Altangerel, 25,252 words) & Tsevel Explanatory (30,626 words) with Traditional Script ribbon and Spotlight integration.",
+    btnDictDmg: "💿 Download Dictionary DMG (.dmg, 24.6 MB)",
+    btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
+    btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
+    dictHint: "<strong>Installation:</strong> Open <code>.dmg</code> and drag both <code>.dictionary</code> bundles into <code>~/Library/Dictionaries/</code>. Then enable them in <strong>Dictionary.app</strong> &rarr; Settings (Cmd + ,).",
     checksumTitle: "🔍 File SHA-256 Checksums & Antivirus Verification",
     checksumToggle: "[Expand ▾]",
     thFile: "File Name",
@@ -1442,6 +1509,12 @@ const I18N = {
     btnLinuxZip: "⬇️ Linux-Paket herunterladen (.zip)",
     btnCopyScript: "Kopieren",
     linuxHint: "<strong>⚠️ Wichtig:</strong> Nach der Installation bitte einmal <strong>Ab- und wieder Anmelden</strong> (oder Neustart)! Umschalten mit <code>Super + Leertaste</code> oder Terminal: <code>setxkbmap mn</code> / <code>setxkbmap bichig</code>.",
+    dictTitle: "📚 macOS Mongolische Wörterbücher (Dual-Script)",
+    dictDesc: "Native Apple-Wörterbuchsuite: Englisch-Mongolisch (Altangerel, 25.252 Einträge) & Tsevel Einsprachiges Wörterbuch (30.626 Einträge) mit traditioneller Schrift und Spotlight-Unterstützung.",
+    btnDictDmg: "💿 Wörterbuch DMG herunterladen (.dmg, 24.6 MB)",
+    btnDictAltZip: "🇬🇧 Altangerel (9.7 MB)",
+    btnDictTsevZip: "🇲🇳 Tsevel (14.3 MB)",
+    dictHint: "<strong>Installation:</strong> Öffnen Sie die <code>.dmg</code> und ziehen Sie beide <code>.dictionary</code>-Pakete in Ihren Ordner <code>~/Library/Dictionaries/</code>. Aktivieren Sie diese anschließend in <strong>Dictionary.app</strong> &rarr; Einstellungen (Cmd + ,).",
     checksumTitle: "🔍 SHA-256-Prüfsummen & Antivirus-Verifizierung",
     checksumToggle: "[Ausklappen ▾]",
     thFile: "Dateiname",
@@ -1510,6 +1583,12 @@ function setLanguage(lang) {
     'i18n-btn-linux-zip': t.btnLinuxZip,
     'i18n-btn-copy-script': t.btnCopyScript,
     'i18n-linux-hint': t.linuxHint,
+    'i18n-dict-title': t.dictTitle,
+    'i18n-dict-desc': t.dictDesc,
+    'i18n-btn-dict-dmg': t.btnDictDmg,
+    'i18n-btn-dict-alt-zip': t.btnDictAltZip,
+    'i18n-btn-dict-tsev-zip': t.btnDictTsevZip,
+    'i18n-dict-hint': t.dictHint,
     'i18n-checksum-title': t.checksumTitle,
     'i18n-checksum-toggle': t.checksumToggle,
     'i18n-th-file': t.thFile,
