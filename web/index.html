@@ -376,6 +376,11 @@
       border: 1px solid var(--key-border);
       border-radius: 8px;
       padding: 16px 20px;
+      resize: vertical; /* Allows dragging downwards to make it longer */
+      min-height: 380px;
+      height: 520px;
+      max-height: 85vh;
+      transition: height 0.2s ease;
     }
     .converter-output-box {
       writing-mode: vertical-lr;
@@ -385,7 +390,8 @@
       font-size: 16px;
       line-height: 1.85;
       color: var(--text);
-      height: 340px;
+      height: 100%;
+      min-height: 340px;
       white-space: pre-wrap;
       word-break: normal;
       user-select: text;
@@ -1951,7 +1957,7 @@ function copyText() {
 }
 
 let currentConverterFontSize = 16;
-const converterHeights = [240, 340, 480];
+const converterHeights = [380, 540, 720];
 let currentConverterHeightIdx = 1;
 
 function adjustConverterFontSize(delta) {
@@ -1965,9 +1971,9 @@ function adjustConverterFontSize(delta) {
 function toggleConverterHeight() {
   currentConverterHeightIdx = (currentConverterHeightIdx + 1) % converterHeights.length;
   const newH = converterHeights[currentConverterHeightIdx];
-  const out = document.getElementById('converted-bichig-output');
+  const wrapper = document.querySelector('.converter-output-wrapper');
   const btn = document.getElementById('btn-toggle-conv-height');
-  if (out) out.style.height = newH + 'px';
+  if (wrapper) wrapper.style.height = newH + 'px';
   if (btn) btn.innerText = '↕ ' + newH + 'px';
 }
 
@@ -1982,17 +1988,30 @@ function convertCurrentText() {
     const res = window.BichigConverter.convertText(text);
     const panel = document.getElementById('converter-preview-panel');
     const out = document.getElementById('converted-bichig-output');
+    const wrapper = document.querySelector('.converter-output-wrapper');
     const stats = document.getElementById('convert-word-stats');
     if (out) out.innerText = res;
-    if (stats) {
-      const words = text.trim().split(/\s+/).length;
-      stats.innerText = `(${words} үг хөрвүүлэв)`;
+    
+    const words = text.trim().split(/\s+/).length;
+    if (stats) stats.innerText = `(${words} үг хөрвүүлэв)`;
+
+    // Auto-expand frame downwards based on text size so columns are tall and don't wrap too much horizontally
+    let autoHeight = 440;
+    if (words > 80) {
+      autoHeight = Math.min(Math.round(window.innerHeight * 0.82), 680);
+    } else if (words > 35) {
+      autoHeight = Math.min(Math.round(window.innerHeight * 0.65), 520);
     }
+    if (wrapper) {
+      wrapper.style.height = autoHeight + 'px';
+      const btn = document.getElementById('btn-toggle-conv-height');
+      if (btn) btn.innerText = '↕ ' + autoHeight + 'px';
+    }
+
     if (panel) {
       panel.style.display = 'block';
       panel.scrollIntoView({ behavior: 'smooth' });
     }
-    const wrapper = document.querySelector('.converter-output-wrapper');
     if (wrapper && !wrapper._hasWheel) {
       wrapper._hasWheel = true;
       wrapper.addEventListener('wheel', (e) => {
