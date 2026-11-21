@@ -1069,11 +1069,24 @@
     <div class="editor-header">
       <h3 id="i18n-editor-title">✍️ Бичих ба Турших талбар (Live Workspace)</h3>
       <div class="editor-tools">
+        <button class="btn" id="i18n-btn-convert" onclick="convertCurrentText()" style="background:#0284c7; color:#fff; font-weight:600;">📜 Босоо бичиг рүү хөрвүүлэх</button>
         <button class="btn" id="i18n-btn-clear" onclick="clearText()">Арилгах</button>
         <button class="btn" id="i18n-btn-copy" onclick="copyText()">Хуулах</button>
       </div>
     </div>
     <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
+    
+    <!-- Real-time Classical Vertical Script Converter Preview Panel -->
+    <div id="converter-preview-panel" style="display:none; margin-top:16px; padding:16px; background:#0f172a; border:1px solid #334155; border-radius:8px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #334155; padding-bottom:8px;">
+        <span style="font-weight:600; color:#38bdf8; font-size:14px;" id="i18n-convert-preview-title">📜 Сонгодог босоо бичгийн буулгалт (Classical Script Preview)</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" onclick="copyConvertedText()" id="i18n-btn-copy-converted" style="font-size:12px; padding:4px 10px;">📋 Босоо бичгийг хуулах</button>
+          <button class="btn" onclick="toggleConverterPanel()" style="font-size:12px; padding:4px 10px;">✕ Хаах</button>
+        </div>
+      </div>
+      <div id="converted-bichig-output" style="writing-mode:vertical-lr; -webkit-writing-mode:vertical-lr; text-orientation:sideways; font-family:'Noto Sans Mongolian', 'Noto Serif Mongolian', 'Mongolian Baiti', sans-serif; font-size:24px; line-height:2.2; color:#38bdf8; height:240px; overflow-x:auto; overflow-y:hidden; padding:10px; background:#020617; border-radius:6px; user-select:text;"></div>
+    </div>
   </div>
 
   <!-- Security & Trust Bar -->
@@ -1878,6 +1891,41 @@ function copyText() {
   alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
 }
 
+function convertCurrentText() {
+  const box = document.getElementById('typing-box');
+  const text = box ? box.value : '';
+  if (!text.trim()) {
+    alert('Эхлээд талбарт кириллээр бичнэ үү.');
+    return;
+  }
+  if (window.BichigConverter) {
+    const res = window.BichigConverter.convertText(text);
+    const panel = document.getElementById('converter-preview-panel');
+    const out = document.getElementById('converted-bichig-output');
+    if (out) out.innerText = res;
+    if (panel) {
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
+
+function copyConvertedText() {
+  const out = document.getElementById('converted-bichig-output');
+  if (out && out.innerText) {
+    navigator.clipboard.writeText(out.innerText).then(() => {
+      alert('Босоо бичгийг санах ойд хууллаа! (Classical Script Copied)');
+    });
+  }
+}
+
+function toggleConverterPanel() {
+  const panel = document.getElementById('converter-preview-panel');
+  if (panel) {
+    panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+  }
+}
+
 function copyLinuxCmd(btn) {
   const text = document.getElementById('cmd-linux').innerText;
   navigator.clipboard.writeText(text).then(() => {
@@ -1912,6 +1960,7 @@ const I18N = {
     editorTitle: "✍️ Бичих ба Турших талбар (Live Workspace)",
     btnClear: "Арилгах",
     btnCopy: "Хуулах",
+    btnConvert: "📜 Босоо бичиг рүү хөрвүүлэх",
     typingPlaceholder: "Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү...",
     vertTitle: "📜 Босоо бичвэр (Classical)",
     trustVtTitle: "VirusTotal Баталгаажсан",
@@ -2005,6 +2054,7 @@ const I18N = {
     editorTitle: "✍️ Typing & Testing Workspace (Live)",
     btnClear: "Clear",
     btnCopy: "Copy",
+    btnConvert: "📜 Convert to Classical Script",
     typingPlaceholder: "Click the keys above or start typing on your physical keyboard...",
     vertTitle: "📜 Vertical Script Preview",
     trustVtTitle: "VirusTotal Verified",
@@ -2095,6 +2145,7 @@ const I18N = {
     editorTitle: "✍️ Eingabe- & Testbereich (Live)",
     btnClear: "Löschen",
     btnCopy: "Kopieren",
+    btnConvert: "📜 In klassische Schrift umwandeln",
     typingPlaceholder: "Klicken Sie auf die Tasten oben oder tippen Sie auf Ihrer Tastatur...",
     vertTitle: "📜 Vertikale Schriftvorschau",
     trustVtTitle: "VirusTotal Geprüft",
@@ -2206,6 +2257,7 @@ function setLanguage(lang) {
       : t.editorTitle,
     'i18n-btn-clear': t.btnClear,
     'i18n-btn-copy': t.btnCopy,
+    'i18n-btn-convert': t.btnConvert,
     'i18n-trust-vt-title': t.trustVtTitle,
     'i18n-trust-vt-sub': t.trustVtSub,
     'i18n-trust-zero-title': t.trustZeroTitle,
@@ -2368,5 +2420,6 @@ renderKeyboard();
 initTypingEmulation();
 </script>
 <script src="bichig-suggest.js?v=20261121_v35"></script>
+<script src="bichig-converter.js?v=20261121_v1"></script>
 </body>
 </html>

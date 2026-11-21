@@ -36,6 +36,9 @@ cp -v "${REPO_ROOT}/web/"*.ico "${REPO_ROOT}/web/"*.png "${REPO_ROOT}/web/"*.jpg
 if [ -f "${REPO_ROOT}/web/bichig-suggest.js" ]; then
     cp -v "${REPO_ROOT}/web/bichig-suggest.js" "${INFRA_MN_DIR}/bichig-suggest.js"
 fi
+if [ -f "${REPO_ROOT}/web/bichig-converter.js" ]; then
+    cp -v "${REPO_ROOT}/web/bichig-converter.js" "${INFRA_MN_DIR}/bichig-converter.js"
+fi
 if [ -d "${REPO_ROOT}/web/data" ]; then
     cp -v "${REPO_ROOT}/web/data/"* "${INFRA_MN_DIR}/data/"
 fi
