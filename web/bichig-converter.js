@@ -21,6 +21,36 @@
   ]);
   const CONSONANTS_C9 = new Set(['д', 'ж', 'з', 'с', 'т', 'х', 'ц', 'ч', 'ш']);
 
+  const BICHIG_DIGITS = {
+    '0': '᠐', '1': '᠑', '2': '᠒', '3': '᠓', '4': '᠔',
+    '5': '᠕', '6': '᠖', '7': '᠗', '8': '᠘', '9': '᠙'
+  };
+
+  const NUMBER_SUFFIX_MAP = {
+    'иад': `${NNBSP}ᠢᠶᠠᠳ`,
+    'иод': `${NNBSP}ᠢᠶᠠᠳ`,
+    'өөд': `${NNBSP}ᠦᠭᠡᠳ`,
+    'аад': `${NNBSP}ᠠᠭᠠᠳ`,
+    'ээд': `${NNBSP}ᠡᠭᠡᠳ`,
+    'оод': `${NNBSP}ᠣᠭᠠᠳ`,
+    'р': `${NNBSP}ᠳᠤᠭᠠᠷ`,
+    'дугаар': `${NNBSP}ᠳᠤᠭᠠᠷ`,
+    'дүгээр': `${NNBSP}ᠳᠦᠭᠡᠷ`,
+    'ны': `${NNBSP} ᠤᠨ`,
+    'ний': `${NNBSP} ᠦᠨ`,
+    'д': `${NNBSP}ᠳᠤ`,
+    'т': `${NNBSP}ᠲᠤ`
+  };
+
+  function convertDigits(numStr) {
+    let out = '';
+    for (let i = 0; i < numStr.length; i++) {
+      const ch = numStr[i];
+      out += BICHIG_DIGITS[ch] || ch;
+    }
+    return out;
+  }
+
   const FALLBACK_MAP = {
     'а': 'ᠠ', 'б': 'ᠪ', 'в': 'ᠸ', 'г': 'ᠭ', 'д': 'ᠳ', 'е': 'ᠶᠡ', 'ё': 'ᠶᠣ',
     'ж': 'ᠵ', 'з': 'ᠽ', 'и': 'ᠢ', 'й': 'ᠢ', 'к': 'ᠺ', 'л': 'ᠯ', 'м': 'ᠮ',
@@ -269,12 +299,20 @@
         continue;
       }
 
-      const tokens = line.match(/[а-яёөүА-ЯЁӨҮ\-']+|[a-zA-Z]+|\d+|[^\w\s]|[\s]+/g) || [line];
+      const tokens = line.match(/\d+[-–][а-яёөүА-ЯЁӨҮ]+|[а-яёөүА-ЯЁӨҮ\-']+|[a-zA-Z]+|\d+|[^\w\s]|[\s]+/g) || [line];
       let lineOut = '';
 
       for (let t = 0; t < tokens.length; t++) {
         const tok = tokens[t];
-        if (/^[а-яёөүА-ЯЁӨҮ\-']+$/.test(tok)) {
+        if (/^\d+[-–][а-яёөүА-ЯЁӨҮ]+$/.test(tok)) {
+          const parts = tok.split(/[-–]/);
+          const numPart = convertDigits(parts[0]);
+          const sufPart = parts[1].toLowerCase();
+          const tradSuf = NUMBER_SUFFIX_MAP[sufPart] || (`${NNBSP}` + convertWord(sufPart));
+          lineOut += numPart + tradSuf;
+        } else if (/^\d+$/.test(tok)) {
+          lineOut += convertDigits(tok);
+        } else if (/^[а-яёөүА-ЯЁӨҮ\-']+$/.test(tok)) {
           lineOut += convertWord(tok);
         } else if (convertPunct) {
           if (tok === '...') lineOut += '\u1801';
