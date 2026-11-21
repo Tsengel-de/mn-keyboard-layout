@@ -386,6 +386,8 @@
       writing-mode: vertical-lr;
       -webkit-writing-mode: vertical-lr;
       text-orientation: mixed;
+      text-combine-upright: digits 4;
+      -webkit-text-combine: horizontal;
       font-family: "Noto Sans Mongolian", "Noto Serif Mongolian", "Mongolian Baiti", "Menksoft", sans-serif;
       font-size: 16px;
       line-height: 1.85;
@@ -395,6 +397,11 @@
       white-space: pre-wrap;
       word-break: normal;
       user-select: text;
+    }
+    .bichig-num, .upright-num {
+      text-orientation: upright;
+      display: inline-block;
+      letter-spacing: 0.05em;
     }
 
 
@@ -1990,7 +1997,11 @@ function convertCurrentText() {
     const out = document.getElementById('converted-bichig-output');
     const wrapper = document.querySelector('.converter-output-wrapper');
     const stats = document.getElementById('convert-word-stats');
-    if (out) out.innerText = res;
+    if (out) {
+      // Wrap digit sequences so they stand upright in vertical text flow instead of rotating sideways
+      const formatted = res.replace(/([\d\u1810-\u1819]+(?:[.,\u1803/-][\d\u1810-\u1819]+)*)/g, '<span class="bichig-num">$1</span>');
+      out.innerHTML = formatted;
+    }
     
     const words = text.trim().split(/\s+/).length;
     if (stats) stats.innerText = `(${words} үг хөрвүүлэв)`;
@@ -2534,6 +2545,6 @@ renderKeyboard();
 initTypingEmulation();
 </script>
 <script src="bichig-suggest.js?v=20261121_v36"></script>
-<script src="bichig-converter.js?v=20261121_v3"></script>
+<script src="bichig-converter.js?v=20261122_v1"></script>
 </body>
 </html>
