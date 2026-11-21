@@ -23,33 +23,51 @@
   let isEnabled = true;
   let activeSuggestions = [];
 
+  let isVertical = (function() {
+    try {
+      const v = localStorage.getItem('mn_suggest_vertical');
+      return v !== 'false';
+    } catch(e) { return true; }
+  })();
+
   const I18N_SUGGEST = {
     mn: {
       label: '💡 Зөв үг санал болгох',
+      vertLabel: '📜 Сонгодог босоо бичиг',
       on: 'Асаалттай',
       off: 'Унтраастай'
     },
     en: {
       label: '💡 Word Suggestions',
+      vertLabel: '📜 Classic Vertical',
       on: 'ON',
       off: 'OFF'
     },
     de: {
       label: '💡 Wortvorschläge',
+      vertLabel: '📜 Klassische Vertikalschrift',
       on: 'AN',
       off: 'AUS'
     }
   };
 
   function updateToggleBtn() {
-    const btn = document.getElementById('btn-toggle-suggest');
-    if (!btn) return;
     const lang = (typeof window.currentLang !== 'undefined' && I18N_SUGGEST[window.currentLang])
       ? window.currentLang
       : (typeof currentLang !== 'undefined' && I18N_SUGGEST[currentLang] ? currentLang : 'mn');
     const t = I18N_SUGGEST[lang] || I18N_SUGGEST.mn;
-    btn.classList.toggle('active', isEnabled);
-    btn.innerHTML = `${t.label}: <strong>${isEnabled ? t.on : t.off}</strong>`;
+
+    const btn = document.getElementById('btn-toggle-suggest');
+    if (btn) {
+      btn.classList.toggle('active', isEnabled);
+      btn.innerHTML = `${t.label}: <strong>${isEnabled ? t.on : t.off}</strong>`;
+    }
+
+    const btnVert = document.getElementById('btn-toggle-vertical');
+    if (btnVert) {
+      btnVert.classList.toggle('active', isVertical);
+      btnVert.innerHTML = `${t.vertLabel}: <strong>${isVertical ? t.on : t.off}</strong>`;
+    }
   }
 
   // Robust mode detector
@@ -203,22 +221,33 @@
       const chip = document.createElement('div');
       chip.className = 'suggest-chip';
 
+      if (!isVertical) {
+        chip.classList.add('horizontal-mode');
+      }
+
+      const shortDef = item.defn ? `${item.defn}` : '';
+
       if (isBichig) {
         // Traditional Script is primary
+        chip.classList.add('bichig-chip');
         chip.innerHTML = `
           <span class="suggest-num">${idx + 1}</span>
-          <span class="suggest-script">${item.script}</span>
-          <span class="suggest-cyr">(${item.cyr})</span>
+          <div class="suggest-ribbon-vertical main-bichig" title="${item.script}">${item.script}</div>
+          <div class="suggest-text-col">
+            <span class="suggest-cyr-word">${item.cyr}</span>
+            ${item.defn ? `<span class="suggest-def">${shortDef}</span>` : ''}
+          </div>
         `;
-        chip.title = `${item.cyr}: ${item.defn || ''}`;
+        chip.title = `${item.cyr} [${item.script}]: ${item.defn || ''}`;
       } else {
-        // Cyrillic is primary, traditional script shown as companion
-        const shortDef = item.defn ? ` - ${item.defn}` : '';
+        // Cyrillic mode: Cyrillic is primary, traditional script rendered as authentic vertical ribbon
         chip.innerHTML = `
           <span class="suggest-num">${idx + 1}</span>
-          <span class="suggest-cyr-word">${item.cyr}</span>
-          <span class="suggest-script-mini">${item.script}</span>
-          ${item.defn ? `<span class="suggest-def">${shortDef}</span>` : ''}
+          <div class="suggest-ribbon-vertical" title="${item.script}">${item.script}</div>
+          <div class="suggest-text-col">
+            <span class="suggest-cyr-word">${item.cyr}</span>
+            ${item.defn ? `<span class="suggest-def">${shortDef}</span>` : ''}
+          </div>
         `;
         chip.title = `${item.cyr} [${item.script}]: ${item.defn || ''}`;
       }
@@ -276,19 +305,33 @@
       box.parentNode.insertBefore(bar, box);
     }
 
-    // Create toggle button in editor tools
+    // Create toggle buttons in editor tools
     const tools = document.querySelector('.editor-tools');
-    if (tools && !document.getElementById('btn-toggle-suggest')) {
-      const toggleBtn = document.createElement('button');
-      toggleBtn.id = 'btn-toggle-suggest';
-      toggleBtn.className = 'btn btn-suggest active';
-      toggleBtn.onclick = () => {
-        isEnabled = !isEnabled;
-        updateToggleBtn();
-        if (!isEnabled) hideSuggestions();
-        else updateSuggestions();
-      };
-      tools.insertBefore(toggleBtn, tools.firstChild);
+    if (tools) {
+      if (!document.getElementById('btn-toggle-vertical')) {
+        const toggleVertBtn = document.createElement('button');
+        toggleVertBtn.id = 'btn-toggle-vertical';
+        toggleVertBtn.className = 'btn btn-suggest' + (isVertical ? ' active' : '');
+        toggleVertBtn.onclick = () => {
+          isVertical = !isVertical;
+          try { localStorage.setItem('mn_suggest_vertical', isVertical); } catch(e) {}
+          updateToggleBtn();
+          updateSuggestions();
+        };
+        tools.insertBefore(toggleVertBtn, tools.firstChild);
+      }
+      if (!document.getElementById('btn-toggle-suggest')) {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.id = 'btn-toggle-suggest';
+        toggleBtn.className = 'btn btn-suggest' + (isEnabled ? ' active' : '');
+        toggleBtn.onclick = () => {
+          isEnabled = !isEnabled;
+          updateToggleBtn();
+          if (!isEnabled) hideSuggestions();
+          else updateSuggestions();
+        };
+        tools.insertBefore(toggleBtn, tools.firstChild);
+      }
       updateToggleBtn();
     }
 
@@ -383,6 +426,8 @@
     search: search,
     enable: () => { isEnabled = true; updateToggleBtn(); },
     disable: () => { isEnabled = false; updateToggleBtn(); hideSuggestions(); },
+    toggleVertical: () => { isVertical = !isVertical; updateToggleBtn(); updateSuggestions(); },
+    isVertical: () => isVertical,
     hide: hideSuggestions,
     hasSuggestions: () => activeSuggestions && activeSuggestions.length > 0,
     update: updateSuggestions,
