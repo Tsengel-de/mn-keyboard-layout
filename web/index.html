@@ -135,7 +135,6 @@
       text-orientation: mixed !important;
       line-height: 1 !important;
     }
-    .key.has-bichig .main,
     .key .main.bichig-glyph {
       font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
       writing-mode: vertical-lr !important;
@@ -147,7 +146,6 @@
       align-items: center !important;
       justify-content: center !important;
     }
-    .key.has-bichig .top,
     .key .top.bichig-glyph {
       font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
       writing-mode: vertical-lr !important;
@@ -1667,7 +1665,10 @@ function renderKeyboard() {
     }
 
     row.forEach(k => {
-      const isBichigChar = /[\u1800-\u18AF]/.test(k.base) || /[\u1800-\u18AF]/.test(k.top);
+      // Row 1 (numbers) and KeyQ/KeyW (FVS selectors right of Tab) stay standard horizontal like before
+      const isSpecialControlKey = (k.code === 'KeyQ' || k.code === 'KeyW');
+      const isLetterKey = (idx > 0) && !isSpecialControlKey;
+      const isBichigChar = isLetterKey && (/[ᠠ-᢯]/.test(k.base) || /[ᠠ-᢯]/.test(k.top));
       const keyDiv = document.createElement('div');
       keyDiv.className = 'key' + (k.devops ? ' devops-key' : '') + (isBichigChar ? ' has-bichig' : '');
       keyDiv.setAttribute('data-code', k.code);
@@ -1679,9 +1680,12 @@ function renderKeyboard() {
       const latinKey = (k.key || '').toUpperCase();
       const subLabel = isShift && k.topSub ? k.topSub : (k.sub || '');
 
+      const isTopBichig = isLetterKey && /[ᠠ-᢯]/.test(k.top || '');
+      const isMainBichig = isLetterKey && /[ᠠ-᢯]/.test(charToType || '');
+
       keyDiv.innerHTML = `
-        <span class="top ${/[᠀-᢯]/.test(k.top || '') ? 'bichig-glyph' : ''}" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
-        <span class="main ${/[᠀-᢯]/.test(charToType || '') ? 'bichig-glyph' : ''}" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
+        <span class="top ${isTopBichig ? 'bichig-glyph' : ''}" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
+        <span class="main ${isMainBichig ? 'bichig-glyph' : ''}" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
         <span class="alt" style="${isAltGr ? 'color:#d97706; font-weight:700;' : ''}">${k.alt || ''}</span>
         <span class="latin">${latinKey}</span>
         ${subLabel ? `<span class="sub">${subLabel}</span>` : ''}
@@ -2406,6 +2410,6 @@ initLanguage();
 renderKeyboard();
 initTypingEmulation();
 </script>
-<script src="bichig-suggest.js?v=20261121_v33"></script>
+<script src="bichig-suggest.js?v=20261121_v35"></script>
 </body>
 </html>
