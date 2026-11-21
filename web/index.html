@@ -127,10 +127,37 @@
       line-height: 1;
       pointer-events: none;
     }
+    /* Classical Mongolian vertical orientation for keyboard keys */
+    .bichig-glyph {
+      font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
+      writing-mode: vertical-lr !important;
+      -webkit-writing-mode: vertical-lr !important;
+      text-orientation: mixed !important;
+      line-height: 1 !important;
+    }
     .key.has-bichig .main,
-    .key.has-bichig .top {
-      font-family: "Noto Sans Mongolian", "Mongolian Baiti", sans-serif;
-      font-size: 19px;
+    .key .main.bichig-glyph {
+      font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
+      writing-mode: vertical-lr !important;
+      -webkit-writing-mode: vertical-lr !important;
+      text-orientation: mixed !important;
+      font-size: 21px !important;
+      height: 34px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .key.has-bichig .top,
+    .key .top.bichig-glyph {
+      font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
+      writing-mode: vertical-lr !important;
+      -webkit-writing-mode: vertical-lr !important;
+      text-orientation: mixed !important;
+      font-size: 13px !important;
+      height: 18px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     .key-tab { width: 72px; min-width: 72px; max-width: 72px; flex: 0 0 72px; }
@@ -278,10 +305,19 @@
       white-space: nowrap;
       line-height: 1.35;
     }
+    .suggest-script,
     .suggest-script-mini {
-      font-size: 16px;
-      color: #0284c7;
-      font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif;
+      writing-mode: vertical-lr !important;
+      -webkit-writing-mode: vertical-lr !important;
+      text-orientation: mixed !important;
+      font-family: "Noto Sans Mongolian", "Menksoft Qagan", "Mongolian Baiti", sans-serif !important;
+      font-size: 18px !important;
+      line-height: 1.15;
+      min-height: 56px;
+      padding: 4px 6px;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     .btn-suggest {
       background: #f8fafc;
@@ -1644,8 +1680,8 @@ function renderKeyboard() {
       const subLabel = isShift && k.topSub ? k.topSub : (k.sub || '');
 
       keyDiv.innerHTML = `
-        <span class="top" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
-        <span class="main" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
+        <span class="top ${/[᠀-᢯]/.test(k.top || '') ? 'bichig-glyph' : ''}" style="${isShift ? 'color:#0284c7; font-weight:700;' : ''}">${k.top || ''}</span>
+        <span class="main ${/[᠀-᢯]/.test(charToType || '') ? 'bichig-glyph' : ''}" style="${isAltGr && k.alt ? 'color:#d97706;' : ''}">${charToType}</span>
         <span class="alt" style="${isAltGr ? 'color:#d97706; font-weight:700;' : ''}">${k.alt || ''}</span>
         <span class="latin">${latinKey}</span>
         ${subLabel ? `<span class="sub">${subLabel}</span>` : ''}
@@ -2370,6 +2406,6 @@ initLanguage();
 renderKeyboard();
 initTypingEmulation();
 </script>
-<script src="bichig-suggest.js?v=2.6"></script>
+<script src="bichig-suggest.js?v=20261121_v33"></script>
 </body>
 </html>
