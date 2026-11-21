@@ -122,8 +122,70 @@
         if (c9) return masc ? `${NNBSP}ᠲᠤ` : `${NNBSP}ᠲᠦ`;
         return masc ? `${NNBSP}ᠳᠤ` : `${NNBSP}ᠳᠦ`;
       }
+    },
+    // Verbal past participle (-сан, -сэн, -сон, -сөн)
+    {
+      sufs: ['сан', 'сэн', 'сон', 'сөн'],
+      resolve: function (stem) {
+        return isMasculine(stem) ? `${NNBSP}ᠭᠰᠠᠨ` : `${NNBSP}ᠭᠰᠡᠨ`;
+      }
+    },
+    // Verbal habitual participle (-даг, -дэг, -дог, -дөг)
+    {
+      sufs: ['даг', 'дэг', 'дог', 'дөг'],
+      resolve: function (stem) {
+        return isMasculine(stem) ? `${NNBSP}ᠳᠠᠭ` : `${NNBSP}ᠳᠡᠭ`;
+      }
+    },
+    // Verbal present tense / particle (-на, -нэ, -но, -нө)
+    {
+      sufs: ['на', 'нэ', 'но', 'нө'],
+      resolve: function (stem) {
+        return isMasculine(stem) ? `${NNBSP}ᠨ᠎ᠠ` : `${NNBSP}ᠨ᠎ᠡ`;
+      }
+    },
+    // Verbal past direct (-лаа, -лээ, -лоо, -лөө)
+    {
+      sufs: ['лаа', 'лээ', 'лоо', 'лөө'],
+      resolve: function (stem) {
+        return isMasculine(stem) ? `${NNBSP}ᠯᠤᠭ᠎ᠠ` : `${NNBSP}ᠯᠦᠭᠡ`;
+      }
+    },
+    // Converb (-жээ, -чээ)
+    {
+      sufs: ['жээ', 'чээ'],
+      resolve: function (stem) {
+        return `${NNBSP}ᠵᠡᠢ`;
+      }
     }
   ];
+
+  const COMMON_EXCEPTIONS = {
+    'байна': 'ᠪᠠᠶᠢᠨ᠎ᠠ',
+    'байсан': 'ᠪᠠᠶᠢᠭᠰᠠᠨ',
+    'байдаг': 'ᠪᠠᠶᠢᠳᠠᠭ',
+    'байгаа': 'ᠪᠠᠶᠢᠭ᠎ᠠ',
+    'байх': 'ᠪᠠᠶᠢᠬᠤ',
+    'баярлалаа': 'ᠪᠠᠶᠠᠷᠯᠠᠯᠤᠭ᠎ᠠ',
+    'сайн': 'ᠰᠠᠶᠢᠨ',
+    'болно': 'ᠪᠣᠯᠤᠨ᠎ᠠ',
+    'болсон': 'ᠪᠣᠯᠤᠭᠰᠠᠨ',
+    'болжээ': 'ᠪᠣᠯᠵᠡᠢ',
+    'байвал': 'ᠪᠠᠶᠢᠪᠠᠯ',
+    'хийж': 'ᠬᠢᠵᠦ',
+    'хийсэн': 'ᠬᠢᠭᠰᠡᠨ',
+    'хийх': 'ᠬᠢᠬᠦ',
+    'гэж': 'ᠭᠡᠵᠦ',
+    'гэсэн': 'ᠭᠡᠭᠰᠡᠨ',
+    'гэх': 'ᠭᠡᠬᠦ',
+    'би': 'ᠪᠢ',
+    'чи': 'ᠴᠢ',
+    'та': 'ᠲᠠ',
+    'бид': 'ᠪᠢᠳᠡ',
+    'тэд': 'ᠲᠡᠳᠡ',
+    'энэ': 'ᠡᠨᠡ',
+    'тэр': 'ᠲᠡᠷᠡ'
+  };
 
   async function init() {
     if (isReady) return;
@@ -151,6 +213,11 @@
   function convertWord(word) {
     if (!word) return '';
     const w = word.trim().toLowerCase();
+
+    // 0. Common grammatical exceptions
+    if (COMMON_EXCEPTIONS[w]) {
+      return COMMON_EXCEPTIONS[w];
+    }
 
     // 1. Direct dictionary match
     if (dictMap && dictMap.has(w)) {
@@ -237,3 +304,4 @@
     init();
   }
 })();
+

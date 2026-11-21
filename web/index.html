@@ -344,6 +344,53 @@
       opacity: 0.8;
     }
 
+    .converter-preview-panel {
+      margin-top: 16px;
+      padding: 16px;
+      background: var(--card-bg);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 85, 165, 0.1);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .converter-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--key-border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .converter-output-wrapper {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow-x: auto;
+      overflow-y: hidden;
+      background: var(--key-bg);
+      border: 1px solid var(--key-border);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .converter-output-box {
+      writing-mode: vertical-lr;
+      -webkit-writing-mode: vertical-lr;
+      text-orientation: mixed;
+      font-family: "Noto Sans Mongolian", "Noto Serif Mongolian", "Mongolian Baiti", "Menksoft", sans-serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text);
+      height: 340px;
+      white-space: pre-wrap;
+      word-break: normal;
+      user-select: text;
+    }
+
 
     .downloads-header {
       display: flex;
@@ -1077,15 +1124,27 @@
     <textarea id="typing-box" placeholder="Дээрх товчлуурууд дээр дарж эсвэл шууд бичиж үзнэ үү..."></textarea>
     
     <!-- Real-time Classical Vertical Script Converter Preview Panel -->
-    <div id="converter-preview-panel" style="display:none; margin-top:16px; padding:16px; background:#0f172a; border:1px solid #334155; border-radius:8px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #334155; padding-bottom:8px;">
-        <span style="font-weight:600; color:#38bdf8; font-size:14px;" id="i18n-convert-preview-title">📜 Сонгодог босоо бичгийн буулгалт (Classical Script Preview)</span>
-        <div style="display:flex; gap:8px;">
-          <button class="btn" onclick="copyConvertedText()" id="i18n-btn-copy-converted" style="font-size:12px; padding:4px 10px;">📋 Босоо бичгийг хуулах</button>
+    <div id="converter-preview-panel" class="converter-preview-panel" style="display:none;">
+      <div class="converter-header-row">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-weight:700; color:var(--primary); font-size:14px;" id="i18n-convert-preview-title">📜 Сонгодог босоо бичгийн буулгалт</span>
+          <span id="convert-word-stats" style="font-size:12px; color:var(--text-muted);"></span>
+        </div>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span style="font-size:12px; color:var(--text-muted);">Үсэг:</span>
+          <button class="btn" onclick="adjustConverterFontSize(-1)" title="Жижигсгэх" style="font-size:12px; padding:2px 8px; font-weight:bold;">A-</button>
+          <span id="converter-font-size-label" style="font-size:12px; font-weight:600; min-width:32px; text-align:center;">16px</span>
+          <button class="btn" onclick="adjustConverterFontSize(1)" title="Томсгох" style="font-size:12px; padding:2px 8px; font-weight:bold;">A+</button>
+          
+          <button class="btn" onclick="toggleConverterHeight()" id="btn-toggle-conv-height" style="font-size:12px; padding:3px 8px; margin-left:4px;">↕ 340px</button>
+          
+          <button class="btn" onclick="copyConvertedText()" id="i18n-btn-copy-converted" style="background:var(--primary); color:#fff; font-size:12px; padding:4px 12px; font-weight:600; margin-left:6px;">📋 Хуулах</button>
           <button class="btn" onclick="toggleConverterPanel()" style="font-size:12px; padding:4px 10px;">✕ Хаах</button>
         </div>
       </div>
-      <div id="converted-bichig-output" style="writing-mode:vertical-lr; -webkit-writing-mode:vertical-lr; text-orientation:sideways; font-family:'Noto Sans Mongolian', 'Noto Serif Mongolian', 'Mongolian Baiti', sans-serif; font-size:24px; line-height:2.2; color:#38bdf8; height:240px; overflow-x:auto; overflow-y:hidden; padding:10px; background:#020617; border-radius:6px; user-select:text;"></div>
+      <div class="converter-output-wrapper">
+        <div id="converted-bichig-output" class="converter-output-box"></div>
+      </div>
     </div>
   </div>
 
@@ -1891,6 +1950,27 @@ function copyText() {
   alert('Бичвэр санах ойд хуулагдлаа! (Copied)');
 }
 
+let currentConverterFontSize = 16;
+const converterHeights = [240, 340, 480];
+let currentConverterHeightIdx = 1;
+
+function adjustConverterFontSize(delta) {
+  currentConverterFontSize = Math.max(12, Math.min(26, currentConverterFontSize + delta));
+  const out = document.getElementById('converted-bichig-output');
+  const lbl = document.getElementById('converter-font-size-label');
+  if (out) out.style.fontSize = currentConverterFontSize + 'px';
+  if (lbl) lbl.innerText = currentConverterFontSize + 'px';
+}
+
+function toggleConverterHeight() {
+  currentConverterHeightIdx = (currentConverterHeightIdx + 1) % converterHeights.length;
+  const newH = converterHeights[currentConverterHeightIdx];
+  const out = document.getElementById('converted-bichig-output');
+  const btn = document.getElementById('btn-toggle-conv-height');
+  if (out) out.style.height = newH + 'px';
+  if (btn) btn.innerText = '↕ ' + newH + 'px';
+}
+
 function convertCurrentText() {
   const box = document.getElementById('typing-box');
   const text = box ? box.value : '';
@@ -1902,10 +1982,25 @@ function convertCurrentText() {
     const res = window.BichigConverter.convertText(text);
     const panel = document.getElementById('converter-preview-panel');
     const out = document.getElementById('converted-bichig-output');
+    const stats = document.getElementById('convert-word-stats');
     if (out) out.innerText = res;
+    if (stats) {
+      const words = text.trim().split(/\s+/).length;
+      stats.innerText = `(${words} үг хөрвүүлэв)`;
+    }
     if (panel) {
       panel.style.display = 'block';
       panel.scrollIntoView({ behavior: 'smooth' });
+    }
+    const wrapper = document.querySelector('.converter-output-wrapper');
+    if (wrapper && !wrapper._hasWheel) {
+      wrapper._hasWheel = true;
+      wrapper.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          wrapper.scrollLeft += e.deltaY;
+          e.preventDefault();
+        }
+      }, { passive: false });
     }
   }
 }
